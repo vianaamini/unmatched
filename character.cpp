@@ -31,3 +31,15 @@ void character::heal(int amount) {
 }
 
 bool character::isalive() const{return health>0;}
+
+int character::get_combat_attack() const { 
+    return current_combat_attack; 
+}
+
+void character::set_combat_attack(int value) { 
+    current_combat_attack = value; 
+}
+
+void character::reset_combat_values() {
+    current_combat_attack = 0;
+}

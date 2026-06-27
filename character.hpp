@@ -11,10 +11,14 @@ class character {
     int maxhp;
     int movement;
     pair<int ,int> position;
+    int current_combat_attack;
+    int current_combat_defense;
 
     public:
     character(string name , int maxhp , int movement);
-
+    int get_combat_attack() const;
+    void set_combat_attack(int value);
+    void reset_combat_values();
     string getname() const;
     int gethealth() const;
 

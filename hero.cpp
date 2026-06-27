@@ -17,3 +17,15 @@ void hero::drawcard() {
         hand.push_back(dk.drawcard());
     }
 }
+
+int hero::get_actions() const {
+    return actions;
+}
+
+void hero::set_actions(int new_actions) {
+    actions = new_actions;
+}
+
+void hero::reset_actions() {
+    actions = 2;
+}
