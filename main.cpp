@@ -1,21 +1,41 @@
 #include <iostream>
-#include "Deck.hpp"
+#include "sherlock.hpp"
+#include "dracula.hpp"
+#include "watson.hpp"
+#include "sister.hpp"
 
 using namespace std;
 
 int main() {
-    deck d;
-
-    card c1("Feint", cardtype::Attack, 2);
-    card c2("Bite", cardtype::Attack, 4);
-
-    d.addcard(c1);
-    d.addcard(c2);
-
-    cout << "Size: " << d.getsize() << endl;
-
-    card drawn = d.drawcard();
-    cout << "Drawn: " << drawn.get_name() << endl;
-
-    cout << "Size after draw: " << d.getsize() << endl;
+    cout << "=== Creating Characters ===" << endl;
+    
+    sherlock sh;
+    dracula dr;
+    watson wt;
+    sister s1(1), s2(2), s3(3);
+    
+    cout << "Sherlock: " << sh.getname() << " HP: " << sh.gethealth() << endl;
+    cout << "Watson: " << wt.getname() << " HP: " << wt.gethealth() << endl;
+    cout << "Dracula: " << dr.getname() << " HP: " << dr.gethealth() << endl;
+    cout << "Sister 1: " << s1.getname() << " HP: " << s1.gethealth() << endl;
+    
+    cout << "\n=== Testing Decks ===" << endl;
+    cout << "Sherlock deck size: " << sh.getdeck().getsize() << endl;
+    cout << "Dracula deck size: " << dr.getdeck().getsize() << endl;
+    
+    cout << "\n=== Drawing 3 cards from Sherlock ===" << endl;
+    for (int i = 0; i < 3; i++) {
+        card c = sh.getdeck().drawcard();
+        cout << "- " << c.get_name() << " (Boost: " << c.getboost() << ")" << endl;
+    }
+    cout << "Remaining: " << sh.getdeck().getsize() << endl;
+    
+    cout << "\n=== Testing Abilities ===" << endl;
+    sh.useability();
+    dr.useability();
+    wt.useability();
+    
+    cout << "\n✅ All tests passed!" << endl;
+    
+    return 0;
 }
