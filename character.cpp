@@ -30,4 +30,11 @@ void character::heal(int amount) {
     if(health > maxhp ) health = maxhp;
 }
 
+void character::sethealth(int amount) {
+    health = amount;
+
+    if(health > maxhp ) health = maxhp;
+    if(health < 0) health = 0;
+}
+
 bool character::isalive() const{return health>0;}

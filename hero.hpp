@@ -10,6 +10,7 @@ class hero : public character {
 
     deck dk;
     vector<card> hand;
+    int actions;
 
     public:
     hero( const string& name, int maxhp, int movement);
@@ -28,8 +29,10 @@ class hero : public character {
 
     vector<card>& gethand();
     const vector<card>& gethand() const;
-     int get_actions() const;
 
+    int get_actions() const;
+    void setactions(int new_actions);
+    void resetactions();
     int handsize() const;
 
     virtual void useability() = 0;

@@ -18,14 +18,8 @@ void hero::drawcard() {
     }
 }
 
-int hero::get_actions() const {
-    return actions;
-}
+int hero::get_actions() const {return actions;}
 
-void hero::set_actions(int new_actions) {
-    actions = new_actions;
-}
+void hero::set_actions(int new_actions) {actions = new_actions;}
 
-void hero::reset_actions() {
-    actions = 2;
-}
+void hero::reset_actions() {actions = 2;}

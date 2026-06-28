@@ -1,5 +1,4 @@
 #pragma once
-
 #include<string>
 #include<utility>
 
@@ -25,6 +24,7 @@ class character {
 
     void takedamage(int amount);
     void heal(int amount);
+    void sethealth(int amount);
 
     bool isalive() const;
     virtual void useability() {};
