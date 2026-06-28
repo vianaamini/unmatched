@@ -6,5 +6,4 @@ class dracula : public hero {
     dracula();
 
     void useability() override;
-    void resolvecard(const card& played_card, hero& opponent);
 };
