@@ -1,5 +1,5 @@
-#include "sherlock.hpp"
-#include "deck-builder.hpp"
+#include "../include/sherlock.hpp"
+#include "../include/deck-builder.hpp"
 #include <iostream>
 
 sherlock::sherlock() : hero("Sherlock holmes", 16, 2) {

@@ -1,4 +1,4 @@
-#include "sherlock_card.hpp"
+#include "../include/sherlock_card.hpp"
 #include <iostream>
 
 void card_confirming_suspicion::execute_effect(character& attacker, character& defender, const card& enemy_card, bool is_watson_adjacent, bool sherlock_won) {

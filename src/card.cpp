@@ -1,4 +1,4 @@
-#include "card.hpp"
+#include "../include/card.hpp"
 
 card::card(string name ,cardtype type ,int attack ,int defense ,int boost ,
     cardowner owner, string effect) 

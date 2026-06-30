@@ -1,7 +1,7 @@
-#include "dracula.hpp"
-#include "deck-builder.hpp"
-#include "hero.hpp"
-#include "card.hpp"
+#include "../include/dracula.hpp"
+#include "../include/deck-builder.hpp"
+#include "../include/hero.hpp"
+#include "../include/card.hpp"
 #include <iostream>
 
 dracula::dracula() : hero("Dracula", 13 , 2) {

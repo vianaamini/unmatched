@@ -1,9 +1,9 @@
 #include <iostream>
-#include "sherlock.hpp"
-#include "dracula.hpp"
-#include "watson.hpp"
-#include "sister.hpp"
-#include "sherlock_card.hpp"
+#include "include/sherlock.hpp"
+#include "include/dracula.hpp"
+#include "include/watson.hpp"
+#include "include/sister.hpp"
+#include "include/sherlock_card.hpp"
 
 using namespace std;
 

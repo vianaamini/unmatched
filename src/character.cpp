@@ -1,4 +1,4 @@
-#include "character.hpp"
+#include "../include/character.hpp"
 
 character::character (string name , int maxhp , int movement) :
     name(name) , maxhp(maxhp) , movement(movement) ,
