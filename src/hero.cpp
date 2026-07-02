@@ -1,4 +1,4 @@
-#include "hero.hpp"
+#include "../include/hero.hpp"
 
 hero::hero(const string& name, int maxhp, int movement) : character(name, maxhp, movement) {}
 

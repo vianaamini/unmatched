@@ -1,4 +1,4 @@
-#include "sister.hpp"
+#include "../include/sister.hpp"
 #include <string>
 
 sister::sister(int index) 

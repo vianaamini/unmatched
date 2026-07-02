@@ -1,4 +1,4 @@
-#include "deck.hpp"
+#include "../include/deck.hpp"
 #include <algorithm>
 #include <random>    // برای random_device و mt19937
 #include <stdexcept> // برای runtime_error

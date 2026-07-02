@@ -1,4 +1,4 @@
-#include "sherlock_card.hpp"
+#include "../include/sherlock_card.hpp"
 #include <iostream>
 
 void card_administer_aid::execute_effect(character& attacker, character& defender, 

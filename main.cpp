@@ -3,6 +3,7 @@
 #include "dracula.hpp"
 #include "watson.hpp"
 #include "sister.hpp"
+#include "sherlock_card.hpp"
 
 using namespace std;
 
