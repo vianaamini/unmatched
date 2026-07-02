@@ -12,12 +12,12 @@ bool dcards::are_adjacent(const character& a, const character& b)
     return (dx <= 1 && dy <= 1) && !(dx == 0 && dy == 0);
 }
 
-void dcard::resolve_scheme(const card& played_card, hero& deracula, hero& opponent , const vector<character*>& all_enemies, vector<sidekick*>& all_sisters )
+void dcards::resolve_scheme(const card& played_card, hero& deracula, hero& opponent , const vector<character*>& all_enemies, vector<sidekick*>& all_sisters )
 {
     string name = played_card.get_name();
     if (name == "Mistform")
     {
-        deracula.set_action(get_action()+1);
+        deracula.set_actions(deracula.get_actions() + 1);
         // need map for changing location for setting deracula 
     }
 
@@ -41,7 +41,7 @@ void dcard::resolve_scheme(const card& played_card, hero& deracula, hero& oppone
         int sumtargethits = 0;
         for(auto &e : all_enemies)
         {
-            if (e != nullptr && are_adjacent(user, *e) && enemy->gethealth() > 0)
+            if (e != nullptr && are_adjacent(deracula, *e) && e->isalive())
             {
                 e->takedamage(1);
                 sumtargethits++;
@@ -60,7 +60,7 @@ void dcard::resolve_scheme(const card& played_card, hero& deracula, hero& oppone
         int adjacent_sisters = 0;
 
         for (auto &sister : all_sisters) {
-            sister->setposition(sister->getx() + 2 , sister->gety())
+            sister->setposition(sister->getx() + 2 , sister->gety());
             // needs map
 
             if (sister->gethealth() > 0 && are_adjacent(*sister, opponent)) {
@@ -80,10 +80,10 @@ void dcard::resolve_scheme(const card& played_card, hero& deracula, hero& oppone
 
 }
 
-void dcard::resolve_combat_effects(const card& attacker_card, hero& attacker,const card& defender_card, hero& defender , vector<sidekick*>& all_sisters)
+void dcards::resolve_combat_effects(const card& attacker_card, hero& attacker,const card& defender_card, hero& defender , vector<sidekick*>& all_sisters)
 {
-    string atkname = attacker_card.getname();
-    string defname = defender_card.getname();
+    string atkname = attacker_card.get_name();
+    string defname = defender_card.get_name();
     int final_attack = attacker_card.getattack();
     int final_defense = defender_card.getdefense();
     bool look_into_eyes_active = false;
@@ -119,7 +119,7 @@ void dcard::resolve_combat_effects(const card& attacker_card, hero& attacker,con
         auto &defender_hand = defender.gethand();
         if (!defender_hand.empty())
         {
-            size_t random_index = rand() % defender_hand.handsize();
+            size_t random_index = rand() % defender_hand.size();
             card discardcard = defender_hand[random_index];
             final_attack += discardcard.getboost();
             defender_hand.erase(defender_hand.begin() + random_index);
@@ -161,25 +161,27 @@ void dcard::resolve_combat_effects(const card& attacker_card, hero& attacker,con
         defender.takedamage(damage);
     }
     
-    else if (atkname == "Exploit") { attacker.drawcard();}
-    else if(defname == "Exploit") {defender.drawcard();}
-
-    else if (atkname == "Dash")
-    {
-        
-        attacker.setposition(attacker.getx() + 3 , attacker.gety())
-        
+    if (atkname == "Exploit") { 
+        attacker.drawcard();
     }
-    else if (defname == "Dash")
+    if(defname == "Exploit") {
+        defender.drawcard();
+    }
+
+    if (atkname == "Dash")
     {
-        defender.setposition(defender.getx() + 3 , defender.gety())
+        attacker.setposition(attacker.getx() + 3 , attacker.gety());
+    }
+    if (defname == "Dash")
+    {
+        defender.setposition(defender.getx() + 3 , defender.gety());
     }
 
     if (atkname == "Thirst for Sustenance") {
         if (attacker_won) {
             //attacker.setx(defender.getx() + 1);
             //attacker.sety(defender.gety());
-            attacker.setposition(attacker.getx() + 1, attacker.gety())
+            attacker.setposition(attacker.getx() + 1, attacker.gety());
         }
         else {
             cout << "you did not win " << endl;

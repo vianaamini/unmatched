@@ -31,8 +31,6 @@ class hero : public character {
     const vector<card>& gethand() const;
 
     int get_actions() const;
-    void setactions(int new_actions);
-    void resetactions();
     int handsize() const;
 
     virtual void useability() = 0;
