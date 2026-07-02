@@ -3,7 +3,6 @@
 #include "dracula.hpp"
 #include "watson.hpp"
 #include "sister.hpp"
-#include "sherlock_card.hpp"
 
 using namespace std;
 
@@ -23,6 +22,13 @@ int main() {
     cout << "\n=== Testing Decks ===" << endl;
     cout << "Sherlock deck size: " << sh.getdeck().getsize() << endl;
     cout << "Dracula deck size: " << dr.getdeck().getsize() << endl;
+    
+    cout << "\n=== Drawing 5 cards ===" << endl;
+    sh.drawInitialHand();
+    cout << "Sherlock hand size: " << sh.handsize() << endl;
+    
+    dr.drawInitialHand();
+    cout << "Dracula hand size: " << dr.handsize() << endl;
     
     cout << "\n=== Testing Abilities ===" << endl;
     sh.useability();

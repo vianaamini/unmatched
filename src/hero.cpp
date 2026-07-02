@@ -18,6 +18,12 @@ void hero::drawcard() {
     }
 }
 
+void hero::drawhand() {
+    for (int i = 0 ; i < 5;i++) {
+        drawcard();
+    }
+}
+
 int hero::get_actions() const {return actions;}
 
 void hero::set_actions(int new_actions) {actions = new_actions;}

@@ -1,7 +1,6 @@
 #pragma once
 
 #include <vector>
-
 #include "card.hpp"
 #include "deck.hpp"
 #include "character.hpp"
@@ -16,13 +15,14 @@ class hero : public character {
     hero( const string& name, int maxhp, int movement);
 
     virtual ~hero() = default;
+    
     void set_actions(int new_actions);
 
     void reset_actions();
 
 
     void drawcard();
-
+    void drawhand();
 
     deck& getdeck();
     const deck& getdeck() const;
