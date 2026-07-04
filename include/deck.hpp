@@ -15,4 +15,6 @@ class deck {
 
     bool isempty() const;
     int getsize () const;
+
+    void shuffle();
 };

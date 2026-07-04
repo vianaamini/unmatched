@@ -1,7 +1,6 @@
 #pragma once
-
 #include<string>
-#include "deck.hpp"
+#include<utility>
 
 using namespace std;
 
@@ -10,18 +9,23 @@ class character {
     int health;
     int maxhp;
     int movement;
-    deck dk;
+    pair<int ,int> position;
+   
 
     public:
     character(string name , int maxhp , int movement);
-
     string getname() const;
     int gethealth() const;
 
+    void setposition(int x ,int y);
+    pair<int ,int> getposition() const;
+    int getx() const;
+    int gety() const;
+
     void takedamage(int amount);
     void heal(int amount);
+    void sethealth(int amount);
 
     bool isalive() const;
-
-    deck& getdeck();
+    virtual void useability() {};
 };
