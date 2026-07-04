@@ -1,13 +1,11 @@
 cmake_minimum_required(VERSION 3.20.0)
-
 project(
     Unmatched
     LANGUAGES CXX
 )
-
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(unmatched 
+add_executable(unmatched
     main.cpp
     src/card.cpp
     src/character.cpp
@@ -21,6 +19,11 @@ add_executable(unmatched
     src/sidekick.cpp
     src/sister.cpp
     src/watson.cpp
+    src/board.cpp
+    src/movement.cpp
+    src/deployment.cpp
+    src/turn_manager.cpp
+    src/game_manager.cpp
 )
 
 target_include_directories(unmatched PUBLIC include)
