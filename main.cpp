@@ -23,28 +23,12 @@ int main() {
     cout << "Sherlock deck size: " << sh.getdeck().getsize() << endl;
     cout << "Dracula deck size: " << dr.getdeck().getsize() << endl;
     
-<<<<<<< HEAD
-    cout << "\n=== Drawing 5 cards ===" << endl;
-    sh.drawInitialHand();
-    cout << "Sherlock hand size: " << sh.handsize() << endl;
-    
-    dr.drawInitialHand();
-    cout << "Dracula hand size: " << dr.handsize() << endl;
-=======
-    cout << "\n=== Drawing 3 cards from Sherlock ===" << endl;
-    for (int i = 0; i < 3; i++) {
-        card c = sh.getdeck().drawcard();
-        cout << "- " << c.get_name() << " (Boost: " << c.getboost() << ")" << endl;
-    }
-    cout << "Remaining: " << sh.getdeck().getsize() << endl;
->>>>>>> e846643a324b3104e300f499b3407a91c683c004
-    
     cout << "\n=== Testing Abilities ===" << endl;
     sh.useability();
     dr.useability();
     wt.useability();
     
-    cout << "\n✅ All tests passed!" << endl;
+    cout << "\nAll tests passed!" << endl;
     
     return 0;
 }

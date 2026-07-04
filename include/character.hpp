@@ -1,6 +1,7 @@
 #pragma once
 #include<string>
 #include<utility>
+#include "deck.hpp"
 
 using namespace std;
 
@@ -9,6 +10,7 @@ class character {
     int health;
     int maxhp;
     int movement;
+    pair<int ,int> position;
     deck dk;
 
     public:
