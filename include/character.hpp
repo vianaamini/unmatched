@@ -9,8 +9,7 @@ class character {
     int health;
     int maxhp;
     int movement;
-    pair<int ,int> position;
-   
+    deck dk;
 
     public:
     character(string name , int maxhp , int movement);
