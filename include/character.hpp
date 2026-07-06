@@ -16,6 +16,7 @@ class character {
     character(string name , int maxhp , int movement);
     string getname() const;
     int gethealth() const;
+    int getmovement()const;
 
     void setposition(int x ,int y);
     pair<int ,int> getposition() const;

@@ -6,7 +6,7 @@ character::character (string name , int maxhp , int movement) :
 
 string character::getname() const{return name;}
 int character::gethealth() const{return health;}
-//int character::getmovement() const{return movement;}
+int character::getmovement() const{return movement;}
 
 void character::setposition(int x ,int y) {
     position.first = x;
