@@ -1,4 +1,4 @@
-#include "../include/character.hpp"
+#include "character.hpp"
 
 character::character (string name , int maxhp , int movement) :
     name(name) , maxhp(maxhp) , movement(movement) ,
@@ -38,5 +38,7 @@ void character::sethealth(int amount) {
 }
 
 void character::setnewmovement(int newmovement){movement = newmovement;}
+void character::resetmovement(){movement = 2;}
+
 
 bool character::isalive() const{return health>0;}

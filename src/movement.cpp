@@ -1,4 +1,4 @@
-#include "../include/movement.hpp"
+#include "movement.hpp"
 #include <queue>
 #include <unordered_set>
 #include <functional>
@@ -46,9 +46,7 @@ bool Movement::canMoveThrough(int fromX, int fromY, int toX, int toY,
     return true;
 }
 
-int Movement::getBaseMovement(const character* character) const {
-    return 2;
-}
+int Movement::getBaseMovement(const character* character) const {return 2;}
 
 std::vector<std::pair<int, int>> Movement::getPossibleMoves(
     character* character,
@@ -188,4 +186,14 @@ std::vector<std::vector<std::pair<int, int>>> Movement::findPaths(
     dfs(startX, startY, 0, path);
     
     return result;
+}
+
+void  Movement::boost(character* character, card*playedCard , ActionType currentAction)const
+{
+    if (!character || !playCard ||currentAction != ActionType::MANEUVER ){return;}
+    if (currentAction == ActionType::MANEUVER)
+    {
+        character->setnewmovement(character->getmovement() + playCard->getboost());
+    }
+    // This boost is just for one round, and we need to call resetmovement() in our game controller right after using it.
 }

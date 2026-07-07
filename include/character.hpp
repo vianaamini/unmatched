@@ -28,6 +28,7 @@ class character {
     void heal(int amount);
     void sethealth(int amount);
     void setnewmovement(int newmovement);
+    void resetmovement();
 
     bool isalive() const;
     virtual void useability() {};

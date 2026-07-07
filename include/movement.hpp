@@ -1,8 +1,8 @@
-#ifndef MOVEMENT_HPP
-#define MOVEMENT_HPP
+#pragma once
 
 #include "board.hpp"
 #include "character.hpp"
+#include "TurnManager.hpp"
 #include <vector>
 #include <utility>
 
@@ -22,6 +22,7 @@ private:
 
 public:
     Movement(Board* board);
+    
     
     std::vector<std::pair<int, int>> getPossibleMoves(
         character* character,
@@ -44,6 +45,6 @@ public:
         const std::vector<character*>& enemies) const;
     
     int getBaseMovement(const character* character) const;
+    void boost(character* character, card* playedCard , ActionType currentAction) const;
 };
 
-#endif
