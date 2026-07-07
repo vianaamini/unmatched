@@ -8,6 +8,10 @@ using namespace std;
 
 int main() {
     cout << "=== Creating Characters ===" << endl;
+    GameManager game;
+    Board& board = game.getBoard();
+    board.addTeleport(2, 2, 5, 5);     
+    board.addTeleport(3, 4, 6, 1);
     
     sherlock sh;
     dracula dr;
