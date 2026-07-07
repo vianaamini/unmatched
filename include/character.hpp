@@ -18,6 +18,7 @@ class character {
     int gethealth() const;
     int getmovement()const;
 
+
     void setposition(int x ,int y);
     pair<int ,int> getposition() const;
     int getx() const;
@@ -26,6 +27,7 @@ class character {
     void takedamage(int amount);
     void heal(int amount);
     void sethealth(int amount);
+    void setnewmovement(int newmovement);
 
     bool isalive() const;
     virtual void useability() {};

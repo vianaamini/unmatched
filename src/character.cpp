@@ -37,4 +37,6 @@ void character::sethealth(int amount) {
     if(health < 0) health = 0;
 }
 
+void character::setnewmovement(int newmovement){movement = newmovement;}
+
 bool character::isalive() const{return health>0;}
