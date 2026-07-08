@@ -24,6 +24,7 @@ add_executable(unmatched
     src/deployment.cpp
     src/turn_manager.cpp
     src/game_manager.cpp
+    src/map.cpp
 )
 
 target_include_directories(unmatched PUBLIC include)
