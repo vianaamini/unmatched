@@ -2,6 +2,8 @@
 #include <cmath>
 #include <algorithm>
 
+//std::unordered_map<int ,int> teleportpairs;
+
 Board::Board(int width, int height) : width(width), height(height) {
     grid.resize(height, std::vector<Space>(width));
     for (int y = 0; y < height; ++y) {
@@ -46,6 +48,34 @@ void Board::addSpaceToZone(int x, int y, const std::string& zoneName) {
         grid[y][x].zones.push_back(zoneName);
         zoneMap[zoneName].push_back({x, y});
     }
+}
+
+
+void Board::addteleport (int x1 , int y1 , int x2 ,int y2) {
+    if (!isValid(x1 , y1) || !isValid(x2 ,y2)) return;
+    
+    int id1 = x1 * 1000 + y1;
+    int id2 = x2 * 1000 + y2;
+
+    teleportpairs[id1] = id2;
+    teleportpairs[id2] = id1;
+
+    grid[y1][x1].hasteleport = true;
+    grid[y2][x2].hasteleport = true;
+}
+
+int Board::destination(int x , int y) const{
+    int id = x * 1000 + y;
+    auto it = teleportpairs.find(id);
+    if (it != teleportpairs.end()) {
+        return it->second;
+    }
+    return id;
+}
+
+bool Board::isteleport(int x ,int y) const {
+    int id = x * 1000 + y;
+    return teleportpairs.find(id) != teleportpairs.end();
 }
 
 std::vector<std::string> Board::getZonesAt(int x, int y) const {
