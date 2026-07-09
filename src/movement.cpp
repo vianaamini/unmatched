@@ -202,7 +202,7 @@ std::vector<std::vector<std::pair<int, int>>> Movement::findPaths(
 
 void  Movement::boost(character* character, card*playedCard , ActionType currentAction)const
 {
-    if (!character || !playCard ||currentAction != ActionType::MANEUVER ){return;}
+    if (!character || !playedCard ||currentAction != ActionType::MANEUVER ){return;}
     if (currentAction == ActionType::MANEUVER)
     {
         character->setnewmovement(character->getmovement() + playCard->getboost());

@@ -29,11 +29,12 @@ GraphBoard::GraphBoard() {
     addSpace("n29", 15, 9, {NodeColor::NONE});
     addSpace("n25", 21, 9, {NodeColor::NONE});
     addSpace("n24", 27, 9, {NodeColor::NONE});
-    addSpace("n231", 33, 9, {NodeColor::NONE});
+    addSpace("n31", 33, 9, {NodeColor::NONE});
     addSpace("n21", 12, 11, {NodeColor::NONE});
     addSpace("n20", 18, 11, {NodeColor::NONE});
     addSpace("n18", 24, 11, {NodeColor::NONE});
     addSpace("n23", 30, 11, {NodeColor::NONE});
+    addSpace("n17", 22, 7, {NodeColor::NONE});
 
     addEdge("n1", "n2"); addEdge("n2", "n10"); addEdge("n10", "n16");
     addEdge("n16", "n22"); addEdge("n22", "n30"); addEdge("n30", "n32");
