@@ -1,41 +1,40 @@
 #include "../include/map.hpp"
 #include <algorithm>
-#include <stdexcept>
 #include <cmath>
 
-Board::Board() { 
-    addSpace("n16", 18,  7,  {NodeColor::NONE});
+Board::Board() {
+    addSpace("n16", 18, 7, {NodeColor::NONE});
 
-    addSpace("n1",  2, 7,  {NodeColor::RED});
-    addSpace("n2",  6, 7,  {NodeColor::NONE});
-    addSpace("n10", 10, 7,  {NodeColor::YELLOW ,NodeColor::GREEN});
-    addSpace("n22", 26, 7,  {NodeColor::YELLOW ,NodeColor::GREEN});
-    addSpace("n30", 30, 7,  {NodeColor::NONE});
-    addSpace("n32", 34, 7,  {NodeColor::BLUE});
+    addSpace("n1", 2, 7, {NodeColor::RED});
+    addSpace("n2", 6, 7, {NodeColor::NONE});
+    addSpace("n10", 10, 7, {NodeColor::YELLOW, NodeColor::GREEN});
+    addSpace("n22", 26, 7, {NodeColor::YELLOW, NodeColor::GREEN});
+    addSpace("n30", 30, 7, {NodeColor::NONE});
+    addSpace("n32", 34, 7, {NodeColor::BLUE});
 
-    addSpace("n13",  24, 3,  {NodeColor::GREEN});
-    addSpace("n6",  36, 3,  {NodeColor::NONE});
+    addSpace("n13", 24, 3, {NodeColor::GREEN});
+    addSpace("n6", 36, 3, {NodeColor::NONE});
 
-    addSpace("n5",  3,  5, {NodeColor::NONE});
-    addSpace("n7", 9,  5,  {NodeColor::NONE});
-    addSpace("n3", 15, 5,  {NodeColor::NONE});
-    addSpace("n4", 21, 5,  {NodeColor::NONE});
-    addSpace("n8", 27, 5,  {NodeColor::NONE});
-    addSpace("n9", 33, 5,  {NodeColor::NONE});
+    addSpace("n5", 3, 5, {NodeColor::NONE});
+    addSpace("n7", 9, 5, {NodeColor::NONE});
+    addSpace("n3", 15, 5, {NodeColor::NONE});
+    addSpace("n4", 21, 5, {NodeColor::NONE});
+    addSpace("n8", 27, 5, {NodeColor::NONE});
+    addSpace("n9", 33, 5, {NodeColor::NONE});
     addSpace("n11", 39, 5, {NodeColor::NONE});
 
-    addSpace("n12", 9,  7,  {NodeColor::NONE});
-    addSpace("n14", 15, 7,  {NodeColor::NONE});
-    addSpace("n15", 21, 7,  {NodeColor::NONE});
-    addSpace("n19", 27, 7,  {NodeColor::NONE});
-    addSpace("n27", 33, 7,  {NodeColor::NONE});
-    addSpace("n26", 39, 7,  {NodeColor::NONE});
+    addSpace("n12", 9, 7, {NodeColor::NONE});
+    addSpace("n14", 15, 7, {NodeColor::NONE});
+    addSpace("n15", 21, 7, {NodeColor::NONE});
+    addSpace("n19", 27, 7, {NodeColor::NONE});
+    addSpace("n27", 33, 7, {NodeColor::NONE});
+    addSpace("n26", 39, 7, {NodeColor::NONE});
 
-    addSpace("n28", 9,  9,  {NodeColor::NONE});
-    addSpace("n29", 15, 9,  {NodeColor::NONE});
+    addSpace("n28", 9, 9, {NodeColor::NONE});
+    addSpace("n29", 15, 9, {NodeColor::NONE});
     addSpace("n25", 21, 9, {NodeColor::NONE});
     addSpace("n24", 27, 9, {NodeColor::NONE});
-    addSpace("n31", 33, 9,  {NodeColor::NONE});
+    addSpace("n31", 33, 9, {NodeColor::NONE});
     addSpace("n21", 12, 11, {NodeColor::NONE});
     addSpace("n20", 18, 11, {NodeColor::NONE});
     addSpace("n18", 24, 11, {NodeColor::NONE});
@@ -48,7 +47,6 @@ Board::Board() {
     addEdge("n16", "n19"); 
     addEdge("n16", "n12"); 
     addEdge("n16", "n14");
-    addEdge("n16", "n12");
     addEdge("n16", "n18"); 
     addEdge("n1", "n3"); addEdge("n3", "n5"); addEdge("n5", "n6");
     addEdge("n6", "n7"); addEdge("n7", "n9"); addEdge("n9", "n32");
@@ -56,9 +54,9 @@ Board::Board() {
     addEdge("n27", "n28"); addEdge("n28", "n31"); addEdge("n31", "n32");
   
     addEdge("n2", "n11"); addEdge("n11", "n12"); addEdge("n13", "n4"); addEdge("n4", "n5");
-    addEdge("n7", "n8"); addEdge("n8", "n14"); addEdge("n15", "n30");addEdge("n14", "n15");
-    addEdge("n2", "n21");addEdge("n21", "n20"); addEdge("n19", "n25"); addEdge("n25", "n26");
-    addEdge("n27", "n24");addEdge("n24", "n18");addEdge("n18", "n23");addEdge("n23", "n30");
+    addEdge("n7", "n8"); addEdge("n8", "n14"); addEdge("n15", "n30"); addEdge("n14", "n15");
+    addEdge("n2", "n21"); addEdge("n21", "n20"); addEdge("n19", "n25"); addEdge("n25", "n26");
+    addEdge("n27", "n24"); addEdge("n24", "n18"); addEdge("n18", "n23"); addEdge("n23", "n30");
 
     addTeleport("n1", "n32");
     addTeleport("n10", "n22");

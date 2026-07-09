@@ -1,7 +1,7 @@
 #ifndef GAME_MANAGER_HPP
 #define GAME_MANAGER_HPP
 
-#include "board.hpp"
+#include "map.hpp"
 #include "movement.hpp"
 #include "turn_manager.hpp"
 #include "deployment.hpp"
