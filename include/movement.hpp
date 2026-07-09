@@ -1,8 +1,8 @@
 #pragma once
 
-#include "board.hpp"
+#include "map.hpp"
 #include "character.hpp"
-#include "TurnManager.hpp"
+#include "turn_manager.hpp"
 #include <vector>
 #include <utility>
 

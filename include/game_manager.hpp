@@ -23,7 +23,7 @@ public:
     
     std::vector<std::pair<int, int>> getValidMoves(character* character);
     
-    bool moveCharacter(character* character, int targetX, int targetY);
+    bool moveCharacter(character* character, const std::string& targetSpace);
     
     void startGame();
     void nextTurn();

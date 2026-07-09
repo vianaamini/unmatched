@@ -92,8 +92,8 @@ bool GameManager::moveCharacter(character* character, int targetX, int targetY) 
         if (pos.first == targetX && pos.second == targetY) {
             character->setposition(targetX, targetY);
 
-            if (board.isteleport(targetX , targetY)) {
-                int dId = board->destination(targetX, targetY);
+            if (board.isTeleport(targetX , targetY)) {
+                int dId = board->getTeleportDestination(targetX, targetY);
                 int dx = dId / 1000;
                 int dy = dId % 1000;
                 character->setposition(dx ,dy);

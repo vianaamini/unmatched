@@ -1,4 +1,4 @@
-#include "board.hpp"
+#include "map.hpp"
 #include <algorithm>
 using namespace std;
 
@@ -48,17 +48,21 @@ Board::Board() {
     addEdge("n16", "n19"); 
     addEdge("n16", "n12"); 
     addEdge("n16", "n14");
-    addEdge("n16", "n120");
+    addEdge("n16", "n12");
     addEdge("n16", "n18"); 
     addEdge("n1", "n3"); addEdge("n3", "n5"); addEdge("n5", "n6");
-    addEdge("n6", "n7");,addEdge("n7", "n9"); addEdge("n9", "n32");
+    addEdge("n6", "n7"); addEdge("n7", "n9"); addEdge("n9", "n32");
     addEdge("n1", "n29"); addEdge("n29", "n26"); addEdge("n26", "n27");
     addEdge("n27", "n28"); addEdge("n28", "n31"); addEdge("n31", "n32");
   
     addEdge("n2", "n11"); addEdge("n11", "n12"); addEdge("n13", "n4"); addEdge("n4", "n5");
     addEdge("n7", "n8"); addEdge("n8", "n14"); addEdge("n15", "n30");addEdge("n14", "n15");
-     addEdge("n2", "n21");addEdge("n21", "n20"); addEdge("n19", "n25"); addEdge("n25", "n26");
+    addEdge("n2", "n21");addEdge("n21", "n20"); addEdge("n19", "n25"); addEdge("n25", "n26");
     addEdge("n27", "n24");addEdge("n24", "n18");addEdge("n18", "n23");addEdge("n23", "n30");
+
+    addTeleport("n1", "n32");
+    addTeleport("n10", "n22");
+    addTeleport("n16", "n6");
 }
 
 void Board::addSpace(const string& name, int tuiX, int tuiY, const vector<NodeColor>& colors) {
@@ -94,3 +98,20 @@ pair<int, int> Board::getCoordinates(const string& spaceName) const {
     return (it != tuiCoordinates.end()) ? it->second : pair<int, int>{-1, -1};
 } // in tui we have 21 nodes but in map we have 32 so i wrote 32 
 // // this class might need some changes we should check it again but the logic is correct.
+
+void Board::addTeleport(const string& from, const string& to) {
+    teleportpairs[from] = to;
+    teleportpairs[to] = from; 
+}
+
+string Board::getTeleportDestination(const string& spaceName) const {
+    auto it = teleportpairs.find(spaceName);
+    if (it != teleportpairs.end()) {
+        return it->second;
+    }
+    return spaceName; 
+}
+
+bool Board::isTeleport(const string& spaceName) const {
+    return teleportpairs.find(spaceName) != teleportpairs.end();
+}

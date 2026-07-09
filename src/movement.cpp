@@ -95,20 +95,18 @@ std::vector<std::pair<int, int>> Movement::getPossibleMoves(
         }
     }
 
-    std::vector<std::pair<int ,int>> finalMoves;
+    std::vector<std::pair<int, int>> finalMoves;
     for (const auto& pos : validMoves) {
-        if (board->isteleport(pos.first, pos.second)) {
-            int dId = board->destination(pos.first, pos.second);
-            int dx = dId / 1000;
-            int dy = dId % 1000;
-
-            if (board->isWalkable(dx ,dy) &&
-                !isPositionOccupiedByAlly(dx,dy,allies) &&
-                !isPositionOccupiedByEnemy(dx , dy ,enemies)) {
-                    finalMoves.push_back({dx , dy});
-                }
+        if (board->isTeleport(pos)) {
+            std::string dest = board->getTeleportDestination(pos);
+            
+            if (std::find(allies.begin(), allies.end(), dest) == allies.end() &&
+                std::find(enemies.begin(), enemies.end(), dest) == enemies.end()) {
+                finalMoves.push_back(dest);
+            }
+        } else {
+            finalMoves.push_back(pos);
         }
-        else {finalMoves.push_back(pos);}
     }
     return finalMoves;
 }
@@ -213,21 +211,5 @@ void  Movement::boost(character* character, card*playedCard , ActionType current
     // This boost is just for one round, and we need to call resetmovement() in our game controller right after using it.
 }
 
-/*std::vector<std::pair<int ,int>> finalMoves;
-for (const auto& pos : validMoves) {
-    if (board->isteleport(pos.first, pos.second)) {
-        int dId = board->destination(pos.first, pos.second);
-        int dx = dID / 1000;
-        int dy = dId % 1000;
 
-        if (board->isWalkable(dx ,dy) &&
-            !isPositionOccupiedByAlly(dx,dy,allies) &&
-            !isPositionOccupiedByEnemy(dx , dy ,enemies)) {
-                finalMoves.push_back({dx , dy});
-            }
-    }
-    else {finalMoves.push_back(pos);}
-}
-return finalMoves;
-}*/
 
