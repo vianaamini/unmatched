@@ -1,6 +1,5 @@
-#include "movement.hpp"
+#include "../include/movement.hpp"
 #include <queue>
-#include "board.hpp"
 #include <unordered_set>
 #include <functional>
 #include <algorithm>
@@ -47,7 +46,9 @@ bool Movement::canMoveThrough(int fromX, int fromY, int toX, int toY,
     return true;
 }
 
-int Movement::getBaseMovement(const character* character) const {return 2;}
+int Movement::getBaseMovement(const character* character) const {
+    return character->getmovement();
+}
 
 std::vector<std::pair<int, int>> Movement::getPossibleMoves(
     character* character,
@@ -98,7 +99,7 @@ std::vector<std::pair<int, int>> Movement::getPossibleMoves(
 
     std::vector<std::pair<int, int>> finalMoves;
     for (const auto& pos : validMoves) {
-       if (board->isTeleport(pos.first, pos.second)) {
+        if (board->isTeleport(pos.first, pos.second)) {
             int destId = board->getTeleportDestination(pos.first, pos.second);
             int dx = destId / 1000;
             int dy = destId % 1000;
@@ -122,7 +123,6 @@ bool Movement::canReach(int startX, int startY,
     
     std::queue<std::pair<int, int>> queue;
     std::unordered_set<int> visited;
-    
     queue.push({startX, startY});
     visited.insert(startY * board->getWidth() + startX);
     
@@ -133,7 +133,8 @@ bool Movement::canReach(int startX, int startY,
             queue.pop();
             
             if (current.first == targetX && current.second == targetY) {
-                return true;}
+                return true;
+            }
             
             auto neighbors = board->getAdjacentSpaces(current.first, current.second);
             for (const auto& neighbor : neighbors) {
@@ -200,15 +201,11 @@ std::vector<std::vector<std::pair<int, int>>> Movement::findPaths(
     return result;
 }
 
-void  Movement::boost(character* character, card*playedCard , ActionType currentAction)const
-{
-    if (!character || !playedCard ||currentAction != ActionType::MANEUVER ){return;}
-    if (currentAction == ActionType::MANEUVER)
-    {
-        character->setnewmovement(character->getmovement() + playCard->getboost());
+void Movement::boost(character* character, card* playedCard, ActionType currentAction) const {
+    if (!character || !playedCard || currentAction != ActionType::MANEUVER) {
+        return;
     }
-    // This boost is just for one round, and we need to call resetmovement() in our game controller right after using it.
+    if (currentAction == ActionType::MANEUVER) {
+        character->setnewmovement(character->getmovement() + playedCard->getboost());
+    }
 }
-
-
-

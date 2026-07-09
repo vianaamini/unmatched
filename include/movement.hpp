@@ -1,8 +1,9 @@
 #pragma once
 
-#include "map.hpp"
+#include "board.hpp"
 #include "character.hpp"
 #include "turn_manager.hpp"
+#include "card.hpp"
 #include <vector>
 #include <utility>
 
@@ -22,7 +23,6 @@ private:
 
 public:
     Movement(Board* board);
-    
     
     std::vector<std::pair<int, int>> getPossibleMoves(
         character* character,
@@ -45,6 +45,5 @@ public:
         const std::vector<character*>& enemies) const;
     
     int getBaseMovement(const character* character) const;
-    void boost(character* character, card* playedCard , ActionType currentAction) const;
+    void boost(character* character, card* playedCard, ActionType currentAction) const;
 };
-

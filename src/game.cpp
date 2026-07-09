@@ -1,4 +1,4 @@
-#include "game.hpp"
+#include "../include/game.hpp"
 #include "deracula_cards.hpp"
 #include "sherlock_card.hpp"
 #include <iostream>
