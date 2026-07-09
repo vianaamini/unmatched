@@ -26,7 +26,7 @@ private:
 public:
     Board();
 
-    void addSpace(const string& name, int tuiX, int tuiY, constvector<NodeColor>& colors);
+    void addSpace(const string& name, int tuiX, int tuiY, const vector<NodeColor>& colors);
     void addEdge(const string& spaceA, const string& spaceB);
 
     bool isConnected(const string& spaceA, const string& spaceB) const;
