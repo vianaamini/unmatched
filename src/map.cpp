@@ -2,7 +2,7 @@
 #include <algorithm>
 #include <cmath>
 
-Board::Board() {
+Board::Board(int width, int height) : width(width), height(height) {
     addSpace("n16", 18, 7, {NodeColor::NONE});
 
     addSpace("n1", 2, 7, {NodeColor::RED});
@@ -167,8 +167,8 @@ vector<pair<int, int>> Board::getAdjacentSpaces(int x, int y) const {
     return result;
 }
 
-int Board::getWidth() const { return 10; }
-int Board::getHeight() const { return 10; }
+//int Board::getWidth() const { return 10; }
+//int Board::getHeight() const { return 10; }
 
 vector<pair<int, int>> Board::getAllSpaces() const {
     vector<pair<int, int>> result;
@@ -255,6 +255,6 @@ vector<string> Board::getAllSpaceIds() const {
     return result;
 }
 
-const unordered_map<string, vector<string>>& Board::getGraph() const {
+/*const unordered_map<string, vector<string>>& Board::getGraph() const {
     return adjacencyList;
-}
+}*/

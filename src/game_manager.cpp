@@ -83,72 +83,24 @@ std::vector<character*> GameManager::getEnemies(character* character) const {
     return enemies;
 }
 
-std::vector<std::string> GameManager::getValidMoves(character* character) {
+std::vector<std::pair<int, int>> GameManager::getValidMoves(character* character) {
     if (!character) return {};
   
-    auto pos = character->getposition();
-    std::string currentSpace = "n" + std::to_string(pos.first);
-    
     auto allies = getAllies(character);
     auto enemies = getEnemies(character);
     
-    std::vector<std::string> allySpaces, enemySpaces;
-    for (auto c : allies) {
-        auto p = c->getposition();
-        allySpaces.push_back("n" + std::to_string(p.first));
-    }
-    for (auto c : enemies) {
-        auto p = c->getposition();
-        enemySpaces.push_back("n" + std::to_string(p.first));
-    }
-    
-    int baseMovement = character->getmovement();
-    return movement.getPossibleMoves(currentSpace, baseMovement, allySpaces, enemySpaces);
+    return movement.getPossibleMoves(character, character->getmovement(), allies, enemies);
 }
 
-bool GameManager::moveCharacter(character* character, const std::string& targetSpace) {
+bool GameManager::moveCharacter(character* character, const std::pair<int, int>& targetPos) {
     if (!character) return false;
     
     auto moves = getValidMoves(character);
-    if (std::find(moves.begin(), moves.end(), targetSpace) != moves.end()) {
-        auto coords = board.getCoordinates(targetSpace);
-        character->setposition(coords.first, coords.second);
-        return true;
-    }
-    return false;
-}
-
-std::vector<std::string> GameManager::getValidMovesWithBoost(
-    character* character, int boostValue) {
-    
-    if (!character) return {};
-    
-    auto pos = character->getposition();
-    std::string currentSpace = "n" + std::to_string(pos.first);
-    
-    auto allies = getAllies(character);
-    auto enemies = getEnemies(character);
-    
-    std::vector<std::string> allySpaces, enemySpaces;
-    for (auto c : allies) {
-        auto p = c->getposition();
-        allySpaces.push_back("n" + std::to_string(p.first));
-    }
-    for (auto c : enemies) {
-        auto p = c->getposition();
-        enemySpaces.push_back("n" + std::to_string(p.first));
-    }int baseMovement = character->getmovement();
-    return movement.getPossibleMovesWithBoost(currentSpace, baseMovement, boostValue, allySpaces, enemySpaces);
-}
-
-bool GameManager::moveCharacterWithBoost(character* character, const std::string& targetSpace, int boostValue) {
-    if (!character) return false;
-    
-    auto moves = getValidMovesWithBoost(character, boostValue);
-    if (std::find(moves.begin(), moves.end(), targetSpace) != moves.end()) {
-        auto coords = board.getCoordinates(targetSpace);
-        character->setposition(coords.first, coords.second);
-        return true;
+    for (const auto& move : moves) {
+        if (move.first == targetPos.first && move.second == targetPos.second) {
+            character->setposition(targetPos.first, targetPos.second);
+            return true;
+        }
     }
     return false;
 }
@@ -195,8 +147,4 @@ character* GameManager::getWinner() const {
 
 std::vector<character*> GameManager::getAllCharacters() const {
     return allCharacters;
-}
-
-Board& GameManager::getBoard() {
-    return board;
 }

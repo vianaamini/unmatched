@@ -3,6 +3,8 @@
 #include <unordered_set>
 #include <functional>
 #include <algorithm>
+#include <string>
+#include <vector>
 
 Movement::Movement(Board* board) : board(board) {}
 
@@ -99,11 +101,11 @@ std::vector<std::pair<int, int>> Movement::getPossibleMoves(
 
     std::vector<std::pair<int, int>> finalMoves;
     for (const auto& pos : validMoves) {
-        if (board->isTeleport(pos.first, pos.second)) {
-            int destId = board->getTeleportDestination(pos.first, pos.second);
-            int dx = destId / 1000;
-            int dy = destId % 1000;
-            finalMoves.push_back({dx, dy});
+        std::string spaceName = "n" + std::to_string(pos.first);
+        if (board->isTeleport(spaceName)) {
+            std::string dest = board->getTeleportDestination(spaceName);
+            int id = std::stoi(dest.substr(1));
+            finalMoves.push_back({id, 0});
         } else {
             finalMoves.push_back(pos);
         }
@@ -202,7 +204,7 @@ std::vector<std::vector<std::pair<int, int>>> Movement::findPaths(
 }
 
 void Movement::boost(character* character, card* playedCard, ActionType currentAction) const {
-    if (!character || !playedCard || currentAction != ActionType::MANEUVER) {
+    if (!character || !playedCard) {
         return;
     }
     if (currentAction == ActionType::MANEUVER) {

@@ -3,7 +3,7 @@
 #include <vector>
 #include "card.hpp"
 #include "deck.hpp"
-#include "board.hpp"
+#include "map.hpp"
 #include "character.hpp"
 
 class hero : public character {

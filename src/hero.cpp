@@ -50,7 +50,8 @@ bool hero::attack(hero& target, card& attackCard) {
     if (actions <= 0) return false;
     if (!target.isalive()) return false;
 
-    int damage = attackCard.getattack() - defenceCard.getdefense();
+    int damage = attackCard.getattack(); 
+
     if (damage > 0) {
         target.takedamage(damage);
     }

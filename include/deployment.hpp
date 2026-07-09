@@ -1,7 +1,7 @@
 #ifndef DEPLOYMENT_HPP
 #define DEPLOYMENT_HPP
 
-#include "board.hpp"
+#include "map.hpp"
 #include "character.hpp"
 #include <vector>
 #include <utility>

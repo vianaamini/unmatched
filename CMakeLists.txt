@@ -19,7 +19,7 @@ add_executable(unmatched
     src/sidekick.cpp
     src/sister.cpp
     src/watson.cpp
-    src/board.cpp
+    # src/board.cpp
     src/movement.cpp
     src/deployment.cpp
     src/turn_manager.cpp

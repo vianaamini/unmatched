@@ -1,12 +1,16 @@
 #ifndef GAME_MANAGER_HPP
 #define GAME_MANAGER_HPP
 
+#include <vector>
+#include <string>
+#include <utility>
+
 #include "map.hpp"
 #include "movement.hpp"
 #include "turn_manager.hpp"
 #include "deployment.hpp"
 #include "character.hpp"
-#include <vector>
+ 
 
 class GameManager {
 private:
@@ -14,6 +18,8 @@ private:
     Movement movement;
     TurnManager turnManager;
     std::vector<character*> allCharacters;
+    std::vector<character*> team1;
+    std::vector<character*> team2;
     
 public:
     GameManager();
@@ -22,8 +28,7 @@ public:
     void removeCharacter(character* character);
     
     std::vector<std::pair<int, int>> getValidMoves(character* character);
-    
-    bool moveCharacter(character* character, const std::string& targetSpace);
+    bool moveCharacter(character* character, const std::pair<int, int>& targetPos);
     
     void startGame();
     void nextTurn();

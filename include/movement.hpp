@@ -1,11 +1,13 @@
-#pragma once
+#ifndef MOVEMENT_HPP
+#define MOVEMENT_HPP
 
-#include "board.hpp"
+#include <vector>
+#include <utility>
+
+#include "map.hpp"     
 #include "character.hpp"
 #include "turn_manager.hpp"
 #include "card.hpp"
-#include <vector>
-#include <utility>
 
 class Movement {
 private:
@@ -47,3 +49,5 @@ public:
     int getBaseMovement(const character* character) const;
     void boost(character* character, card* playedCard, ActionType currentAction) const;
 };
+
+#endif
