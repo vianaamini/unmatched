@@ -1,5 +1,6 @@
 #include "movement.hpp"
 #include <queue>
+#include "board.hpp"
 #include <unordered_set>
 #include <functional>
 #include <algorithm>
@@ -97,13 +98,11 @@ std::vector<std::pair<int, int>> Movement::getPossibleMoves(
 
     std::vector<std::pair<int, int>> finalMoves;
     for (const auto& pos : validMoves) {
-        if (board->isTeleport(pos)) {
-            std::string dest = board->getTeleportDestination(pos);
-            
-            if (std::find(allies.begin(), allies.end(), dest) == allies.end() &&
-                std::find(enemies.begin(), enemies.end(), dest) == enemies.end()) {
-                finalMoves.push_back(dest);
-            }
+       if (board->isTeleport(pos.first, pos.second)) {
+            int destId = board->getTeleportDestination(pos.first, pos.second);
+            int dx = destId / 1000;
+            int dy = destId % 1000;
+            finalMoves.push_back({dx, dy});
         } else {
             finalMoves.push_back(pos);
         }

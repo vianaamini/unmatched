@@ -16,16 +16,15 @@ enum class NodeColor {
     NONE
 };
 
-class Board {
+class GraphBoard {
 private:
-    
-    unordered_map<string, vector<string>> adjacencyList; // to have neighbors
-    unordered_map<NodeColor, vector<string>> zoneMap; // to have nodes which have same colors
-    unordered_map<string, pair<int, int>> tuiCoordinates; // to have each node place 
-    unordered_map<int , int> teleportpairs;
+    unordered_map<string, vector<string>> adjacencyList;
+    unordered_map<NodeColor, vector<string>> zoneMap;
+    unordered_map<string, pair<int, int>> tuiCoordinates;
+    unordered_map<string, string> teleportpairs;
 
 public:
-    Board();
+    GraphBoard();
 
     void addSpace(const string& name, int tuiX, int tuiY, const vector<NodeColor>& colors);
     void addEdge(const string& spaceA, const string& spaceB);
@@ -34,10 +33,9 @@ public:
     vector<string> getNeighbors(const string& spaceName) const;
     pair<int, int> getCoordinates(const string& spaceName) const;
 
-
-    void addTeleport(const std::string& from, const std::string& to);
-    std::string getTeleportDestination(const std::string& spaceName) const;
-    bool isTeleport(const std::string& spaceName) const;
+    void addTeleport(const string& from, const string& to);
+    string getTeleportDestination(const string& spaceName) const;
+    bool isTeleport(const string& spaceName) const;
     
     const unordered_map<string, vector<string>>& getGraph() const { return adjacencyList; }
 }; // this class might need some changes we should check it again but the logic is correct.

@@ -7,11 +7,7 @@
 using namespace std;
 
 int main() {
-    cout << "=== Creating Characters ===" << endl;
-    GameManager game;
-    Board& board = game.getBoard();
-    board.addTeleport(2, 2, 5, 5);     
-    board.addTeleport(3, 4, 6, 1);
+    cout << "=== Testing Characters ===" << endl;
     
     sherlock sh;
     dracula dr;
@@ -26,13 +22,6 @@ int main() {
     cout << "\n=== Testing Decks ===" << endl;
     cout << "Sherlock deck size: " << sh.getdeck().getsize() << endl;
     cout << "Dracula deck size: " << dr.getdeck().getsize() << endl;
-    
-    cout << "\n=== Drawing 5 cards ===" << endl;
-    sh.drawInitialHand();
-    cout << "Sherlock hand size: " << sh.handsize() << endl;
-    
-    dr.drawInitialHand();
-    cout << "Dracula hand size: " << dr.handsize() << endl;
     
     cout << "\n=== Testing Abilities ===" << endl;
     sh.useability();

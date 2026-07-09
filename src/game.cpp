@@ -1,4 +1,6 @@
 #include "game.hpp"
+#include "deracula_cards.hpp"
+#include "sherlock_card.hpp"
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
@@ -23,7 +25,7 @@ Game::Game() : curturn(0), action(2), gameover(false) {
 Game::~Game() {
     delete player1;
     delete player2;
-    delete w;
+    delete watsonChar;
     for (int i = 0; i < 3; i++) {
         delete sisters[i];
     }
@@ -71,17 +73,15 @@ void Game::playCard(hero* player, int index, hero* opponent) {
     card playedCard = player->gethand()[index];
     player->gethand().erase(player->gethand().begin() + index);
     
-    card defendCard;
+    card defendCard("Empty", cardtype::defense, 0, 0, 0, cardowner::any, "No effect");
     if (opponent->handsize() > 0) {
         defendCard = opponent->gethand()[0];
         opponent->gethand().erase(opponent->gethand().begin());
-    } else {
-        defendCard = card("Empty", cardtype::defense, 0, 0, 0, cardowner::any, "No effect");
     }
     
     resolve(*player, playedCard, *opponent, defendCard);
     
-    actionsRemaining--;
+    action--;
     checkWinCondition();
 }
 
@@ -139,13 +139,13 @@ void Game::resolve(hero& attacker, card& atkcard, hero& defender, card& defendCa
     }
     
     if (atkcard.gettype() == cardtype::scheme) {
-        std::vector<character*> enemy;
-        enemy.push_back(&defender);
+        std::vector<character*> enemyList;
+        enemyList.push_back(&defender);
         std::vector<sidekick*> allSisters2;
         for (int i = 0; i < 3; i++) {
             allSisters2.push_back(sisters[i]);
         }
-        dcards::resolve_scheme(atkcard, attacker, defender, enemy, allSisters2);
+        dcards::resolve_scheme(atkcard, attacker, defender, enemyList, allSisters2);
     }
     
     checkWinCondition();
@@ -153,16 +153,16 @@ void Game::resolve(hero& attacker, card& atkcard, hero& defender, card& defendCa
 
 void Game::checkWinCondition() {
     if (!player1->isalive()) {
-        std::cout << "\nDracula Wins" << std::endl;
-        isGameOver = true;
+        std::cout << "\nDracula Wins!" << std::endl;
+        gameover = true;
     }
     if (!player2->isalive()) {
-        std::cout << "\nSherlock Wins" << std::endl;
-        isGameOver = true;
+        std::cout << "\nSherlock Wins!" << std::endl;
+        gameover = true;
     }
 }
 
-void Game::state() const {
+void Game::printGameState() const {
     std::cout << "\n=== Game State ===" << std::endl;
     std::cout << "Sherlock: HP " << player1->gethealth() 
               << " at (" << player1->getx() << ", " << player1->gety() << ")" << std::endl;
@@ -174,14 +174,14 @@ void Game::state() const {
         std::cout << "Sister " << i+1 << ": HP " << sisters[i]->gethealth()
                   << " at (" << sisters[i]->getx() << ", " << sisters[i]->gety() << ")" << std::endl;
     }
-    std::cout << "Actions remaining: " << actionsRemaining << std::endl;
+    std::cout << "Actions remaining: " << action << std::endl;
     std::cout << "Turn: " << (curturn == 0 ? "Sherlock" : "Dracula") << std::endl;
 }
 
-bool Game::isgameover() const {
+bool Game::isGameOver() const {
     return gameover;
 }
 
-hero* Game::getcurrentplayer() const {
-    return (curturn == 0) ? player1 : player2;
+hero* Game::getCurrentPlayer() const {
+    return (curturn == 0) ? static_cast<hero*>(player1) : static_cast<hero*>(player2);
 }

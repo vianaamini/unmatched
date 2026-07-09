@@ -3,6 +3,7 @@
 #include <vector>
 #include "card.hpp"
 #include "deck.hpp"
+#include "board.hpp"
 #include "character.hpp"
 
 class hero : public character {
@@ -34,4 +35,9 @@ class hero : public character {
     int handsize() const;
 
     virtual void useability() = 0;
+
+    bool maneuver(int targetx , int targety , Board& board);
+    bool scheme(card& scheme, hero& target);
+    bool attack(hero& target , card& attackcard);
+    bool canact() const;
 };
