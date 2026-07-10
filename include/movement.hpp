@@ -1,49 +1,64 @@
-#pragma once
+#ifndef MOVEMENT_HPP
+#define MOVEMENT_HPP
 
-#include "board.hpp"
+#include "map.hpp"
 #include "character.hpp"
 #include "turn_manager.hpp"
 #include "card.hpp"
 #include <vector>
+#include <string>
 #include <utility>
 
 class Movement {
 private:
-    Board* board;
+    const Board* board;
     
-    bool canMoveThrough(int fromX, int fromY, int toX, int toY,
-                        const std::vector<character*>& allies,
-                        const std::vector<character*>& enemies) const;
+    bool canMoveThrough(const std::string& from, const std::string& to,
+                        const std::vector<character*>& alliesList,
+                        const std::vector<character*>& enemiesList) const;
     
-    bool isPositionOccupiedByEnemy(int x, int y, 
-                                   const std::vector<character*>& enemies) const;
+    bool isPositionOccupiedByEnemy(const std::string& space,
+                                   const std::vector<character*>& enemiesList) const;
     
-    bool isPositionOccupiedByAlly(int x, int y,
-                                  const std::vector<character*>& allies) const;
+    bool isPositionOccupiedByAlly(const std::string& space,
+                                  const std::vector<character*>& alliesList) const;
 
 public:
-    Movement(Board* board);
+    Movement(const Board* board);
     
-    std::vector<std::pair<int, int>> getPossibleMoves(
+    std::vector<std::string> getPossibleMoves(
         character* character,
         int steps,
-        const std::vector<character*>& allies,
-        const std::vector<character*>& enemies) const;
+        const std::vector<character*>& alliesList,
+        const std::vector<character*>& enemiesList
+    ) const;
     
-    std::vector<std::vector<std::pair<int, int>>> findPaths(
-        int startX, int startY,
-        int targetX, int targetY,
+    std::vector<std::string> getPossibleMovesWithBoost(
+        character* character,
+        int baseSteps,
+        int boostValue,
+        const std::vector<character*>& alliesList,
+        const std::vector<character*>& enemiesList
+    ) const;
+    
+    std::vector<std::vector<std::string>> findPaths(
+        const std::string& start,
+        const std::string& target,
         int maxSteps,
-        const std::vector<character*>& allies,
-        const std::vector<character*>& enemies) const;
+        const std::vector<character*>& alliesList,
+        const std::vector<character*>& enemiesList
+    ) const;
     
     bool canReach(
-        int startX, int startY,
-        int targetX, int targetY,
+        const std::string& start,
+        const std::string& target,
         int steps,
-        const std::vector<character*>& allies,
-        const std::vector<character*>& enemies) const;
+        const std::vector<character*>& alliesList,
+        const std::vector<character*>& enemiesList
+    ) const;
     
     int getBaseMovement(const character* character) const;
-    void boost(character* character, card* playedCard, ActionType currentAction) const;
+    void boost(character* character, const card* playedCard, ActionType currentAction) const;
 };
+
+#endif
