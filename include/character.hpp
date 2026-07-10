@@ -17,6 +17,8 @@ class character {
     character(string name , int maxhp , int movement);
     string getname() const;
     int gethealth() const;
+    int getmovement()const;
+
 
     void setposition(int x ,int y);
     pair<int ,int> getposition() const;
@@ -26,6 +28,8 @@ class character {
     void takedamage(int amount);
     void heal(int amount);
     void sethealth(int amount);
+    void setnewmovement(int newmovement);
+    void resetmovement();
 
     bool isalive() const;
     virtual void useability() {};

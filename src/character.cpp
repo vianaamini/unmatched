@@ -4,8 +4,9 @@ character::character(string name, int maxhp, int movement)
     : name(name), maxhp(maxhp), movement(movement),
       health(maxhp), position({0, 0}) {}
 
-string character::getname() const { return name; }
-int character::gethealth() const { return health; }
+string character::getname() const{return name;}
+int character::gethealth() const{return health;}
+//int character::getmovement() const{return movement;}
 
 void character::setposition(int x, int y) {
     position.first = x;
@@ -39,6 +40,10 @@ void character::sethealth(int amount) {
     if (health > maxhp) health = maxhp;
     if (health < 0) health = 0;
 }
+
+void character::setnewmovement(int newmovement){movement = newmovement;}
+void character::resetmovement(){movement = 2;}
+
 
 bool character::isalive() const {
     return health > 0;

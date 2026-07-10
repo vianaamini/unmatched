@@ -1,0 +1,54 @@
+#ifndef GAME_MANAGER_HPP
+#define GAME_MANAGER_HPP
+
+#include <vector>
+#include <string>
+#include <utility>
+
+#include "map.hpp"
+#include "movement.hpp"
+#include "turn_manager.hpp"
+#include "deployment.hpp"
+#include "character.hpp"
+ 
+
+class GameManager {
+private:
+    Board board;
+    Movement movement;
+    TurnManager turnManager;
+    std::vector<character*> allCharacters;
+    std::vector<character*> team1;
+    std::vector<character*> team2;
+    
+public:
+    GameManager();
+    
+    void addCharacter(character* character, int team = 1);
+    void removeCharacter(character* character);
+    
+    std::vector<std::pair<int, int>> getValidMoves(character* character);
+    bool moveCharacter(character* character, const std::pair<int, int>& targetPos);
+    
+    void startGame();
+    void nextTurn();
+    void nextPhase();
+    
+    character* getCurrentCharacter() const;
+    TurnPhase getCurrentPhase() const;
+    int getTurnNumber() const;
+    int getCurrentTeam() const;
+    int getActionsRemaining() const;
+    
+    bool isGameOver() const;
+    character* getWinner() const;
+    
+    std::vector<character*> getAllCharacters() const;
+    Board& getBoard() { return board; }
+    
+private:
+    std::vector<character*> getAllies(character* character) const;
+    std::vector<character*> getEnemies(character* character) const;
+};
+
+#endif

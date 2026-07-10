@@ -7,7 +7,7 @@
 using namespace std;
 
 int main() {
-    cout << "=== Creating Characters ===" << endl;
+    cout << "=== Testing Characters ===" << endl;
     
     sherlock sh;
     dracula dr;
