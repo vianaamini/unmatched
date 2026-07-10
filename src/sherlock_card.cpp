@@ -89,7 +89,7 @@ void card_master_of_disguise::execute_effect(character& attacker, character& def
                                               const card& enemy_card, 
                                               bool is_adjacent, 
                                               bool attacker_won) {
-    std::pair<int, int> tempPos = attacker.getposition();
+    std::pair<int, int> tempPos = attacker.getposition(); 
     attacker.setposition(defender.getx(), defender.gety());
     defender.setposition(tempPos.first, tempPos.second);
     defender.takedamage(1);

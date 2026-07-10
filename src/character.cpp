@@ -6,24 +6,20 @@ character::character(string name, int maxhp, int movement)
 
 string character::getname() const{return name;}
 int character::gethealth() const{return health;}
-//int character::getmovement() const{return movement;}
+int character::getmovement() const{return movement;}
 
 void character::setposition(int x, int y) {
     position.first = x;
     position.second = y;
 }
 
-pair<int, int> character::getposition() const {
-    return position;
+pair<int ,int> character::getposition() const {return position;}
+string character::getPositionString() const {
+    return "n" + to_string(position.first);
 }
 
-int character::getx() const {
-    return position.first;
-}
-
-int character::gety() const {
-    return position.second;
-}
+int character::getx() const {return position.first;}
+int character::gety() const {return position.second;}
 
 void character::takedamage(int amount) {
     health -= amount;
@@ -41,9 +37,13 @@ void character::sethealth(int amount) {
     if (health < 0) health = 0;
 }
 
-void character::setnewmovement(int newmovement){movement = newmovement;}
-void character::resetmovement(){movement = 2;}
+void character::setnewmovement(int newmovement) {
+    movement = newmovement;
+}
 
+void character::resetmovement() {
+    movement = 2;
+}
 
 bool character::isalive() const {
     return health > 0;

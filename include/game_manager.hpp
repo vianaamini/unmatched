@@ -27,8 +27,8 @@ public:
     void addCharacter(character* character, int team = 1);
     void removeCharacter(character* character);
     
-    std::vector<std::pair<int, int>> getValidMoves(character* character);
-    bool moveCharacter(character* character, const std::pair<int, int>& targetPos);
+    std::vector<std::string> getValidMoves(character* character);
+    bool moveCharacter(character* character, const std::string& targetSpace);  
     
     void startGame();
     void nextTurn();

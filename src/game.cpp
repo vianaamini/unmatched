@@ -1,7 +1,6 @@
-
 #include "../include/game.hpp"
-#include "deracula_cards.hpp"
-#include "sherlock_card.hpp"
+#include "../include/deracula_cards.hpp"
+#include "../include/sherlock_card.hpp"
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
@@ -17,9 +16,9 @@ Game::Game() : curturn(0), action(2), gameover(false) {
         sisters[i] = new sister(i + 1);
     }
     
-    allEnemies.push_back(player2);
+    enemy.push_back(player2);
     for (int i = 0; i < 3; i++) {
-        allEnemies.push_back(sisters[i]);
+        enemy.push_back(sisters[i]);
     }
 }
 
@@ -80,9 +79,6 @@ void Game::playCard(hero* player, int index, hero* opponent) {
         opponent->gethand().erase(opponent->gethand().begin());
     }
     
-<<<<<<< HEAD
-    // Combat Resolution
-=======
     resolve(*player, playedCard, *opponent, defendCard);
     
     action--;
@@ -90,81 +86,68 @@ void Game::playCard(hero* player, int index, hero* opponent) {
 }
 
 void Game::resolve(hero& attacker, card& atkcard, hero& defender, card& defendCard) {
->>>>>>> origin/zahra
     std::cout << "\n=== Combat ===" << std::endl;
-    std::cout << player->getname() << " plays: " << playedCard.get_name() << std::endl;
-    std::cout << opponent->getname() << " plays: " << defendCard.get_name() << std::endl;
+    std::cout << attacker.getname() << " plays: " << atkcard.get_name() << std::endl;
+    std::cout << defender.getname() << " plays: " << defendCard.get_name() << std::endl;
     
-    int attackValue = playedCard.getattack();
+    int attackValue = atkcard.getattack();
     int defenseValue = defendCard.getdefense();
-    bool isAdjacent = dcards::are_adjacent(*player, *opponent);
     
-    // Sherlock card effects
-    if (playedCard.get_name() == "Counter Punch") {
+    bool isAdjacent = dcards::are_adjacent(attacker, defender);
+    
+    if (atkcard.get_name() == "Counter Punch") {
         card_counter_punch cp;
-        cp.execute_effect(*player, *opponent, defendCard, isAdjacent, false);
+        cp.execute_effect(attacker, defender, defendCard, isAdjacent, false);
     }
-    else if (playedCard.get_name() == "Feint") {
+    else if (atkcard.get_name() == "Feint") {
         card_feint feint;
-        feint.execute_effect(*player, *opponent, defendCard, isAdjacent, false);
+        feint.execute_effect(attacker, defender, defendCard, isAdjacent, false);
     }
-    else if (playedCard.get_name() == "Fixed Point") {
+    else if (atkcard.get_name() == "Fixed Point") {
         card_fixed_point fp;
-        fp.execute_effect(*player, *opponent, defendCard, isAdjacent, false);
+        fp.execute_effect(attacker, defender, defendCard, isAdjacent, false);
     }
-    else if (playedCard.get_name() == "Master of Disguise") {
+    else if (atkcard.get_name() == "Master of Disguise") {
         card_master_of_disguise md;
-        md.execute_effect(*player, *opponent, defendCard, isAdjacent, false);
+        md.execute_effect(attacker, defender, defendCard, isAdjacent, false);
     }
-    else if (playedCard.get_name() == "The Game is Afoot") {
+    else if (atkcard.get_name() == "The Game is Afoot") {
         card_game_is_afoot ga;
-        ga.execute_effect(*player, *opponent, defendCard, isAdjacent, false);
+        ga.execute_effect(attacker, defender, defendCard, isAdjacent, false);
     }
     
-    // Dracula card effects
     std::vector<sidekick*> allSisters;
     for (int i = 0; i < 3; i++) {
         allSisters.push_back(sisters[i]);
     }
     
-    if (playedCard.get_name() == "Feeding Frenzy" || 
-        playedCard.get_name() == "Ambush" ||
-        playedCard.get_name() == "Beastform" ||
-        playedCard.get_name() == "Dash" ||
-        playedCard.get_name() == "Thirst for Sustenance" ||
-        playedCard.get_name() == "Exploit") {
-        dcards::resolve_combat_effects(playedCard, *player, defendCard, *opponent, allSisters);
+    if (atkcard.get_name() == "Feeding Frenzy" || 
+        atkcard.get_name() == "Ambush" ||
+        atkcard.get_name() == "Beastform" ||
+        atkcard.get_name() == "Dash" ||
+        atkcard.get_name() == "Thirst for Sustenance" ||
+        atkcard.get_name() == "Exploit") {
+        dcards::resolve_combat_effects(atkcard, attacker, defendCard, defender, allSisters);
     }
     
     int damage = attackValue - defenseValue;
     if (damage > 0) {
-        opponent->takedamage(damage);
-        std::cout << opponent->getname() << " took " << damage << " damage" << std::endl;
+        defender.takedamage(damage);
+        std::cout << defender.getname() << " took " << damage << " damage" << std::endl;
     } else {
-        std::cout << opponent->getname() << " defended successfully" << std::endl;
+        std::cout << defender.getname() << " defended successfully" << std::endl;
     }
     
-<<<<<<< HEAD
-    if (playedCard.gettype() == cardtype::scheme) {
-        std::vector<character*> enemies;
-        enemies.push_back(opponent);
-=======
     if (atkcard.gettype() == cardtype::scheme) {
         std::vector<character*> enemyList;
         enemyList.push_back(&defender);
->>>>>>> origin/zahra
         std::vector<sidekick*> allSisters2;
         for (int i = 0; i < 3; i++) {
             allSisters2.push_back(sisters[i]);
         }
-<<<<<<< HEAD
-        dcards::resolve_scheme(playedCard, *player, *opponent, enemies, allSisters2);
-=======
         dcards::resolve_scheme(atkcard, attacker, defender, enemyList, allSisters2);
->>>>>>> origin/zahra
     }
     
-    action--;
     checkWinCondition();
 }
 
