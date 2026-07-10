@@ -1,4 +1,7 @@
-#include "game.hpp"
+
+#include "../include/game.hpp"
+#include "deracula_cards.hpp"
+#include "sherlock_card.hpp"
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
@@ -77,7 +80,17 @@ void Game::playCard(hero* player, int index, hero* opponent) {
         opponent->gethand().erase(opponent->gethand().begin());
     }
     
+<<<<<<< HEAD
     // Combat Resolution
+=======
+    resolve(*player, playedCard, *opponent, defendCard);
+    
+    action--;
+    checkWinCondition();
+}
+
+void Game::resolve(hero& attacker, card& atkcard, hero& defender, card& defendCard) {
+>>>>>>> origin/zahra
     std::cout << "\n=== Combat ===" << std::endl;
     std::cout << player->getname() << " plays: " << playedCard.get_name() << std::endl;
     std::cout << opponent->getname() << " plays: " << defendCard.get_name() << std::endl;
@@ -131,14 +144,24 @@ void Game::playCard(hero* player, int index, hero* opponent) {
         std::cout << opponent->getname() << " defended successfully" << std::endl;
     }
     
+<<<<<<< HEAD
     if (playedCard.gettype() == cardtype::scheme) {
         std::vector<character*> enemies;
         enemies.push_back(opponent);
+=======
+    if (atkcard.gettype() == cardtype::scheme) {
+        std::vector<character*> enemyList;
+        enemyList.push_back(&defender);
+>>>>>>> origin/zahra
         std::vector<sidekick*> allSisters2;
         for (int i = 0; i < 3; i++) {
             allSisters2.push_back(sisters[i]);
         }
+<<<<<<< HEAD
         dcards::resolve_scheme(playedCard, *player, *opponent, enemies, allSisters2);
+=======
+        dcards::resolve_scheme(atkcard, attacker, defender, enemyList, allSisters2);
+>>>>>>> origin/zahra
     }
     
     action--;
