@@ -4,70 +4,70 @@
 
 GameManager::GameManager() : board(), movement(&board) {}
 
-void GameManager::addCharacter(character* character, int team) {
-    if (!character) return;
-    allCharacters.push_back(character);
-    turnManager.addCharacter(character, team);
+void GameManager::addCharacter(character* c, int team) {
+    if (!c) return;
+    allCharacters.push_back(c);
+    turnManager.addCharacter(c, team);
     
     if (team == 1) {
-        team1.push_back(character);
+        team1.push_back(c);
     } else {
-        team2.push_back(character);
+        team2.push_back(c);
     }
 }
 
-void GameManager::removeCharacter(character* character) {
-    if (!character) return;
+void GameManager::removeCharacter(character* c) {
+    if (!c) return;
     
-    auto it = std::find(allCharacters.begin(), allCharacters.end(), character);
+    auto it = std::find(allCharacters.begin(), allCharacters.end(), c);
     if (it != allCharacters.end()) {
         allCharacters.erase(it);
     }
     
-    auto it1 = std::find(team1.begin(), team1.end(), character);
+    auto it1 = std::find(team1.begin(), team1.end(), c);
     if (it1 != team1.end()) {
         team1.erase(it1);
     }
     
-    auto it2 = std::find(team2.begin(), team2.end(), character);
+    auto it2 = std::find(team2.begin(), team2.end(), c);
     if (it2 != team2.end()) {
         team2.erase(it2);
     }
     
-    turnManager.removeCharacter(character);
+    turnManager.removeCharacter(c);
 }
 
-std::vector<character*> GameManager::getAllies(character* character) const {
+std::vector<character*> GameManager::getAllies(character* c) const {
     std::vector<character*> allies;
-    if (!character) return allies;
+    if (!c) return allies;
     
     int team = -1;
-    if (std::find(team1.begin(), team1.end(), character) != team1.end()) {
+    if (std::find(team1.begin(), team1.end(), c) != team1.end()) {
         team = 1;
-    } else if (std::find(team2.begin(), team2.end(), character) != team2.end()) {
+    } else if (std::find(team2.begin(), team2.end(), c) != team2.end()) {
         team = 2;
     }
     
     if (team == -1) return allies;
     
     const auto& teammates = (team == 1) ? team1 : team2;
-    for (const auto& c : teammates) {
-        if (c != character && c->isalive()) {
-            allies.push_back(c);
+    for (const auto& cc : teammates) {
+        if (cc != c && cc->isalive()) {
+            allies.push_back(cc);
         }
     }
     
     return allies;
 }
 
-std::vector<character*> GameManager::getEnemies(character* character) const {
+std::vector<character*> GameManager::getEnemies(character* c) const {
     std::vector<character*> enemies;
-    if (!character) return enemies;
+    if (!c) return enemies;
     
     int team = -1;
-    if (std::find(team1.begin(), team1.end(), character) != team1.end()) {
+    if (std::find(team1.begin(), team1.end(), c) != team1.end()) {
         team = 1;
-    } else if (std::find(team2.begin(), team2.end(), character) != team2.end()) {
+    } else if (std::find(team2.begin(), team2.end(), c) != team2.end()) {
         team = 2;
     }
     
@@ -83,22 +83,23 @@ std::vector<character*> GameManager::getEnemies(character* character) const {
     return enemies;
 }
 
-std::vector<std::pair<int, int>> GameManager::getValidMoves(character* character) {
-    if (!character) return {};
+std::vector<std::string> GameManager::getValidMoves(character* c) {
+    if (!c) return {};
   
-    auto allies = getAllies(character);
-    auto enemies = getEnemies(character);
+    auto allies = getAllies(c);
+    auto enemies = getEnemies(c);
     
-    return movement.getPossibleMoves(character, character->getmovement(), allies, enemies);
+    return movement.getPossibleMoves(c, c->getmovement(), allies, enemies);
 }
 
-bool GameManager::moveCharacter(character* character, const std::pair<int, int>& targetPos) {
-    if (!character) return false;
+bool GameManager::moveCharacter(character* c, const std::string& targetSpace) {
+    if (!c) return false;
     
-    auto moves = getValidMoves(character);
+    auto moves = getValidMoves(c);
     for (const auto& move : moves) {
-        if (move.first == targetPos.first && move.second == targetPos.second) {
-            character->setposition(targetPos.first, targetPos.second);
+        if (move == targetSpace) {
+            auto coords = board.getCoordinates(targetSpace);
+            c->setposition(coords.first, coords.second);
             return true;
         }
     }

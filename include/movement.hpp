@@ -1,11 +1,14 @@
-#pragma once
+#ifndef MOVEMENT_HPP
+#define MOVEMENT_HPP
 
-#include "board.hpp"
-#include "character.hpp"
+#include <vector>
+#include <string>
+#include <utility>
+
+#include "character.hpp"   
+#include "map.hpp"
 #include "turn_manager.hpp"
 #include "card.hpp"
-#include <vector>
-#include <utility>
 
 class Movement {
 private:
@@ -25,16 +28,8 @@ public:
     Movement(const Board* board);
     
     std::vector<std::string> getPossibleMoves(
-        character* character,
+        character* c,
         int steps,
-        const std::vector<character*>& alliesList,
-        const std::vector<character*>& enemiesList
-    ) const;
-    
-    std::vector<std::string> getPossibleMovesWithBoost(
-        character* character,
-        int baseSteps,
-        int boostValue,
         const std::vector<character*>& alliesList,
         const std::vector<character*>& enemiesList
     ) const;
@@ -55,8 +50,8 @@ public:
         const std::vector<character*>& enemiesList
     ) const;
     
-    int getBaseMovement(const character* character) const;
-    void boost(character* character, const card* playedCard, ActionType currentAction) const;
+    int getBaseMovement(const character* c) const;
+    void boost(character* c, const card* playedCard, ActionType currentAction) const;
 };
 
 #endif

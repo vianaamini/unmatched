@@ -10,7 +10,7 @@ bool Movement::isPositionOccupiedByEnemy(const std::string& space,
                                          const std::vector<character*>& enemiesList) const {
     for (const auto& enemy : enemiesList) {
         if (!enemy) continue;
-        if (enemy->getPosition() == space) {
+        if (enemy->getPositionString() == space) {
             return true;
         }
     }
@@ -21,7 +21,7 @@ bool Movement::isPositionOccupiedByAlly(const std::string& space,
                                         const std::vector<character*>& alliesList) const {
     for (const auto& ally : alliesList) {
         if (!ally) continue;
-        if (ally->getPosition() == space) {
+        if (ally->getPositionString() == space) {
             return true;
         }
     }
@@ -45,20 +45,20 @@ bool Movement::canMoveThrough(const std::string& from, const std::string& to,
     return true;
 }
 
-int Movement::getBaseMovement(const character* character) const {
-    if (!character) return 0;
-    return character->getmovement();  
+int Movement::getBaseMovement(const character* c) const {
+    if (!c) return 0;
+    return c->getmovement();  
 }
 
 std::vector<std::string> Movement::getPossibleMoves(
-    character* character,
+    character* c,
     int steps,
     const std::vector<character*>& alliesList,
     const std::vector<character*>& enemiesList) const {
     
-    if (!character || steps <= 0) return {};
+    if (!c || steps <= 0) return {};
     
-    std::string start = character->getPosition();
+    std::string start = c->getPositionString();
     if (!board->hasSpace(start)) return {};
     
     std::vector<std::string> validMoves;
@@ -96,19 +96,8 @@ std::vector<std::string> Movement::getPossibleMoves(
             }
         }
     }
-
-    std::vector<std::pair<int, int>> finalMoves;
-    for (const auto& pos : validMoves) {
-        if (board->isTeleport(pos.first, pos.second)) {
-            int destId = board->getTeleportDestination(pos.first, pos.second);
-            int dx = destId / 1000;
-            int dy = destId % 1000;
-            finalMoves.push_back({dx, dy});
-        } else {
-            finalMoves.push_back(pos);
-        }
-    }
-    return finalMoves;
+    
+    return validMoves;
 }
 
 bool Movement::canReach(const std::string& start,
@@ -215,11 +204,11 @@ std::vector<std::vector<std::string>> Movement::findPaths(
     return result;
 }
 
-void Movement::boost(character* character, card* playedCard, ActionType currentAction) const {
-    if (!character || !playedCard || currentAction != ActionType::MANEUVER) {
+void Movement::boost(character* c, const card* playedCard, ActionType currentAction) const {
+    if (!c || !playedCard || currentAction != ActionType::MANEUVER) {
         return;
     }
     if (currentAction == ActionType::MANEUVER) {
-        character->setnewmovement(character->getmovement() + playedCard->getboost());
+        c->setnewmovement(c->getmovement() + playedCard->getboost());
     }
 }
