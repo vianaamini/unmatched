@@ -255,6 +255,14 @@ vector<string> Board::getAllSpaceIds() const {
     return result;
 }
 
-/*const unordered_map<string, vector<string>>& Board::getGraph() const {
-    return adjacencyList;
-}*/
+NodeColor Board::getNodeColorByName(const string& nodeName) const {
+    for (const auto& pair : zoneMap) {
+        NodeColor color = pair.first;
+        const vector<string>& spaces = pair.second;
+
+        if (find(spaces.begin(), spaces.end(), nodeName) != spaces.end()) {
+            return color;
+        }
+    }
+    return NodeColor::NONE;
+}

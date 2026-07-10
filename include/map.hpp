@@ -55,6 +55,7 @@ public:
     bool isTeleport(const string& spaceName) const;
 
     const unordered_map<string, vector<string>>& getGraph() const { return adjacencyList; }
+    NodeColor getNodeColorByName(const string& nodeName) const;
 };
 
 #endif
