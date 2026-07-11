@@ -93,8 +93,10 @@ void Game::resolve(hero& attacker, card& atkcard, hero& defender, card& defendCa
     int attackValue = atkcard.getattack();
     int defenseValue = defendCard.getdefense();
     
+    Board board; // ایجاد Board برای استفاده در کارت‌ها
     bool isAdjacent = dcards::are_adjacent(attacker, defender);
     
+    // کارت‌های شرلوک
     if (atkcard.get_name() == "Counter Punch") {
         card_counter_punch cp;
         cp.execute_effect(attacker, defender, defendCard, isAdjacent, false);
@@ -121,13 +123,14 @@ void Game::resolve(hero& attacker, card& atkcard, hero& defender, card& defendCa
         allSisters.push_back(sisters[i]);
     }
     
+    // کارت‌های دراکولا
     if (atkcard.get_name() == "Feeding Frenzy" || 
         atkcard.get_name() == "Ambush" ||
         atkcard.get_name() == "Beastform" ||
         atkcard.get_name() == "Dash" ||
         atkcard.get_name() == "Thirst for Sustenance" ||
         atkcard.get_name() == "Exploit") {
-        dcards::resolve_combat_effects(atkcard, attacker, defendCard, defender, allSisters);
+        dcards::resolve_combat_effects(atkcard, attacker, defendCard, defender, allSisters, board);
     }
     
     int damage = attackValue - defenseValue;
@@ -145,7 +148,7 @@ void Game::resolve(hero& attacker, card& atkcard, hero& defender, card& defendCa
         for (int i = 0; i < 3; i++) {
             allSisters2.push_back(sisters[i]);
         }
-        dcards::resolve_scheme(atkcard, attacker, defender, enemyList, allSisters2);
+        dcards::resolve_scheme(atkcard, attacker, defender, enemyList, allSisters2, board);
     }
     
     checkWinCondition();

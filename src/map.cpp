@@ -167,9 +167,6 @@ vector<pair<int, int>> Board::getAdjacentSpaces(int x, int y) const {
     return result;
 }
 
-//int Board::getWidth() const { return 10; }
-//int Board::getHeight() const { return 10; }
-
 vector<pair<int, int>> Board::getAllSpaces() const {
     vector<pair<int, int>> result;
     for (const auto& pair : tuiCoordinates) {
@@ -253,6 +250,14 @@ vector<string> Board::getAllSpaceIds() const {
         result.push_back(pair.first);
     }
     return result;
+}
+
+int Board::getNodeId(const string& nodeName) const {
+    return stoi(nodeName.substr(1));
+}
+
+string Board::getNodeName(int id) const {
+    return "n" + to_string(id);
 }
 
 NodeColor Board::getNodeColorByName(const string& nodeName) const {
