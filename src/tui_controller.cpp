@@ -73,34 +73,21 @@ Element TuiController::drawExactGraphMap() {
     auto n19 = createDynamicNode("n19", dPos, sPos, wPos, s1, s2, s3);
     auto n20 = createDynamicNode("n20", dPos, sPos, wPos, s1, s2, s3);
     auto n21 = createDynamicNode("n21", dPos, sPos, wPos, s1, s2, s3);
-    auto n22 = createDynamicNode("n22", dPos, sPos, wPos, s1, s2, s3);
-    auto n23 = createDynamicNode("n23", dPos, sPos, wPos, s1, s2, s3);
-    auto n24 = createDynamicNode("n24", dPos, sPos, wPos, s1, s2, s3);
-    auto n25 = createDynamicNode("n25", dPos, sPos, wPos, s1, s2, s3);
-    auto n26 = createDynamicNode("n26", dPos, sPos, wPos, s1, s2, s3);
-    auto n27 = createDynamicNode("n27", dPos, sPos, wPos, s1, s2, s3);
-    auto n28 = createDynamicNode("n28", dPos, sPos, wPos, s1, s2, s3);
-    auto n29 = createDynamicNode("n29", dPos, sPos, wPos, s1, s2, s3);
-    auto n30 = createDynamicNode("n30", dPos, sPos, wPos, s1, s2, s3);
-    auto n31 = createDynamicNode("n31", dPos, sPos, wPos, s1, s2, s3);
-    auto n32 = createDynamicNode("n32", dPos, sPos, wPos, s1, s2, s3);
 
     return vbox({
         text("─── MAP (Spider Web Graph) ───") | center | bold | color(Color::Green),
         separator(),
-        hbox({ text("               "), n1, text("───────────"), n2, text("───────────"), n3, text("               ") }) | center,
-        hbox({ text("                ╲              │              ╱                ") }) | center,
-        hbox({ text("          "), n4, text("─── "), n9, text("───────"), n10, text("───────"), n11, text(" ───"), n5 }) | center,
-        hbox({ text("           │       ╲        │        ╱       │           ") }) | center,
-        hbox({ text("           │   "), n12, text("── "), n17, text("───"), n18, text("───"), n19, text(" ── Kish ── "), n13, text("   │           ") }) | center,
-        hbox({ text("           │    │       ╲   │   ╱       │    │           ") }) | center,
-        hbox({ text("     "), n6, text("──"), n14, text("──"), n20, text("──"), n25, text("[CORE]"), n26, text("──"), n27, text("──"), n21, text("──"), n15, text("──"), n7 }) | center,
-        hbox({ text("           │    │       ╱   │   ╲       │    │           ") }) | center,
-        hbox({ text("           │   "), n16, text("── "), n22, text("───"), n23, text("───"), n24, text(" ── "), n28, text("   │           ") }) | center,
-        hbox({ text("           │       ╱        │        ╲       │           ") }) | center,
-        hbox({ text("          "), n29, text("─── "), n30, text("───────"), n31, text("───────"), n32, text(" ───"), n8 }) | center,
-        hbox({ text("                ╱           │           ╲                ") }) | center,
-        hbox({ text("               "), n5, text("───────────"), n6, text("───────────"), n7, text("               ") }) | center
+        text(""),
+        hbox({ text("         "), n1, text("─────────"), n2, text("─────────"), n3, text("         ") }) | center,
+        hbox({ text("          ╱   ╲         │             ╲          ") }) | center,
+        hbox({ text("   "), n4, text("────"), n5, text("────"), n6, text("────"), n7, text("────"), n8, text("   ") }) | center,
+        hbox({ text("         ╱           ╲   │   ╱           ╲        ") }) | center,
+        hbox({ text("   "), n9, text("------"), n10, text("-----"), n11, text("-----"), n12, text("-----"), n13, text("   ") }) | center,
+        hbox({ text("         ╲           ╱   │   ╲           ╱        ") }) | center,
+       hbox({ text("   "), n14, text("────"), n15, text("────"), n16, text("────"), n17, text("────"), n18, text("   ") }) | center,
+        hbox({ text("                     ╲   ╱       │             ╱                   ") }) | center,
+        hbox({ text("         "), n19, text("─────────"), n20, text("─────────"), n21, text("         ") }) | center,
+        text("")
     }) | center | flex;
 }
 

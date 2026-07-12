@@ -3,61 +3,37 @@
 #include <cmath>
 
 Board::Board(int width, int height) : width(width), height(height) {
-    addSpace("n16", 18, 7, {NodeColor::NONE});
+   addSpace("n1", 16, 3, {NodeColor::RED});
+    addSpace("n2", 24, 3, {NodeColor::NONE});
+    addSpace("n3", 32, 3, {NodeColor::NONE});
+    addSpace("n4", 8,  5, {NodeColor::NONE});
+    addSpace("n5", 16, 5, {NodeColor::NONE});
+    addSpace("n6", 24, 5, {NodeColor::YELLOW, NodeColor::GREEN});
+    addSpace("n7", 32, 5, {NodeColor::NONE});
+    addSpace("n8", 40, 5, {NodeColor::NONE});
+    addSpace("n9",  2,  7, {NodeColor::NONE});         
+    addSpace("n10", 13, 7, {NodeColor::NONE});    
+    addSpace("n11", 24, 7, {NodeColor::BLUE});             
+    addSpace("n12", 35, 7, {NodeColor::NONE});    
+    addSpace("n13", 46, 7, {NodeColor::NONE});       
+    addSpace("n14", 8,  9, {NodeColor::NONE});
+    addSpace("n15", 16, 9, {NodeColor::NONE});
+    addSpace("n16", 24, 9, {NodeColor::NONE});
+    addSpace("n17", 32, 9, {NodeColor::GREEN});
+    addSpace("n18", 40, 9, {NodeColor::NONE});
+    addSpace("n19", 16, 11, {NodeColor::NONE});
+    addSpace("n20", 24, 11, {NodeColor::NONE});
+    addSpace("n21", 32, 11, {NodeColor::NONE});
 
-    addSpace("n1", 2, 7, {NodeColor::RED});
-    addSpace("n2", 6, 7, {NodeColor::NONE});
-    addSpace("n10", 10, 7, {NodeColor::YELLOW, NodeColor::GREEN});
-    addSpace("n22", 26, 7, {NodeColor::YELLOW, NodeColor::GREEN});
-    addSpace("n30", 30, 7, {NodeColor::NONE});
-    addSpace("n32", 34, 7, {NodeColor::BLUE});
-
-    addSpace("n13", 24, 3, {NodeColor::GREEN});
-    addSpace("n6", 36, 3, {NodeColor::NONE});
-
-    addSpace("n5", 3, 5, {NodeColor::NONE});
-    addSpace("n7", 9, 5, {NodeColor::NONE});
-    addSpace("n3", 15, 5, {NodeColor::NONE});
-    addSpace("n4", 21, 5, {NodeColor::NONE});
-    addSpace("n8", 27, 5, {NodeColor::NONE});
-    addSpace("n9", 33, 5, {NodeColor::NONE});
-    addSpace("n11", 39, 5, {NodeColor::NONE});
-
-    addSpace("n12", 9, 7, {NodeColor::NONE});
-    addSpace("n14", 15, 7, {NodeColor::NONE});
-    addSpace("n15", 21, 7, {NodeColor::NONE});
-    addSpace("n19", 27, 7, {NodeColor::NONE});
-    addSpace("n27", 33, 7, {NodeColor::NONE});
-    addSpace("n26", 39, 7, {NodeColor::NONE});
-
-    addSpace("n28", 9, 9, {NodeColor::NONE});
-    addSpace("n29", 15, 9, {NodeColor::NONE});
-    addSpace("n25", 21, 9, {NodeColor::NONE});
-    addSpace("n24", 27, 9, {NodeColor::NONE});
-    addSpace("n31", 33, 9, {NodeColor::NONE});
-    addSpace("n21", 12, 11, {NodeColor::NONE});
-    addSpace("n20", 18, 11, {NodeColor::NONE});
-    addSpace("n18", 24, 11, {NodeColor::NONE});
-    addSpace("n23", 30, 11, {NodeColor::NONE});
-
-    addEdge("n1", "n2"); addEdge("n2", "n10"); addEdge("n10", "n16");
-    addEdge("n16", "n22"); addEdge("n22", "n30"); addEdge("n30", "n32");
-
-    addEdge("n16", "n13");
-    addEdge("n16", "n19"); 
-    addEdge("n16", "n12"); 
-    addEdge("n16", "n14");
-    addEdge("n16", "n18"); 
-    addEdge("n1", "n3"); addEdge("n3", "n5"); addEdge("n5", "n6");
-    addEdge("n6", "n7"); addEdge("n7", "n9"); addEdge("n9", "n32");
-    addEdge("n1", "n29"); addEdge("n29", "n26"); addEdge("n26", "n27");
-    addEdge("n27", "n28"); addEdge("n28", "n31"); addEdge("n31", "n32");
-  
-    addEdge("n2", "n11"); addEdge("n11", "n12"); addEdge("n13", "n4"); addEdge("n4", "n5");
-    addEdge("n7", "n8"); addEdge("n8", "n14"); addEdge("n15", "n30"); addEdge("n14", "n15");
-    addEdge("n2", "n21"); addEdge("n21", "n20"); addEdge("n19", "n25"); addEdge("n25", "n26");
-    addEdge("n27", "n24"); addEdge("n24", "n18"); addEdge("n18", "n23"); addEdge("n23", "n30");
-
+    addEdge("n1", "n2"); addEdge("n2", "n3"); addEdge("n1", "n4");
+    addEdge("n3", "n8"); addEdge("n4", "n9"); addEdge("n9", "n14");
+    addEdge("n9", "n10");addEdge("n10", "n11"); addEdge("n11", "n12"); 
+    addEdge("n12", "n13");addEdge("n14", "n19"); addEdge("n13", "n18");
+    addEdge("n19", "n20"); addEdge("n20", "n21");addEdge("n1", "n5"); 
+    addEdge("n2", "n6"); addEdge("n5", "n11");addEdge("n6", "n11"); 
+    addEdge("n7", "n11");addEdge("n11", "n15");addEdge("n11", "n16"); 
+    addEdge("n11", "n17"); addEdge("n15", "n19");addEdge("n16", "n20");addEdge("n18", "n21"); 
+    
     addTeleport("n1", "n32");
     addTeleport("n10", "n22");
     addTeleport("n16", "n6");
