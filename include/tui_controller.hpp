@@ -14,6 +14,7 @@ private:
     std::vector<std::string> gamelogs;
     ftxui::Element createDynamicNode(const std::string& nodename, const std::string& dracPos, const std::string& sherlockPos, const std::string& watsonPos, const std::string& s1Pos, const std::string& s2Pos, const std::string& s3Pos) ;
     ftxui::Element drawExactGraphMap();
+    ftxui::Element createStatusDashboard();
 
 public:
     TuiController();

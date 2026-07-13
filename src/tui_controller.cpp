@@ -91,6 +91,54 @@ Element TuiController::drawExactGraphMap() {
     }) | center | flex;
 }
 
+Element TuiController::createStatusDashboard() {
+    auto allChars = gamemanager.getAllCharacters();
+    Elements heroPanels;
+
+    for (character* c : allChars) {
+        if (!c) continue;
+        hero* h = dynamic_cast<hero*>(c);
+
+        Elements info;
+        info.push_back(text(c->getname()) | bold | color(Color::Yellow));
+        info.push_back(separator());
+        info.push_back(text("HP: " + to_string(c->gethealth()))
+                        | color(c->isalive() ? Color::Green : Color::Red));
+        info.push_back(text("Position: " + c->getPositionString()));
+
+        if (h) {
+            info.push_back(text("Hand: " + to_string(h->handsize()) + " cards"));
+            info.push_back(text("Deck: " + to_string(h->getdeck().getsize()) + " cards"));
+            info.push_back(text("Actions: " + to_string(h->get_actions())));
+        }
+
+        heroPanels.push_back(vbox(move(info)) | border | size(WIDTH, EQUAL, 20));
+    }
+
+    character* current = gamemanager.getCurrentCharacter();
+
+    Elements logElements;
+    int start_idx = max(0, (int)gamelogs.size() - 6);
+    for (size_t i = start_idx; i < gamelogs.size(); ++i) {
+        logElements.push_back(text("> " + gamelogs[i]));
+    }
+
+    return vbox({
+        text(" STATUS DASHBOARD ") | bold | color(Color::Cyan) | center,
+        separator(),
+        text("Turn: " + to_string(gamemanager.getTurnNumber()) +
+             "  |  Actions Left: " + to_string(gamemanager.getActionsRemaining())) | center,
+        separator(),
+        hbox(move(heroPanels)) | center,
+        separator(),
+        text("Current Turn: " + (current ? current->getname() : "N/A"))
+            | bold | color(Color::Magenta) | center,
+        separator(),
+        text(" GAME LOG ") | bold | color(Color::Yellow),
+        vbox(move(logElements)) | border | size(HEIGHT, EQUAL, 8)
+    }) | border;
+}
+
 void TuiController::run() {
     auto screen = ScreenInteractive::Fullscreen();
     
