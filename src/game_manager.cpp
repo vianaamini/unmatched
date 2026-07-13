@@ -98,8 +98,8 @@ bool GameManager::moveCharacter(character* c, const std::string& targetSpace) {
     auto moves = getValidMoves(c);
     for (const auto& move : moves) {
         if (move == targetSpace) {
-            auto coords = board.getCoordinates(targetSpace);
-            c->setposition(coords.first, coords.second);
+            int nodeId = board.getNodeId(targetSpace);
+            c->setposition(nodeId, 0);
             return true;
         }
     }
