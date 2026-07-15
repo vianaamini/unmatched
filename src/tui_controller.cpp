@@ -96,7 +96,6 @@ Element TuiController::createStatusDashboard() {
     for (character* c : allChars) {
         if (!c) continue;
         
-        // cast to hero*
         hero* h = dynamic_cast<hero*>(c);
 
         Elements info;

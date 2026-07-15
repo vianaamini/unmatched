@@ -6,7 +6,7 @@
 #include <ftxui/dom/elements.hpp>
 #include "game_manager.hpp"
 #include "map.hpp"
-#include "hero.hpp"  // <==== اضافه شد
+#include "hero.hpp"
 
 class TuiController {
 private:
@@ -20,7 +20,7 @@ private:
     ftxui::Element createDynamicNode(const std::string& nodename, const std::string& dracPos, const std::string& sherlockPos, const std::string& watsonPos, const std::string& s1Pos, const std::string& s2Pos, const std::string& s3Pos);
     ftxui::Element drawExactGraphMap();
     ftxui::Element createStatusDashboard();
-    ftxui::Element createActionMenu();  
+    ftxui::Element createActionMenu();
 
 public:
     TuiController();
