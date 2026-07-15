@@ -16,6 +16,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "E:/unmatchedgame/unmatched/src/deployment.cpp" "CMakeFiles/unmatched.dir/src/deployment.cpp.obj" "gcc" "CMakeFiles/unmatched.dir/src/deployment.cpp.obj.d"
   "E:/unmatchedgame/unmatched/src/deracula_cards.cpp" "CMakeFiles/unmatched.dir/src/deracula_cards.cpp.obj" "gcc" "CMakeFiles/unmatched.dir/src/deracula_cards.cpp.obj.d"
   "E:/unmatchedgame/unmatched/src/dracula.cpp" "CMakeFiles/unmatched.dir/src/dracula.cpp.obj" "gcc" "CMakeFiles/unmatched.dir/src/dracula.cpp.obj.d"
+  "E:/unmatchedgame/unmatched/src/game.cpp" "CMakeFiles/unmatched.dir/src/game.cpp.obj" "gcc" "CMakeFiles/unmatched.dir/src/game.cpp.obj.d"
   "E:/unmatchedgame/unmatched/src/game_manager.cpp" "CMakeFiles/unmatched.dir/src/game_manager.cpp.obj" "gcc" "CMakeFiles/unmatched.dir/src/game_manager.cpp.obj.d"
   "E:/unmatchedgame/unmatched/src/hero.cpp" "CMakeFiles/unmatched.dir/src/hero.cpp.obj" "gcc" "CMakeFiles/unmatched.dir/src/hero.cpp.obj.d"
   "E:/unmatchedgame/unmatched/src/map.cpp" "CMakeFiles/unmatched.dir/src/map.cpp.obj" "gcc" "CMakeFiles/unmatched.dir/src/map.cpp.obj.d"

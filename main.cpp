@@ -1,35 +1,19 @@
+#include "tui_controller.hpp"
 #include <iostream>
-#include "sherlock.hpp"
-#include "dracula.hpp"
-#include "watson.hpp"
-#include "sister.hpp"
-
-using namespace std;
+#include <cstdlib>
+#include <ctime>
 
 int main() {
-    cout << "=== Testing Characters ===" << endl;
+    std::srand(static_cast<unsigned int>(std::time(nullptr)));
     
-    sherlock sh;
-    dracula dr;
-    watson wt;
-    sister s1(1), s2(2), s3(3);
+    try {
+        TuiController tui;
+        tui.run();
+    } catch (const std::exception& e) {
+        std::cerr << "Error: " << e.what() << std::endl;
+        return 1;
+    }
     
-    cout << "Sherlock: " << sh.getname() << " HP: " << sh.gethealth() << endl;
-    cout << "Watson: " << wt.getname() << " HP: " << wt.gethealth() << endl;
-    cout << "Dracula: " << dr.getname() << " HP: " << dr.gethealth() << endl;
-    cout << "Sister 1: " << s1.getname() << " HP: " << s1.gethealth() << endl;
-    
-    
-    cout << "\n=== Testing Decks ===" << endl;
-    cout << "Sherlock deck size: " << sh.getdeck().getsize() << endl;
-    cout << "Dracula deck size: " << dr.getdeck().getsize() << endl;
-    
-    cout << "\n=== Testing Abilities ===" << endl;
-    sh.useability();
-    dr.useability();
-    wt.useability();
-    
-    cout << "\n✅ All tests passed!" << endl;
-    
+    std::cout << "Game exited successfully." << std::endl;
     return 0;
 }

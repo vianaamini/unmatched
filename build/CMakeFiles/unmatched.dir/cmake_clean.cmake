@@ -15,6 +15,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/unmatched.dir/src/deracula_cards.cpp.obj.d"
   "CMakeFiles/unmatched.dir/src/dracula.cpp.obj"
   "CMakeFiles/unmatched.dir/src/dracula.cpp.obj.d"
+  "CMakeFiles/unmatched.dir/src/game.cpp.obj"
+  "CMakeFiles/unmatched.dir/src/game.cpp.obj.d"
   "CMakeFiles/unmatched.dir/src/game_manager.cpp.obj"
   "CMakeFiles/unmatched.dir/src/game_manager.cpp.obj.d"
   "CMakeFiles/unmatched.dir/src/hero.cpp.obj"

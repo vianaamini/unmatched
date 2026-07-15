@@ -14,12 +14,61 @@ _deps/ftxui-build/CMakeFiles/screen.dir/src/ftxui/screen/color_info.cpp.obj: \
  C:/msys64/ucrt64/include/vadefs.h \
  C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0/include/stddef.h \
  C:/msys64/ucrt64/include/stddef.h \
+ C:/msys64/ucrt64/include/c++/16.1.0/vector \
+ C:/msys64/ucrt64/include/c++/16.1.0/bits/requires_hosted.h \
+ C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_algobase.h \
+ C:/msys64/ucrt64/include/c++/16.1.0/bits/cpp_type_traits.h \
+ C:/msys64/ucrt64/include/c++/16.1.0/bits/version.h \
+ C:/msys64/ucrt64/include/c++/16.1.0/type_traits \
+ C:/msys64/ucrt64/include/c++/16.1.0/ext/type_traits.h \
+ C:/msys64/ucrt64/include/c++/16.1.0/ext/numeric_traits.h \
+ C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_pair.h \
+ C:/msys64/ucrt64/include/c++/16.1.0/bits/move.h \
+ C:/msys64/ucrt64/include/c++/16.1.0/bits/utility.h \
+ C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_iterator_base_types.h \
+ C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_iterator_base_funcs.h \
+ C:/msys64/ucrt64/include/c++/16.1.0/bits/concept_check.h \
+ C:/msys64/ucrt64/include/c++/16.1.0/debug/assertions.h \
+ C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_iterator.h \
+ C:/msys64/ucrt64/include/c++/16.1.0/bits/ptr_traits.h \
+ C:/msys64/ucrt64/include/c++/16.1.0/debug/debug.h \
+ C:/msys64/ucrt64/include/c++/16.1.0/bits/predefined_ops.h \
+ C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_function.h \
+ C:/msys64/ucrt64/include/c++/16.1.0/backward/binders.h \
+ C:/msys64/ucrt64/include/c++/16.1.0/bit \
+ C:/msys64/ucrt64/include/c++/16.1.0/concepts \
+ C:/msys64/ucrt64/include/c++/16.1.0/bits/allocator.h \
+ C:/msys64/ucrt64/include/c++/16.1.0/x86_64-w64-mingw32/bits/c++allocator.h \
+ C:/msys64/ucrt64/include/c++/16.1.0/bits/new_allocator.h \
+ C:/msys64/ucrt64/include/c++/16.1.0/new \
+ C:/msys64/ucrt64/include/c++/16.1.0/bits/exception.h \
+ C:/msys64/ucrt64/include/c++/16.1.0/bits/new_except.h \
+ C:/msys64/ucrt64/include/c++/16.1.0/bits/exception_defines.h \
+ C:/msys64/ucrt64/include/c++/16.1.0/bits/new_throw.h \
+ C:/msys64/ucrt64/include/c++/16.1.0/bits/memoryfwd.h \
+ C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_construct.h \
+ C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_uninitialized.h \
+ C:/msys64/ucrt64/include/c++/16.1.0/ext/alloc_traits.h \
+ C:/msys64/ucrt64/include/c++/16.1.0/bits/alloc_traits.h \
+ C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_vector.h \
+ C:/msys64/ucrt64/include/c++/16.1.0/bits/stdexcept_throw.h \
+ C:/msys64/ucrt64/include/c++/16.1.0/bits/stdexcept_throwfwd.h \
+ C:/msys64/ucrt64/include/c++/16.1.0/initializer_list \
+ C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_bvector.h \
+ C:/msys64/ucrt64/include/c++/16.1.0/bits/functional_hash.h \
+ C:/msys64/ucrt64/include/c++/16.1.0/bits/hash_bytes.h \
+ C:/msys64/ucrt64/include/c++/16.1.0/bits/range_access.h \
+ C:/msys64/ucrt64/include/c++/16.1.0/bits/erase_if.h \
+ C:/msys64/ucrt64/include/c++/16.1.0/bits/vector.tcc \
+ C:/msys64/ucrt64/include/c++/16.1.0/bits/memory_resource.h \
+ C:/msys64/ucrt64/include/c++/16.1.0/cstddef \
+ C:/msys64/ucrt64/include/c++/16.1.0/bits/uses_allocator.h \
+ C:/msys64/ucrt64/include/c++/16.1.0/bits/uses_allocator_args.h \
+ C:/msys64/ucrt64/include/c++/16.1.0/tuple \
+ C:/msys64/ucrt64/include/c++/16.1.0/bits/invoke.h \
  E:/unmatchedgame/unmatched/build/_deps/ftxui-src/include/ftxui/screen/color.hpp \
  C:/msys64/ucrt64/include/c++/16.1.0/string \
- C:/msys64/ucrt64/include/c++/16.1.0/bits/requires_hosted.h \
  C:/msys64/ucrt64/include/c++/16.1.0/bits/stringfwd.h \
- C:/msys64/ucrt64/include/c++/16.1.0/bits/memoryfwd.h \
- C:/msys64/ucrt64/include/c++/16.1.0/bits/version.h \
  C:/msys64/ucrt64/include/c++/16.1.0/bits/char_traits.h \
  C:/msys64/ucrt64/include/c++/16.1.0/bits/postypes.h \
  C:/msys64/ucrt64/include/c++/16.1.0/cwchar \
@@ -33,17 +82,6 @@ _deps/ftxui-build/CMakeFiles/screen.dir/src/ftxui/screen/color_info.cpp.obj: \
  C:/msys64/ucrt64/include/_mingw_stat64.h \
  C:/msys64/ucrt64/include/swprintf.inl \
  C:/msys64/ucrt64/include/sec_api/wchar_s.h \
- C:/msys64/ucrt64/include/c++/16.1.0/type_traits \
- C:/msys64/ucrt64/include/c++/16.1.0/bits/allocator.h \
- C:/msys64/ucrt64/include/c++/16.1.0/x86_64-w64-mingw32/bits/c++allocator.h \
- C:/msys64/ucrt64/include/c++/16.1.0/bits/new_allocator.h \
- C:/msys64/ucrt64/include/c++/16.1.0/new \
- C:/msys64/ucrt64/include/c++/16.1.0/bits/exception.h \
- C:/msys64/ucrt64/include/c++/16.1.0/bits/new_except.h \
- C:/msys64/ucrt64/include/c++/16.1.0/bits/exception_defines.h \
- C:/msys64/ucrt64/include/c++/16.1.0/bits/new_throw.h \
- C:/msys64/ucrt64/include/c++/16.1.0/bits/move.h \
- C:/msys64/ucrt64/include/c++/16.1.0/bits/cpp_type_traits.h \
  C:/msys64/ucrt64/include/c++/16.1.0/bits/localefwd.h \
  C:/msys64/ucrt64/include/c++/16.1.0/x86_64-w64-mingw32/bits/c++locale.h \
  C:/msys64/ucrt64/include/c++/16.1.0/clocale \
@@ -54,35 +92,8 @@ _deps/ftxui-build/CMakeFiles/screen.dir/src/ftxui/screen/color_info.cpp.obj: \
  C:/msys64/ucrt64/include/ctype.h \
  C:/msys64/ucrt64/include/c++/16.1.0/bits/ostream_insert.h \
  C:/msys64/ucrt64/include/c++/16.1.0/bits/cxxabi_forced.h \
- C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_iterator_base_funcs.h \
- C:/msys64/ucrt64/include/c++/16.1.0/bits/concept_check.h \
- C:/msys64/ucrt64/include/c++/16.1.0/debug/assertions.h \
- C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_iterator_base_types.h \
- C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_iterator.h \
- C:/msys64/ucrt64/include/c++/16.1.0/ext/type_traits.h \
- C:/msys64/ucrt64/include/c++/16.1.0/bits/ptr_traits.h \
- C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_function.h \
- C:/msys64/ucrt64/include/c++/16.1.0/backward/binders.h \
- C:/msys64/ucrt64/include/c++/16.1.0/ext/numeric_traits.h \
- C:/msys64/ucrt64/include/c++/16.1.0/bits/stdexcept_throw.h \
- C:/msys64/ucrt64/include/c++/16.1.0/bits/stdexcept_throwfwd.h \
- C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_algobase.h \
- C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_pair.h \
- C:/msys64/ucrt64/include/c++/16.1.0/bits/utility.h \
- C:/msys64/ucrt64/include/c++/16.1.0/debug/debug.h \
- C:/msys64/ucrt64/include/c++/16.1.0/bits/predefined_ops.h \
- C:/msys64/ucrt64/include/c++/16.1.0/bit \
- C:/msys64/ucrt64/include/c++/16.1.0/concepts \
- C:/msys64/ucrt64/include/c++/16.1.0/bits/range_access.h \
- C:/msys64/ucrt64/include/c++/16.1.0/initializer_list \
- C:/msys64/ucrt64/include/c++/16.1.0/bits/erase_if.h \
  C:/msys64/ucrt64/include/c++/16.1.0/bits/basic_string.h \
- C:/msys64/ucrt64/include/c++/16.1.0/ext/alloc_traits.h \
- C:/msys64/ucrt64/include/c++/16.1.0/bits/alloc_traits.h \
- C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_construct.h \
  C:/msys64/ucrt64/include/c++/16.1.0/string_view \
- C:/msys64/ucrt64/include/c++/16.1.0/bits/functional_hash.h \
- C:/msys64/ucrt64/include/c++/16.1.0/bits/hash_bytes.h \
  C:/msys64/ucrt64/include/c++/16.1.0/bits/string_view.tcc \
  C:/msys64/ucrt64/include/c++/16.1.0/ext/string_conversions.h \
  C:/msys64/ucrt64/include/c++/16.1.0/cstdlib \
@@ -100,16 +111,14 @@ _deps/ftxui-build/CMakeFiles/screen.dir/src/ftxui/screen/color_info.cpp.obj: \
  C:/msys64/ucrt64/include/c++/16.1.0/cerrno \
  C:/msys64/ucrt64/include/c++/16.1.0/bits/charconv.h \
  C:/msys64/ucrt64/include/c++/16.1.0/bits/basic_string.tcc \
- C:/msys64/ucrt64/include/c++/16.1.0/bits/memory_resource.h \
- C:/msys64/ucrt64/include/c++/16.1.0/cstddef \
- C:/msys64/ucrt64/include/c++/16.1.0/bits/uses_allocator.h \
- C:/msys64/ucrt64/include/c++/16.1.0/bits/uses_allocator_args.h \
- C:/msys64/ucrt64/include/c++/16.1.0/tuple \
- C:/msys64/ucrt64/include/c++/16.1.0/bits/invoke.h \
- C:/msys64/ucrt64/include/c++/16.1.0/vector \
- C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_uninitialized.h \
- C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_vector.h \
- C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_bvector.h \
- C:/msys64/ucrt64/include/c++/16.1.0/bits/vector.tcc \
+ E:/unmatchedgame/unmatched/build/_deps/ftxui-src/include/ftxui/util/export.hpp \
+ C:/msys64/ucrt64/include/c++/16.1.0/algorithm \
+ C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_algo.h \
+ C:/msys64/ucrt64/include/c++/16.1.0/bits/algorithmfwd.h \
+ C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_heap.h \
+ C:/msys64/ucrt64/include/c++/16.1.0/bits/uniform_int_dist.h \
+ C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_tempbuf.h \
+ C:/msys64/ucrt64/include/c++/16.1.0/pstl/glue_algorithm_defs.h \
+ C:/msys64/ucrt64/include/c++/16.1.0/pstl/execution_defs.h \
  C:/msys64/ucrt64/include/c++/16.1.0/array \
  C:/msys64/ucrt64/include/c++/16.1.0/compare

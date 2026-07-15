@@ -57,13 +57,13 @@ endif()
 
 execute_process(
   COMMAND "C:/Program Files/Git/cmd/git.exe"
-          checkout "v5.0.0" --
+          checkout "v7.0.0" --
   WORKING_DIRECTORY "E:/unmatchedgame/unmatched/build/_deps/ftxui-src"
   RESULT_VARIABLE error_code
   ${maybe_show_command}
 )
 if(error_code)
-  message(FATAL_ERROR "Failed to checkout tag: 'v5.0.0'")
+  message(FATAL_ERROR "Failed to checkout tag: 'v7.0.0'")
 endif()
 
 set(init_submodules TRUE)

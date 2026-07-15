@@ -1,30 +1,26 @@
 _deps/ftxui-build/CMakeFiles/screen.dir/src/ftxui/screen/string.cpp.obj: \
  E:\unmatchedgame\unmatched\build\_deps\ftxui-src\src\ftxui\screen\string.cpp \
  E:/unmatchedgame/unmatched/build/_deps/ftxui-src/include/ftxui/screen/string.hpp \
- C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0/include/stddef.h \
- C:/msys64/ucrt64/include/stddef.h C:/msys64/ucrt64/include/crtdefs.h \
- C:/msys64/ucrt64/include/corecrt.h C:/msys64/ucrt64/include/_mingw.h \
- C:/msys64/ucrt64/include/_mingw_mac.h \
- C:/msys64/ucrt64/include/_mingw_secapi.h \
- C:/msys64/ucrt64/include/vadefs.h \
- C:/msys64/ucrt64/include/c++/16.1.0/cstdint \
+ C:/msys64/ucrt64/include/c++/16.1.0/string \
+ C:/msys64/ucrt64/include/c++/16.1.0/bits/requires_hosted.h \
  C:/msys64/ucrt64/include/c++/16.1.0/x86_64-w64-mingw32/bits/c++config.h \
  C:/msys64/ucrt64/include/c++/16.1.0/x86_64-w64-mingw32/bits/os_defines.h \
  C:/msys64/ucrt64/include/c++/16.1.0/x86_64-w64-mingw32/bits/cpu_defines.h \
  C:/msys64/ucrt64/include/c++/16.1.0/pstl/pstl_config.h \
- C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0/include/stdint.h \
- C:/msys64/ucrt64/include/stdint.h \
- C:/msys64/ucrt64/include/c++/16.1.0/string \
- C:/msys64/ucrt64/include/c++/16.1.0/bits/requires_hosted.h \
  C:/msys64/ucrt64/include/c++/16.1.0/bits/stringfwd.h \
  C:/msys64/ucrt64/include/c++/16.1.0/bits/memoryfwd.h \
  C:/msys64/ucrt64/include/c++/16.1.0/bits/version.h \
  C:/msys64/ucrt64/include/c++/16.1.0/bits/char_traits.h \
  C:/msys64/ucrt64/include/c++/16.1.0/bits/postypes.h \
  C:/msys64/ucrt64/include/c++/16.1.0/cwchar \
- C:/msys64/ucrt64/include/wchar.h \
+ C:/msys64/ucrt64/include/wchar.h C:/msys64/ucrt64/include/corecrt.h \
+ C:/msys64/ucrt64/include/_mingw.h C:/msys64/ucrt64/include/_mingw_mac.h \
+ C:/msys64/ucrt64/include/_mingw_secapi.h \
+ C:/msys64/ucrt64/include/vadefs.h \
  C:/msys64/ucrt64/include/corecrt_stdio_config.h \
  C:/msys64/ucrt64/include/corecrt_wconio.h \
+ C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0/include/stddef.h \
+ C:/msys64/ucrt64/include/stddef.h C:/msys64/ucrt64/include/crtdefs.h \
  C:/msys64/ucrt64/include/sec_api/wconio_s.h \
  C:/msys64/ucrt64/include/corecrt_wstdlib.h \
  C:/msys64/ucrt64/include/corecrt_wctype.h \
@@ -110,7 +106,11 @@ _deps/ftxui-build/CMakeFiles/screen.dir/src/ftxui/screen/string.cpp.obj: \
  C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_vector.h \
  C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_bvector.h \
  C:/msys64/ucrt64/include/c++/16.1.0/bits/vector.tcc \
- E:/unmatchedgame/unmatched/build/_deps/ftxui-src/include/ftxui/screen/deprecated.hpp \
+ E:/unmatchedgame/unmatched/build/_deps/ftxui-src/include/ftxui/util/export.hpp \
  C:/msys64/ucrt64/include/c++/16.1.0/array \
  C:/msys64/ucrt64/include/c++/16.1.0/compare \
+ C:/msys64/ucrt64/include/c++/16.1.0/cstdint \
+ C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0/include/stdint.h \
+ C:/msys64/ucrt64/include/stdint.h \
+ E:/unmatchedgame/unmatched/build/_deps/ftxui-src/include/ftxui/screen/deprecated.hpp \
  E:/unmatchedgame/unmatched/build/_deps/ftxui-src/src/ftxui/screen/string_internal.hpp

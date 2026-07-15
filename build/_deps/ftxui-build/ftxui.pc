@@ -4,6 +4,6 @@ includedir="C:/Program Files (x86)/Unmatched/include"
 
 Name: ftxui
 Description: 
-Version: 5.0.0
+Version: 7.0.0
 Cflags: -I${includedir}
 Libs: -L${libdir} -lftxui-component -lftxui-dom -lftxui-screen

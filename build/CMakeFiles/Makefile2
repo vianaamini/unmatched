@@ -159,12 +159,12 @@ CMakeFiles/unmatched.dir/all: _deps/ftxui-build/CMakeFiles/dom.dir/all
 CMakeFiles/unmatched.dir/all: _deps/ftxui-build/CMakeFiles/component.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\unmatched.dir\build.make CMakeFiles/unmatched.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\unmatched.dir\build.make CMakeFiles/unmatched.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\unmatchedgame\unmatched\build\CMakeFiles --progress-num=73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92 "Built target unmatched"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\unmatchedgame\unmatched\build\CMakeFiles --progress-num=79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99 "Built target unmatched"
 .PHONY : CMakeFiles/unmatched.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/unmatched.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start E:\unmatchedgame\unmatched\build\CMakeFiles 92
+	$(CMAKE_COMMAND) -E cmake_progress_start E:\unmatchedgame\unmatched\build\CMakeFiles 99
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/unmatched.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start E:\unmatchedgame\unmatched\build\CMakeFiles 0
 .PHONY : CMakeFiles/unmatched.dir/rule
@@ -176,7 +176,7 @@ unmatched: CMakeFiles/unmatched.dir/rule
 # codegen rule for target.
 CMakeFiles/unmatched.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\unmatched.dir\build.make CMakeFiles/unmatched.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\unmatchedgame\unmatched\build\CMakeFiles --progress-num=73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92 "Finished codegen for target unmatched"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\unmatchedgame\unmatched\build\CMakeFiles --progress-num=79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99 "Finished codegen for target unmatched"
 .PHONY : CMakeFiles/unmatched.dir/codegen
 
 # clean rule for target.
@@ -191,12 +191,12 @@ CMakeFiles/unmatched.dir/clean:
 _deps/ftxui-build/CMakeFiles/screen.dir/all:
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\CMakeFiles\screen.dir\build.make _deps/ftxui-build/CMakeFiles/screen.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\CMakeFiles\screen.dir\build.make _deps/ftxui-build/CMakeFiles/screen.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\unmatchedgame\unmatched\build\CMakeFiles --progress-num=66,67,68,69,70,71,72 "Built target screen"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\unmatchedgame\unmatched\build\CMakeFiles --progress-num=71,72,73,74,75,76,77,78 "Built target screen"
 .PHONY : _deps/ftxui-build/CMakeFiles/screen.dir/all
 
 # Build rule for subdir invocation for target.
 _deps/ftxui-build/CMakeFiles/screen.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start E:\unmatchedgame\unmatched\build\CMakeFiles 7
+	$(CMAKE_COMMAND) -E cmake_progress_start E:\unmatchedgame\unmatched\build\CMakeFiles 8
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 _deps/ftxui-build/CMakeFiles/screen.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start E:\unmatchedgame\unmatched\build\CMakeFiles 0
 .PHONY : _deps/ftxui-build/CMakeFiles/screen.dir/rule
@@ -208,7 +208,7 @@ screen: _deps/ftxui-build/CMakeFiles/screen.dir/rule
 # codegen rule for target.
 _deps/ftxui-build/CMakeFiles/screen.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\CMakeFiles\screen.dir\build.make _deps/ftxui-build/CMakeFiles/screen.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\unmatchedgame\unmatched\build\CMakeFiles --progress-num=66,67,68,69,70,71,72 "Finished codegen for target screen"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\unmatchedgame\unmatched\build\CMakeFiles --progress-num=71,72,73,74,75,76,77,78 "Finished codegen for target screen"
 .PHONY : _deps/ftxui-build/CMakeFiles/screen.dir/codegen
 
 # clean rule for target.
@@ -223,12 +223,12 @@ _deps/ftxui-build/CMakeFiles/screen.dir/clean:
 _deps/ftxui-build/CMakeFiles/dom.dir/all: _deps/ftxui-build/CMakeFiles/screen.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\CMakeFiles\dom.dir\build.make _deps/ftxui-build/CMakeFiles/dom.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\CMakeFiles\dom.dir\build.make _deps/ftxui-build/CMakeFiles/dom.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\unmatchedgame\unmatched\build\CMakeFiles --progress-num=26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65 "Built target dom"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\unmatchedgame\unmatched\build\CMakeFiles --progress-num=28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70 "Built target dom"
 .PHONY : _deps/ftxui-build/CMakeFiles/dom.dir/all
 
 # Build rule for subdir invocation for target.
 _deps/ftxui-build/CMakeFiles/dom.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start E:\unmatchedgame\unmatched\build\CMakeFiles 47
+	$(CMAKE_COMMAND) -E cmake_progress_start E:\unmatchedgame\unmatched\build\CMakeFiles 51
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 _deps/ftxui-build/CMakeFiles/dom.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start E:\unmatchedgame\unmatched\build\CMakeFiles 0
 .PHONY : _deps/ftxui-build/CMakeFiles/dom.dir/rule
@@ -240,7 +240,7 @@ dom: _deps/ftxui-build/CMakeFiles/dom.dir/rule
 # codegen rule for target.
 _deps/ftxui-build/CMakeFiles/dom.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\CMakeFiles\dom.dir\build.make _deps/ftxui-build/CMakeFiles/dom.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\unmatchedgame\unmatched\build\CMakeFiles --progress-num=26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65 "Finished codegen for target dom"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\unmatchedgame\unmatched\build\CMakeFiles --progress-num=28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70 "Finished codegen for target dom"
 .PHONY : _deps/ftxui-build/CMakeFiles/dom.dir/codegen
 
 # clean rule for target.
@@ -256,12 +256,12 @@ _deps/ftxui-build/CMakeFiles/component.dir/all: _deps/ftxui-build/CMakeFiles/scr
 _deps/ftxui-build/CMakeFiles/component.dir/all: _deps/ftxui-build/CMakeFiles/dom.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\CMakeFiles\component.dir\build.make _deps/ftxui-build/CMakeFiles/component.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\CMakeFiles\component.dir\build.make _deps/ftxui-build/CMakeFiles/component.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\unmatchedgame\unmatched\build\CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25 "Built target component"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\unmatchedgame\unmatched\build\CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27 "Built target component"
 .PHONY : _deps/ftxui-build/CMakeFiles/component.dir/all
 
 # Build rule for subdir invocation for target.
 _deps/ftxui-build/CMakeFiles/component.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start E:\unmatchedgame\unmatched\build\CMakeFiles 72
+	$(CMAKE_COMMAND) -E cmake_progress_start E:\unmatchedgame\unmatched\build\CMakeFiles 78
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 _deps/ftxui-build/CMakeFiles/component.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start E:\unmatchedgame\unmatched\build\CMakeFiles 0
 .PHONY : _deps/ftxui-build/CMakeFiles/component.dir/rule
@@ -273,7 +273,7 @@ component: _deps/ftxui-build/CMakeFiles/component.dir/rule
 # codegen rule for target.
 _deps/ftxui-build/CMakeFiles/component.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\CMakeFiles\component.dir\build.make _deps/ftxui-build/CMakeFiles/component.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\unmatchedgame\unmatched\build\CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25 "Finished codegen for target component"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\unmatchedgame\unmatched\build\CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27 "Finished codegen for target component"
 .PHONY : _deps/ftxui-build/CMakeFiles/component.dir/codegen
 
 # clean rule for target.

@@ -424,6 +424,30 @@ src/dracula.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\unmatched.dir\build.make CMakeFiles/unmatched.dir/src/dracula.cpp.s
 .PHONY : src/dracula.cpp.s
 
+src/game.obj: src/game.cpp.obj
+.PHONY : src/game.obj
+
+# target to build an object file
+src/game.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\unmatched.dir\build.make CMakeFiles/unmatched.dir/src/game.cpp.obj
+.PHONY : src/game.cpp.obj
+
+src/game.i: src/game.cpp.i
+.PHONY : src/game.i
+
+# target to preprocess a source file
+src/game.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\unmatched.dir\build.make CMakeFiles/unmatched.dir/src/game.cpp.i
+.PHONY : src/game.cpp.i
+
+src/game.s: src/game.cpp.s
+.PHONY : src/game.s
+
+# target to generate assembly for a file
+src/game.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\unmatched.dir\build.make CMakeFiles/unmatched.dir/src/game.cpp.s
+.PHONY : src/game.cpp.s
+
 src/game_manager.obj: src/game_manager.cpp.obj
 .PHONY : src/game_manager.obj
 
@@ -730,6 +754,9 @@ help:
 	@echo ... src/dracula.obj
 	@echo ... src/dracula.i
 	@echo ... src/dracula.s
+	@echo ... src/game.obj
+	@echo ... src/game.i
+	@echo ... src/game.s
 	@echo ... src/game_manager.obj
 	@echo ... src/game_manager.i
 	@echo ... src/game_manager.s

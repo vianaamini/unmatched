@@ -251,26 +251,11 @@ _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/input.cpp.s: cmak
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/component.dir/src/ftxui/component/input.cpp.s"
 	cd /d E:\unmatchedgame\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\unmatchedgame\unmatched\build\_deps\ftxui-src\src\ftxui\component\input.cpp -o CMakeFiles\component.dir\src\ftxui\component\input.cpp.s
 
-_deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/loop.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/flags.make
-_deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/loop.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/includes_CXX.rsp
-_deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/loop.cpp.obj: _deps/ftxui-src/src/ftxui/component/loop.cpp
-_deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/loop.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\unmatchedgame\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/loop.cpp.obj"
-	cd /d E:\unmatchedgame\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/loop.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\loop.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\loop.cpp.obj -c E:\unmatchedgame\unmatched\build\_deps\ftxui-src\src\ftxui\component\loop.cpp
-
-_deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/loop.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/component.dir/src/ftxui/component/loop.cpp.i"
-	cd /d E:\unmatchedgame\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\unmatchedgame\unmatched\build\_deps\ftxui-src\src\ftxui\component\loop.cpp > CMakeFiles\component.dir\src\ftxui\component\loop.cpp.i
-
-_deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/loop.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/component.dir/src/ftxui/component/loop.cpp.s"
-	cd /d E:\unmatchedgame\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\unmatchedgame\unmatched\build\_deps\ftxui-src\src\ftxui\component\loop.cpp -o CMakeFiles\component.dir\src\ftxui\component\loop.cpp.s
-
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/maybe.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/flags.make
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/maybe.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/includes_CXX.rsp
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/maybe.cpp.obj: _deps/ftxui-src/src/ftxui/component/maybe.cpp
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/maybe.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\unmatchedgame\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/maybe.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\unmatchedgame\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/maybe.cpp.obj"
 	cd /d E:\unmatchedgame\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/maybe.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\maybe.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\maybe.cpp.obj -c E:\unmatchedgame\unmatched\build\_deps\ftxui-src\src\ftxui\component\maybe.cpp
 
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/maybe.cpp.i: cmake_force
@@ -285,7 +270,7 @@ _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/menu.cpp.obj: _de
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/menu.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/includes_CXX.rsp
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/menu.cpp.obj: _deps/ftxui-src/src/ftxui/component/menu.cpp
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/menu.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\unmatchedgame\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/menu.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\unmatchedgame\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/menu.cpp.obj"
 	cd /d E:\unmatchedgame\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/menu.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\menu.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\menu.cpp.obj -c E:\unmatchedgame\unmatched\build\_deps\ftxui-src\src\ftxui\component\menu.cpp
 
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/menu.cpp.i: cmake_force
@@ -300,7 +285,7 @@ _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/modal.cpp.obj: _d
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/modal.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/includes_CXX.rsp
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/modal.cpp.obj: _deps/ftxui-src/src/ftxui/component/modal.cpp
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/modal.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\unmatchedgame\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/modal.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\unmatchedgame\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/modal.cpp.obj"
 	cd /d E:\unmatchedgame\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/modal.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\modal.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\modal.cpp.obj -c E:\unmatchedgame\unmatched\build\_deps\ftxui-src\src\ftxui\component\modal.cpp
 
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/modal.cpp.i: cmake_force
@@ -315,7 +300,7 @@ _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/radiobox.cpp.obj:
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/radiobox.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/includes_CXX.rsp
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/radiobox.cpp.obj: _deps/ftxui-src/src/ftxui/component/radiobox.cpp
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/radiobox.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\unmatchedgame\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/radiobox.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\unmatchedgame\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/radiobox.cpp.obj"
 	cd /d E:\unmatchedgame\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/radiobox.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\radiobox.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\radiobox.cpp.obj -c E:\unmatchedgame\unmatched\build\_deps\ftxui-src\src\ftxui\component\radiobox.cpp
 
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/radiobox.cpp.i: cmake_force
@@ -330,7 +315,7 @@ _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/renderer.cpp.obj:
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/renderer.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/includes_CXX.rsp
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/renderer.cpp.obj: _deps/ftxui-src/src/ftxui/component/renderer.cpp
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/renderer.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\unmatchedgame\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/renderer.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\unmatchedgame\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/renderer.cpp.obj"
 	cd /d E:\unmatchedgame\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/renderer.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\renderer.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\renderer.cpp.obj -c E:\unmatchedgame\unmatched\build\_deps\ftxui-src\src\ftxui\component\renderer.cpp
 
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/renderer.cpp.i: cmake_force
@@ -345,7 +330,7 @@ _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/resizable_split.c
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/resizable_split.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/includes_CXX.rsp
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/resizable_split.cpp.obj: _deps/ftxui-src/src/ftxui/component/resizable_split.cpp
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/resizable_split.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\unmatchedgame\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/resizable_split.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\unmatchedgame\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/resizable_split.cpp.obj"
 	cd /d E:\unmatchedgame\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/resizable_split.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\resizable_split.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\resizable_split.cpp.obj -c E:\unmatchedgame\unmatched\build\_deps\ftxui-src\src\ftxui\component\resizable_split.cpp
 
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/resizable_split.cpp.i: cmake_force
@@ -356,26 +341,26 @@ _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/resizable_split.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/component.dir/src/ftxui/component/resizable_split.cpp.s"
 	cd /d E:\unmatchedgame\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\unmatchedgame\unmatched\build\_deps\ftxui-src\src\ftxui\component\resizable_split.cpp -o CMakeFiles\component.dir\src\ftxui\component\resizable_split.cpp.s
 
-_deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/screen_interactive.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/flags.make
-_deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/screen_interactive.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/includes_CXX.rsp
-_deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/screen_interactive.cpp.obj: _deps/ftxui-src/src/ftxui/component/screen_interactive.cpp
-_deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/screen_interactive.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\unmatchedgame\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/screen_interactive.cpp.obj"
-	cd /d E:\unmatchedgame\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/screen_interactive.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\screen_interactive.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\screen_interactive.cpp.obj -c E:\unmatchedgame\unmatched\build\_deps\ftxui-src\src\ftxui\component\screen_interactive.cpp
+_deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/app.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/flags.make
+_deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/app.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/includes_CXX.rsp
+_deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/app.cpp.obj: _deps/ftxui-src/src/ftxui/component/app.cpp
+_deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/app.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\unmatchedgame\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/app.cpp.obj"
+	cd /d E:\unmatchedgame\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/app.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\app.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\app.cpp.obj -c E:\unmatchedgame\unmatched\build\_deps\ftxui-src\src\ftxui\component\app.cpp
 
-_deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/screen_interactive.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/component.dir/src/ftxui/component/screen_interactive.cpp.i"
-	cd /d E:\unmatchedgame\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\unmatchedgame\unmatched\build\_deps\ftxui-src\src\ftxui\component\screen_interactive.cpp > CMakeFiles\component.dir\src\ftxui\component\screen_interactive.cpp.i
+_deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/app.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/component.dir/src/ftxui/component/app.cpp.i"
+	cd /d E:\unmatchedgame\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\unmatchedgame\unmatched\build\_deps\ftxui-src\src\ftxui\component\app.cpp > CMakeFiles\component.dir\src\ftxui\component\app.cpp.i
 
-_deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/screen_interactive.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/component.dir/src/ftxui/component/screen_interactive.cpp.s"
-	cd /d E:\unmatchedgame\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\unmatchedgame\unmatched\build\_deps\ftxui-src\src\ftxui\component\screen_interactive.cpp -o CMakeFiles\component.dir\src\ftxui\component\screen_interactive.cpp.s
+_deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/app.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/component.dir/src/ftxui/component/app.cpp.s"
+	cd /d E:\unmatchedgame\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\unmatchedgame\unmatched\build\_deps\ftxui-src\src\ftxui\component\app.cpp -o CMakeFiles\component.dir\src\ftxui\component\app.cpp.s
 
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/slider.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/flags.make
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/slider.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/includes_CXX.rsp
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/slider.cpp.obj: _deps/ftxui-src/src/ftxui/component/slider.cpp
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/slider.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\unmatchedgame\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/slider.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\unmatchedgame\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/slider.cpp.obj"
 	cd /d E:\unmatchedgame\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/slider.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\slider.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\slider.cpp.obj -c E:\unmatchedgame\unmatched\build\_deps\ftxui-src\src\ftxui\component\slider.cpp
 
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/slider.cpp.i: cmake_force
@@ -386,11 +371,56 @@ _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/slider.cpp.s: cma
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/component.dir/src/ftxui/component/slider.cpp.s"
 	cd /d E:\unmatchedgame\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\unmatchedgame\unmatched\build\_deps\ftxui-src\src\ftxui\component\slider.cpp -o CMakeFiles\component.dir\src\ftxui\component\slider.cpp.s
 
+_deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/task.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/flags.make
+_deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/task.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/includes_CXX.rsp
+_deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/task.cpp.obj: _deps/ftxui-src/src/ftxui/component/task.cpp
+_deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/task.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\unmatchedgame\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/task.cpp.obj"
+	cd /d E:\unmatchedgame\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/task.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\task.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\task.cpp.obj -c E:\unmatchedgame\unmatched\build\_deps\ftxui-src\src\ftxui\component\task.cpp
+
+_deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/task.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/component.dir/src/ftxui/component/task.cpp.i"
+	cd /d E:\unmatchedgame\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\unmatchedgame\unmatched\build\_deps\ftxui-src\src\ftxui\component\task.cpp > CMakeFiles\component.dir\src\ftxui\component\task.cpp.i
+
+_deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/task.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/component.dir/src/ftxui/component/task.cpp.s"
+	cd /d E:\unmatchedgame\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\unmatchedgame\unmatched\build\_deps\ftxui-src\src\ftxui\component\task.cpp -o CMakeFiles\component.dir\src\ftxui\component\task.cpp.s
+
+_deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/task_queue.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/flags.make
+_deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/task_queue.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/includes_CXX.rsp
+_deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/task_queue.cpp.obj: _deps/ftxui-src/src/ftxui/component/task_queue.cpp
+_deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/task_queue.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\unmatchedgame\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/task_queue.cpp.obj"
+	cd /d E:\unmatchedgame\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/task_queue.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\task_queue.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\task_queue.cpp.obj -c E:\unmatchedgame\unmatched\build\_deps\ftxui-src\src\ftxui\component\task_queue.cpp
+
+_deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/task_queue.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/component.dir/src/ftxui/component/task_queue.cpp.i"
+	cd /d E:\unmatchedgame\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\unmatchedgame\unmatched\build\_deps\ftxui-src\src\ftxui\component\task_queue.cpp > CMakeFiles\component.dir\src\ftxui\component\task_queue.cpp.i
+
+_deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/task_queue.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/component.dir/src/ftxui/component/task_queue.cpp.s"
+	cd /d E:\unmatchedgame\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\unmatchedgame\unmatched\build\_deps\ftxui-src\src\ftxui\component\task_queue.cpp -o CMakeFiles\component.dir\src\ftxui\component\task_queue.cpp.s
+
+_deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/task_runner.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/flags.make
+_deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/task_runner.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/includes_CXX.rsp
+_deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/task_runner.cpp.obj: _deps/ftxui-src/src/ftxui/component/task_runner.cpp
+_deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/task_runner.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\unmatchedgame\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/task_runner.cpp.obj"
+	cd /d E:\unmatchedgame\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/task_runner.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\task_runner.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\task_runner.cpp.obj -c E:\unmatchedgame\unmatched\build\_deps\ftxui-src\src\ftxui\component\task_runner.cpp
+
+_deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/task_runner.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/component.dir/src/ftxui/component/task_runner.cpp.i"
+	cd /d E:\unmatchedgame\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\unmatchedgame\unmatched\build\_deps\ftxui-src\src\ftxui\component\task_runner.cpp > CMakeFiles\component.dir\src\ftxui\component\task_runner.cpp.i
+
+_deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/task_runner.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/component.dir/src/ftxui/component/task_runner.cpp.s"
+	cd /d E:\unmatchedgame\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\unmatchedgame\unmatched\build\_deps\ftxui-src\src\ftxui\component\task_runner.cpp -o CMakeFiles\component.dir\src\ftxui\component\task_runner.cpp.s
+
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/terminal_input_parser.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/flags.make
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/terminal_input_parser.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/includes_CXX.rsp
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/terminal_input_parser.cpp.obj: _deps/ftxui-src/src/ftxui/component/terminal_input_parser.cpp
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/terminal_input_parser.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\unmatchedgame\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/terminal_input_parser.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\unmatchedgame\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/terminal_input_parser.cpp.obj"
 	cd /d E:\unmatchedgame\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/terminal_input_parser.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\terminal_input_parser.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\terminal_input_parser.cpp.obj -c E:\unmatchedgame\unmatched\build\_deps\ftxui-src\src\ftxui\component\terminal_input_parser.cpp
 
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/terminal_input_parser.cpp.i: cmake_force
@@ -405,7 +435,7 @@ _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/util.cpp.obj: _de
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/util.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/includes_CXX.rsp
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/util.cpp.obj: _deps/ftxui-src/src/ftxui/component/util.cpp
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/util.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\unmatchedgame\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/util.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\unmatchedgame\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/util.cpp.obj"
 	cd /d E:\unmatchedgame\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/util.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\util.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\util.cpp.obj -c E:\unmatchedgame\unmatched\build\_deps\ftxui-src\src\ftxui\component\util.cpp
 
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/util.cpp.i: cmake_force
@@ -420,7 +450,7 @@ _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/window.cpp.obj: _
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/window.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/includes_CXX.rsp
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/window.cpp.obj: _deps/ftxui-src/src/ftxui/component/window.cpp
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/window.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\unmatchedgame\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/window.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\unmatchedgame\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/window.cpp.obj"
 	cd /d E:\unmatchedgame\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/window.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\window.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\window.cpp.obj -c E:\unmatchedgame\unmatched\build\_deps\ftxui-src\src\ftxui\component\window.cpp
 
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/window.cpp.i: cmake_force
@@ -445,15 +475,17 @@ component_OBJECTS = \
 "CMakeFiles/component.dir/src/ftxui/component/event.cpp.obj" \
 "CMakeFiles/component.dir/src/ftxui/component/hoverable.cpp.obj" \
 "CMakeFiles/component.dir/src/ftxui/component/input.cpp.obj" \
-"CMakeFiles/component.dir/src/ftxui/component/loop.cpp.obj" \
 "CMakeFiles/component.dir/src/ftxui/component/maybe.cpp.obj" \
 "CMakeFiles/component.dir/src/ftxui/component/menu.cpp.obj" \
 "CMakeFiles/component.dir/src/ftxui/component/modal.cpp.obj" \
 "CMakeFiles/component.dir/src/ftxui/component/radiobox.cpp.obj" \
 "CMakeFiles/component.dir/src/ftxui/component/renderer.cpp.obj" \
 "CMakeFiles/component.dir/src/ftxui/component/resizable_split.cpp.obj" \
-"CMakeFiles/component.dir/src/ftxui/component/screen_interactive.cpp.obj" \
+"CMakeFiles/component.dir/src/ftxui/component/app.cpp.obj" \
 "CMakeFiles/component.dir/src/ftxui/component/slider.cpp.obj" \
+"CMakeFiles/component.dir/src/ftxui/component/task.cpp.obj" \
+"CMakeFiles/component.dir/src/ftxui/component/task_queue.cpp.obj" \
+"CMakeFiles/component.dir/src/ftxui/component/task_runner.cpp.obj" \
 "CMakeFiles/component.dir/src/ftxui/component/terminal_input_parser.cpp.obj" \
 "CMakeFiles/component.dir/src/ftxui/component/util.cpp.obj" \
 "CMakeFiles/component.dir/src/ftxui/component/window.cpp.obj"
@@ -473,21 +505,23 @@ _deps/ftxui-build/libftxui-component.a: _deps/ftxui-build/CMakeFiles/component.d
 _deps/ftxui-build/libftxui-component.a: _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/event.cpp.obj
 _deps/ftxui-build/libftxui-component.a: _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/hoverable.cpp.obj
 _deps/ftxui-build/libftxui-component.a: _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/input.cpp.obj
-_deps/ftxui-build/libftxui-component.a: _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/loop.cpp.obj
 _deps/ftxui-build/libftxui-component.a: _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/maybe.cpp.obj
 _deps/ftxui-build/libftxui-component.a: _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/menu.cpp.obj
 _deps/ftxui-build/libftxui-component.a: _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/modal.cpp.obj
 _deps/ftxui-build/libftxui-component.a: _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/radiobox.cpp.obj
 _deps/ftxui-build/libftxui-component.a: _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/renderer.cpp.obj
 _deps/ftxui-build/libftxui-component.a: _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/resizable_split.cpp.obj
-_deps/ftxui-build/libftxui-component.a: _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/screen_interactive.cpp.obj
+_deps/ftxui-build/libftxui-component.a: _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/app.cpp.obj
 _deps/ftxui-build/libftxui-component.a: _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/slider.cpp.obj
+_deps/ftxui-build/libftxui-component.a: _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/task.cpp.obj
+_deps/ftxui-build/libftxui-component.a: _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/task_queue.cpp.obj
+_deps/ftxui-build/libftxui-component.a: _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/task_runner.cpp.obj
 _deps/ftxui-build/libftxui-component.a: _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/terminal_input_parser.cpp.obj
 _deps/ftxui-build/libftxui-component.a: _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/util.cpp.obj
 _deps/ftxui-build/libftxui-component.a: _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/window.cpp.obj
 _deps/ftxui-build/libftxui-component.a: _deps/ftxui-build/CMakeFiles/component.dir/build.make
 _deps/ftxui-build/libftxui-component.a: _deps/ftxui-build/CMakeFiles/component.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=E:\unmatchedgame\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Linking CXX static library libftxui-component.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=E:\unmatchedgame\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Linking CXX static library libftxui-component.a"
 	cd /d E:\unmatchedgame\unmatched\build\_deps\ftxui-build && $(CMAKE_COMMAND) -P CMakeFiles\component.dir\cmake_clean_target.cmake
 	cd /d E:\unmatchedgame\unmatched\build\_deps\ftxui-build && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\component.dir\link.txt --verbose=$(VERBOSE)
 

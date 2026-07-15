@@ -54,7 +54,26 @@ _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/window.cpp.obj: \
  C:/msys64/ucrt64/include/c++/16.1.0/bits/std_abs.h \
  C:/msys64/ucrt64/include/c++/16.1.0/pstl/glue_algorithm_defs.h \
  C:/msys64/ucrt64/include/c++/16.1.0/pstl/execution_defs.h \
- E:/unmatchedgame/unmatched/build/_deps/ftxui-src/include/ftxui/component/component.hpp \
+ E:/unmatchedgame/unmatched/build/_deps/ftxui-src/include/ftxui/component/app.hpp \
+ C:/msys64/ucrt64/include/c++/16.1.0/atomic \
+ C:/msys64/ucrt64/include/c++/16.1.0/bits/atomic_base.h \
+ C:/msys64/ucrt64/include/c++/16.1.0/bits/atomic_lockfree_defines.h \
+ C:/msys64/ucrt64/include/c++/16.1.0/cstdint \
+ C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0/include/stdint.h \
+ C:/msys64/ucrt64/include/stdint.h \
+ C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0/include/stddef.h \
+ C:/msys64/ucrt64/include/stddef.h \
+ C:/msys64/ucrt64/include/c++/16.1.0/chrono \
+ C:/msys64/ucrt64/include/c++/16.1.0/bits/chrono.h \
+ C:/msys64/ucrt64/include/c++/16.1.0/ratio \
+ C:/msys64/ucrt64/include/c++/16.1.0/limits \
+ C:/msys64/ucrt64/include/c++/16.1.0/ctime \
+ C:/msys64/ucrt64/include/time.h C:/msys64/ucrt64/include/sys/timeb.h \
+ C:/msys64/ucrt64/include/sec_api/sys/timeb_s.h \
+ C:/msys64/ucrt64/include/_timeval.h \
+ C:/msys64/ucrt64/include/pthread_time.h \
+ C:/msys64/ucrt64/include/pthread_compat.h \
+ C:/msys64/ucrt64/include/c++/16.1.0/bits/parse_numbers.h \
  C:/msys64/ucrt64/include/c++/16.1.0/functional \
  C:/msys64/ucrt64/include/c++/16.1.0/tuple \
  C:/msys64/ucrt64/include/c++/16.1.0/bits/uses_allocator.h \
@@ -86,8 +105,6 @@ _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/window.cpp.obj: \
  C:/msys64/ucrt64/include/c++/16.1.0/bits/erase_if.h \
  C:/msys64/ucrt64/include/c++/16.1.0/bits/memory_resource.h \
  C:/msys64/ucrt64/include/c++/16.1.0/cstddef \
- C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0/include/stddef.h \
- C:/msys64/ucrt64/include/stddef.h \
  C:/msys64/ucrt64/include/c++/16.1.0/bits/uses_allocator_args.h \
  C:/msys64/ucrt64/include/c++/16.1.0/vector \
  C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_uninitialized.h \
@@ -124,11 +141,6 @@ _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/window.cpp.obj: \
  C:/msys64/ucrt64/include/corecrt_startup.h \
  C:/msys64/ucrt64/include/signal.h \
  C:/msys64/ucrt64/include/pthread_signal.h \
- C:/msys64/ucrt64/include/time.h C:/msys64/ucrt64/include/sys/timeb.h \
- C:/msys64/ucrt64/include/sec_api/sys/timeb_s.h \
- C:/msys64/ucrt64/include/_timeval.h \
- C:/msys64/ucrt64/include/pthread_time.h \
- C:/msys64/ucrt64/include/pthread_compat.h \
  C:/msys64/ucrt64/include/sched.h \
  C:/msys64/ucrt64/include/pthread_unistd.h \
  C:/msys64/ucrt64/include/c++/16.1.0/x86_64-w64-mingw32/bits/atomic_word.h \
@@ -138,8 +150,6 @@ _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/window.cpp.obj: \
  C:/msys64/ucrt64/include/c++/16.1.0/bits/cxxabi_init_exception.h \
  C:/msys64/ucrt64/include/c++/16.1.0/bits/nested_exception.h \
  C:/msys64/ucrt64/include/c++/16.1.0/bits/shared_ptr_atomic.h \
- C:/msys64/ucrt64/include/c++/16.1.0/bits/atomic_base.h \
- C:/msys64/ucrt64/include/c++/16.1.0/bits/atomic_lockfree_defines.h \
  C:/msys64/ucrt64/include/c++/16.1.0/backward/auto_ptr.h \
  C:/msys64/ucrt64/include/c++/16.1.0/pstl/glue_memory_defs.h \
  C:/msys64/ucrt64/include/c++/16.1.0/string \
@@ -161,57 +171,42 @@ _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/window.cpp.obj: \
  C:/msys64/ucrt64/include/c++/16.1.0/cerrno \
  C:/msys64/ucrt64/include/c++/16.1.0/bits/charconv.h \
  C:/msys64/ucrt64/include/c++/16.1.0/bits/basic_string.tcc \
+ E:/unmatchedgame/unmatched/build/_deps/ftxui-src/include/ftxui/component/animation.hpp \
+ E:/unmatchedgame/unmatched/build/_deps/ftxui-src/include/ftxui/util/export.hpp \
+ E:/unmatchedgame/unmatched/build/_deps/ftxui-src/include/ftxui/component/captured_mouse.hpp \
+ E:/unmatchedgame/unmatched/build/_deps/ftxui-src/include/ftxui/component/task.hpp \
+ C:/msys64/ucrt64/include/c++/16.1.0/variant \
+ C:/msys64/ucrt64/include/c++/16.1.0/bits/monostate.h \
+ E:/unmatchedgame/unmatched/build/_deps/ftxui-src/include/ftxui/component/event.hpp \
+ E:/unmatchedgame/unmatched/build/_deps/ftxui-src/include/ftxui/component/mouse.hpp \
+ E:/unmatchedgame/unmatched/build/_deps/ftxui-src/include/ftxui/screen/screen.hpp \
+ E:/unmatchedgame/unmatched/build/_deps/ftxui-src/include/ftxui/screen/surface.hpp \
+ E:/unmatchedgame/unmatched/build/_deps/ftxui-src/include/ftxui/screen/box.hpp \
+ E:/unmatchedgame/unmatched/build/_deps/ftxui-src/include/ftxui/screen/cell.hpp \
+ E:/unmatchedgame/unmatched/build/_deps/ftxui-src/include/ftxui/screen/color.hpp \
+ E:/unmatchedgame/unmatched/build/_deps/ftxui-src/include/ftxui/screen/terminal.hpp \
+ E:/unmatchedgame/unmatched/build/_deps/ftxui-src/include/ftxui/component/component.hpp \
  C:/msys64/ucrt64/include/c++/16.1.0/utility \
  C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_relops.h \
+ E:/unmatchedgame/unmatched/build/_deps/ftxui-src/include/ftxui/util/warn_windows_macro.hpp \
  E:/unmatchedgame/unmatched/build/_deps/ftxui-src/include/ftxui/component/component_base.hpp \
- E:/unmatchedgame/unmatched/build/_deps/ftxui-src/include/ftxui/component/captured_mouse.hpp \
  E:/unmatchedgame/unmatched/build/_deps/ftxui-src/include/ftxui/dom/elements.hpp \
  E:/unmatchedgame/unmatched/build/_deps/ftxui-src/include/ftxui/dom/canvas.hpp \
- E:/unmatchedgame/unmatched/build/_deps/ftxui-src/include/ftxui/screen/color.hpp \
- C:/msys64/ucrt64/include/c++/16.1.0/cstdint \
- C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0/include/stdint.h \
- C:/msys64/ucrt64/include/stdint.h \
- E:/unmatchedgame/unmatched/build/_deps/ftxui-src/include/ftxui/screen/screen.hpp \
- E:/unmatchedgame/unmatched/build/_deps/ftxui-src/include/ftxui/screen/box.hpp \
- E:/unmatchedgame/unmatched/build/_deps/ftxui-src/include/ftxui/screen/terminal.hpp \
  E:/unmatchedgame/unmatched/build/_deps/ftxui-src/include/ftxui/dom/direction.hpp \
  E:/unmatchedgame/unmatched/build/_deps/ftxui-src/include/ftxui/dom/flexbox_config.hpp \
  E:/unmatchedgame/unmatched/build/_deps/ftxui-src/include/ftxui/dom/linear_gradient.hpp \
  C:/msys64/ucrt64/include/c++/16.1.0/optional \
  E:/unmatchedgame/unmatched/build/_deps/ftxui-src/include/ftxui/dom/node.hpp \
  E:/unmatchedgame/unmatched/build/_deps/ftxui-src/include/ftxui/dom/requirement.hpp \
- E:/unmatchedgame/unmatched/build/_deps/ftxui-src/include/ftxui/util/ref.hpp \
- E:/unmatchedgame/unmatched/build/_deps/ftxui-src/include/ftxui/screen/string.hpp \
- E:/unmatchedgame/unmatched/build/_deps/ftxui-src/include/ftxui/screen/deprecated.hpp \
- C:/msys64/ucrt64/include/c++/16.1.0/variant \
- C:/msys64/ucrt64/include/c++/16.1.0/bits/monostate.h \
- C:/msys64/ucrt64/include/c++/16.1.0/bits/parse_numbers.h \
- E:/unmatchedgame/unmatched/build/_deps/ftxui-src/include/ftxui/dom/take_any_args.hpp \
- E:/unmatchedgame/unmatched/build/_deps/ftxui-src/include/ftxui/dom/deprecated.hpp \
- E:/unmatchedgame/unmatched/build/_deps/ftxui-src/include/ftxui/component/component_options.hpp \
- C:/msys64/ucrt64/include/c++/16.1.0/chrono \
- C:/msys64/ucrt64/include/c++/16.1.0/bits/chrono.h \
- C:/msys64/ucrt64/include/c++/16.1.0/ratio \
- C:/msys64/ucrt64/include/c++/16.1.0/limits \
- C:/msys64/ucrt64/include/c++/16.1.0/ctime \
- E:/unmatchedgame/unmatched/build/_deps/ftxui-src/include/ftxui/component/animation.hpp \
- E:/unmatchedgame/unmatched/build/_deps/ftxui-src/include/ftxui/component/event.hpp \
- E:/unmatchedgame/unmatched/build/_deps/ftxui-src/include/ftxui/component/mouse.hpp \
- E:/unmatchedgame/unmatched/build/_deps/ftxui-src/include/ftxui/component/screen_interactive.hpp \
- C:/msys64/ucrt64/include/c++/16.1.0/atomic \
- E:/unmatchedgame/unmatched/build/_deps/ftxui-src/include/ftxui/component/receiver.hpp \
- C:/msys64/ucrt64/include/c++/16.1.0/condition_variable \
- C:/msys64/ucrt64/include/c++/16.1.0/x86_64-w64-mingw32/bits/error_constants.h \
- C:/msys64/ucrt64/include/c++/16.1.0/bits/std_mutex.h \
- C:/msys64/ucrt64/include/c++/16.1.0/bits/unique_lock.h \
- C:/msys64/ucrt64/include/c++/16.1.0/iostream \
- C:/msys64/ucrt64/include/c++/16.1.0/ostream \
- C:/msys64/ucrt64/include/c++/16.1.0/bits/ostream.h \
+ E:/unmatchedgame/unmatched/build/_deps/ftxui-src/include/ftxui/dom/selection.hpp \
+ C:/msys64/ucrt64/include/c++/16.1.0/sstream \
+ C:/msys64/ucrt64/include/c++/16.1.0/istream \
  C:/msys64/ucrt64/include/c++/16.1.0/ios \
  C:/msys64/ucrt64/include/c++/16.1.0/bits/ios_base.h \
  C:/msys64/ucrt64/include/c++/16.1.0/bits/locale_classes.h \
  C:/msys64/ucrt64/include/c++/16.1.0/bits/locale_classes.tcc \
  C:/msys64/ucrt64/include/c++/16.1.0/system_error \
+ C:/msys64/ucrt64/include/c++/16.1.0/x86_64-w64-mingw32/bits/error_constants.h \
  C:/msys64/ucrt64/include/c++/16.1.0/stdexcept \
  C:/msys64/ucrt64/include/c++/16.1.0/bits/stdexcept_except.h \
  C:/msys64/ucrt64/include/c++/16.1.0/streambuf \
@@ -225,18 +220,22 @@ _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/window.cpp.obj: \
  C:/msys64/ucrt64/include/c++/16.1.0/x86_64-w64-mingw32/bits/ctype_inline.h \
  C:/msys64/ucrt64/include/c++/16.1.0/bits/locale_facets.tcc \
  C:/msys64/ucrt64/include/c++/16.1.0/bits/basic_ios.tcc \
+ C:/msys64/ucrt64/include/c++/16.1.0/ostream \
+ C:/msys64/ucrt64/include/c++/16.1.0/bits/ostream.h \
  C:/msys64/ucrt64/include/c++/16.1.0/bits/ostream_print.h \
  C:/msys64/ucrt64/include/c++/16.1.0/bits/ostream.tcc \
- C:/msys64/ucrt64/include/c++/16.1.0/istream \
  C:/msys64/ucrt64/include/c++/16.1.0/bits/istream.tcc \
- C:/msys64/ucrt64/include/c++/16.1.0/mutex \
- C:/msys64/ucrt64/include/c++/16.1.0/queue \
+ C:/msys64/ucrt64/include/c++/16.1.0/bits/sstream.tcc \
+ E:/unmatchedgame/unmatched/build/_deps/ftxui-src/include/ftxui/util/ref.hpp \
+ E:/unmatchedgame/unmatched/build/_deps/ftxui-src/include/ftxui/screen/string.hpp \
+ E:/unmatchedgame/unmatched/build/_deps/ftxui-src/include/ftxui/dom/take_any_args.hpp \
  C:/msys64/ucrt64/include/c++/16.1.0/deque \
  C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_deque.h \
  C:/msys64/ucrt64/include/c++/16.1.0/bits/deque.tcc \
+ C:/msys64/ucrt64/include/c++/16.1.0/queue \
  C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_queue.h \
- C:/msys64/ucrt64/include/c++/16.1.0/thread \
- C:/msys64/ucrt64/include/c++/16.1.0/bits/std_thread.h \
- C:/msys64/ucrt64/include/c++/16.1.0/bits/this_thread_sleep.h \
- E:/unmatchedgame/unmatched/build/_deps/ftxui-src/include/ftxui/component/task.hpp \
+ C:/msys64/ucrt64/include/c++/16.1.0/stack \
+ C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_stack.h \
+ E:/unmatchedgame/unmatched/build/_deps/ftxui-src/include/ftxui/dom/deprecated.hpp \
+ E:/unmatchedgame/unmatched/build/_deps/ftxui-src/include/ftxui/component/component_options.hpp \
  E:/unmatchedgame/unmatched/build/_deps/ftxui-src/src/ftxui/dom/node_decorator.hpp

@@ -116,11 +116,26 @@ _deps/ftxui-build/CMakeFiles/screen.dir/src/ftxui/screen/color_info.cpp.s: cmake
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/screen.dir/src/ftxui/screen/color_info.cpp.s"
 	cd /d E:\unmatchedgame\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\unmatchedgame\unmatched\build\_deps\ftxui-src\src\ftxui\screen\color_info.cpp -o CMakeFiles\screen.dir\src\ftxui\screen\color_info.cpp.s
 
+_deps/ftxui-build/CMakeFiles/screen.dir/src/ftxui/screen/surface.cpp.obj: _deps/ftxui-build/CMakeFiles/screen.dir/flags.make
+_deps/ftxui-build/CMakeFiles/screen.dir/src/ftxui/screen/surface.cpp.obj: _deps/ftxui-build/CMakeFiles/screen.dir/includes_CXX.rsp
+_deps/ftxui-build/CMakeFiles/screen.dir/src/ftxui/screen/surface.cpp.obj: _deps/ftxui-src/src/ftxui/screen/surface.cpp
+_deps/ftxui-build/CMakeFiles/screen.dir/src/ftxui/screen/surface.cpp.obj: _deps/ftxui-build/CMakeFiles/screen.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\unmatchedgame\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object _deps/ftxui-build/CMakeFiles/screen.dir/src/ftxui/screen/surface.cpp.obj"
+	cd /d E:\unmatchedgame\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/ftxui-build/CMakeFiles/screen.dir/src/ftxui/screen/surface.cpp.obj -MF CMakeFiles\screen.dir\src\ftxui\screen\surface.cpp.obj.d -o CMakeFiles\screen.dir\src\ftxui\screen\surface.cpp.obj -c E:\unmatchedgame\unmatched\build\_deps\ftxui-src\src\ftxui\screen\surface.cpp
+
+_deps/ftxui-build/CMakeFiles/screen.dir/src/ftxui/screen/surface.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/screen.dir/src/ftxui/screen/surface.cpp.i"
+	cd /d E:\unmatchedgame\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\unmatchedgame\unmatched\build\_deps\ftxui-src\src\ftxui\screen\surface.cpp > CMakeFiles\screen.dir\src\ftxui\screen\surface.cpp.i
+
+_deps/ftxui-build/CMakeFiles/screen.dir/src/ftxui/screen/surface.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/screen.dir/src/ftxui/screen/surface.cpp.s"
+	cd /d E:\unmatchedgame\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\unmatchedgame\unmatched\build\_deps\ftxui-src\src\ftxui\screen\surface.cpp -o CMakeFiles\screen.dir\src\ftxui\screen\surface.cpp.s
+
 _deps/ftxui-build/CMakeFiles/screen.dir/src/ftxui/screen/screen.cpp.obj: _deps/ftxui-build/CMakeFiles/screen.dir/flags.make
 _deps/ftxui-build/CMakeFiles/screen.dir/src/ftxui/screen/screen.cpp.obj: _deps/ftxui-build/CMakeFiles/screen.dir/includes_CXX.rsp
 _deps/ftxui-build/CMakeFiles/screen.dir/src/ftxui/screen/screen.cpp.obj: _deps/ftxui-src/src/ftxui/screen/screen.cpp
 _deps/ftxui-build/CMakeFiles/screen.dir/src/ftxui/screen/screen.cpp.obj: _deps/ftxui-build/CMakeFiles/screen.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\unmatchedgame\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object _deps/ftxui-build/CMakeFiles/screen.dir/src/ftxui/screen/screen.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\unmatchedgame\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object _deps/ftxui-build/CMakeFiles/screen.dir/src/ftxui/screen/screen.cpp.obj"
 	cd /d E:\unmatchedgame\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/ftxui-build/CMakeFiles/screen.dir/src/ftxui/screen/screen.cpp.obj -MF CMakeFiles\screen.dir\src\ftxui\screen\screen.cpp.obj.d -o CMakeFiles\screen.dir\src\ftxui\screen\screen.cpp.obj -c E:\unmatchedgame\unmatched\build\_deps\ftxui-src\src\ftxui\screen\screen.cpp
 
 _deps/ftxui-build/CMakeFiles/screen.dir/src/ftxui/screen/screen.cpp.i: cmake_force
@@ -135,7 +150,7 @@ _deps/ftxui-build/CMakeFiles/screen.dir/src/ftxui/screen/string.cpp.obj: _deps/f
 _deps/ftxui-build/CMakeFiles/screen.dir/src/ftxui/screen/string.cpp.obj: _deps/ftxui-build/CMakeFiles/screen.dir/includes_CXX.rsp
 _deps/ftxui-build/CMakeFiles/screen.dir/src/ftxui/screen/string.cpp.obj: _deps/ftxui-src/src/ftxui/screen/string.cpp
 _deps/ftxui-build/CMakeFiles/screen.dir/src/ftxui/screen/string.cpp.obj: _deps/ftxui-build/CMakeFiles/screen.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\unmatchedgame\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object _deps/ftxui-build/CMakeFiles/screen.dir/src/ftxui/screen/string.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\unmatchedgame\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object _deps/ftxui-build/CMakeFiles/screen.dir/src/ftxui/screen/string.cpp.obj"
 	cd /d E:\unmatchedgame\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/ftxui-build/CMakeFiles/screen.dir/src/ftxui/screen/string.cpp.obj -MF CMakeFiles\screen.dir\src\ftxui\screen\string.cpp.obj.d -o CMakeFiles\screen.dir\src\ftxui\screen\string.cpp.obj -c E:\unmatchedgame\unmatched\build\_deps\ftxui-src\src\ftxui\screen\string.cpp
 
 _deps/ftxui-build/CMakeFiles/screen.dir/src/ftxui/screen/string.cpp.i: cmake_force
@@ -150,7 +165,7 @@ _deps/ftxui-build/CMakeFiles/screen.dir/src/ftxui/screen/terminal.cpp.obj: _deps
 _deps/ftxui-build/CMakeFiles/screen.dir/src/ftxui/screen/terminal.cpp.obj: _deps/ftxui-build/CMakeFiles/screen.dir/includes_CXX.rsp
 _deps/ftxui-build/CMakeFiles/screen.dir/src/ftxui/screen/terminal.cpp.obj: _deps/ftxui-src/src/ftxui/screen/terminal.cpp
 _deps/ftxui-build/CMakeFiles/screen.dir/src/ftxui/screen/terminal.cpp.obj: _deps/ftxui-build/CMakeFiles/screen.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\unmatchedgame\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object _deps/ftxui-build/CMakeFiles/screen.dir/src/ftxui/screen/terminal.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\unmatchedgame\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object _deps/ftxui-build/CMakeFiles/screen.dir/src/ftxui/screen/terminal.cpp.obj"
 	cd /d E:\unmatchedgame\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/ftxui-build/CMakeFiles/screen.dir/src/ftxui/screen/terminal.cpp.obj -MF CMakeFiles\screen.dir\src\ftxui\screen\terminal.cpp.obj.d -o CMakeFiles\screen.dir\src\ftxui\screen\terminal.cpp.obj -c E:\unmatchedgame\unmatched\build\_deps\ftxui-src\src\ftxui\screen\terminal.cpp
 
 _deps/ftxui-build/CMakeFiles/screen.dir/src/ftxui/screen/terminal.cpp.i: cmake_force
@@ -166,6 +181,7 @@ screen_OBJECTS = \
 "CMakeFiles/screen.dir/src/ftxui/screen/box.cpp.obj" \
 "CMakeFiles/screen.dir/src/ftxui/screen/color.cpp.obj" \
 "CMakeFiles/screen.dir/src/ftxui/screen/color_info.cpp.obj" \
+"CMakeFiles/screen.dir/src/ftxui/screen/surface.cpp.obj" \
 "CMakeFiles/screen.dir/src/ftxui/screen/screen.cpp.obj" \
 "CMakeFiles/screen.dir/src/ftxui/screen/string.cpp.obj" \
 "CMakeFiles/screen.dir/src/ftxui/screen/terminal.cpp.obj"
@@ -176,12 +192,13 @@ screen_EXTERNAL_OBJECTS =
 _deps/ftxui-build/libftxui-screen.a: _deps/ftxui-build/CMakeFiles/screen.dir/src/ftxui/screen/box.cpp.obj
 _deps/ftxui-build/libftxui-screen.a: _deps/ftxui-build/CMakeFiles/screen.dir/src/ftxui/screen/color.cpp.obj
 _deps/ftxui-build/libftxui-screen.a: _deps/ftxui-build/CMakeFiles/screen.dir/src/ftxui/screen/color_info.cpp.obj
+_deps/ftxui-build/libftxui-screen.a: _deps/ftxui-build/CMakeFiles/screen.dir/src/ftxui/screen/surface.cpp.obj
 _deps/ftxui-build/libftxui-screen.a: _deps/ftxui-build/CMakeFiles/screen.dir/src/ftxui/screen/screen.cpp.obj
 _deps/ftxui-build/libftxui-screen.a: _deps/ftxui-build/CMakeFiles/screen.dir/src/ftxui/screen/string.cpp.obj
 _deps/ftxui-build/libftxui-screen.a: _deps/ftxui-build/CMakeFiles/screen.dir/src/ftxui/screen/terminal.cpp.obj
 _deps/ftxui-build/libftxui-screen.a: _deps/ftxui-build/CMakeFiles/screen.dir/build.make
 _deps/ftxui-build/libftxui-screen.a: _deps/ftxui-build/CMakeFiles/screen.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=E:\unmatchedgame\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX static library libftxui-screen.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=E:\unmatchedgame\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX static library libftxui-screen.a"
 	cd /d E:\unmatchedgame\unmatched\build\_deps\ftxui-build && $(CMAKE_COMMAND) -P CMakeFiles\screen.dir\cmake_clean_target.cmake
 	cd /d E:\unmatchedgame\unmatched\build\_deps\ftxui-build && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\screen.dir\link.txt --verbose=$(VERBOSE)
 
