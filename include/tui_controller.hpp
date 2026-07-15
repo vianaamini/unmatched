@@ -6,6 +6,7 @@
 #include <ftxui/dom/elements.hpp>
 #include "game_manager.hpp"
 #include "map.hpp"
+#include "movement.hpp"
 
 class TuiController {
 private:

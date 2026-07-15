@@ -104,7 +104,7 @@ Element TuiController::createStatusDashboard() {
         info.push_back(separator());
         info.push_back(text("HP: " + to_string(c->gethealth()))
                         | color(c->isalive() ? Color::Green : Color::Red));
-        info.push_back(text("Position: " + c->getPositionString()));
+        info.push_back(text("Position: " + c->getposition()));
 
         if (h) {
             info.push_back(text("Hand: " + to_string(h->handsize()) + " cards"));
@@ -284,71 +284,120 @@ void TuiController::run() {
         if (event == Event::Return) {
             if (!input_command.empty()) {
                 string cmd = input_command;
-                input_command = ""; 
-                
+                input_command = "";
                 if (cmd.rfind("move ", 0) == 0) {
                     try {
-                        string node_part = cmd.substr(5);
-                        if (!node_part.empty() && node_part[0] == 'n') {
-                            node_part = node_part.substr(1);
-                        }
-                        int target_node_id = stoi(node_part);
-                        character* current_char = gamemanager.getCurrentCharacter();
-                        bool success = gamemanager.moveCharacter(current_char, {target_node_id, 0});
-                        
-                        if (success) {
-                            gamelogs.push_back("Action: Character moved to node n" + to_string(target_node_id));
+                        stringstream ss(cmd.substr(5));
+                        string arg1 = "", arg2 = "";
+                        ss >> arg1 >> arg2;
+
+                        character* target_char = nullptr;
+                        string target_node = "";
+                        auto allChars = gamemanager.getAllCharacters();
+
+                        if (!arg2.empty()) {
+                            target_node = arg2;
+                            string target_char_name = arg1;
+                            transform(target_char_name.begin(), target_char_name.end(), target_char_name.begin(), ::tolower);
+
+                            for (character* c : allChars) {
+                                string c_name = c->getname();
+                                transform(c_name.begin(), c_name.end(), c_name.begin(), ::tolower);
+                                if (c_name == target_char_name) {
+                                    target_char = c;
+                                    break;
+                                }
+                            }
                         } else {
-                            gamelogs.push_back("Error: Invalid move! Nodes are not adjacent or path is blocked.");
+                            target_node = arg1;
+                            target_char = gamemanager.getCurrentCharacter(); 
+                        }
+
+                        if (!target_char) {
+                            gamelogs.push_back("Validation Error: Character name not recognized!");
+                        } else if (!gameMap.hasSpace(target_node)) {
+                            gamelogs.push_back("Validation Error: Node '" + target_node + "' does not exist!");
+                        } else {
+                            Movement moveSystem(&gameMap);
+                            string start_pos = target_char-> getposition();
+                            vector<character*> allies;
+                            vector<character*> enemies;
+                            for (character* c : allChars) {
+                                if (c == target_char) continue;
+                                bool is_target_sherlock = (target_char->getname() == "Sherlock" || target_char->getname() == "Watson");
+                                bool is_c_sherlock = (c->getname() == "Sherlock" || c->getname() == "Watson");
+
+                                if (is_target_sherlock == is_c_sherlock) {
+                                    allies.push_back(c);
+                                } else {
+                                    enemies.push_back(c);
+                                }
+                            }
+
+                            int max_steps = moveSystem.getBaseMovement(target_char);
+                            bool can_reach = moveSystem.canReach(start_pos, target_node, max_steps, allies, enemies);
+
+                            if (!can_reach) {
+                                gamelogs.push_back("Validation Error: Path is blocked or too far!");
+                            } else {
+
+                                string node_part = target_node;
+                                if (!node_part.empty() && node_part[0] == 'n') node_part = node_part.substr(1);
+                                int target_node_id = stoi(node_part);
+
+                                bool success = gamemanager.moveCharacter(target_char, {target_node_id, 0}); 
+                                if (success) {
+                                    gamelogs.push_back("Action: " + target_char->getname() + " moved to " + target_node);
+                                } else {
+                                    gamelogs.push_back("Error: Movement rejected.");
+                                }
+                            }
                         }
                     } catch (...) {
-                        gamelogs.push_back("Syntax Error: Use 'move <node_id>' (e.g., move 26)");
+                        gamelogs.push_back("Syntax Error: Use 'move <node>' or 'move <character> <node>'");
                     }
-                } 
+                }
                 else if (cmd.rfind("play ", 0) == 0) {
                     try {
                         int card_idx = stoi(cmd.substr(5));
                         character* current_char = gamemanager.getCurrentCharacter();
-                        bool success = gamemanager.playCard(current_char, card_idx);
-                        
+                        bool success = gamemanager.playCard(current_char, card_idx); 
                         if (success) {
-                            gamelogs.push_back("Action: Played card from hand at index " + to_string(card_idx));
+                            gamelogs.push_back("Action: Played card at index " + to_string(card_idx));
                         } else {
-                            gamelogs.push_back("Error: Play rejected! Insufficient actions or invalid card index.");
+                            gamelogs.push_back("Error: Invalid card or no actions left.");
                         }
                     } catch (...) {
-                        gamelogs.push_back("Syntax Error: Use 'play <card_index>' (e.g., play 1)");
+                        gamelogs.push_back("Syntax Error: Use 'play <index>'");
                     }
-                } 
+                }
                 else if (cmd == "end") {
-                    gamemanager.endTurn();
-                    gamelogs.push_back("Action: Player ended turn.");
-                } 
+                    gamemanager.endTurn(); 
+                    gamelogs.push_back("Action: Ended turn.");
+                }
                 else if (cmd == "hand") {
-                    character* current_char = gamemanager.getCurrentCharacter();
-                    gamelogs.push_back("--- CURRENT HAND ---");
-                    auto current_hand = current_char->getHand();
+                    character* current_char = gamemanager.getCurrentCharacter(); 
+                    gamelogs.push_back("--- YOUR HAND ---");
+                    auto current_hand = current_char->gethand();
                     for (size_t i = 0; i < current_hand.size(); ++i) {
-                        gamelogs.push_back("[" + to_string(i + 1) + "] " + current_hand[i].getName());
+                        gamelogs.push_back("[" + to_string(i + 1) + "] " + current_hand[i].getname());
                     }
-                } 
+                }
                 else if (cmd == "deck") {
                     character* current_char = gamemanager.getCurrentCharacter();
-                    gamelogs.push_back("Deck Info: " + to_string(current_char->getDeckSize()) + " cards left in Draw Pile.");
-                    gamelogs.push_back("Discard Pile: " + to_string(current_char->getDiscardSize()) + " cards.");
-                } 
-                else if (cmd == "log") {
-                    gamelogs.push_back("Action Log: Showing active game telemetry records below.");
-                } 
-                else if (cmd == "help") {
-                    screen_mode = 1; 
-                } 
+                    hero* h = dynamic_cast<hero*>(current_char); 
+                    if (h) {
+                        gamelogs.push_back("Deck size: " + to_string(h->getdeck().getsize()));
+                    } else {
+                        gamelogs.push_back("Error: This character does not have a deck.");
+                    }
+                }
                 else if (cmd == "quit") {
                     screen_mode = 0; 
-                    gamelogs.push_back("System: Match paused. Returned to menu.");
-                } 
+                    gamelogs.push_back("System: Paused game.");
+                }
                 else {
-                    gamelogs.push_back("Unknown Command Syntax: '" + cmd + "'. Please refer to Game Commands list.");
+                    gamelogs.push_back("Unknown Command: '" + cmd + "'");
                 }
                 return true;
             }
