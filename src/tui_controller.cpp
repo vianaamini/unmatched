@@ -8,23 +8,23 @@ using namespace std;
 using namespace ftxui;
 
 TuiController::TuiController() {
-    gamelogs.push_back("system : tui controller initialized");
-    gamelogs.push_back("system : ready for unmatched game");
+    gamelogs.push_back("System: TUI initialized");
+    gamelogs.push_back("System: Ready for Unmatched game");
 }
 
-Element TuiController::createDynamicNode(const std::string& nodename, const std::string& dracPos, const std::string& sherlockPos, const std::string& watsonPos, const std::string& s1Pos, const std::string& s2Pos, const std::string& s3Pos)  {
+Element TuiController::createDynamicNode(const std::string& nodename, const std::string& dracPos, const std::string& sherlockPos, const std::string& watsonPos, const std::string& s1Pos, const std::string& s2Pos, const std::string& s3Pos) {
     
     NodeColor colorEnum = gameMap.getNodeColorByName(nodename);
     
-    Color nodeZoneColor = Color::None;
+    Color nodeZoneColor = Color::Default;
     switch (colorEnum) {
         case NodeColor::YELLOW: nodeZoneColor = Color::Yellow; break;
         case NodeColor::GREEN:  nodeZoneColor = Color::Green;  break;
         case NodeColor::BLUE:   nodeZoneColor = Color::Blue;   break;
         case NodeColor::RED:    nodeZoneColor = Color::Red;    break;
         case NodeColor::PURPLE: nodeZoneColor = Color::Magenta;break;
-        case NodeColor::BROWN:  nodeZoneColor = Color::Gray;   break; 
-        default:                nodeZoneColor = Color::None;   break;
+        case NodeColor::BROWN:  nodeZoneColor = Color::White;  break; 
+        default:                nodeZoneColor = Color::Default;break;
     }
 
     vector<Element> indicators;
@@ -44,12 +44,12 @@ Element TuiController::drawExactGraphMap() {
     std::string dPos = "", sPos = "", wPos = "", s1 = "", s2 = "", s3 = "";
     auto allChars = gamemanager.getAllCharacters(); 
     for (character* c : allChars) {
-        if (c->getName() == "Dracula") dPos = c->getPosition();
-        else if (c->getName() == "Sherlock") sPos = c->getPosition();
-        else if (c->getName() == "Watson") wPos = c->getPosition();
-        else if (c->getName() == "Sister1") s1 = c->getPosition();
-        else if (c->getName() == "Sister2") s2 = c->getPosition();
-        else if (c->getName() == "Sister3") s3 = c->getPosition();
+        if (c->getname() == "Dracula") dPos = c->getPositionString();
+        else if (c->getname() == "Sherlock Holmes") sPos = c->getPositionString();
+        else if (c->getname() == "Watson") wPos = c->getPositionString();
+        else if (c->getname() == "Sister 1") s1 = c->getPositionString();
+        else if (c->getname() == "Sister 2") s2 = c->getPositionString();
+        else if (c->getname() == "Sister 3") s3 = c->getPositionString();
     } 
 
     auto n1 = createDynamicNode("n1", dPos, sPos, wPos, s1, s2, s3);
@@ -77,17 +77,15 @@ Element TuiController::drawExactGraphMap() {
     return vbox({
         text("─── MAP (Spider Web Graph) ───") | center | bold | color(Color::Green),
         separator(),
-        text(""),
         hbox({ text("         "), n1, text("─────────"), n2, text("─────────"), n3, text("         ") }) | center,
         hbox({ text("          ╱   ╲         │             ╲          ") }) | center,
         hbox({ text("   "), n4, text("────"), n5, text("────"), n6, text("────"), n7, text("────"), n8, text("   ") }) | center,
         hbox({ text("         ╱           ╲   │   ╱           ╲        ") }) | center,
         hbox({ text("   "), n9, text("------"), n10, text("-----"), n11, text("-----"), n12, text("-----"), n13, text("   ") }) | center,
         hbox({ text("         ╲           ╱   │   ╲           ╱        ") }) | center,
-       hbox({ text("   "), n14, text("────"), n15, text("────"), n16, text("────"), n17, text("────"), n18, text("   ") }) | center,
+        hbox({ text("   "), n14, text("────"), n15, text("────"), n16, text("────"), n17, text("────"), n18, text("   ") }) | center,
         hbox({ text("                     ╲   ╱       │             ╱                   ") }) | center,
         hbox({ text("         "), n19, text("─────────"), n20, text("─────────"), n21, text("         ") }) | center,
-        text("")
     }) | center | flex;
 }
 
@@ -97,6 +95,8 @@ Element TuiController::createStatusDashboard() {
 
     for (character* c : allChars) {
         if (!c) continue;
+        
+        // cast to hero*
         hero* h = dynamic_cast<hero*>(c);
 
         Elements info;
@@ -139,6 +139,26 @@ Element TuiController::createStatusDashboard() {
     }) | border;
 }
 
+Element TuiController::createActionMenu() {
+    return vbox({
+        text(" ACTION MENU ") | bold | color(Color::Green) | center,
+        separator(),
+        hbox({
+            text(" [Maneuver] ") | border | color(Color::Blue),
+            text(" [Scheme] ") | border | color(Color::Magenta),
+            text(" [Attack] ") | border | color(Color::Red),
+            text(" [Discard] ") | border | color(Color::Yellow),
+        }) | center,
+        hbox({
+            text(" [Draw Card] ") | border | color(Color::Green),
+            text(" [Help] ") | border | color(Color::Cyan),
+            text(" [Back to Menu] ") | border | color(Color::White),
+        }) | center,
+        separator(),
+        text("Select an action using arrow keys and ENTER") | center | dim
+    }) | border | center;
+}
+
 void TuiController::run() {
     auto screen = ScreenInteractive::Fullscreen();
     
@@ -150,7 +170,7 @@ void TuiController::run() {
         "   [ Help & Rules ]", 
         "   [ Exit Game ]   "
     };
-    
+
     auto menu_components = Menu(&menu_entries, &menu_selected);
 
     auto menu_renderer = Renderer(menu_components, [&] {
@@ -174,7 +194,7 @@ void TuiController::run() {
             } else if (menu_selected == 1) {
                 screen_mode = 1; 
             } else if (menu_selected == 2) {
-                screen.ExitLoop(); 
+                screen.ExitLoopClosure()(); 
             }
             return true;
         }
@@ -218,32 +238,9 @@ void TuiController::run() {
         auto network_map = drawExactGraphMap(); 
         character* current_char = gamemanager.getCurrentCharacter();
 
-        auto status_dashboard = vbox({
-            text(" 3. Status Dashboard ") | bold | color(Color::Cyan),
-            separator(),
-            text("Turn Number: " + to_string(gamemanager.getTurnNumber())),
-            text("Actions Left: " + to_string(gamemanager.getActionsRemaining())),
-            separator(),
-            text("ACTIVE HERO HP: " + to_string(current_char ? current_char->getHP() : 0)) | color(Color::Red) | bold,
-            text("Cards in Hand: " + to_string(current_char ? current_char->getHand().size() : 0)),
-            text("Status Log: Running normal workflow"),
-        }) | border | size(WIDTH, EQUAL, 32);
+        auto status_dashboard = createStatusDashboard();
 
-        auto action_menu_panel = vbox({
-            text(" 4. Action Command Examples ") | bold | color(Color::Green),
-            separator(),
-            hbox({
-                text(" [ Discarding Cards ] ") | border | color(Color::Yellow),
-                text(" [ Scheme ] ") | border | color(Color::Magenta),
-                text(" [ Attack ] ") | border | color(Color::Red),
-                text(" [ maneuver ] ") | border | color(Color::Blue)
-            }) | center,
-            hbox({
-                text(" [ Back to main menu ] ") | border | color(Color::White),
-                text(" [ Help ] ") | border | color(Color::Cyan),
-                text(" [ Drawing Card ] ") | border | color(Color::Green)
-            }) | center
-        }) | border;
+        auto action_menu_panel = createActionMenu();
 
         auto commands_guide_panel = vbox({
             text(" GAME COMMANDS ") | bold | color(Color::Yellow),
@@ -272,12 +269,13 @@ void TuiController::run() {
             input_box->Render() | flex
         }) | border;
 
-        return vbox({
+        Elements mainElements = {
             hbox({ network_map | flex, status_dashboard }),
             action_menu_panel,
             hbox({ commands_guide_panel | flex, log_panel | flex }),
             input_line_panel
-        });
+        };
+        return vbox(mainElements);
     });
 
     auto gameplay_event_handler = CatchEvent(gameplay_renderer, [&](Event event) {
@@ -294,7 +292,7 @@ void TuiController::run() {
                         }
                         int target_node_id = stoi(node_part);
                         character* current_char = gamemanager.getCurrentCharacter();
-                        bool success = gamemanager.moveCharacter(current_char, {target_node_id, 0});
+                        bool success = gamemanager.moveCharacter(current_char, "n" + to_string(target_node_id));
                         
                         if (success) {
                             gamelogs.push_back("Action: Character moved to node n" + to_string(target_node_id));
@@ -309,33 +307,39 @@ void TuiController::run() {
                     try {
                         int card_idx = stoi(cmd.substr(5));
                         character* current_char = gamemanager.getCurrentCharacter();
-                        bool success = gamemanager.playCard(current_char, card_idx);
-                        
-                        if (success) {
-                            gamelogs.push_back("Action: Played card from hand at index " + to_string(card_idx));
+                        hero* h = dynamic_cast<hero*>(current_char);
+                        if (h && card_idx >= 1 && card_idx <= h->handsize()) {
+                            card played = h->gethand()[card_idx - 1];
+                            h->gethand().erase(h->gethand().begin() + card_idx - 1);
+                            gamelogs.push_back("Action: Played card [" + played.get_name() + "]");
                         } else {
-                            gamelogs.push_back("Error: Play rejected! Insufficient actions or invalid card index.");
+                            gamelogs.push_back("Error: Invalid card index!");
                         }
                     } catch (...) {
                         gamelogs.push_back("Syntax Error: Use 'play <card_index>' (e.g., play 1)");
                     }
                 } 
                 else if (cmd == "end") {
-                    gamemanager.endTurn();
+                    gamemanager.nextTurn();
                     gamelogs.push_back("Action: Player ended turn.");
                 } 
                 else if (cmd == "hand") {
                     character* current_char = gamemanager.getCurrentCharacter();
-                    gamelogs.push_back("--- CURRENT HAND ---");
-                    auto current_hand = current_char->getHand();
-                    for (size_t i = 0; i < current_hand.size(); ++i) {
-                        gamelogs.push_back("[" + to_string(i + 1) + "] " + current_hand[i].getName());
+                    hero* h = dynamic_cast<hero*>(current_char);
+                    if (h) {
+                        gamelogs.push_back("--- CURRENT HAND ---");
+                        auto current_hand = h->gethand();
+                        for (size_t i = 0; i < current_hand.size(); ++i) {
+                            gamelogs.push_back("[" + to_string(i + 1) + "] " + current_hand[i].get_name());
+                        }
                     }
                 } 
                 else if (cmd == "deck") {
                     character* current_char = gamemanager.getCurrentCharacter();
-                    gamelogs.push_back("Deck Info: " + to_string(current_char->getDeckSize()) + " cards left in Draw Pile.");
-                    gamelogs.push_back("Discard Pile: " + to_string(current_char->getDiscardSize()) + " cards.");
+                    hero* h = dynamic_cast<hero*>(current_char);
+                    if (h) {
+                        gamelogs.push_back("Deck Info: " + to_string(h->getdeck().getsize()) + " cards left.");
+                    }
                 } 
                 else if (cmd == "log") {
                     gamelogs.push_back("Action Log: Showing active game telemetry records below.");
@@ -348,7 +352,7 @@ void TuiController::run() {
                     gamelogs.push_back("System: Match paused. Returned to menu.");
                 } 
                 else {
-                    gamelogs.push_back("Unknown Command Syntax: '" + cmd + "'. Please refer to Game Commands list.");
+                    gamelogs.push_back("Unknown Command Syntax: '" + cmd + "'");
                 }
                 return true;
             }
@@ -356,11 +360,8 @@ void TuiController::run() {
         return false;
     });
 
-    auto main_container = Container::Tab({
-        menu_event_handler, 
-        help_event_handler, 
-        gameplay_event_handler
-    }, &screen_mode);
+    Components tabs = {menu_event_handler, help_event_handler, gameplay_event_handler};
+    auto main_container = Container::Tab(tabs, &screen_mode);
 
     screen.Loop(main_container);
 }

@@ -19,6 +19,7 @@ int main() {
     cout << "Dracula: " << dr.getname() << " HP: " << dr.gethealth() << endl;
     cout << "Sister 1: " << s1.getname() << " HP: " << s1.gethealth() << endl;
     
+    
     cout << "\n=== Testing Decks ===" << endl;
     cout << "Sherlock deck size: " << sh.getdeck().getsize() << endl;
     cout << "Dracula deck size: " << dr.getdeck().getsize() << endl;
@@ -28,7 +29,7 @@ int main() {
     dr.useability();
     wt.useability();
     
-    cout << "\nAll tests passed!" << endl;
+    cout << "\n✅ All tests passed!" << endl;
     
     return 0;
 }

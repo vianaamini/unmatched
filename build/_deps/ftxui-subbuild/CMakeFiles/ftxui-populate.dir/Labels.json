@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "E:/unmatchedgame/unmatched/build/_deps/ftxui-subbuild/CMakeFiles/ftxui-populate"
+		},
+		{
+			"file" : "E:/unmatchedgame/unmatched/build/_deps/ftxui-subbuild/CMakeFiles/ftxui-populate.rule"
+		},
+		{
+			"file" : "E:/unmatchedgame/unmatched/build/_deps/ftxui-subbuild/CMakeFiles/ftxui-populate-complete.rule"
+		},
+		{
+			"file" : "E:/unmatchedgame/unmatched/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-build.rule"
+		},
+		{
+			"file" : "E:/unmatchedgame/unmatched/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-configure.rule"
+		},
+		{
+			"file" : "E:/unmatchedgame/unmatched/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-download.rule"
+		},
+		{
+			"file" : "E:/unmatchedgame/unmatched/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-install.rule"
+		},
+		{
+			"file" : "E:/unmatchedgame/unmatched/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-mkdir.rule"
+		},
+		{
+			"file" : "E:/unmatchedgame/unmatched/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-patch.rule"
+		},
+		{
+			"file" : "E:/unmatchedgame/unmatched/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-test.rule"
+		},
+		{
+			"file" : "E:/unmatchedgame/unmatched/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"ftxui-populate"
+		],
+		"name" : "ftxui-populate"
+	}
+}
