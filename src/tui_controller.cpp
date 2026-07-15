@@ -44,12 +44,12 @@ Element TuiController::drawExactGraphMap() {
     std::string dPos = "", sPos = "", wPos = "", s1 = "", s2 = "", s3 = "";
     auto allChars = gamemanager.getAllCharacters(); 
     for (character* c : allChars) {
-        if (c->getName() == "Dracula") dPos = c->getPosition();
-        else if (c->getName() == "Sherlock") sPos = c->getPosition();
-        else if (c->getName() == "Watson") wPos = c->getPosition();
-        else if (c->getName() == "Sister1") s1 = c->getPosition();
-        else if (c->getName() == "Sister2") s2 = c->getPosition();
-        else if (c->getName() == "Sister3") s3 = c->getPosition();
+        if (c->getname() == "Dracula") dPos = c->getposition();
+        else if (c->getname() == "Sherlock") sPos = c->getposition();
+        else if (c->getname() == "Watson") wPos = c->getposition();
+        else if (c->getname() == "Sister1") s1 = c->getposition();
+        else if (c->getname() == "Sister2") s2 = c->getposition();
+        else if (c->getname() == "Sister3") s3 = c->getposition();
     } 
 
     auto n1 = createDynamicNode("n1", dPos, sPos, wPos, s1, s2, s3);

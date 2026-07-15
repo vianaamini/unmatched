@@ -7,6 +7,7 @@
 #include "game_manager.hpp"
 #include "map.hpp"
 #include "movement.hpp"
+#include "hero.hpp"
 
 class TuiController {
 private:
