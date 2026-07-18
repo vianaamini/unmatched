@@ -46,16 +46,17 @@ bool hero::scheme(card& schemeCard, hero& target) {
     return true;
 }
 
-bool hero::attack(hero& target, card& attackCard) {
+bool hero::attack(hero& target, card& attackcard, Board& board) {
     if (actions <= 0) return false;
     if (!target.isalive()) return false;
 
-    int damage = attackCard.getattack(); 
+    bool adjacent = board.isAdjacent(getx(), gety(), target.getx(), target.gety());
+    if (!adjacent) return false;
 
+    int damage = attackcard.getattack();
     if (damage > 0) {
         target.takedamage(damage);
     }
-
     actions--;
     return true;
 }

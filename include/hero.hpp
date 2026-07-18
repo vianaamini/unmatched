@@ -38,6 +38,6 @@ class hero : public character {
 
     bool maneuver(int targetx , int targety , Board& board);
     bool scheme(card& scheme, hero& target);
-    bool attack(hero& target , card& attackcard);
+    bool attack(hero& target, card& attackcard, Board& board);
     bool canact() const;
 };

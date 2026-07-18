@@ -7,6 +7,7 @@
 #include "game_manager.hpp"
 #include "map.hpp"
 #include "hero.hpp"
+#include "deployment.hpp"
 
 class TuiController {
 private:
@@ -35,6 +36,7 @@ private:
     ftxui::Element createActionMenu();
     
     void processCommand(const std::string& cmd);
+    void setupCharacters();
 
 public:
     TuiController();

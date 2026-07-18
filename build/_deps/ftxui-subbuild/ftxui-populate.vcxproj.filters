@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="18.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-subbuild\CMakeFiles\354ba321fab00b4f920f541d760a42f2\ftxui-populate-mkdir.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-subbuild\CMakeFiles\354ba321fab00b4f920f541d760a42f2\ftxui-populate-download.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-subbuild\CMakeFiles\354ba321fab00b4f920f541d760a42f2\ftxui-populate-update.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-subbuild\CMakeFiles\354ba321fab00b4f920f541d760a42f2\ftxui-populate-patch.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-subbuild\CMakeFiles\354ba321fab00b4f920f541d760a42f2\ftxui-populate-configure.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-subbuild\CMakeFiles\354ba321fab00b4f920f541d760a42f2\ftxui-populate-build.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-subbuild\CMakeFiles\354ba321fab00b4f920f541d760a42f2\ftxui-populate-install.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-subbuild\CMakeFiles\354ba321fab00b4f920f541d760a42f2\ftxui-populate-test.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-subbuild\CMakeFiles\ac979ce0cf9e65e12e9c466368814dcd\ftxui-populate-complete.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-subbuild\CMakeFiles\4824d906f754d88b2683f9744f30093a\ftxui-populate.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-subbuild\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-subbuild\CMakeFiles\ftxui-populate" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{819E6DFF-89CD-3B5A-801A-C5DFF92FFCFD}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

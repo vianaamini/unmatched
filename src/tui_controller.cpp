@@ -1,4 +1,8 @@
 #include "tui_controller.hpp"
+#include "sherlock.hpp"
+#include "dracula.hpp"
+#include "watson.hpp"
+#include "sister.hpp"
 #include <ftxui/component/screen_interactive.hpp>
 #include <algorithm>
 #include <iostream>
@@ -10,6 +14,32 @@ using namespace ftxui;
 TuiController::TuiController() {
     gamelogs.push_back("System: TUI initialized");
     gamelogs.push_back("System: Ready for Unmatched game");
+    setupCharacters();
+}
+
+void TuiController::setupCharacters() {
+    sherlock* sherlockChar = new sherlock();
+    watson* watsonChar = new watson();
+    dracula* draculaChar = new dracula();
+    sister* sister1 = new sister(1);
+    sister* sister2 = new sister(2);
+    sister* sister3 = new sister(3);
+
+    Deployment deployment(&gamemanager.getBoard());
+    deployment.placeHeroWithSidekicks(sherlockChar, {watsonChar}, 4, 0);
+    deployment.placeHeroWithSidekicks(draculaChar, {sister1, sister2, sister3}, 18, 0);
+
+    gamemanager.addCharacter(sherlockChar, 1);
+    gamemanager.addCharacter(watsonChar, 1);
+    gamemanager.addCharacter(draculaChar, 2);
+    gamemanager.addCharacter(sister1, 2);
+    gamemanager.addCharacter(sister2, 2);
+    gamemanager.addCharacter(sister3, 2);
+
+    sherlockChar->drawhand();
+    draculaChar->drawhand();
+
+    gamelogs.push_back("Characters deployed: Sherlock, Watson vs Dracula, Sisters");
 }
 
 // ============================================================
@@ -312,13 +342,13 @@ void TuiController::processCommand(const std::string& cmd) {
 
 void TuiController::run() {
     auto screen = ScreenInteractive::Fullscreen();
-    
-    int screen_mode = 0; 
+
+    int screen_mode = 0;
     int menu_selected = 0;
 
     vector<string> menu_entries = {
-        "   [ Play Game ]   ", 
-        "   [ Help & Rules ]", 
+        "   [ Play Game ]   ",
+        "   [ Help & Rules ]",
         "   [ Exit Game ]   "
     };
 
@@ -340,13 +370,13 @@ void TuiController::run() {
     auto menu_event_handler = CatchEvent(menu_renderer, [&](Event event) {
         if (event == Event::Return) {
             if (menu_selected == 0) {
-                screen_mode = 2; 
-                gamemanager.startGame(); 
+                screen_mode = 2;
+                gamemanager.startGame();
                 gamelogs.push_back("Game started!");
             } else if (menu_selected == 1) {
-                screen_mode = 1; 
+                screen_mode = 1;
             } else if (menu_selected == 2) {
-                screen.ExitLoopClosure()(); 
+                screen.ExitLoopClosure()();
             }
             return true;
         }
@@ -377,7 +407,7 @@ void TuiController::run() {
 
     auto help_event_handler = CatchEvent(help_renderer, [&](Event event) {
         if (event == Event::Return) {
-            screen_mode = 0; 
+            screen_mode = 0;
             return true;
         }
         return false;
@@ -407,8 +437,7 @@ void TuiController::run() {
             createHeroPanel(dracula, "DRACULA", Color::Red) | flex,
             createMapDisplay() | flex,
             createHeroPanel(sherlock, "SHERLOCK HOLMES", Color::Blue) | flex
-        };
-        auto topRow = hbox(std::move(topRowElements));
+        };auto topRow = hbox(std::move(topRowElements));
 
         Elements handRowElements = {
             createHandPanel(draculaHero, "DRACULA", Color::Red) | flex,
@@ -432,7 +461,7 @@ void TuiController::run() {
         Elements mainElements = {
             text(" UNMATCHED TUI - Dracula vs Sherlock Holmes ") | bold | color(Color::Green) | center,
             separator(),
-            text("Turn: " + to_string(gamemanager.getTurnNumber()) + " - " + 
+            text("Turn: " + to_string(gamemanager.getTurnNumber()) + " - " +
                  (gamemanager.getCurrentCharacter() ? gamemanager.getCurrentCharacter()->getname() : "N/A")) | bold | center,
             separator(),
             topRow,
@@ -449,9 +478,10 @@ void TuiController::run() {
     auto gameplay_event_handler = CatchEvent(gameplay_renderer, [&](Event event) {
         if (event == Event::Return) {
             if (!input_command.empty()) {
+
                 string cmd = input_command;
-                input_command = ""; 
-                
+                input_command = "";
+
                 if (cmd.rfind("move ", 0) == 0) {
                     try {
                         string node_part = cmd.substr(5);
@@ -461,7 +491,7 @@ void TuiController::run() {
                         int target_node_id = stoi(node_part);
                         character* current_char = gamemanager.getCurrentCharacter();
                         bool success = gamemanager.moveCharacter(current_char, "n" + to_string(target_node_id));
-                        
+
                         if (success) {
                             gamelogs.push_back("Moved to node n" + to_string(target_node_id));
                         } else {
@@ -470,27 +500,88 @@ void TuiController::run() {
                     } catch (...) {
                         gamelogs.push_back("Syntax Error: Use 'move <node_id>'");
                     }
-                } 
+                }
+
                 else if (cmd.rfind("play ", 0) == 0) {
                     try {
                         int card_idx = stoi(cmd.substr(5));
                         character* current_char = gamemanager.getCurrentCharacter();
                         hero* h = dynamic_cast<hero*>(current_char);
+
                         if (h && card_idx >= 1 && card_idx <= h->handsize()) {
-                            card played = h->gethand()[card_idx - 1];
-                            h->gethand().erase(h->gethand().begin() + card_idx - 1);
-                            gamelogs.push_back("Played: " + played.get_name());
+
+                            card playedCard = h->gethand()[card_idx - 1];
+
+                            hero* opponent = nullptr;
+                            for (character* c : gamemanager.getAllCharacters()) {
+                                hero* otherHero = dynamic_cast<hero*>(c);
+                                if (otherHero && otherHero != h) {
+                                    opponent = otherHero;
+                                    break;
+                                }
+                            }
+
+                            bool actionSuccess = false;
+
+                            if (playedCard.gettype() == cardtype::attack && opponent) {
+                                actionSuccess = h->attack(*opponent, playedCard, gamemanager.getBoard());
+
+                                if (actionSuccess) {
+                                    gamelogs.push_back(
+                                        h->getname() + " attacked " +
+                                        opponent->getname() + " with " +
+                                        playedCard.get_name() + " for " +
+                                        to_string(playedCard.getattack()) +" damage!"
+                                    );
+                                } else {
+                                    gamelogs.push_back("Attack failed! (out of range, no actions left, or target down)");
+                                }
+                            }
+
+                            else if (playedCard.gettype() == cardtype::scheme) {
+                                actionSuccess = h->scheme(playedCard, *h);
+
+                                if (actionSuccess) {
+                                    gamelogs.push_back(
+                                        h->getname() + " played scheme card: " +
+                                        playedCard.get_name()
+                                    );
+                                } else {
+                                    gamelogs.push_back("Scheme failed! (no actions left)");
+                                }
+                            }
+
+                            else {
+                                actionSuccess = true;
+                                gamelogs.push_back(
+                                    h->getname() + " played defense/support card: " +
+                                    playedCard.get_name()
+                                );
+                            }
+
+                            if (actionSuccess) {
+                                h->gethand().erase(h->gethand().begin() + card_idx - 1);
+                            }
+
                         } else {
                             gamelogs.push_back("Invalid card index!");
                         }
-                    } catch (...) {
+                    }
+                    catch (...) {
                         gamelogs.push_back("Syntax Error: Use 'play <card_index>'");
                     }
-                } 
+                }
+
                 else if (cmd == "end") {
                     gamemanager.nextTurn();
+                    character* newCurrent = gamemanager.getCurrentCharacter();
+                    hero* newHero = dynamic_cast<hero*>(newCurrent);
+                    if (newHero) {
+                        newHero->reset_actions();
+                    }
                     gamelogs.push_back("Turn ended");
-                } 
+                }
+
                 else if (cmd == "hand") {
                     character* current_char = gamemanager.getCurrentCharacter();
                     hero* h = dynamic_cast<hero*>(current_char);
@@ -501,36 +592,42 @@ void TuiController::run() {
                             gamelogs.push_back("[" + to_string(i + 1) + "] " + current_hand[i].get_name());
                         }
                     }
-                } 
+                }
+
                 else if (cmd == "deck") {
                     character* current_char = gamemanager.getCurrentCharacter();
                     hero* h = dynamic_cast<hero*>(current_char);
                     if (h) {
                         gamelogs.push_back("Deck: " + to_string(h->getdeck().getsize()) + " cards left");
                     }
-                } 
+                }
+
                 else if (cmd == "log") {
                     for (const auto& log : gamelogs) {
                         std::cout << log << std::endl;
                     }
-                } 
+                }
+
                 else if (cmd == "help") {
-                    screen_mode = 1; 
-                } 
+                    screen_mode = 1;
+                }
+
                 else if (cmd == "quit") {
-                    screen_mode = 0; 
+                    screen_mode = 0;
                     gamelogs.push_back("Returned to menu");
-                } 
+                }
+
                 else {
                     gamelogs.push_back("Unknown command: " + cmd);
                 }
+
                 return true;
             }
         }
         return false;
     });
 
-    Components tabs = {menu_event_handler, help_event_handler, gameplay_event_handler};
+    Components tabs = { menu_event_handler, help_event_handler, gameplay_event_handler };
     auto main_container = Container::Tab(tabs, &screen_mode);
 
     screen.Loop(main_container);

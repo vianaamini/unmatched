@@ -6,22 +6,22 @@ cmake_minimum_required(VERSION ${CMAKE_VERSION}) # this file comes with cmake
 # If CMAKE_DISABLE_SOURCE_CHANGES is set to true and the source directory is an
 # existing directory in our source tree, calling file(MAKE_DIRECTORY) on it
 # would cause a fatal error, even though it would be a no-op.
-if(NOT EXISTS "E:/unmatchedgame/unmatched/build/_deps/ftxui-src")
-  file(MAKE_DIRECTORY "E:/unmatchedgame/unmatched/build/_deps/ftxui-src")
+if(NOT EXISTS "C:/Users/User/Desktop/unmatched/build/_deps/ftxui-src")
+  file(MAKE_DIRECTORY "C:/Users/User/Desktop/unmatched/build/_deps/ftxui-src")
 endif()
 file(MAKE_DIRECTORY
-  "E:/unmatchedgame/unmatched/build/_deps/ftxui-build"
-  "E:/unmatchedgame/unmatched/build/_deps/ftxui-subbuild/ftxui-populate-prefix"
-  "E:/unmatchedgame/unmatched/build/_deps/ftxui-subbuild/ftxui-populate-prefix/tmp"
-  "E:/unmatchedgame/unmatched/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp"
-  "E:/unmatchedgame/unmatched/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src"
-  "E:/unmatchedgame/unmatched/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp"
+  "C:/Users/User/Desktop/unmatched/build/_deps/ftxui-build"
+  "C:/Users/User/Desktop/unmatched/build/_deps/ftxui-subbuild/ftxui-populate-prefix"
+  "C:/Users/User/Desktop/unmatched/build/_deps/ftxui-subbuild/ftxui-populate-prefix/tmp"
+  "C:/Users/User/Desktop/unmatched/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp"
+  "C:/Users/User/Desktop/unmatched/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src"
+  "C:/Users/User/Desktop/unmatched/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp"
 )
 
-set(configSubDirs )
+set(configSubDirs Debug)
 foreach(subDir IN LISTS configSubDirs)
-    file(MAKE_DIRECTORY "E:/unmatchedgame/unmatched/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/${subDir}")
+    file(MAKE_DIRECTORY "C:/Users/User/Desktop/unmatched/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/${subDir}")
 endforeach()
 if(cfgdir)
-  file(MAKE_DIRECTORY "E:/unmatchedgame/unmatched/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp${cfgdir}") # cfgdir has leading slash
+  file(MAKE_DIRECTORY "C:/Users/User/Desktop/unmatched/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp${cfgdir}") # cfgdir has leading slash
 endif()

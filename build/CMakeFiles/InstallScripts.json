@@ -1,10 +1,10 @@
 {
 	"InstallScripts" : 
 	[
-		"E:/unmatchedgame/unmatched/build/cmake_install.cmake",
-		"E:/unmatchedgame/unmatched/build/_deps/ftxui-build/cmake_install.cmake",
-		"E:/unmatchedgame/unmatched/build/_deps/ftxui-build/examples/cmake_install.cmake",
-		"E:/unmatchedgame/unmatched/build/_deps/ftxui-build/doc/cmake_install.cmake"
+		"C:/Users/User/Desktop/unmatched/build/cmake_install.cmake",
+		"C:/Users/User/Desktop/unmatched/build/_deps/ftxui-build/cmake_install.cmake",
+		"C:/Users/User/Desktop/unmatched/build/_deps/ftxui-build/examples/cmake_install.cmake",
+		"C:/Users/User/Desktop/unmatched/build/_deps/ftxui-build/doc/cmake_install.cmake"
 	],
 	"Parallel" : false
 }
