@@ -2,7 +2,7 @@
 #include "../include/deck-builder.hpp"
 #include <iostream>
 
-sherlock::sherlock() : hero("Sherlock holmes", 16, 2) {
+sherlock::sherlock() : hero("Sherlock Holmes", 16, 2) {
     deck sherlockdk = sherlockdeck();
     sherlockdk.shuffle();
 

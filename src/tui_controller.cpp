@@ -174,7 +174,8 @@ Element TuiController::createHeroPanel(character* c, const string& title, Color 
     return vbox(move(info)) | border | size(WIDTH, EQUAL, 25);
 }
 
-Element TuiController::createHandPanel(hero* h, const string& title, Color titleColor) {
+
+         Element TuiController::createHandPanel(hero* h, const string& title, Color titleColor) {
     if (!h) return text("") | border;
 
     Elements handElements;
@@ -184,9 +185,8 @@ Element TuiController::createHandPanel(hero* h, const string& title, Color title
     auto hand = h->gethand();
     for (size_t i = 0; i < hand.size() && i < 5; i++) {
         string typeStr;
-        string range = "1";
         string effect = hand[i].geteffect();
-        
+
         switch (hand[i].gettype()) {
             case cardtype::attack: typeStr = "ATTACK"; break;
             case cardtype::defense: typeStr = "DEFENSE"; break;
@@ -194,12 +194,21 @@ Element TuiController::createHandPanel(hero* h, const string& title, Color title
             default: typeStr = "MULTIPURPOSE"; break;
         }
 
+        string valueLine;
+        if (hand[i].gettype() == cardtype::attack) {
+            valueLine = "Deal " + to_string(hand[i].getattack()) + " dmg.";
+        } else if (hand[i].gettype() == cardtype::defense) {
+            valueLine = "Block " + to_string(hand[i].getdefense()) + " dmg.";
+        } else {
+            valueLine = "Boost " + to_string(hand[i].getboost());
+        }
+
         Elements cardInfo;
         cardInfo.push_back(text("  " + typeStr) | color(Color::Yellow) | bold);
         cardInfo.push_back(text("    " + hand[i].get_name()) | bold);
-        cardInfo.push_back(text("    Range " + range));
+        cardInfo.push_back(text("    " + valueLine));
         cardInfo.push_back(text("    " + effect) | dim);
-        
+
         handElements.push_back(vbox(cardInfo) | border | size(WIDTH, EQUAL, 25));
     }
 

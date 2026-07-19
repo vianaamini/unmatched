@@ -156,10 +156,6 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO:STRING=/debug /INCREMENTAL
 //Path to a program.
 CMAKE_MT:FILEPATH=CMAKE_MT-NOTFOUND
 
-//Set minimum Policy Version for a project; for configuring third-party
-// projects without modifying their code.
-CMAKE_POLICY_VERSION_MINIMUM:UNINITIALIZED=3.5
-
 //Value Computed by CMake
 CMAKE_PROJECT_COMPAT_VERSION:STATIC=
 
