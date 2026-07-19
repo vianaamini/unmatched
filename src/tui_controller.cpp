@@ -175,13 +175,14 @@ Element TuiController::createHeroPanel(character* c, const string& title, Color 
 }
 
 
-         Element TuiController::createHandPanel(hero* h, const string& title, Color titleColor) {
+ Element TuiController::createHandPanel(hero* h, const string& title, Color titleColor) {
     if (!h) return text("") | border;
 
-    Elements handElements;
-    handElements.push_back(text(" " + title + " - HAND (" + to_string(h->handsize()) + "/5) ") | bold | color(titleColor) | center);
-    handElements.push_back(separator());
+    Elements headerElements;
+    headerElements.push_back(text(" " + title + " - HAND (" + to_string(h->handsize()) + "/5) ") | bold | color(titleColor) | center);
+    headerElements.push_back(separator());
 
+    Elements cardBoxes;
     auto hand = h->gethand();
     for (size_t i = 0; i < hand.size() && i < 5; i++) {
         string typeStr;
@@ -204,16 +205,19 @@ Element TuiController::createHeroPanel(character* c, const string& title, Color 
         }
 
         Elements cardInfo;
-        cardInfo.push_back(text("  " + typeStr) | color(Color::Yellow) | bold);
-        cardInfo.push_back(text("    " + hand[i].get_name()) | bold);
-        cardInfo.push_back(text("    " + valueLine));
-        cardInfo.push_back(text("    " + effect) | dim);
+        cardInfo.push_back(text("[" + typeStr + "]") | color(Color::Yellow) | bold | center);
+        cardInfo.push_back(text(hand[i].get_name()) | bold | center);
+        cardInfo.push_back(text(valueLine) | center);
+        cardInfo.push_back(text(effect) | dim | center);
 
-        handElements.push_back(vbox(cardInfo) | border | size(WIDTH, EQUAL, 25));
+        cardBoxes.push_back(vbox(cardInfo) | border | size(WIDTH, EQUAL, 20));
     }
 
-    return vbox(move(handElements)) | border;
-}
+    Elements panelElements = headerElements;
+    panelElements.push_back(hbox(std::move(cardBoxes)));
+
+    return vbox(std::move(panelElements)) | border;
+}       
 
 Element TuiController::createActionLog() {
     Elements logElements;
