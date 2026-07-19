@@ -26,8 +26,14 @@ void TuiController::setupCharacters() {
     sister* sister3 = new sister(3);
 
     Deployment deployment(&gamemanager.getBoard());
-    deployment.placeHeroWithSidekicks(sherlockChar, {watsonChar}, 4, 0);
-    deployment.placeHeroWithSidekicks(draculaChar, {sister1, sister2, sister3}, 18, 0);
+    
+    deployment.placeHeroWithSidekicks(sherlockChar, {}, 4, 0);
+    deployment.placeHeroWithSidekicks(watsonChar, {}, 5, 0);
+    
+    deployment.placeHeroWithSidekicks(draculaChar, {}, 18, 0);
+    deployment.placeHeroWithSidekicks(sister1, {}, 19, 0);
+    deployment.placeHeroWithSidekicks(sister2, {}, 20, 0);
+    deployment.placeHeroWithSidekicks(sister3, {}, 21, 0);
 
     gamemanager.addCharacter(sherlockChar, 1);
     gamemanager.addCharacter(watsonChar, 1);
@@ -39,8 +45,9 @@ void TuiController::setupCharacters() {
     sherlockChar->drawhand();
     draculaChar->drawhand();
 
-    gamelogs.push_back("Characters deployed: Sherlock, Watson vs Dracula, Sisters");
+    gamelogs.push_back("Characters deployed across nodes 4, 5, 18, 19, 20, 21.");
 }
+
 
 // ============================================================
 // توابع نقشه
@@ -67,11 +74,11 @@ Element TuiController::createDynamicNode(const std::string& nodename, const std:
     if (nodename == dracPos) indicators.push_back(text(" [D]") | color(Color::Red) | bold);
     if (nodename == sherlockPos) indicators.push_back(text(" [S]") | color(Color::Blue) | bold);
     if (nodename == watsonPos) indicators.push_back(text(" [W]") | color(Color::Cyan) | bold);
-    if (nodename == s1Pos) indicators.push_back(text(" [1]") | color(Color::White) | bold);
-    if (nodename == s2Pos) indicators.push_back(text(" [2]") | color(Color::White) | bold);
-    if (nodename == s3Pos) indicators.push_back(text(" [3]") | color(Color::White) | bold);
+    if (nodename == s1Pos) indicators.push_back(text(" [s1]") | color(Color::White) | bold);
+    if (nodename == s2Pos) indicators.push_back(text(" [s2]") | color(Color::White) | bold);
+    if (nodename == s3Pos) indicators.push_back(text(" [s3]") | color(Color::White) | bold);
 
-    return hbox(move(indicators)) | center | color(nodeZoneColor) | border;
+    return hbox(move(indicators)) | center | color(nodeZoneColor);
 }
 
 Element TuiController::drawExactGraphMap() {
@@ -111,15 +118,15 @@ Element TuiController::drawExactGraphMap() {
     return vbox({
         text("─── MAP (Spider Web Graph) ───") | center | bold | color(Color::Green),
         separator(),
-        hbox({ text("         "), n1, text("─────────"), n2, text("─────────"), n3, text("         ") }) | center,
-        hbox({ text("          ╱   ╲         │             ╲          ") }) | center,
+       hbox({ text("         "), n1, text("─────────"), n2, text("─────────"), n3, text("         ") }) | center,
+        hbox({ text("         ╱    ╲         │             ╲          ") }) | center,
         hbox({ text("   "), n4, text("────"), n5, text("────"), n6, text("────"), n7, text("────"), n8, text("   ") }) | center,
-        hbox({ text("         ╱           ╲   │   ╱           ╲        ") }) | center,
+        hbox({ text("       ╱             ╲   │   ╱           ╲        ") }) | center,
         hbox({ text("   "), n9, text("------"), n10, text("-----"), n11, text("-----"), n12, text("-----"), n13, text("   ") }) | center,
-        hbox({ text("         ╲           ╱   │   ╲           ╱        ") }) | center,
+        hbox({ text("       ╲             ╱   │  ╲            ╱        ") }) | center,
         hbox({ text("   "), n14, text("────"), n15, text("────"), n16, text("────"), n17, text("────"), n18, text("   ") }) | center,
-        hbox({ text("                     ╲   ╱       │             ╱                   ") }) | center,
-        hbox({ text("         "), n19, text("─────────"), n20, text("─────────"), n21, text("         ") }) | center,
+        hbox({ text("          ╲         ╱    │      ╲       ╱          ") }) | center, 
+        hbox({ text("         "), n19, text("─────────"), n20, text("─────────"), n21, text("         ") }) | center, 
     }) | center | flex;
 }
 
@@ -446,12 +453,12 @@ void TuiController::run() {
             }
         }
 
-        Elements topRowElements = {
-            createHeroPanel(dracula, "DRACULA", Color::Red) | flex,
-            createMapDisplay() | flex,
-            createHeroPanel(sherlock, "SHERLOCK HOLMES", Color::Blue) | flex
-        };auto topRow = hbox(std::move(topRowElements));
-
+       Elements topRowElements = {
+            createHeroPanel(dracula, "DRACULA", Color::Red), 
+            drawExactGraphMap() | flex_grow,                
+            createHeroPanel(sherlock, "SHERLOCK HOLMES", Color::Blue) 
+        };
+        auto topRow = hbox(std::move(topRowElements)) | size(HEIGHT, EQUAL, 14);
         Elements handRowElements = {
             createHandPanel(draculaHero, "DRACULA", Color::Red) | flex,
             createLegend() | flex,
