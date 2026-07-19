@@ -240,23 +240,6 @@ Element TuiController::createActionLog() {
     return vbox(logElements) | border | size(HEIGHT, EQUAL, 10);
 }
 
-Element TuiController::createMapDisplay() {
-    vector<string> mapLines = {
-        "       n1 ─── n2 ─── n3",
-        "        ╲     │     ╱",
-        "   n4 ─── n5 ─── n6 ─── n7 ─── n8",
-        "    │     ╲   │   ╱     │",
-        "    │  n9 ─── n10 ─── n11  │",
-        "    │   │    ╲ │ ╱    │   │",
-        "   n12─n13── n14 ── n15─n16",
-        "    │   │    ╱ │ ╲    │   │",
-        "    │  n17── n18 ── n19  │",
-        "    │     ╱   │   ╲     │",
-        "   n20── n21 ── n22 ── n23",
-        "        ╱     │     ╲",
-        "       n24 ─── n25 ─── n26"
-    };
-
     std::string dPos = "", sPos = "", wPos = "";
     auto allChars = gamemanager.getAllCharacters();
     for (character* c : allChars) {
