@@ -1,4 +1,5 @@
 #include "../include/turn_manager.hpp"
+#include "../include/hero.hpp"
 #include <algorithm>
 #include <iostream>
 
@@ -226,42 +227,40 @@ std::vector<character*> TurnManager::getTeamCharacters(int team) const {
 }
 
 bool TurnManager::isGameOver() const {
-    int aliveTeam1 = 0, aliveTeam2 = 0;
-    
+    bool team1HeroDead = true;
+    bool team2HeroDead = true;
+
     for (const auto& c : team1) {
-        if (isCharacterAlive(c)) aliveTeam1++;
+        hero* h = dynamic_cast<hero*>(c);
+        if (h) team1HeroDead = !isCharacterAlive(h);
     }
-    
     for (const auto& c : team2) {
-        if (isCharacterAlive(c)) aliveTeam2++;
+        hero* h = dynamic_cast<hero*>(c);
+        if (h) team2HeroDead = !isCharacterAlive(h);
     }
-    
-    return aliveTeam1 == 0 || aliveTeam2 == 0;
+
+    return team1HeroDead || team2HeroDead;
 }
 
 character* TurnManager::getWinner() const {
     if (!isGameOver()) return nullptr;
-    
-    int aliveTeam1 = 0, aliveTeam2 = 0;
-    character* lastAlive1 = nullptr;
-    character* lastAlive2 = nullptr;
-    
+
+    hero* team1Hero = nullptr;
+    hero* team2Hero = nullptr;
+
     for (const auto& c : team1) {
-        if (isCharacterAlive(c)) {
-            aliveTeam1++;
-            lastAlive1 = c;
-        }
+        hero* h = dynamic_cast<hero*>(c);
+        if (h) team1Hero = h;
     }
-    
     for (const auto& c : team2) {
-        if (isCharacterAlive(c)) {
-            aliveTeam2++;
-            lastAlive2 = c;
-        }
+        hero* h = dynamic_cast<hero*>(c);
+        if (h) team2Hero = h;
     }
-    
-    if (aliveTeam1 > 0 && aliveTeam2 == 0) return lastAlive1;
-    if (aliveTeam2 > 0 && aliveTeam1 == 0) return lastAlive2;
-    
+
+    bool team1HeroDead = team1Hero ? !isCharacterAlive(team1Hero) : true;
+    bool team2HeroDead = team2Hero ? !isCharacterAlive(team2Hero) : true;
+
+    if (team1HeroDead && !team2HeroDead) return team2Hero;
+    if (team2HeroDead && !team1HeroDead) return team1Hero;
     return nullptr;
 }
