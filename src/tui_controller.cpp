@@ -76,8 +76,10 @@ void TuiController::setupCharacters()
     sister *sister3 = new sister(3);
 
     Deployment deployment(&gamemanager.getBoard());
-    deployment.placeHeroWithSidekicks(sherlockChar, {watsonChar}, 4, 0);
-    deployment.placeHeroWithSidekicks(draculaChar, {sister1, sister2, sister3}, 18, 0);
+    std::vector<character*> sherlockSidekicks = {watsonChar};
+    deployment.placeHeroWithSidekicks(sherlockChar, sherlockSidekicks, 4, 0);
+    std::vector<character*> draculaSidekicks = {sister1, sister2, sister3};
+    deployment.placeHeroWithSidekicks(draculaChar, draculaSidekicks, 18, 0);
 
     gamemanager.addCharacter(sherlockChar, 1);
     gamemanager.addCharacter(watsonChar, 1);
@@ -807,3 +809,5 @@ void TuiController::run()
     auto main_container = Container::Tab(tabs, &screen_mode);
 
     screen.Loop(main_container);
+}
+    
