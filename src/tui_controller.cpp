@@ -14,6 +14,48 @@ using namespace ftxui;
 TuiController::TuiController() {
     gamelogs.push_back("System: TUI initialized");
     gamelogs.push_back("System: Ready for Unmatched game");
+
+    int age1, age2;
+    std::cout << "=== Choosing who picks their fighter first ===" << std::endl;
+    std::cout << "Enter age of Player 1: ";
+    std::cin >> age1;
+    std::cout << "Enter age of Player 2: ";
+    std::cin >> age2;
+
+    int firstPlayer;
+    if (age1 < age2) {
+        std::cout << "Player 1 is younger and chooses first!" << std::endl;
+        firstPlayer = 1;
+    } else if (age2 < age1) {
+        std::cout << "Player 2 is younger and chooses first!" << std::endl;
+        firstPlayer = 2;
+    } else {
+        std::cout << "Both players have the same age. Player 1 chooses first by default." << std::endl;
+        firstPlayer = 1;
+    }
+
+    int choice;
+    std::cout << "\nPlayer " << firstPlayer << ", choose your fighter:" << std::endl;
+    std::cout << "1. Sherlock Holmes" << std::endl;
+    std::cout << "2. Dracula" << std::endl;
+    std::cout << "Enter your choice (1 or 2): ";
+    std::cin >> choice;
+
+    while (choice != 1 && choice != 2) {
+        std::cout << "Invalid choice. Enter 1 or 2: ";
+        std::cin >> choice;
+    }
+
+    firstFighterChoice = choice;
+
+    std::string firstFighterName = (choice == 1) ? "Sherlock Holmes" : "Dracula";
+    std::string secondFighterName = (choice == 1) ? "Dracula" : "Sherlock Holmes";
+    std::cout << "\nPlayer " << firstPlayer << " picked " << firstFighterName << "." << std::endl;
+    std::cout << "The other player automatically gets " << secondFighterName << "." << std::endl;
+    std::cout << "\nPress Enter to continue to the game screen...";
+    std::cin.ignore();
+    std::cin.get();
+
     setupCharacters();
 }
 
@@ -26,14 +68,8 @@ void TuiController::setupCharacters() {
     sister* sister3 = new sister(3);
 
     Deployment deployment(&gamemanager.getBoard());
-    
-    deployment.placeHeroWithSidekicks(sherlockChar, {}, 4, 0);
-    deployment.placeHeroWithSidekicks(watsonChar, {}, 5, 0);
-    
-    deployment.placeHeroWithSidekicks(draculaChar, {}, 18, 0);
-    deployment.placeHeroWithSidekicks(sister1, {}, 19, 0);
-    deployment.placeHeroWithSidekicks(sister2, {}, 20, 0);
-    deployment.placeHeroWithSidekicks(sister3, {}, 21, 0);
+    deployment.placeHeroWithSidekicks(sherlockChar, {watsonChar}, 4, 0);
+    deployment.placeHeroWithSidekicks(draculaChar, {sister1, sister2, sister3}, 18, 0);
 
     gamemanager.addCharacter(sherlockChar, 1);
     gamemanager.addCharacter(watsonChar, 1);
@@ -45,9 +81,8 @@ void TuiController::setupCharacters() {
     sherlockChar->drawhand();
     draculaChar->drawhand();
 
-    gamelogs.push_back("Characters deployed across nodes 4, 5, 18, 19, 20, 21.");
+    gamelogs.push_back("Characters deployed: Sherlock, Watson vs Dracula, Sisters");
 }
-
 
 // ============================================================
 // توابع نقشه
@@ -74,11 +109,11 @@ Element TuiController::createDynamicNode(const std::string& nodename, const std:
     if (nodename == dracPos) indicators.push_back(text(" [D]") | color(Color::Red) | bold);
     if (nodename == sherlockPos) indicators.push_back(text(" [S]") | color(Color::Blue) | bold);
     if (nodename == watsonPos) indicators.push_back(text(" [W]") | color(Color::Cyan) | bold);
-    if (nodename == s1Pos) indicators.push_back(text(" [s1]") | color(Color::White) | bold);
-    if (nodename == s2Pos) indicators.push_back(text(" [s2]") | color(Color::White) | bold);
-    if (nodename == s3Pos) indicators.push_back(text(" [s3]") | color(Color::White) | bold);
+    if (nodename == s1Pos) indicators.push_back(text(" [1]") | color(Color::White) | bold);
+    if (nodename == s2Pos) indicators.push_back(text(" [2]") | color(Color::White) | bold);
+    if (nodename == s3Pos) indicators.push_back(text(" [3]") | color(Color::White) | bold);
 
-    return hbox(move(indicators)) | center | color(nodeZoneColor);
+    return hbox(move(indicators)) | center | color(nodeZoneColor) | border;
 }
 
 Element TuiController::drawExactGraphMap() {
@@ -118,15 +153,15 @@ Element TuiController::drawExactGraphMap() {
     return vbox({
         text("─── MAP (Spider Web Graph) ───") | center | bold | color(Color::Green),
         separator(),
-       hbox({ text("         "), n1, text("─────────"), n2, text("─────────"), n3, text("         ") }) | center,
-        hbox({ text("         ╱    ╲         │             ╲          ") }) | center,
+        hbox({ text("         "), n1, text("─────────"), n2, text("─────────"), n3, text("         ") }) | center,
+        hbox({ text("          ╱   ╲         │             ╲          ") }) | center,
         hbox({ text("   "), n4, text("────"), n5, text("────"), n6, text("────"), n7, text("────"), n8, text("   ") }) | center,
-        hbox({ text("       ╱             ╲   │   ╱           ╲        ") }) | center,
+        hbox({ text("         ╱           ╲   │   ╱           ╲        ") }) | center,
         hbox({ text("   "), n9, text("------"), n10, text("-----"), n11, text("-----"), n12, text("-----"), n13, text("   ") }) | center,
-        hbox({ text("       ╲             ╱   │  ╲            ╱        ") }) | center,
+        hbox({ text("         ╲           ╱   │   ╲           ╱        ") }) | center,
         hbox({ text("   "), n14, text("────"), n15, text("────"), n16, text("────"), n17, text("────"), n18, text("   ") }) | center,
-        hbox({ text("          ╲         ╱    │      ╲       ╱          ") }) | center, 
-        hbox({ text("         "), n19, text("─────────"), n20, text("─────────"), n21, text("         ") }) | center, 
+        hbox({ text("                     ╲   ╱       │             ╱                   ") }) | center,
+        hbox({ text("         "), n19, text("─────────"), n20, text("─────────"), n21, text("         ") }) | center,
     }) | center | flex;
 }
 
@@ -239,6 +274,23 @@ Element TuiController::createActionLog() {
 
     return vbox(logElements) | border | size(HEIGHT, EQUAL, 10);
 }
+
+Element TuiController::createMapDisplay() {
+    vector<string> mapLines = {
+        "       n1 ─── n2 ─── n3",
+        "        ╲     │     ╱",
+        "   n4 ─── n5 ─── n6 ─── n7 ─── n8",
+        "    │     ╲   │   ╱     │",
+        "    │  n9 ─── n10 ─── n11  │",
+        "    │   │    ╲ │ ╱    │   │",
+        "   n12─n13── n14 ── n15─n16",
+        "    │   │    ╱ │ ╲    │   │",
+        "    │  n17── n18 ── n19  │",
+        "    │     ╱   │   ╲     │",
+        "   n20── n21 ── n22 ── n23",
+        "        ╱     │     ╲",
+        "       n24 ─── n25 ─── n26"
+    };
 
     std::string dPos = "", sPos = "", wPos = "";
     auto allChars = gamemanager.getAllCharacters();
@@ -436,12 +488,12 @@ void TuiController::run() {
             }
         }
 
-       Elements topRowElements = {
-            createHeroPanel(dracula, "DRACULA", Color::Red), 
-            drawExactGraphMap() | flex_grow,                
-            createHeroPanel(sherlock, "SHERLOCK HOLMES", Color::Blue) 
-        };
-        auto topRow = hbox(std::move(topRowElements)) | size(HEIGHT, EQUAL, 14);
+        Elements topRowElements = {
+            createHeroPanel(dracula, "DRACULA", Color::Red) | flex,
+            createMapDisplay() | flex,
+            createHeroPanel(sherlock, "SHERLOCK HOLMES", Color::Blue) | flex
+        };auto topRow = hbox(std::move(topRowElements));
+
         Elements handRowElements = {
             createHandPanel(draculaHero, "DRACULA", Color::Red) | flex,
             createLegend() | flex,

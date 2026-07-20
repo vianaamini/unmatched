@@ -37,6 +37,7 @@ private:
     
     void processCommand(const std::string& cmd);
     void setupCharacters();
+    int firstFighterChoice;
 
 public:
     TuiController();
