@@ -1,7 +1,7 @@
 #include "../include/deck.hpp"
 #include <algorithm>
-#include <random>    // برای random_device و mt19937
-#include <stdexcept> // برای runtime_error
+#include <random>
+#include <stdexcept>
 
 deck::deck() {}
 
@@ -30,4 +30,8 @@ void deck::shuffle() {
     random_device rd;
     mt19937 g(rd());
     std::shuffle(cards.begin(), cards.end(), g);
+}
+
+void deck::reset() {
+    cards.clear();
 }

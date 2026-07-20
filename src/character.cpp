@@ -1,25 +1,22 @@
-#include "character.hpp"
+#include "../include/character.hpp"
 
 character::character(string name, int maxhp, int movement)
     : name(name), maxhp(maxhp), movement(movement),
-      health(maxhp), position({0, 0}) {}
+      health(maxhp), nodeId(0) {}
 
-string character::getname() const{return name;}
-int character::gethealth() const{return health;}
-int character::getmovement() const{return movement;}
+string character::getname() const { return name; }
+int character::gethealth() const { return health; }
+int character::getmovement() const { return movement; }
 
-void character::setposition(int x, int y) {
-    position.first = x;
-    position.second = y;
+void character::setposition(int node) {
+    nodeId = node;
 }
 
-pair<int ,int> character::getposition() const {return position;}
+int character::getposition() const { return nodeId; }
+
 string character::getPositionString() const {
-    return "n" + to_string(position.first);
+    return "n" + to_string(nodeId);
 }
-
-int character::getx() const {return position.first;}
-int character::gety() const {return position.second;}
 
 void character::takedamage(int amount) {
     health -= amount;

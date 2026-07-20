@@ -56,10 +56,10 @@ RM = C:\msys64\ucrt64\bin\cmake.exe -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = E:\unmatched
+CMAKE_SOURCE_DIR = E:\assassins\unmatched
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = E:\unmatched\build
+CMAKE_BINARY_DIR = E:\assassins\unmatched\build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -67,7 +67,7 @@ CMAKE_BINARY_DIR = E:\unmatched\build
 # Special rule for the target package
 package: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Run CPack packaging tool..."
-	cd /d E:\unmatched\build && C:\msys64\ucrt64\bin\cpack.exe --config ./CPackConfig.cmake
+	cd /d E:\assassins\unmatched\build && C:\msys64\ucrt64\bin\cpack.exe --config ./CPackConfig.cmake
 .PHONY : package
 
 # Special rule for the target package
@@ -77,7 +77,7 @@ package/fast: package
 # Special rule for the target package_source
 package_source:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Run CPack packaging tool for source..."
-	cd /d E:\unmatched\build && C:\msys64\ucrt64\bin\cpack.exe --config ./CPackSourceConfig.cmake
+	cd /d E:\assassins\unmatched\build && C:\msys64\ucrt64\bin\cpack.exe --config ./CPackSourceConfig.cmake
 .PHONY : package_source
 
 # Special rule for the target package_source
@@ -151,14 +151,14 @@ install/strip/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	cd /d E:\unmatched\build && $(CMAKE_COMMAND) -E cmake_progress_start E:\unmatched\build\CMakeFiles E:\unmatched\build\_deps\ftxui-build\doc\\CMakeFiles\progress.marks
-	cd /d E:\unmatched\build && $(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 _deps/ftxui-build/doc/all
-	$(CMAKE_COMMAND) -E cmake_progress_start E:\unmatched\build\CMakeFiles 0
+	cd /d E:\assassins\unmatched\build && $(CMAKE_COMMAND) -E cmake_progress_start E:\assassins\unmatched\build\CMakeFiles E:\assassins\unmatched\build\_deps\ftxui-build\doc\\CMakeFiles\progress.marks
+	cd /d E:\assassins\unmatched\build && $(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 _deps/ftxui-build/doc/all
+	$(CMAKE_COMMAND) -E cmake_progress_start E:\assassins\unmatched\build\CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /d E:\unmatched\build && $(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 _deps/ftxui-build/doc/clean
+	cd /d E:\assassins\unmatched\build && $(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 _deps/ftxui-build/doc/clean
 .PHONY : clean
 
 # The main clean target
@@ -167,17 +167,17 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /d E:\unmatched\build && $(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 _deps/ftxui-build/doc/preinstall
+	cd /d E:\assassins\unmatched\build && $(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 _deps/ftxui-build/doc/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /d E:\unmatched\build && $(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 _deps/ftxui-build/doc/preinstall
+	cd /d E:\assassins\unmatched\build && $(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 _deps/ftxui-build/doc/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /d E:\unmatched\build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles\Makefile.cmake 1
+	cd /d E:\assassins\unmatched\build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles\Makefile.cmake 1
 .PHONY : depend
 
 # Help Target
@@ -205,6 +205,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /d E:\unmatched\build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles\Makefile.cmake 0
+	cd /d E:\assassins\unmatched\build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles\Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

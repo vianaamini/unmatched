@@ -35,7 +35,6 @@ public:
                         bool attacker_won) override;
 };
 
-// Confirm Suspicion (اسم اصلاح شد)
 class card_confirm_suspicion : public sherlock_card_base {
 public:
     card_confirm_suspicion() : sherlock_card_base("Confirm Suspicion", cardtype::scheme, 1) {}
@@ -45,7 +44,6 @@ public:
                         bool attacker_won) override;
 };
 
-// Counter Punch (اسم اصلاح شد)
 class card_counter_punch : public sherlock_card_base {
 public:
     card_counter_punch() : sherlock_card_base("Counter Punch", cardtype::multipurpose, 1) {}
@@ -82,7 +80,6 @@ public:
                         bool attacker_won) override;
 };
 
-// Eliminate the Impossible (اسم اصلاح شد)
 class card_eliminate_impossible : public sherlock_card_base {
 public:
     card_eliminate_impossible() : sherlock_card_base("Eliminate the Impossible", cardtype::scheme, 2) {}
@@ -101,7 +98,6 @@ public:
                         bool attacker_won) override;
 };
 
-// Fixed Point (اسم اصلاح شد)
 class card_fixed_point : public sherlock_card_base {
 public:
     card_fixed_point() : sherlock_card_base("Fixed Point", cardtype::multipurpose, 1) {}

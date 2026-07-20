@@ -6,22 +6,22 @@ cmake_minimum_required(VERSION ${CMAKE_VERSION}) # this file comes with cmake
 # If CMAKE_DISABLE_SOURCE_CHANGES is set to true and the source directory is an
 # existing directory in our source tree, calling file(MAKE_DIRECTORY) on it
 # would cause a fatal error, even though it would be a no-op.
-if(NOT EXISTS "E:/unmatched/build/_deps/ftxui-src")
-  file(MAKE_DIRECTORY "E:/unmatched/build/_deps/ftxui-src")
+if(NOT EXISTS "E:/assassins/unmatched/build/_deps/ftxui-src")
+  file(MAKE_DIRECTORY "E:/assassins/unmatched/build/_deps/ftxui-src")
 endif()
 file(MAKE_DIRECTORY
-  "E:/unmatched/build/_deps/ftxui-build"
-  "E:/unmatched/build/_deps/ftxui-subbuild/ftxui-populate-prefix"
-  "E:/unmatched/build/_deps/ftxui-subbuild/ftxui-populate-prefix/tmp"
-  "E:/unmatched/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp"
-  "E:/unmatched/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src"
-  "E:/unmatched/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp"
+  "E:/assassins/unmatched/build/_deps/ftxui-build"
+  "E:/assassins/unmatched/build/_deps/ftxui-subbuild/ftxui-populate-prefix"
+  "E:/assassins/unmatched/build/_deps/ftxui-subbuild/ftxui-populate-prefix/tmp"
+  "E:/assassins/unmatched/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp"
+  "E:/assassins/unmatched/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src"
+  "E:/assassins/unmatched/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp"
 )
 
 set(configSubDirs )
 foreach(subDir IN LISTS configSubDirs)
-    file(MAKE_DIRECTORY "E:/unmatched/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/${subDir}")
+    file(MAKE_DIRECTORY "E:/assassins/unmatched/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/${subDir}")
 endforeach()
 if(cfgdir)
-  file(MAKE_DIRECTORY "E:/unmatched/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp${cfgdir}") # cfgdir has leading slash
+  file(MAKE_DIRECTORY "E:/assassins/unmatched/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp${cfgdir}") # cfgdir has leading slash
 endif()

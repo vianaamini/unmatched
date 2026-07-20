@@ -1,6 +1,5 @@
 #include "../include/deck-builder.hpp"
 
-// ==================== دک شرلوک ====================
 deck sherlockdeck() {
     deck d;
     
@@ -85,7 +84,6 @@ deck sherlockdeck() {
     return d;
 }
 
-// ==================== دک دراکولا ====================
 deck draculadeck() {
     deck d;
     

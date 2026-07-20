@@ -4,13 +4,11 @@
 #include <vector>
 #include <string>
 #include <utility>
-
 #include "map.hpp"
 #include "movement.hpp"
 #include "turn_manager.hpp"
 #include "deployment.hpp"
 #include "character.hpp"
- 
 
 class GameManager {
 private:
@@ -28,7 +26,7 @@ public:
     void removeCharacter(character* character);
     
     std::vector<std::string> getValidMoves(character* character);
-    bool moveCharacter(character* character, const std::string& targetSpace);  
+    bool moveCharacter(character* character, const std::string& targetSpace);
     
     void startGame();
     void nextTurn();
@@ -45,6 +43,8 @@ public:
     
     std::vector<character*> getAllCharacters() const;
     Board& getBoard() { return board; }
+    const Board& getBoard() const { return board; }
+    TurnManager& getTurnManager() { return turnManager; }
     
 private:
     std::vector<character*> getAllies(character* character) const;

@@ -29,8 +29,9 @@ class card {
 
 
     public:
-    card(string name ,cardtype type,int attack ,int defense ,int boost ,cardowner owner
-    , string effect = "");
+    card(string name = "",cardtype type = cardtype::multipurpose,
+        int attack = 0 ,int defense = 0 ,int boost = 0,
+        cardowner owner = cardowner::any, string effect = "");
 
     string get_name() const;
     cardtype gettype() const;
@@ -39,4 +40,7 @@ class card {
     int getboost() const;
     cardowner getowner() const;
     string geteffect() const;
+
+    void setattack(int value) { attackvalue = value; }
+    void setdefense(int value) { defensevalue = value; }
 };

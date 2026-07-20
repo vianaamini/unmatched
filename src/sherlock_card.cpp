@@ -98,9 +98,9 @@ void card_master_of_disguise::execute_effect(character& attacker, character& def
                                               const card& enemy_card, 
                                               bool is_adjacent, 
                                               bool attacker_won) {
-    std::pair<int, int> tempPos = attacker.getposition(); 
-    attacker.setposition(defender.getx(), defender.gety());
-    defender.setposition(tempPos.first, tempPos.second);
+    int tempPos = attacker.getposition();
+    attacker.setposition(defender.getx());
+    defender.setposition(tempPos);
     defender.takedamage(1);
     std::cout << "Master of Disguise: Swapped positions and dealt 1 damage" << std::endl;
 }

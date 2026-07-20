@@ -3,51 +3,48 @@
 
 Deployment::Deployment(Board* board) : board(board) {}
 
-bool Deployment::isValidPlacement(int x, int y) const {
-    return board->isWalkable(x, y) && !isOccupied(x, y);
+bool Deployment::isValidPlacement(int node) const {
+    string nodeName = "n" + to_string(node);
+    return board->hasSpace(nodeName) && !isOccupied(node);
 }
 
-bool Deployment::isOccupied(int x, int y) const {
-    for (const auto& pos : occupiedSpaces) {
-        if (pos.first == x && pos.second == y) {
-            return true;
-        }
+bool Deployment::isOccupied(int node) const {
+    for (int n : occupiedNodes) {
+        if (n == node) return true;
     }
     return false;
 }
 
-void Deployment::markOccupied(int x, int y) {
-    occupiedSpaces.push_back({x, y});
+void Deployment::markOccupied(int node) {
+    occupiedNodes.push_back(node);
 }
 
 void Deployment::clearOccupied() {
-    occupiedSpaces.clear();
+    occupiedNodes.clear();
 }
 
-bool Deployment::isSameZone(int x1, int y1, int x2, int y2) const {
-    auto zones1 = board->getZonesAt(x1, y1);
-    auto zones2 = board->getZonesAt(x2, y2);
+bool Deployment::isSameZone(int node1, int node2) const {
+    auto zones1 = board->getZonesAt(node1, 0);
+    auto zones2 = board->getZonesAt(node2, 0);
     
     for (const auto& z1 : zones1) {
         for (const auto& z2 : zones2) {
-            if (z1 == z2) {
-                return true;
-            }
+            if (z1 == z2) return true;
         }
     }
     return false;
 }
 
-std::vector<std::pair<int, int>> Deployment::getDeploymentZone(int heroX, int heroY) const {
-    std::vector<std::pair<int, int>> result;
-    auto zones = board->getZonesAt(heroX, heroY);
+std::vector<int> Deployment::getDeploymentZone(int heroNode) const {
+    std::vector<int> result;
+    auto zones = board->getZonesAt(heroNode, 0);
     
     for (const auto& zone : zones) {
         auto spaces = board->getSpacesInZone(zone);
         for (const auto& space : spaces) {
-            if (board->isWalkable(space.first, space.second) && 
-                !isOccupied(space.first, space.second)) {
-                result.push_back(space);
+            int node = space.first;
+            if (!isOccupied(node)) {
+                result.push_back(node);
             }
         }
     }
@@ -55,7 +52,7 @@ std::vector<std::pair<int, int>> Deployment::getDeploymentZone(int heroX, int he
     return result;
 }
 
-Deployment::PlacementResult Deployment::placeHero(character* hero, int x, int y) {
+Deployment::PlacementResult Deployment::placeHero(character* hero, int node) {
     PlacementResult result;
     result.success = false;
     
@@ -64,21 +61,21 @@ Deployment::PlacementResult Deployment::placeHero(character* hero, int x, int y)
         return result;
     }
     
-    if (!isValidPlacement(x, y)) {
+    if (!isValidPlacement(node)) {
         result.message = "Invalid placement position";
         return result;
     }
     
-    hero->setposition(x, y);
-    markOccupied(x, y);
+    hero->setposition(node);
+    markOccupied(node);
     result.success = true;
     result.message = "Hero placed successfully";
-    result.positions.push_back({x, y});
+    result.positions.push_back(node);
     
     return result;
 }
 
-Deployment::PlacementResult Deployment::placeSidekick(character* sidekick, int heroX, int heroY) {
+Deployment::PlacementResult Deployment::placeSidekick(character* sidekick, int heroNode) {
     PlacementResult result;
     result.success = false;
     
@@ -87,17 +84,15 @@ Deployment::PlacementResult Deployment::placeSidekick(character* sidekick, int h
         return result;
     }
     
-    auto zone = getDeploymentZone(heroX, heroY);
+    auto zone = getDeploymentZone(heroNode);
     
-    for (const auto& pos : zone) {
-        if (isValidPlacement(pos.first, pos.second) && 
-            isSameZone(heroX, heroY, pos.first, pos.second)) {
-            
-            sidekick->setposition(pos.first, pos.second);
-            markOccupied(pos.first, pos.second);
+    for (int node : zone) {
+        if (isValidPlacement(node) && isSameZone(heroNode, node)) {
+            sidekick->setposition(node);
+            markOccupied(node);
             result.success = true;
             result.message = "Sidekick placed successfully";
-            result.positions.push_back(pos);
+            result.positions.push_back(node);
             return result;
         }
     }
@@ -109,22 +104,22 @@ Deployment::PlacementResult Deployment::placeSidekick(character* sidekick, int h
 Deployment::PlacementResult Deployment::placeHeroWithSidekicks(
     character* hero,
     std::vector<character*> sidekicks,
-    int heroX, int heroY) {
+    int heroNode) {
     
     clearOccupied();
     PlacementResult result;
     result.success = false;
     
-    auto heroResult = placeHero(hero, heroX, heroY);
+    auto heroResult = placeHero(hero, heroNode);
     if (!heroResult.success) {
         result.message = "Failed to place hero: " + heroResult.message;
         return result;
     }
     
-    result.positions.push_back({heroX, heroY});
+    result.positions.push_back(heroNode);
     
     for (auto sidekick : sidekicks) {
-        auto sidekickResult = placeSidekick(sidekick, heroX, heroY);
+        auto sidekickResult = placeSidekick(sidekick, heroNode);
         if (!sidekickResult.success) {
             result.message = "Failed to place sidekick: " + sidekickResult.message;
             clearOccupied();

@@ -45,14 +45,16 @@ void TurnManager::updateTurnOrder() {
     }
     
     for (const auto& c : team1) {
-        if (isCharacterAlive(c)) {
-            turnOrder.push(c);
+        hero* h = dynamic_cast<hero*>(c);
+        if (h && isCharacterAlive(h)) {
+            turnOrder.push(h);
         }
     }
     
     for (const auto& c : team2) {
-        if (isCharacterAlive(c)) {
-            turnOrder.push(c);
+        hero* h = dynamic_cast<hero*>(c);
+        if (h && isCharacterAlive(h)) {
+            turnOrder.push(h);
         }
     }
 }
@@ -79,6 +81,15 @@ void TurnManager::nextTurn() {
         return;
     }
     
+    while (!turnOrder.empty() && !isCharacterAlive(turnOrder.front())) {
+        turnOrder.pop();
+    }
+    
+    if (turnOrder.empty()) {
+        updateTurnOrder();
+        if (turnOrder.empty()) return;
+    }
+    
     currentCharacter = turnOrder.front();
     turnOrder.pop();
     
@@ -90,9 +101,9 @@ void TurnManager::nextTurn() {
     turnOrder.push(currentCharacter);
     
     turnNumber++;
-    currentPhase = TurnPhase::DRAW;
+    currentPhase = TurnPhase::MANEUVER;
     actionsRemaining = 2;
-    currentAction = ActionType::NONE;
+    currentAction = ActionType::MANEUVER;
     
     if (std::find(team1.begin(), team1.end(), currentCharacter) != team1.end()) {
         currentTeam = 1;
@@ -100,35 +111,37 @@ void TurnManager::nextTurn() {
         currentTeam = 2;
     }
     
+    hero* h = dynamic_cast<hero*>(currentCharacter);
+    if (h) {
+        h->reset_actions();
+    }
+    
     std::cout << "\n=== Turn " << turnNumber << " ===" << std::endl;
     std::cout << currentCharacter->getname() << " (Team " << currentTeam << ")" << std::endl;
     std::cout << "Actions remaining: " << actionsRemaining << std::endl;
+    std::cout << "Phase: MANEUVER" << std::endl;
 }
 
 void TurnManager::nextPhase() {
     switch (currentPhase) {
-        case TurnPhase::DRAW:
-            currentPhase = TurnPhase::MANEUVER;
-            currentAction = ActionType::MANEUVER;
-            std::cout << "Phase: MANEUVER (Draw 1 card + optional move)" << std::endl;
-            break;
         case TurnPhase::MANEUVER:
             currentPhase = TurnPhase::SCHEME;
             currentAction = ActionType::SCHEME;
-            std::cout << "Phase: SCHEME (Play a scheme card)" << std::endl;
+            std::cout << "Phase: SCHEME" << std::endl;
             break;
         case TurnPhase::SCHEME:
             currentPhase = TurnPhase::ATTACK;
             currentAction = ActionType::ATTACK;
-            std::cout << "Phase: ATTACK (Choose attacker and target)" << std::endl;
+            std::cout << "Phase: ATTACK" << std::endl;
             break;
         case TurnPhase::ATTACK:
             currentPhase = TurnPhase::END;
             std::cout << "Phase: END" << std::endl;
             break;
         case TurnPhase::END:
-            currentPhase = TurnPhase::DRAW;
             endTurn();
+            break;
+        default:
             break;
     }
 }
@@ -141,8 +154,15 @@ void TurnManager::endTurn() {
         currentPhase = TurnPhase::MANEUVER;
         currentAction = ActionType::MANEUVER;
     } else {
+        hero* h = dynamic_cast<hero*>(currentCharacter);
+        if (h && h->handsize() > 7) {
+            std::cout << "Discard " << (h->handsize() - 7) << " cards." << std::endl;
+            while (h->handsize() > 7) {
+                h->gethand().pop_back();
+            }
+        }
         currentAction = ActionType::NONE;
-        std::cout << "Turn ended. Discard down to 7 cards." << std::endl;
+        std::cout << "Turn ended." << std::endl;
         nextTurn();
     }
 }
@@ -227,19 +247,22 @@ std::vector<character*> TurnManager::getTeamCharacters(int team) const {
 }
 
 bool TurnManager::isGameOver() const {
-    bool team1HeroDead = true;
-    bool team2HeroDead = true;
+    int aliveTeam1 = 0, aliveTeam2 = 0;
 
     for (const auto& c : team1) {
         hero* h = dynamic_cast<hero*>(c);
-        if (h) team1HeroDead = !isCharacterAlive(h);
+        if (h && h->isalive()) {
+            aliveTeam1++;
+        }
     }
     for (const auto& c : team2) {
         hero* h = dynamic_cast<hero*>(c);
-        if (h) team2HeroDead = !isCharacterAlive(h);
+        if (h && h->isalive()) {
+            aliveTeam2++;
+        }
     }
 
-    return team1HeroDead || team2HeroDead;
+    return aliveTeam1 == 0 || aliveTeam2 == 0;
 }
 
 character* TurnManager::getWinner() const {
@@ -257,10 +280,11 @@ character* TurnManager::getWinner() const {
         if (h) team2Hero = h;
     }
 
-    bool team1HeroDead = team1Hero ? !isCharacterAlive(team1Hero) : true;
-    bool team2HeroDead = team2Hero ? !isCharacterAlive(team2Hero) : true;
+    bool team1HeroDead = team1Hero ? !team1Hero->isalive() : true;
+    bool team2HeroDead = team2Hero ? !team2Hero->isalive() : true;
 
-    if (team1HeroDead && !team2HeroDead) return team2Hero;
-    if (team2HeroDead && !team1HeroDead) return team1Hero;
+    if (team1HeroDead) return team2Hero;
+    if (team2HeroDead) return team1Hero;
+    
     return nullptr;
 }

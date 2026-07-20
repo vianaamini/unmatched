@@ -9,10 +9,10 @@
 class Deployment {
 private:
     Board* board;
-    std::vector<std::pair<int, int>> occupiedSpaces;
+    std::vector<int> occupiedNodes;
     
-    bool isOccupied(int x, int y) const;
-    void markOccupied(int x, int y);
+    bool isOccupied(int node) const;
+    void markOccupied(int node);
     void clearOccupied();
     
 public:
@@ -21,20 +21,20 @@ public:
     struct PlacementResult {
         bool success;
         std::string message;
-        std::vector<std::pair<int, int>> positions;
+        std::vector<int> positions;
     };
     
-    PlacementResult placeHero(character* hero, int x, int y);
-    PlacementResult placeSidekick(character* sidekick, int heroX, int heroY);
+    PlacementResult placeHero(character* hero, int node);
+    PlacementResult placeSidekick(character* sidekick, int heroNode);
     PlacementResult placeHeroWithSidekicks(
         character* hero,
         std::vector<character*> sidekicks,
-        int heroX, int heroY
+        int heroNode
     );
     
-    bool isValidPlacement(int x, int y) const;
-    bool isSameZone(int x1, int y1, int x2, int y2) const;
-    std::vector<std::pair<int, int>> getDeploymentZone(int heroX, int heroY) const;
+    bool isValidPlacement(int node) const;
+    bool isSameZone(int node1, int node2) const;
+    std::vector<int> getDeploymentZone(int heroNode) const;
 };
 
 #endif

@@ -6,7 +6,7 @@ sherlock::sherlock() : hero("Sherlock Holmes", 16, 2) {
     deck sherlockdk = sherlockdeck();
     sherlockdk.shuffle();
 
-    while(!sherlockdk.isempty()) {
+    while (!sherlockdk.isempty()) {
         getdeck().addcard(sherlockdk.drawcard());
     }
 }

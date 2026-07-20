@@ -1,6 +1,6 @@
 #pragma once
-#include<string>
-#include<utility>
+#include <string>
+#include <utility>
 
 using namespace std;
 
@@ -10,8 +10,7 @@ private:
     int health;
     int maxhp;
     int movement;
-    pair<int ,int> position;
-   
+    int nodeId;
 
 public:
     character(string name, int maxhp, int movement);
@@ -19,12 +18,13 @@ public:
     string getname() const;
     int gethealth() const;
     int getmovement() const;
+    int getMaxHp() const { return maxhp; }
 
-    void setposition(int x, int y);
-    pair<int, int> getposition() const;
-    string getPositionString() const;  
-    int getx() const;
-    int gety() const;
+    void setposition(int node);
+    int getposition() const;
+    string getPositionString() const;
+    int getx() const { return nodeId; }
+    int gety() const { return 0; }
 
     void takedamage(int amount);
     void heal(int amount);

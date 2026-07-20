@@ -1,11 +1,12 @@
 #include "../include/game.hpp"
 #include "../include/deracula_cards.hpp"
 #include "../include/sherlock_card.hpp"
+#include "../include/hero.hpp"  // اضافه کردن این خط
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
 
-Game::Game() : curturn(0), action(2), gameover(false) {
+Game::Game(GameManager* gm) : curturn(0), action(2), gameover(false), gameManager(gm) {
     srand(time(nullptr));
     
     player1 = new sherlock();
@@ -93,8 +94,15 @@ void Game::resolve(hero& attacker, card& atkcard, hero& defender, card& defendCa
     int attackValue = atkcard.getattack();
     int defenseValue = defendCard.getdefense();
     
-    Board board; // ایجاد Board برای استفاده در کارت‌ها
-    bool isAdjacent = dcards::are_adjacent(attacker, defender);
+    // استفاده از Board از GameManager
+    Board* board = gameManager ? &gameManager->getBoard() : nullptr;
+    if (!board) {
+        // اگر GameManager نداشتیم، یک Board موقت
+        static Board tempBoard;
+        board = &tempBoard;
+    }
+    
+    bool isAdjacent = board->isAdjacent(attacker.getx(), defender.getx());
     
     // کارت‌های شرلوک
     if (atkcard.get_name() == "Counter Punch") {
@@ -130,7 +138,7 @@ void Game::resolve(hero& attacker, card& atkcard, hero& defender, card& defendCa
         atkcard.get_name() == "Dash" ||
         atkcard.get_name() == "Thirst for Sustenance" ||
         atkcard.get_name() == "Exploit") {
-        dcards::resolve_combat_effects(atkcard, attacker, defendCard, defender, allSisters, board);
+        dcards::resolve_combat_effects(atkcard, attacker, defendCard, defender, allSisters, *board);
     }
     
     int damage = attackValue - defenseValue;
@@ -148,7 +156,7 @@ void Game::resolve(hero& attacker, card& atkcard, hero& defender, card& defendCa
         for (int i = 0; i < 3; i++) {
             allSisters2.push_back(sisters[i]);
         }
-        dcards::resolve_scheme(atkcard, attacker, defender, enemyList, allSisters2, board);
+        dcards::resolve_scheme(atkcard, attacker, defender, enemyList, allSisters2, *board);
     }
     
     checkWinCondition();
@@ -168,14 +176,14 @@ void Game::checkWinCondition() {
 void Game::printGameState() const {
     std::cout << "\n=== Game State ===" << std::endl;
     std::cout << "Sherlock: HP " << player1->gethealth() 
-              << " at (" << player1->getx() << ", " << player1->gety() << ")" << std::endl;
+              << " at n" << player1->getx() << std::endl;
     std::cout << "Watson: HP " << watsonChar->gethealth() 
-              << " at (" << watsonChar->getx() << ", " << watsonChar->gety() << ")" << std::endl;
+              << " at n" << watsonChar->getx() << std::endl;
     std::cout << "Dracula: HP " << player2->gethealth() 
-              << " at (" << player2->getx() << ", " << player2->gety() << ")" << std::endl;
+              << " at n" << player2->getx() << std::endl;
     for (int i = 0; i < 3; i++) {
         std::cout << "Sister " << i+1 << ": HP " << sisters[i]->gethealth()
-                  << " at (" << sisters[i]->getx() << ", " << sisters[i]->gety() << ")" << std::endl;
+                  << " at n" << sisters[i]->getx() << std::endl;
     }
     std::cout << "Actions remaining: " << action << std::endl;
     std::cout << "Turn: " << (curturn == 0 ? "Sherlock" : "Dracula") << std::endl;

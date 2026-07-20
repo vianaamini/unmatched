@@ -3,6 +3,7 @@
 #include "dracula.hpp"
 #include "watson.hpp"
 #include "sister.hpp"
+#include "game_manager.hpp"
 #include <vector>
 
 class Game {
@@ -16,9 +17,10 @@ private:
     int action;
     bool gameover;
     std::vector<character*> enemy;
+    GameManager* gameManager;
 
 public:
-    Game();
+    Game(GameManager* gm = nullptr);
     ~Game();
 
     void startGame();

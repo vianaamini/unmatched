@@ -4,8 +4,7 @@
 #include <vector>
 #include <string>
 #include <utility>
-
-#include "character.hpp"   
+#include "character.hpp"
 #include "map.hpp"
 #include "turn_manager.hpp"
 #include "card.hpp"
@@ -14,15 +13,22 @@ class Movement {
 private:
     const Board* board;
     
-    bool canMoveThrough(const std::string& from, const std::string& to,
+    bool canMoveThrough(int from, int to,
                         const std::vector<character*>& alliesList,
-                        const std::vector<character*>& enemiesList) const;
+                        const std::vector<character*>& enemiesList,
+                        character* currentChar) const;
     
-    bool isPositionOccupiedByEnemy(const std::string& space,
+    bool isPositionOccupiedByEnemy(int node,
                                    const std::vector<character*>& enemiesList) const;
     
-    bool isPositionOccupiedByAlly(const std::string& space,
-                                  const std::vector<character*>& alliesList) const;
+    bool isPositionOccupiedByAlly(int node,
+                                  const std::vector<character*>& alliesList,
+                                  character* currentChar) const;
+    
+    bool isPositionOccupied(int node,
+                            const std::vector<character*>& alliesList,
+                            const std::vector<character*>& enemiesList,
+                            character* currentChar) const;
 
 public:
     Movement(const Board* board);

@@ -1,10 +1,8 @@
 #include "../include/dracula.hpp"
 #include "../include/deck-builder.hpp"
-#include "../include/hero.hpp"
-#include "../include/card.hpp"
 #include <iostream>
 
-dracula::dracula() : hero("Dracula", 13 , 2) {
+dracula::dracula() : hero("Dracula", 13, 2) {
     deck draculadk = draculadeck();
     draculadk.shuffle();
     
@@ -14,5 +12,5 @@ dracula::dracula() : hero("Dracula", 13 , 2) {
 }
 
 void dracula::useability() {
-    std::cout << "dracula ability activated" << std::endl;
+    std::cout << "Dracula ability activated" << std::endl;
 }

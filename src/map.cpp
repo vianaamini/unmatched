@@ -3,7 +3,7 @@
 #include <cmath>
 
 Board::Board(int width, int height) : width(width), height(height) {
-   addSpace("n1", 16, 3, {NodeColor::RED});
+    addSpace("n1", 16, 3, {NodeColor::RED});
     addSpace("n2", 24, 3, {NodeColor::NONE});
     addSpace("n3", 32, 3, {NodeColor::NONE});
     addSpace("n4", 8,  5, {NodeColor::NONE});
@@ -27,13 +27,19 @@ Board::Board(int width, int height) : width(width), height(height) {
 
     addEdge("n1", "n2"); addEdge("n2", "n3"); addEdge("n1", "n4");
     addEdge("n3", "n8"); addEdge("n4", "n9"); addEdge("n9", "n14");
-    addEdge("n9", "n10");addEdge("n10", "n11"); addEdge("n11", "n12"); 
-    addEdge("n12", "n13");addEdge("n14", "n19"); addEdge("n13", "n18");
-    addEdge("n19", "n20"); addEdge("n20", "n21");addEdge("n1", "n5"); 
-    addEdge("n2", "n6"); addEdge("n5", "n11");addEdge("n6", "n11"); 
-    addEdge("n7", "n11");addEdge("n11", "n15");addEdge("n11", "n16"); 
-    addEdge("n11", "n17"); addEdge("n15", "n19");addEdge("n16", "n20");addEdge("n18", "n21"); 
+    addEdge("n9", "n10"); addEdge("n10", "n11"); addEdge("n11", "n12"); 
+    addEdge("n12", "n13"); addEdge("n14", "n19"); addEdge("n13", "n18");
+    addEdge("n19", "n20"); addEdge("n20", "n21"); addEdge("n1", "n5"); 
+    addEdge("n2", "n6"); addEdge("n5", "n11"); addEdge("n6", "n11"); 
+    addEdge("n7", "n11"); addEdge("n11", "n15"); addEdge("n11", "n16"); 
+    addEdge("n11", "n17"); addEdge("n15", "n19"); addEdge("n16", "n20");
+    addEdge("n17", "n21"); addEdge("n18", "n21");
+    addEdge("n10", "n14"); addEdge("n12", "n17");
+    addEdge("n3", "n7"); addEdge("n4", "n5");
+    addEdge("n5", "n6"); addEdge("n6", "n7");
+    addEdge("n7", "n8");
     
+    // تلپورت‌ها (گذرگاه‌های مخفی)
     addTeleport("n1", "n32");
     addTeleport("n10", "n22");
     addTeleport("n16", "n6");
@@ -60,6 +66,21 @@ bool Board::isConnected(const string& spaceA, const string& spaceB) const {
         return find(it->second.begin(), it->second.end(), spaceB) != it->second.end();
     }
     return false;
+}
+
+bool Board::isAdjacent(int node1, int node2) const {
+    string n1 = "n" + to_string(node1);
+    string n2 = "n" + to_string(node2);
+    return isConnected(n1, n2);
+}
+
+vector<int> Board::getNeighborIds(int node) const {
+    string name = "n" + to_string(node);
+    vector<int> result;
+    for (const auto& neighbor : getNeighbors(name)) {
+        result.push_back(stoi(neighbor.substr(1)));
+    }
+    return result;
 }
 
 vector<string> Board::getNeighbors(const string& spaceName) const {
@@ -125,22 +146,6 @@ void Board::setObstacle(int x, int y, bool hasObstacle) {
     } else {
         obstacleSpaces.erase(name);
     }
-}
-
-bool Board::isAdjacent(int x1, int y1, int x2, int y2) const {
-    string name1 = "n" + to_string(x1);
-    string name2 = "n" + to_string(x2);
-    return isConnected(name1, name2);
-}
-
-vector<pair<int, int>> Board::getAdjacentSpaces(int x, int y) const {
-    string name = "n" + to_string(x);
-    vector<pair<int, int>> result;
-    for (const auto& neighbor : getNeighbors(name)) {
-        int id = stoi(neighbor.substr(1));
-        result.push_back({id, 0});
-    }
-    return result;
 }
 
 vector<pair<int, int>> Board::getAllSpaces() const {
@@ -240,7 +245,6 @@ NodeColor Board::getNodeColorByName(const string& nodeName) const {
     for (const auto& pair : zoneMap) {
         NodeColor color = pair.first;
         const vector<string>& spaces = pair.second;
-
         if (find(spaces.begin(), spaces.end(), nodeName) != spaces.end()) {
             return color;
         }

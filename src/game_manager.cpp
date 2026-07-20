@@ -1,4 +1,5 @@
 #include "../include/game_manager.hpp"
+#include "../include/hero.hpp"
 #include <algorithm>
 #include <iostream>
 
@@ -95,15 +96,47 @@ std::vector<std::string> GameManager::getValidMoves(character* c) {
 bool GameManager::moveCharacter(character* c, const std::string& targetSpace) {
     if (!c) return false;
     
-    auto moves = getValidMoves(c);
-    for (const auto& move : moves) {
-        if (move == targetSpace) {
-            int nodeId = board.getNodeId(targetSpace);
-            c->setposition(nodeId, 0);
-            return true;
+    if (turnManager.getCurrentCharacter() != c) {
+        std::cout << "Not your turn!" << std::endl;
+        return false;
+    }
+    
+    hero* h = dynamic_cast<hero*>(c);
+    if (!h || !h->canact()) {
+        std::cout << "No actions remaining!" << std::endl;
+        return false;
+    }
+    
+    int targetNode = board.getNodeId(targetSpace);
+    if (!board.hasSpace(targetSpace)) {
+        std::cout << "Invalid node!" << std::endl;
+        return false;
+    }
+    
+    for (character* other : allCharacters) {
+        if (other != c && other->isalive() && other->getx() == targetNode) {
+            std::cout << "Node " << targetSpace << " is occupied!" << std::endl;
+            return false;
         }
     }
-    return false;
+    
+    int startNode = c->getx();
+    string startName = "n" + to_string(startNode);
+    
+    bool isConnected = board.isConnected(startName, targetSpace);
+    bool isTeleport = board.isTeleport(startName) && 
+                      board.getTeleportDestination(startName) == targetSpace;
+    
+    if (!isConnected && !isTeleport) {
+        std::cout << "Cannot move to " << targetSpace << " (not adjacent)" << std::endl;
+        return false;
+    }
+    
+    h->setposition(targetNode);
+    h->drawcard();
+    h->useAction();
+    turnManager.endTurn();
+    return true;
 }
 
 void GameManager::startGame() {

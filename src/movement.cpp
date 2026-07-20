@@ -3,51 +3,61 @@
 #include <unordered_set>
 #include <functional>
 #include <algorithm>
+#include <iostream>
 
 Movement::Movement(const Board* board) : board(board) {}
 
-bool Movement::isPositionOccupiedByEnemy(const std::string& space,
+bool Movement::isPositionOccupiedByEnemy(int node,
                                          const std::vector<character*>& enemiesList) const {
     for (const auto& enemy : enemiesList) {
-        if (!enemy) continue;
-        if (enemy->getPositionString() == space) {
+        if (!enemy || !enemy->isalive()) continue;
+        if (enemy->getx() == node) {
             return true;
         }
     }
     return false;
 }
 
-bool Movement::isPositionOccupiedByAlly(const std::string& space,
-                                        const std::vector<character*>& alliesList) const {
+bool Movement::isPositionOccupiedByAlly(int node,
+                                        const std::vector<character*>& alliesList,
+                                        character* currentChar) const {
     for (const auto& ally : alliesList) {
-        if (!ally) continue;
-        if (ally->getPositionString() == space) {
+        if (!ally || ally == currentChar || !ally->isalive()) continue;
+        if (ally->getx() == node) {
             return true;
         }
     }
     return false;
 }
 
-bool Movement::canMoveThrough(const std::string& from, const std::string& to,
+bool Movement::isPositionOccupied(int node,
+                                  const std::vector<character*>& alliesList,
+                                  const std::vector<character*>& enemiesList,
+                                  character* currentChar) const {
+    return isPositionOccupiedByEnemy(node, enemiesList) ||
+           isPositionOccupiedByAlly(node, alliesList, currentChar);
+}
+
+bool Movement::canMoveThrough(int from, int to,
                               const std::vector<character*>& alliesList,
-                              const std::vector<character*>& enemiesList) const {
-    if (!board->hasSpace(to)) return false;
+                              const std::vector<character*>& enemiesList,
+                              character* currentChar) const {
+    if (!board->hasSpace("n" + to_string(to))) return false;
+    if (isPositionOccupied(to, alliesList, enemiesList, currentChar)) return false;
     
-    if (isPositionOccupiedByEnemy(to, enemiesList)) return false;
+    string fromName = "n" + to_string(from);
+    string toName = "n" + to_string(to);
     
-    if (from != to) {
-        if (!board->isConnected(from, to) && 
-            !(board->isTeleport(from) && board->getTeleportDestination(from) == to)) {
-            return false;
-        }
+    if (board->isConnected(fromName, toName)) return true;
+    if (board->isTeleport(fromName) && board->getTeleportDestination(fromName) == toName) {
+        return true;
     }
-    
-    return true;
+    return false;
 }
 
 int Movement::getBaseMovement(const character* c) const {
     if (!c) return 0;
-    return c->getmovement();  
+    return c->getmovement();
 }
 
 std::vector<std::string> Movement::getPossibleMoves(
@@ -58,39 +68,38 @@ std::vector<std::string> Movement::getPossibleMoves(
     
     if (!c || steps <= 0) return {};
     
-    std::string start = c->getPositionString();
-    if (!board->hasSpace(start)) return {};
+    int startNode = c->getx();
+    if (!board->hasSpace("n" + to_string(startNode))) return {};
     
     std::vector<std::string> validMoves;
-    std::queue<std::string> queue;
-    std::unordered_set<std::string> visited;
+    std::queue<int> q;
+    std::unordered_set<int> visited;
     
-    queue.push(start);
-    visited.insert(start);
+    q.push(startNode);
+    visited.insert(startNode);
     
     for (int step = 0; step < steps; ++step) {
-        int levelSize = queue.size();
+        int levelSize = q.size();
         for (int i = 0; i < levelSize; ++i) {
-            std::string current = queue.front();
-            queue.pop();
+            int current = q.front();
+            q.pop();
             
-            auto neighbors = board->getNeighbors(current);
+            auto neighbors = board->getNeighborIds(current);
             
-            if (board->isTeleport(current)) {
-                std::string dest = board->getTeleportDestination(current);
-                if (!dest.empty() && dest != current) {
-                    neighbors.push_back(dest);
+            string currentName = "n" + to_string(current);
+            if (board->isTeleport(currentName)) {
+                string dest = board->getTeleportDestination(currentName);
+                int destId = board->getNodeId(dest);
+                if (destId != current && visited.find(destId) == visited.end()) {
+                    neighbors.push_back(destId);
                 }
             }
             
-            for (const auto& neighbor : neighbors) {
+            for (int neighbor : neighbors) {
                 if (visited.find(neighbor) != visited.end()) continue;
-                
-                if (canMoveThrough(current, neighbor, alliesList, enemiesList)) {
-                    if (!isPositionOccupiedByAlly(neighbor, alliesList)) {
-                        validMoves.push_back(neighbor);
-                    }
-                    queue.push(neighbor);
+                if (canMoveThrough(current, neighbor, alliesList, enemiesList, c)) {
+                    validMoves.push_back("n" + to_string(neighbor));
+                    q.push(neighbor);
                     visited.insert(neighbor);
                 }
             }
@@ -106,54 +115,45 @@ bool Movement::canReach(const std::string& start,
                         const std::vector<character*>& alliesList,
                         const std::vector<character*>& enemiesList) const {
     
-    if (!board->hasSpace(start) || !board->hasSpace(target)) {
-        return false;
-    }
+    if (!board->hasSpace(start) || !board->hasSpace(target)) return false;
     
-    std::queue<std::string> queue;
-    std::unordered_set<std::string> visited;
+    int startNode = board->getNodeId(start);
+    int targetNode = board->getNodeId(target);
     
-    queue.push(start);
-    visited.insert(start);
+    std::queue<int> q;
+    std::unordered_set<int> visited;
+    
+    q.push(startNode);
+    visited.insert(startNode);
     
     for (int step = 0; step < steps; ++step) {
-        int levelSize = queue.size();
+        int levelSize = q.size();
         for (int i = 0; i < levelSize; ++i) {
-            std::string current = queue.front();
-            queue.pop();
+            int current = q.front();
+            q.pop();
             
-            if (current == target) {
-                return true;
-            }
+            if (current == targetNode) return true;
             
-            auto neighbors = board->getNeighbors(current);
+            auto neighbors = board->getNeighborIds(current);
             
-            if (board->isTeleport(current)) {
-                std::string dest = board->getTeleportDestination(current);
-                if (!dest.empty() && dest != current) {
-                    neighbors.push_back(dest);
+            string currentName = "n" + to_string(current);
+            if (board->isTeleport(currentName)) {
+                string dest = board->getTeleportDestination(currentName);
+                int destId = board->getNodeId(dest);
+                if (destId != current && visited.find(destId) == visited.end()) {
+                    neighbors.push_back(destId);
                 }
             }
             
-            for (const auto& neighbor : neighbors) {
+            for (int neighbor : neighbors) {
                 if (visited.find(neighbor) != visited.end()) continue;
-                
-                if (canMoveThrough(current, neighbor, alliesList, enemiesList)) {
-                    queue.push(neighbor);
+                if (!isPositionOccupied(neighbor, alliesList, enemiesList, nullptr)) {
+                    q.push(neighbor);
                     visited.insert(neighbor);
                 }
             }
         }
     }
-    
-    while (!queue.empty()) {
-        std::string pos = queue.front();
-        queue.pop();
-        if (pos == target) {
-            return true;
-        }
-    }
-    
     return false;
 }
 
@@ -165,32 +165,37 @@ std::vector<std::vector<std::string>> Movement::findPaths(
     const std::vector<character*>& enemiesList) const {
     
     std::vector<std::vector<std::string>> result;
-    if (!board->hasSpace(start) || !board->hasSpace(target)) {
-        return result;
-    }
+    if (!board->hasSpace(start) || !board->hasSpace(target)) return result;
     
-    std::function<void(std::string, int, std::vector<std::string>&)> dfs =
-        [&](std::string current, int steps, std::vector<std::string>& path) {
-            if (current == target) {
-                result.push_back(path);
+    int startNode = board->getNodeId(start);
+    int targetNode = board->getNodeId(target);
+    
+    std::function<void(int, int, std::vector<int>&)> dfs =
+        [&](int current, int steps, std::vector<int>& path) {
+            if (current == targetNode) {
+                std::vector<std::string> stringPath;
+                for (int node : path) {
+                    stringPath.push_back("n" + to_string(node));
+                }
+                result.push_back(stringPath);
                 return;
             }
-            
             if (steps >= maxSteps) return;
             
-            auto neighbors = board->getNeighbors(current);
+            auto neighbors = board->getNeighborIds(current);
             
-            if (board->isTeleport(current)) {
-                std::string dest = board->getTeleportDestination(current);
-                if (!dest.empty() && dest != current) {
-                    neighbors.push_back(dest);
+            string currentName = "n" + to_string(current);
+            if (board->isTeleport(currentName)) {
+                string dest = board->getTeleportDestination(currentName);
+                int destId = board->getNodeId(dest);
+                if (destId != current) {
+                    neighbors.push_back(destId);
                 }
             }
             
-            for (const auto& neighbor : neighbors) {
+            for (int neighbor : neighbors) {
                 if (std::find(path.begin(), path.end(), neighbor) != path.end()) continue;
-                
-                if (canMoveThrough(current, neighbor, alliesList, enemiesList)) {
+                if (!isPositionOccupied(neighbor, alliesList, enemiesList, nullptr)) {
                     path.push_back(neighbor);
                     dfs(neighbor, steps + 1, path);
                     path.pop_back();
@@ -198,17 +203,12 @@ std::vector<std::vector<std::string>> Movement::findPaths(
             }
         };
     
-    std::vector<std::string> path = {start};
-    dfs(start, 0, path);
-    
+    std::vector<int> path = {startNode};
+    dfs(startNode, 0, path);
     return result;
 }
 
 void Movement::boost(character* c, const card* playedCard, ActionType currentAction) const {
-    if (!c || !playedCard || currentAction != ActionType::MANEUVER) {
-        return;
-    }
-    if (currentAction == ActionType::MANEUVER) {
-        c->setnewmovement(c->getmovement() + playedCard->getboost());
-    }
+    if (!c || !playedCard || currentAction != ActionType::MANEUVER) return;
+    c->setnewmovement(c->getmovement() + playedCard->getboost());
 }

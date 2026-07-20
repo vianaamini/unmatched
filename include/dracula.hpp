@@ -2,8 +2,7 @@
 #include "hero.hpp"
 
 class dracula : public hero {
-    public:
+public:
     dracula();
-
     void useability() override;
 };
