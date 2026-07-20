@@ -1,5 +1,7 @@
 #include "../include/deployment.hpp"
 #include <iostream>
+#include <queue>
+#include <unordered_set>
 
 Deployment::Deployment(Board* board) : board(board) {}
 
@@ -37,18 +39,30 @@ bool Deployment::isSameZone(int node1, int node2) const {
 
 std::vector<int> Deployment::getDeploymentZone(int heroNode) const {
     std::vector<int> result;
-    auto zones = board->getZonesAt(heroNode, 0);
-    
-    for (const auto& zone : zones) {
-        auto spaces = board->getSpacesInZone(zone);
-        for (const auto& space : spaces) {
-            int node = space.first;
-            if (!isOccupied(node)) {
-                result.push_back(node);
+    std::queue<int> q;
+    std::unordered_set<int> visited;
+
+    q.push(heroNode);
+    visited.insert(heroNode);
+
+    while (!q.empty()) {
+        int current = q.front();
+        q.pop();
+
+        for (int neighbor : board->getNeighborIds(current)) {
+            if (visited.count(neighbor)) continue;
+            visited.insert(neighbor);
+
+            string name = "n" + to_string(neighbor);
+            if (!board->hasSpace(name)) continue;
+
+            if (!isOccupied(neighbor)) {
+                result.push_back(neighbor);
             }
+            q.push(neighbor);
         }
     }
-    
+
     return result;
 }
 
@@ -87,7 +101,7 @@ Deployment::PlacementResult Deployment::placeSidekick(character* sidekick, int h
     auto zone = getDeploymentZone(heroNode);
     
     for (int node : zone) {
-        if (isValidPlacement(node) && isSameZone(heroNode, node)) {
+        if (isValidPlacement(node)) {
             sidekick->setposition(node);
             markOccupied(node);
             result.success = true;
@@ -97,7 +111,7 @@ Deployment::PlacementResult Deployment::placeSidekick(character* sidekick, int h
         }
     }
     
-    result.message = "No valid position for sidekick in hero's zone";
+    result.message = "No valid position for sidekick near hero";
     return result;
 }
 
@@ -106,9 +120,11 @@ Deployment::PlacementResult Deployment::placeHeroWithSidekicks(
     std::vector<character*> sidekicks,
     int heroNode) {
     
-    clearOccupied();
+    // Keep occupiedNodes across teams so later placements cannot stack
+    // on earlier characters (e.g. Sister 3 on Sherlock's n4).
     PlacementResult result;
     result.success = false;
+    const size_t occupiedBefore = occupiedNodes.size();
     
     auto heroResult = placeHero(hero, heroNode);
     if (!heroResult.success) {
@@ -121,8 +137,8 @@ Deployment::PlacementResult Deployment::placeHeroWithSidekicks(
     for (auto sidekick : sidekicks) {
         auto sidekickResult = placeSidekick(sidekick, heroNode);
         if (!sidekickResult.success) {
+            occupiedNodes.resize(occupiedBefore);
             result.message = "Failed to place sidekick: " + sidekickResult.message;
-            clearOccupied();
             return result;
         }
         result.positions.push_back(sidekickResult.positions[0]);

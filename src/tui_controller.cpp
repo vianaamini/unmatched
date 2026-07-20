@@ -75,13 +75,13 @@ void TuiController::setupCharacters() {
     
     vector<character*> sherlockSidekicks;
     sherlockSidekicks.push_back(watsonChar);
-    deployment.placeHeroWithSidekicks(sherlockChar, sherlockSidekicks, 4);
+    auto sherlockResult = deployment.placeHeroWithSidekicks(sherlockChar, sherlockSidekicks, 4);
     
     vector<character*> draculaSidekicks;
     draculaSidekicks.push_back(sister1);
     draculaSidekicks.push_back(sister2);
     draculaSidekicks.push_back(sister3);
-    deployment.placeHeroWithSidekicks(draculaChar, draculaSidekicks, 18);
+    auto draculaResult = deployment.placeHeroWithSidekicks(draculaChar, draculaSidekicks, 18);
 
     gamemanager.addCharacter(sherlockChar, 1);
     gamemanager.addCharacter(watsonChar, 1);
@@ -94,8 +94,20 @@ void TuiController::setupCharacters() {
     draculaChar->drawhand();
 
     gamelogs.push_back("Characters deployed successfully.");
-    gamelogs.push_back("Sherlock at n4, Watson at n5");
-    gamelogs.push_back("Dracula at n18, Sisters at n19, n20, n21");
+    if (sherlockResult.success) {
+        gamelogs.push_back("Sherlock at n" + to_string(sherlockChar->getposition()) +
+                           ", Watson at n" + to_string(watsonChar->getposition()));
+    } else {
+        gamelogs.push_back("Sherlock team deploy failed: " + sherlockResult.message);
+    }
+    if (draculaResult.success) {
+        gamelogs.push_back("Dracula at n" + to_string(draculaChar->getposition()) +
+                           ", Sisters at n" + to_string(sister1->getposition()) +
+                           ", n" + to_string(sister2->getposition()) +
+                           ", n" + to_string(sister3->getposition()));
+    } else {
+        gamelogs.push_back("Dracula team deploy failed: " + draculaResult.message);
+    }
 }
 
 Element TuiController::createDynamicNode(const std::string& nodename, 
