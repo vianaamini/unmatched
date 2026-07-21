@@ -22,7 +22,6 @@ private:
     int choice;
     bool gameStarted = false;
     
-    // توابع نقشه
     ftxui::Element createDynamicNode(const std::string& nodename, 
                                      const std::string& dracPos, 
                                      const std::string& sherlockPos, 
@@ -32,7 +31,6 @@ private:
                                      const std::string& s3Pos);
     ftxui::Element drawExactGraphMap();
     
-    // توابع جدید
     ftxui::Element createHealthBar(int current, int max);
     ftxui::Element createCardDisplay(const card& c, const std::string& type, 
                                      const std::string& range, const std::string& effect, int index);
@@ -44,7 +42,6 @@ private:
     ftxui::Element createLegend();
     ftxui::Element createStatusDashboard();
     
-    // ========== اضافه کردن این خط ==========
     ftxui::Element createActionMenu();
     
     void processCommand(const std::string& cmd);
