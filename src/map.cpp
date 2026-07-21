@@ -24,6 +24,9 @@ Board::Board(int width, int height) : width(width), height(height) {
     addSpace("n19", 16, 11, {NodeColor::NONE});
     addSpace("n20", 24, 11, {NodeColor::NONE});
     addSpace("n21", 32, 11, {NodeColor::NONE});
+    addSpace("n22", 35, 7, {NodeColor::NONE});
+    addSpace("n6", 28, 5, {NodeColor::NONE});
+    addSpace("n21", 50, 7, {NodeColor::NONE});
 
     addEdge("n1", "n2"); addEdge("n2", "n3"); addEdge("n1", "n4");
     addEdge("n3", "n8"); addEdge("n4", "n9"); addEdge("n9", "n14");
@@ -37,11 +40,12 @@ Board::Board(int width, int height) : width(width), height(height) {
     addEdge("n10", "n14"); addEdge("n12", "n17");
     addEdge("n3", "n7"); addEdge("n4", "n5");
     addEdge("n5", "n6"); addEdge("n6", "n7");
-    addEdge("n7", "n8");
+    addEdge("n7", "n8");addEdge("n18", "n10");
+    addEdge("n6", "n16");
+    addEdge("n212", "n1");
     
-    // تلپورت‌ها (گذرگاه‌های مخفی)
-    addTeleport("n1", "n32");
-    addTeleport("n10", "n22");
+    addTeleport("n1", "n21");
+    addTeleport("n10", "n18");
     addTeleport("n16", "n6");
 }
 

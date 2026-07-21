@@ -120,11 +120,9 @@ Deployment::PlacementResult Deployment::placeHeroWithSidekicks(
     std::vector<character*> sidekicks,
     int heroNode) {
     
-    // Keep occupiedNodes across teams so later placements cannot stack
-    // on earlier characters (e.g. Sister 3 on Sherlock's n4).
     PlacementResult result;
     result.success = false;
-    const size_t occupiedBefore = occupiedNodes.size();
+    size_t occupiedBefore = occupiedNodes.size();
     
     auto heroResult = placeHero(hero, heroNode);
     if (!heroResult.success) {

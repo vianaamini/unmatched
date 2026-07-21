@@ -9,7 +9,7 @@ include(FetchContent)
 FetchContent_Declare(
   ftxui
   GIT_REPOSITORY https://github.com/ArthurSonzogni/FTXUI.git
-  GIT_TAG v7.0.0
+  GIT_TAG v3.0.0
 )
 
 FetchContent_MakeAvailable(ftxui)
@@ -39,4 +39,8 @@ add_executable(unmatched
 
 target_include_directories(unmatched PRIVATE include)
 
-target_link_libraries(unmatched PRIVATE ftxui::ftxui)
+target_link_libraries(unmatched PRIVATE 
+    ftxui::screen
+    ftxui::dom
+    ftxui::component
+)
