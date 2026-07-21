@@ -96,22 +96,35 @@ std::vector<std::string> GameManager::getValidMoves(character* c) {
 bool GameManager::moveCharacter(character* c, const std::string& targetSpace) {
     if (!c) return false;
     
-    if (turnManager.getCurrentCharacter() != c) {
-        std::cout << "Not your turn!" << std::endl;
+    character* activeChar = turnManager.getCurrentCharacter();
+    if (!activeChar) return false;
+
+    int activeTeam = turnManager.getCurrentTeam();
+    bool isSameTeam = false;
+    const auto& currentTeamChars = turnManager.getTeamCharacters(activeTeam);
+    for (character* teamMember : currentTeamChars) {
+        if (teamMember == c) {
+            isSameTeam = true;
+            break;
+        }
+    }
+
+    if (!isSameTeam) {
+        std::cout << "Not your team's turn!" << std::endl;
         return false;
     }
     
-    hero* h = dynamic_cast<hero*>(c);
+    hero* h = dynamic_cast<hero*>(activeChar);
     if (!h || !h->canact()) {
         std::cout << "No actions remaining!" << std::endl;
         return false;
     }
     
-    int targetNode = board.getNodeId(targetSpace);
     if (!board.hasSpace(targetSpace)) {
         std::cout << "Invalid node!" << std::endl;
         return false;
     }
+    int targetNode = board.getNodeId(targetSpace);
     
     for (character* other : allCharacters) {
         if (other != c && other->isalive() && other->getx() == targetNode) {
@@ -121,7 +134,7 @@ bool GameManager::moveCharacter(character* c, const std::string& targetSpace) {
     }
     
     int startNode = c->getx();
-    string startName = "n" + to_string(startNode);
+    std::string startName = "n" + std::to_string(startNode);
     
     bool isConnected = board.isConnected(startName, targetSpace);
     bool isTeleport = board.isTeleport(startName) && 
@@ -132,7 +145,8 @@ bool GameManager::moveCharacter(character* c, const std::string& targetSpace) {
         return false;
     }
     
-    h->setposition(targetNode);
+    c->setposition(targetNode);
+    
     h->drawcard();
     h->useAction();
     turnManager.endTurn();
