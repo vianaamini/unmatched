@@ -1,0 +1,12 @@
+{
+	"InstallScripts" : 
+	[
+		"E:/assassins/unmatched/build/cmake_install.cmake",
+		"E:/assassins/unmatched/build/_deps/ftxui-build/cmake_install.cmake",
+		"E:/assassins/unmatched/build/_deps/ftxui-build/examples/cmake_install.cmake",
+		"E:/assassins/unmatched/build/_deps/ftxui-build/examples/component/cmake_install.cmake",
+		"E:/assassins/unmatched/build/_deps/ftxui-build/examples/dom/cmake_install.cmake",
+		"E:/assassins/unmatched/build/_deps/ftxui-build/doc/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

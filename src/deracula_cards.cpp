@@ -7,7 +7,8 @@
 
 bool dcards::are_adjacent(const character& a, const character& b) {
     int dx = abs(a.getx() - b.getx());
-    return dx <= 1 && dx != 0;
+    int dy = abs(a.gety() - b.gety());
+    return (dx <= 1 && dy <= 1) && !(dx == 0 && dy == 0);
 }
 
 void dcards::resolve_scheme(const card& played_card, hero& dracula, hero& opponent, 
