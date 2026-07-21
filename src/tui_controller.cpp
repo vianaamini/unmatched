@@ -17,51 +17,56 @@ TuiController::TuiController() {
     gamelogs.push_back("System: TUI initialized");
     gamelogs.push_back("System: Ready for Unmatched game");
 
-    int age1, age2;
+    
     std::cout << "=== Choosing who picks their fighter first ===" << std::endl;
-    std::cout << "Enter age of Player 1: ";
+    std::cout << "Enter age of Player 1 (between 12 and 70): ";
     std::cin >> age1;
-    std::cout << "Enter age of Player 2: ";
+    while (age1 < 12 || age1 > 70) {
+        std::cout << "Invalid age! Age must be between 12 and 70.\n" << "Enter age of Player 1 again: ";
+        std::cin >> age1;
+    }
+    
+    std::cout << "Enter age of Player 2 (between 12 and 70): ";
     std::cin >> age2;
-
-    int firstPlayer;
+    while (age2 < 12 || age2 > 70) {
+        std::cout << "Invalid age! Age must be between 12 and 70. Enter age of Player 2 again: ";
+        std::cin >> age2;
+    }
     if (age1 < age2) {
-        std::cout << "Player 1 is younger and chooses first!" << std::endl;
+        cout << "Player 1 is younger and chooses first!" << endl;
         firstPlayer = 1;
     } else if (age2 < age1) {
-        std::cout << "Player 2 is younger and chooses first!" << std::endl;
+        cout << "Player 2 is younger and chooses first!" << endl;
         firstPlayer = 2;
     } else {
-        std::cout << "Both players have the same age. Player 1 chooses first by default." << std::endl;
+        cout << "Both players have the same age. Player 1 chooses first by default." << endl;
         firstPlayer = 1;
     }
 
-    int choice;
-    std::cout << "\nPlayer " << firstPlayer << ", choose your fighter:" << std::endl;
-    std::cout << "1. Sherlock Holmes" << std::endl;
-    std::cout << "2. Dracula" << std::endl;
-    std::cout << "Enter your choice (1 or 2): ";
-    std::cin >> choice;
+    cout << "\nPlayer " << firstPlayer << ", choose your fighter:" << endl;
+    cout << "1. Sherlock Holmes" << endl;
+    cout << "2. Dracula" << endl;
+    cout << "Enter your choice (1 or 2): ";
+    cin >> choice;
 
     while (choice != 1 && choice != 2) {
-        std::cout << "Invalid choice. Enter 1 or 2: ";
-        std::cin >> choice;
+        cout << "Invalid choice. Enter 1 or 2: ";
+        cin >> choice;
     }
 
-    firstFighterChoice = choice;
-
-    std::string firstFighterName = (choice == 1) ? "Sherlock Holmes" : "Dracula";
-    std::string secondFighterName = (choice == 1) ? "Dracula" : "Sherlock Holmes";
-    std::cout << "\nPlayer " << firstPlayer << " picked " << firstFighterName << "." << std::endl;
-    std::cout << "The other player automatically gets " << secondFighterName << "." << std::endl;
+    string firstFighterName = (choice == 1) ? "Sherlock Holmes" : "Dracula";
+    string secondFighterName = (choice == 1) ? "Dracula" : "Sherlock Holmes";
+    cout << "\nPlayer " << firstPlayer << " picked " << firstFighterName << "." << endl;
+    cout << "The other player automatically gets " << secondFighterName << "." << endl;
     
-    std::cout << "\nPress Enter to continue to the game screen...";
-    std::cin.ignore();
-    std::cin.get();
+    cout << "\nPress Enter to continue to the game screen...";
+    cin.ignore();
+    cin.get();
 
     setupCharacters();
     gamelogs.push_back("Player " + to_string(firstPlayer) + " starts the game!");
 }
+
 
 void TuiController::setupCharacters() {
     sherlock* sherlockChar = new sherlock();
@@ -83,13 +88,21 @@ void TuiController::setupCharacters() {
     draculaSidekicks.push_back(sister3);
     auto draculaResult = deployment.placeHeroWithSidekicks(draculaChar, draculaSidekicks, 18);
 
-    gamemanager.addCharacter(sherlockChar, 1);
-    gamemanager.addCharacter(watsonChar, 1);
-    gamemanager.addCharacter(draculaChar, 2);
-    gamemanager.addCharacter(sister1, 2);
-    gamemanager.addCharacter(sister2, 2);
-    gamemanager.addCharacter(sister3, 2);
-
+   if (choice == 1) {
+        gamemanager.addCharacter(sherlockChar, 1);
+        gamemanager.addCharacter(watsonChar, 1);
+        gamemanager.addCharacter(draculaChar, 2);
+        gamemanager.addCharacter(sister1, 2);
+        gamemanager.addCharacter(sister2, 2);
+        gamemanager.addCharacter(sister3, 2);
+    } else {
+        gamemanager.addCharacter(draculaChar, 1);
+        gamemanager.addCharacter(sister1, 1);
+        gamemanager.addCharacter(sister2, 1);
+        gamemanager.addCharacter(sister3, 1);
+        gamemanager.addCharacter(sherlockChar, 2);
+        gamemanager.addCharacter(watsonChar, 2);
+    }
     sherlockChar->drawhand();
     draculaChar->drawhand();
 
@@ -110,13 +123,13 @@ void TuiController::setupCharacters() {
     }
 }
 
-Element TuiController::createDynamicNode(const std::string& nodename, 
-                                         const std::string& dracPos, 
-                                         const std::string& sherlockPos, 
-                                         const std::string& watsonPos, 
-                                         const std::string& s1Pos, 
-                                         const std::string& s2Pos, 
-                                         const std::string& s3Pos) {
+Element TuiController::createDynamicNode(const string& nodename, 
+                                         const string& dracPos, 
+                                         const string& sherlockPos, 
+                                         const string& watsonPos, 
+                                         const string& s1Pos, 
+                                         const string& s2Pos, 
+                                         const string& s3Pos) {
     NodeColor colorEnum = gameMap.getNodeColorByName(nodename);
     
     Color nodeZoneColor = Color::Default;
@@ -144,7 +157,7 @@ Element TuiController::createDynamicNode(const std::string& nodename,
 }
 
 Element TuiController::drawExactGraphMap() {
-    std::string dPos = "", sPos = "", wPos = "", s1 = "", s2 = "", s3 = "";
+    string dPos = "", sPos = "", wPos = "", s1 = "", s2 = "", s3 = "";
     auto allChars = gamemanager.getAllCharacters();
     for (character* c : allChars) {
         if (c->getname() == "Dracula")
@@ -188,13 +201,13 @@ Element TuiController::drawExactGraphMap() {
         separator(),
         hbox({ text("         "), n1, text("─────────"), n2, text("─────────"), n3, text("         ") }) | center,
         hbox({ text("         ╱    ╲         │             ╲          ") }) | center,
-        hbox({ text("   "), n4, text("────"), n5, text("────"), n6, text("────"), n7, text("────"), n8, text("   ") }) | center,
+        hbox({ text("  "), n4, text("────"), n5, text("────"), n6, text("────"), n7, text("────"), n8, text("    ") }) | center,
         hbox({ text("       ╱             ╲   │   ╱           ╲        ") }) | center,
-        hbox({ text("   "), n9, text("──────"), n10, text("─────"), n11, text("─────"), n12, text("─────"), n13, text("   ") }) | center,
-        hbox({ text("       ╲             ╱   │  ╲            ╱        ") }) | center,
+        hbox({ text(" "), n9, text("────"), n10, text("───────"), n11, text("─────"), n12, text("─────"), n13, text("   ") }) | center,
+        hbox({ text("       ╲              ╱  │ ╲             ╱        ") }) | center,
         hbox({ text("   "), n14, text("────"), n15, text("────"), n16, text("────"), n17, text("────"), n18, text("   ") }) | center,
         hbox({ text("          ╲         ╱    │      ╲       ╱          ") }) | center, 
-        hbox({ text("         "), n19, text("─────────"), n20, text("─────────"), n21, text("         ") }) | center, 
+        hbox({ text("         "), n19, text("────────────" ), n20, text("───────────"), n21, text("         ") }) | center, 
     }) | center | flex;
 }
 
@@ -270,9 +283,9 @@ Element TuiController::createHandPanel(hero* h, const string& title, Color title
     }
 
     Elements panelElements = headerElements;
-    panelElements.push_back(hbox(std::move(cardBoxes)));
+    panelElements.push_back(hbox(move(cardBoxes)));
 
-    return vbox(std::move(panelElements)) | border;
+    return vbox(move(panelElements)) | border;
 }
 
 Element TuiController::createActionLog() {
@@ -434,19 +447,21 @@ void TuiController::run() {
     });
 
     auto menu_event_handler = CatchEvent(menu_renderer, [&](Event event) {
-        if (event == Event::Return) {
-            if (menu_selected == 0) {
-                screen_mode = 2;
-                gamemanager.startGame();
-                gamelogs.push_back("Game started!");
-            } else if (menu_selected == 1) {
-                screen_mode = 1;
-            } else if (menu_selected == 2) {
-                screen.ExitLoopClosure()();
-            }
-            return true;
+       if (event == Event::Return) {
+        if (menu_selected == 0) {
+            screen_mode = 2;
+            
+            gamemanager.startGame(1); 
+            
+            gamelogs.push_back("Game started!");
+        } else if (menu_selected == 1) {
+            screen_mode = 1;
+        } else if (menu_selected == 2) {
+            screen.ExitLoopClosure()();
         }
-        return false;
+        return true;
+    }
+    return false;
     });
 
     auto help_renderer = Renderer([&] {
@@ -734,7 +749,7 @@ void TuiController::run() {
                 }
                 else if (cmd == "log") {
                     for (const auto& log : gamelogs) {
-                        std::cout << log << std::endl;
+                        cout << log << endl;
                     }
                 }
                 else if (!cmd.empty()) {

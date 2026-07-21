@@ -37,12 +37,19 @@ Board::Board(int width, int height) : width(width), height(height) {
     addEdge("n7", "n11"); addEdge("n11", "n15"); addEdge("n11", "n16"); 
     addEdge("n11", "n17"); addEdge("n15", "n19"); addEdge("n16", "n20");
     addEdge("n17", "n21"); addEdge("n18", "n21");
-    addEdge("n10", "n14"); addEdge("n12", "n17");
+    addEdge("n10", "n14"); addEdge("n21", "n17");
     addEdge("n3", "n7"); addEdge("n4", "n5");
     addEdge("n5", "n6"); addEdge("n6", "n7");
     addEdge("n7", "n8");addEdge("n18", "n10");
     addEdge("n6", "n16");
-    addEdge("n212", "n1");
+    addEdge("n13", "n8");
+    addEdge("n14", "n15");
+    addEdge("n18", "n17");
+    addEdge("n17", "n16");
+    addEdge("n16", "n19");
+    addEdge("n15", "n16");
+
+
     
     addTeleport("n1", "n21");
     addTeleport("n10", "n18");

@@ -28,7 +28,7 @@ public:
     std::vector<std::string> getValidMoves(character* character);
     bool moveCharacter(character* character, const std::string& targetSpace);
     
-    void startGame();
+    void startGame(int firstTeam);
     void nextTurn();
     void nextPhase();
     

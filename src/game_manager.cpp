@@ -139,8 +139,8 @@ bool GameManager::moveCharacter(character* c, const std::string& targetSpace) {
     return true;
 }
 
-void GameManager::startGame() {
-    turnManager.startGame();
+void GameManager::startGame(int firstTeam) {
+    turnManager.startGame(firstTeam);
 }
 
 void GameManager::nextTurn() {

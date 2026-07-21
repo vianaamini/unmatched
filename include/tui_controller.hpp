@@ -17,6 +17,9 @@ private:
     std::string currentCommand;
     int menuSelected = 0;
     int screenMode = 0;
+    int age1, age2;
+    int firstPlayer;
+    int choice;
     bool gameStarted = false;
     
     // توابع نقشه

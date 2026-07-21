@@ -39,7 +39,7 @@ public:
     void addCharacter(character* character, int team = 1);
     void removeCharacter(character* character);
     
-    void startGame();
+    void startGame(int firstTeam);
     void nextTurn();
     void nextPhase();
     void endTurn();

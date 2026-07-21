@@ -63,12 +63,20 @@ bool TurnManager::isCharacterAlive(character* character) const {
     return character && character->isalive();
 }
 
-void TurnManager::startGame() {
-    turnNumber = 0;
-    currentTeam = 1;
+void TurnManager::startGame(int firstTeam) {
+     turnNumber = 0;
+    currentTeam = firstTeam;
     currentPhase = TurnPhase::DRAW;
     actionsRemaining = 2;
+
     updateTurnOrder();
+
+    if (firstTeam == 2 && !turnOrder.empty()) {
+        character* first = turnOrder.front();
+        turnOrder.pop();
+        turnOrder.push(first);
+    }
+
     nextTurn();
 }
 
