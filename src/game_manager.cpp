@@ -196,3 +196,21 @@ character* GameManager::getWinner() const {
 std::vector<character*> GameManager::getAllCharacters() const {
     return allCharacters;
 }
+
+bool GameManager::resurrectSister(const std::string& sisterName, int targetNode) {
+    character* sister = nullptr;
+    for (character* c : allCharacters) {
+        if (c->getname() == sisterName) {
+            sister = c;
+            break;
+        }
+    }
+
+    if (!sister) return false;
+    if (!sister->isalive() || sister->gethealth() <= 0) {
+        sister->sethealth(1);
+        sister->setposition(targetNode);
+        return true;
+    }
+    return false;
+}
