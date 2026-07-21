@@ -229,18 +229,22 @@ Element TuiController::createHeroPanel(character* c, const string& title, Color 
     Elements info;
     info.push_back(text(" " + title + " ") | bold | color(titleColor) | center);
     info.push_back(separator());
-    info.push_back(text("Health: " + to_string(c->gethealth()) + " / " + to_string(c->getMaxHp())) | center);
-    info.push_back(createHealthBar(c->gethealth(), c->getMaxHp()) | center);
-    info.push_back(text("Position: " + c->getPositionString()) | center);
-    info.push_back(text("Move: " + to_string(c->getmovement())) | center);
+
+    if (!c->isalive()) {
+        info.push_back(text(" [ DEAD ] ") | bold | color(Color::Red) | center);
+    } else {
+        info.push_back(text("HP: " + to_string(c->gethealth()) + " / " + to_string(c->getMaxHp())) | center);
+        info.push_back(createHealthBar(c->gethealth(), c->getMaxHp()) | center);
+        info.push_back(text("Pos: " + c->getPositionString()) | center);
+    }
 
     hero* h = dynamic_cast<hero*>(c);
     if (h) {
-        info.push_back(text("Deck: " + to_string(h->getdeck().getsize()) + " cards") | center);
+        info.push_back(text("Deck: " + to_string(h->getdeck().getsize())) | center);
         info.push_back(text("Actions: " + to_string(h->get_actions())) | center);
     }
 
-    return vbox(move(info)) | border | size(WIDTH, EQUAL, 22);
+    return vbox(move(info)) | border | size(WIDTH, EQUAL, 20);
 }
 
 Element TuiController::createHandPanel(hero* h, const string& title, Color titleColor) {
@@ -543,15 +547,35 @@ void TuiController::run() {
 
         auto mapElement = drawExactGraphMap() | flex_grow;
         
-        auto leftPanel = createHeroPanel(dracula, "DRACULA", Color::Red);
-        auto rightPanel = createHeroPanel(sherlock, "SHERLOCK", Color::Blue);
+        character* watson = nullptr;
+        character* s1 = nullptr; 
+        character* s2 = nullptr; 
+        character* s3 = nullptr;
+
+        for (character* c : allCharacters) {
+            if (c->getname() == "Watson") watson = c;
+            else if (c->getname() == "Sister 1") s1 = c;
+            else if (c->getname() == "Sister 2") s2 = c;
+            else if (c->getname() == "Sister 3") s3 = c;
+        }
+
+        auto draculaGroup = vbox({
+            createHeroPanel(dracula, "DRACULA", Color::Red),
+            createHeroPanel(s1, "SISTER 1", Color::LightRed),
+            createHeroPanel(s2, "SISTER 2", Color::LightRed),
+            createHeroPanel(s3, "SISTER 3", Color::LightRed)
+        });
+
+        auto sherlockGroup = vbox({
+            createHeroPanel(sherlock, "SHERLOCK", Color::Blue),
+            createHeroPanel(watson, "WATSON", Color::Cyan)
+        });
 
         auto topRow = hbox({
-            leftPanel,
+            draculaGroup,
             mapElement,
-            rightPanel
-        }) | size(HEIGHT, EQUAL, 16);
-
+            sherlockGroup
+        });
         auto handRow = hbox({
             createHandPanel(draculaHero, "DRACULA", Color::Red) | flex,
             createLegend() | flex,
