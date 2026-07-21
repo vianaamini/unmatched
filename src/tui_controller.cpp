@@ -599,60 +599,51 @@ void TuiController::run() {
                     screen_mode = 0;
                     gamelogs.push_back("Returned to main menu");
                 }
-                else if (cmd.rfind("move ", 0) == 0) {
+                 else if (cmd.rfind("move ", 0) == 0) {
                     try {
-                        string node_part = cmd.substr(5);
-                        if (!node_part.empty() && node_part[0] == 'n') {
-                            node_part = node_part.substr(1);
-                        }
-                        int target_node_id = stoi(node_part);
-                        character* current_char = gamemanager.getCurrentCharacter();
-                        hero* h = dynamic_cast<hero*>(current_char);
-                        
-                        if (!h) {
-                            gamelogs.push_back("Only heroes can move!");
-                            return true;
-                        }
-                        
-                        if (!h->canact()) {
-                            gamelogs.push_back("No actions remaining!");
-                            return true;
-                        }
-                        
-                        bool occupied = false;
-                        for (character* c : gamemanager.getAllCharacters()) {
-                            if (c->getx() == target_node_id && c != h && c->isalive()) {
-                                occupied = true;
-                                break;
+                        stringstream ss(cmd);
+                        string moveCmd, p1, p2;
+                        ss >> moveCmd >> p1;
+
+                        character* charToMove = nullptr;
+                        int targetNodeId = -1;
+
+                        if (ss >> p2) {
+                            if (!p2.empty() && p2[0] == 'n') p2 = p2.substr(1);
+                            targetNodeId = stoi(p2);
+
+                            for (character* c : gamemanager.getAllCharacters()) {
+                                if ((p1 == "s1" && c->getname() == "Sister 1") ||
+                                    (p1 == "s2" && c->getname() == "Sister 2") ||
+                                    (p1 == "s3" && c->getname() == "Sister 3") ||
+                                    (p1 == "watson" && c->getname() == "Watson") ||
+                                    (p1 == "dracula" && c->getname() == "Dracula") ||
+                                    (p1 == "sherlock" && c->getname() == "Sherlock Holmes")) {
+                                    charToMove = c;
+                                    break;
+                                }
                             }
-                        }
-                        if (occupied) {
-                            gamelogs.push_back("Node n" + to_string(target_node_id) + " is occupied!");
-                            return true;
-                        }
-                        
-                        int startNode = h->getx();
-                        string startName = "n" + to_string(startNode);
-                        string targetName = "n" + to_string(target_node_id);
-                        Board& board = gamemanager.getBoard();
-                        
-                        bool isConnected = board.isConnected(startName, targetName);
-                        bool isTeleport = board.isTeleport(startName) && 
-                                          board.getTeleportDestination(startName) == targetName;
-                        
-                        if (!isConnected && !isTeleport) {
-                            gamelogs.push_back("Cannot move to n" + to_string(target_node_id) + " (not adjacent)");
-                            return true;
-                        }
-                        
-                        bool success = gamemanager.moveCharacter(h, targetName);
-                        if (success) {
-                            gamelogs.push_back(h->getname() + " moved to node " + targetName);
                         } else {
-                            gamelogs.push_back("Move failed!");
+                            if (!p1.empty() && p1[0] == 'n') p1 = p1.substr(1);
+                            targetNodeId = stoi(p1);
+                            charToMove = gamemanager.getCurrentCharacter();
+                        }
+
+                        if (!charToMove || !charToMove->isalive()) {
+                            gamelogs.push_back("Character not found or dead!");
+                            return true;
+                        }
+
+                        string targetName = "n" + to_string(targetNodeId);
+                        
+                        bool success = gamemanager.moveCharacter(charToMove, targetName);
+                        if (success) {
+                            gamelogs.push_back(charToMove->getname() + " moved to node " + targetName);
+                        } else {
+                            gamelogs.push_back("Move failed! Check adjacency or actions.");
                         }
                     } catch (...) {
-                        gamelogs.push_back("Syntax Error: Use 'move <node_id>'");
+                        gamelogs.push_back("Syntax Error: Use 'move <node>' or 'move <target> <node>'");
                     }
                 }
                 else if (cmd.rfind("play ", 0) == 0) {
