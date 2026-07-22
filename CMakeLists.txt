@@ -21,7 +21,7 @@ add_executable(unmatched
     src/deck.cpp
     src/deck-builder.cpp
     src/deployment.cpp
-    src/deracula_cards.cpp
+    src/dracula_cards.cpp
     src/dracula.cpp
     src/game.cpp
     src/game_manager.cpp

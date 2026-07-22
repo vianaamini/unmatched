@@ -1,5 +1,5 @@
 #include "../include/game.hpp"
-#include "../include/deracula_cards.hpp"
+#include "../include/dracula_cards.hpp"
 #include "../include/sherlock_card.hpp"
 #include "../include/hero.hpp"
 #include <iostream>
@@ -74,88 +74,31 @@ void Game::playCard(hero* player, int index, hero* opponent) {
     card playedCard = player->gethand()[index];
     player->gethand().erase(player->gethand().begin() + index);
     
-    card defendCard("Empty", cardtype::defense, 0, 0, 0, cardowner::any, "No effect");
-    if (opponent->handsize() > 0) {
-        defendCard = opponent->gethand()[0];
-        opponent->gethand().erase(opponent->gethand().begin());
-    }
-    
-    resolve(*player, playedCard, *opponent, defendCard);
-    
-    action--;
-    checkWinCondition();
-}
-
-void Game::resolve(hero& attacker, card& atkcard, hero& defender, card& defendCard) {
-    std::cout << "\n=== Combat ===" << std::endl;
-    std::cout << attacker.getname() << " plays: " << atkcard.get_name() << std::endl;
-    std::cout << defender.getname() << " plays: " << defendCard.get_name() << std::endl;
-    
-    int attackValue = atkcard.getattack();
-    int defenseValue = defendCard.getdefense();
-    
+    // Let the hero's attack/scheme method handle the resolution
     Board* board = gameManager ? &gameManager->getBoard() : nullptr;
     if (!board) {
         static Board tempBoard;
         board = &tempBoard;
     }
     
-    bool isAdjacent = board->isAdjacent(attacker.getx(), defender.getx());
-    
-    if (atkcard.get_name() == "Counter Punch") {
-        card_counter_punch cp;
-        cp.execute_effect(attacker, defender, defendCard, isAdjacent, false);
-    }
-    else if (atkcard.get_name() == "Feint") {
-        card_feint feint;
-        feint.execute_effect(attacker, defender, defendCard, isAdjacent, false);
-    }
-    else if (atkcard.get_name() == "Fixed Point") {
-        card_fixed_point fp;
-        fp.execute_effect(attacker, defender, defendCard, isAdjacent, false);
-    }
-    else if (atkcard.get_name() == "Master of Disguise") {
-        card_master_of_disguise md;
-        md.execute_effect(attacker, defender, defendCard, isAdjacent, false);
-    }
-    else if (atkcard.get_name() == "The Game is Afoot") {
-        card_game_is_afoot ga;
-        ga.execute_effect(attacker, defender, defendCard, isAdjacent, false);
-    }
-    
-    std::vector<sidekick*> allSisters;
-    for (int i = 0; i < 3; i++) {
-        allSisters.push_back(sisters[i]);
-    }
-    
-    if (atkcard.get_name() == "Feeding Frenzy" || 
-        atkcard.get_name() == "Ambush" ||
-        atkcard.get_name() == "Beastform" ||
-        atkcard.get_name() == "Dash" ||
-        atkcard.get_name() == "Thirst for Sustenance" ||
-        atkcard.get_name() == "Exploit") {
-        dcards::resolve_combat_effects(atkcard, attacker, defendCard, defender, allSisters, *board);
-    }
-    
-    int damage = attackValue - defenseValue;
-    if (damage > 0) {
-        defender.takedamage(damage);
-        std::cout << defender.getname() << " took " << damage << " damage" << std::endl;
+    bool success = false;
+    if (playedCard.gettype() == cardtype::attack) {
+        success = player->attack(*opponent, playedCard, *board);
+    } else if (playedCard.gettype() == cardtype::scheme) {
+        success = player->scheme(playedCard, *opponent);
     } else {
-        std::cout << defender.getname() << " defended successfully" << std::endl;
+        // Multipurpose or defense - just play it
+        success = true;
+        std::cout << player->getname() << " played: " << playedCard.get_name() << std::endl;
     }
     
-    if (atkcard.gettype() == cardtype::scheme) {
-        std::vector<character*> enemyList;
-        enemyList.push_back(&defender);
-        std::vector<sidekick*> allSisters2;
-        for (int i = 0; i < 3; i++) {
-            allSisters2.push_back(sisters[i]);
-        }
-        dcards::resolve_scheme(atkcard, attacker, defender, enemyList, allSisters2, *board, gameManager);
+    if (success) {
+        action--;
+        checkWinCondition();
+    } else {
+        // Return card to hand if failed
+        player->gethand().push_back(playedCard);
     }
-    
-    checkWinCondition();
 }
 
 void Game::checkWinCondition() {

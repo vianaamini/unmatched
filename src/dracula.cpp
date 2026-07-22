@@ -1,6 +1,7 @@
 #include "../include/dracula.hpp"
 #include "../include/deck-builder.hpp"
-#include "../include/deracula_cards.hpp"
+#include "../include/dracula_cards.hpp"
+#include "../include/map.hpp"
 #include <iostream>
 #include <vector>
 
@@ -16,7 +17,7 @@ dracula::dracula() : hero("Dracula", 13, 2), allCharactersPtr(nullptr) {
 void dracula::useability() {
     std::cout << "=== Dracula Ability ===" << std::endl;
     std::cout << "Choose an adjacent fighter to deal 1 damage and draw a card." << std::endl;
-    std::cout << "Enter target node (n1-n32) or 'skip': ";
+    std::cout << "Enter target node (n1-n21) or 'skip': ";
     string input;
     cin >> input;
     
@@ -34,6 +35,9 @@ void dracula::useability() {
         int targetId = std::stoi(input.substr(1));
         character* target = nullptr;
         
+        // Need Board reference for adjacency check
+        Board& board = getBoard();
+        
         if (allCharactersPtr) {
             for (character* c : *allCharactersPtr) {
                 if (c->getx() == targetId && c->isalive() && c != this) {
@@ -48,7 +52,7 @@ void dracula::useability() {
             return;
         }
         
-        if (!dcards::are_adjacent(*this, *target)) {
+        if (!board.isAdjacent(getx(), target->getx())) {
             std::cout << "Target is not adjacent to Dracula!" << std::endl;
             return;
         }

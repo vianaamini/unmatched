@@ -117,6 +117,7 @@ bool hero::scheme(card& schemeCard, hero& target) {
     
     if (name == "Mistform") {
         set_actions(get_actions() + 1);
+        // Actual movement handled in dracula_cards
     }
     else if (name == "Baptism of Blood") {
         heal(2);
@@ -126,17 +127,50 @@ bool hero::scheme(card& schemeCard, hero& target) {
         heal(1);
     }
     else if (name == "Ravening Seduction") {
-        target.setposition(target.getx() + 2);
+        // Movement handled in dracula_cards
     }
     else if (name == "Administer Aid") {
         heal(1);
         drawcard();
+        // Watson movement handled elsewhere
     }
     else if (name == "Confirm Suspicion") {
-        cout << "Confirm Suspicion: Choose a value (1-6)" << endl;
+        cout << "Confirm Suspicion: Choose a value (1-6): ";
+        int value;
+        cin >> value;
+        
+        bool found = false;
+        auto& targetHand = target.gethand();
+        for (size_t i = 0; i < targetHand.size(); i++) {
+            if (targetHand[i].getattack() == value || targetHand[i].getdefense() == value) {
+                int boostValue = targetHand[i].getboost();
+                target.takedamage(boostValue);
+                cout << "Card with value " << value << " found! Dealt " << boostValue << " damage." << endl;
+                targetHand.erase(targetHand.begin() + i);
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            cout << "No card with value " << value << ". Opponent reveals hand!" << endl;
+            for (const auto& c : targetHand) {
+                cout << "  " << c.get_name() << " (ATK:" << c.getattack() << " DEF:" << c.getdefense() << ")" << endl;
+            }
+        }
     }
     else if (name == "Eliminate the Impossible") {
-        cout << "Eliminate the Impossible: Look at opponent's hand" << endl;
+        auto& targetHand = target.gethand();
+        cout << "Eliminate the Impossible: Opponent's hand:" << endl;
+        for (size_t i = 0; i < targetHand.size(); i++) {
+            cout << "  [" << i << "] " << targetHand[i].get_name() << endl;
+        }
+        cout << "Choose a card to burn (index): ";
+        int idx;
+        cin >> idx;
+        if (idx >= 0 && idx < (int)targetHand.size()) {
+            cout << "Burned: " << targetHand[idx].get_name() << endl;
+            targetHand.erase(targetHand.begin() + idx);
+        }
     }
     else if (name == "Master of Disguise") {
         int tempPos = getposition();
@@ -156,28 +190,52 @@ bool hero::attack(hero& target, card& attackcard, Board& board) {
     bool adjacent = board.isAdjacent(getx(), target.getx());
     if (!adjacent) return false;
 
-    int attackValue = attackcard.getattack();
-    int defenseValue = 0;
+    // Check if opponent has defense card
     card defendCard("Empty", cardtype::defense, 0, 0, 0, cardowner::any, "No effect");
+    bool hasDefense = false;
     
     if (target.handsize() > 0) {
-        defendCard = target.gethand()[0];
-        target.gethand().erase(target.gethand().begin());
+        // Find first defense or multipurpose card
+        for (size_t i = 0; i < target.gethand().size(); i++) {
+            if (target.gethand()[i].gettype() == cardtype::defense || 
+                target.gethand()[i].gettype() == cardtype::multipurpose) {
+                defendCard = target.gethand()[i];
+                target.gethand().erase(target.gethand().begin() + i);
+                hasDefense = true;
+                break;
+            }
+        }
+        // If no defense/multipurpose found, use first card
+        if (!hasDefense) {
+            defendCard = target.gethand()[0];
+            target.gethand().erase(target.gethand().begin());
+            hasDefense = true;
+        }
     }
     
     std::cout << "\n=== Combat ===" << std::endl;
-    std::cout << getname() << " plays: " << attackcard.get_name() << " (ATK: " << attackValue << ")" << std::endl;
-    std::cout << target.getname() << " plays: " << defendCard.get_name() << " (DEF: " << defendCard.getdefense() << ")" << std::endl;
-    
-    bool attacker_won = false;
-    int damage = attackValue - defendCard.getdefense();
-    if (damage > 0) {
-        attacker_won = true;
+    std::cout << getname() << " plays: " << attackcard.get_name() 
+              << " (ATK: " << attackcard.getattack() << ")" << std::endl;
+    if (hasDefense) {
+        std::cout << target.getname() << " plays: " << defendCard.get_name() 
+                  << " (DEF: " << defendCard.getdefense() << ")" << std::endl;
+    } else {
+        std::cout << target.getname() << " has no defense card!" << std::endl;
     }
     
-    if (attackcard.get_name() == "Feint" || defendCard.get_name() == "Feint") {
+    int attackValue = attackcard.getattack();
+    int defenseValue = hasDefense ? defendCard.getdefense() : 0;
+    bool attacker_won = false;
+    int damage = 0;
+    
+    // Check for Feint (cancel effects)
+    bool feintActive = (attackcard.get_name() == "Feint" || defendCard.get_name() == "Feint");
+    
+    if (feintActive) {
         std::cout << "Feint: All card effects are canceled!" << std::endl;
+        damage = attackValue - defenseValue;
         if (damage > 0) {
+            attacker_won = true;
             target.takedamage(damage);
             std::cout << target.getname() << " took " << damage << " damage." << std::endl;
         } else {
@@ -187,52 +245,53 @@ bool hero::attack(hero& target, card& attackcard, Board& board) {
         return true;
     }
     
+    // Check for Look Into My Eyes (defender effect)
     if (defendCard.get_name() == "Look Into My Eyes") {
         int boost = attackcard.getboost();
         defenseValue = defendCard.getdefense() + boost;
-        std::cout << "Look Into My Eyes: Defense boosted by " << boost << " (Total: " << defenseValue << ")" << std::endl;
-        damage = attackValue - defenseValue;
-        if (damage > 0) {
-            attacker_won = true;
-        } else {
-            attacker_won = false;
+        std::cout << "Look Into My Eyes: Defense boosted by " << boost 
+                  << " (Total: " << defenseValue << ")" << std::endl;
+    }
+    
+    // Check for Deduce Strategy (attacker effect)
+    if (attackcard.get_name() == "Deduce Strategy") {
+        int boost = defendCard.getboost();
+        if (boost > 0) {
+            defenseValue = boost;
+            std::cout << "Deduce Strategy: Defense changed to boost value (" << boost << ")" << std::endl;
         }
     }
     
+    // Check for Elementary (attacker effect)
     if (attackcard.get_name() == "Elementary") {
         std::cout << "Elementary: Predict opponent's attack value (1-6): ";
         int predicted;
         std::cin >> predicted;
-        int actualAttack = attackValue;
-        if (predicted == actualAttack) {
+        // In this context, opponent's attack would be from their played card
+        // But since we're in attack phase, we check if prediction matches
+        if (predicted == attackValue) {
             std::cout << "Correct prediction! All effects canceled and attack ignored." << std::endl;
-            damage = 0;
-            attacker_won = false;
+            attackValue = 0;
         } else {
-            std::cout << "Wrong prediction! Attack value: " << actualAttack << std::endl;
+            std::cout << "Wrong prediction! Attack value: " << attackValue << std::endl;
         }
     }
     
-    if (attackcard.get_name() == "Deduce Strategy") {
-        int boost = defendCard.getboost();
-        if (boost > 0) {
-            const_cast<card*>(&defendCard)->setdefense(boost);
-            std::cout << "Deduce Strategy: Defense changed to boost value (" << boost << ")" << std::endl;
-            damage = attackValue - boost;
-            if (damage > 0) {
-                attacker_won = true;
-            } else {
-                attacker_won = false;
-            }
-        }
+    // Calculate damage
+    damage = attackValue - defenseValue;
+    if (damage > 0) {
+        attacker_won = true;
+        target.takedamage(damage);
+        std::cout << target.getname() << " took " << damage << " damage" << std::endl;
+    } else {
+        std::cout << target.getname() << " defended successfully" << std::endl;
     }
     
+    // After combat effects (only if no feint)
     if (attackcard.get_name() == "Counter Punch") {
         if (adjacent) {
             target.takedamage(2);
-            std::cout << "Counter Punch: Dealt 2 damage (adjacent)" << std::endl;
-        } else {
-            std::cout << "Counter Punch: No damage (not adjacent)" << std::endl;
+            std::cout << "Counter Punch: Dealt 2 additional damage (adjacent)" << std::endl;
         }
     }
     
@@ -242,13 +301,6 @@ bool hero::attack(hero& target, card& attackcard, Board& board) {
             target.heal(1);
             std::cout << "Fixed Point: Healed both fighters for 1" << std::endl;
         }
-    }
-    
-    if (damage > 0) {
-        target.takedamage(damage);
-        std::cout << target.getname() << " took " << damage << " damage" << std::endl;
-    } else {
-        std::cout << target.getname() << " defended successfully" << std::endl;
     }
     
     if (attackcard.get_name() == "Education Never Ends") {
@@ -297,10 +349,10 @@ bool hero::attack(hero& target, card& attackcard, Board& board) {
         if (target.handsize() > 0) {
             size_t random_index = rand() % target.handsize();
             card discardcard = target.gethand()[random_index];
-            damage += discardcard.getboost();
-            target.gethand().erase(target.gethand().begin() + random_index);
-            std::cout << "Ambush: Opponent discarded " << discardcard.get_name() << " (Boost: " << discardcard.getboost() << ")" << std::endl;
             target.takedamage(discardcard.getboost());
+            std::cout << "Ambush: Opponent discarded " << discardcard.get_name() 
+                      << " (Boost: " << discardcard.getboost() << ")" << std::endl;
+            target.gethand().erase(target.gethand().begin() + random_index);
         }
     }
     
@@ -313,17 +365,13 @@ bool hero::attack(hero& target, card& attackcard, Board& board) {
             if (discardcards > static_cast<int>(cards_in_hand)) discardcards = cards_in_hand;
             if (discardcards < 0) discardcards = 0;
             
-            for (int i = 0; i < discardcards; i++) {
+            for (int i = discardcards - 1; i >= 0; i--) {
                 hand.erase(hand.begin() + i);
-                damage += 1;
             }
-            std::cout << "Beastform: Discarded " << discardcards << " cards, attack +" << discardcards << std::endl;
             target.takedamage(discardcards);
+            std::cout << "Beastform: Discarded " << discardcards << " cards, dealt " 
+                      << discardcards << " extra damage" << std::endl;
         }
-    }
-    
-    if (attackcard.get_name() == "Feeding Frenzy") {
-        std::cout << "Feeding Frenzy: +1 attack for each Sister adjacent to opponent" << std::endl;
     }
     
     if (attackcard.get_name() == "Dash") {
@@ -339,10 +387,9 @@ bool hero::attack(hero& target, card& attackcard, Board& board) {
             auto defNeighbors = board.getNeighborIds(target.getx());
             if (!defNeighbors.empty()) {
                 setposition(defNeighbors[0]);
-                std::cout << "Thirst for Sustenance: Placed adjacent to opponent at n" << defNeighbors[0] << std::endl;
+                std::cout << "Thirst for Sustenance: Placed adjacent to opponent at n" 
+                          << defNeighbors[0] << std::endl;
             }
-        } else {
-            std::cout << "Thirst for Sustenance: You did not win the combat!" << std::endl;
         }
     }
     
@@ -354,45 +401,6 @@ bool hero::attack(hero& target, card& attackcard, Board& board) {
     if (defendCard.get_name() == "Exploit") {
         target.drawcard();
         std::cout << "Exploit: Opponent drew 1 card" << std::endl;
-    }
-    
-    if (attackcard.get_name() == "Confirm Suspicion") {
-        std::cout << "Confirm Suspicion: Choose a value (1-6): ";
-        int value;
-        std::cin >> value;
-        bool found = false;
-        auto& targetHand = target.gethand();
-        for (size_t i = 0; i < targetHand.size(); i++) {
-            if (targetHand[i].getattack() == value || targetHand[i].getdefense() == value) {
-                int boostValue = targetHand[i].getboost();
-                target.takedamage(boostValue);
-                std::cout << "Card with value " << value << " found! Dealt " << boostValue << " damage." << std::endl;
-                targetHand.erase(targetHand.begin() + i);
-                found = true;
-                break;
-            }
-        }
-        if (!found) {
-            std::cout << "No card with value " << value << ". Opponent reveals hand!" << std::endl;
-            for (const auto& c : targetHand) {
-                std::cout << "  " << c.get_name() << " (ATK:" << c.getattack() << " DEF:" << c.getdefense() << ")" << std::endl;
-            }
-        }
-    }
-    
-    if (attackcard.get_name() == "Eliminate the Impossible") {
-        auto& targetHand = target.gethand();
-        std::cout << "Eliminate the Impossible: Opponent's hand:" << std::endl;
-        for (size_t i = 0; i < targetHand.size(); i++) {
-            std::cout << "  [" << i << "] " << targetHand[i].get_name() << std::endl;
-        }
-        std::cout << "Choose a card to burn (index): ";
-        int idx;
-        std::cin >> idx;
-        if (idx >= 0 && idx < (int)targetHand.size()) {
-            std::cout << "Burned: " << targetHand[idx].get_name() << std::endl;
-            targetHand.erase(targetHand.begin() + idx);
-        }
     }
 
     actions--;
