@@ -7,13 +7,23 @@
 
 bool dcards::are_adjacent(const character& a, const character& b) {
     int dx = abs(a.getx() - b.getx());
-    int dy = abs(a.gety() - b.gety());
-    return (dx <= 1 && dy <= 1) && !(dx == 0 && dy == 0);
+    return dx <= 1 && dx != 0;
+}
+
+bool dcards::are_in_same_zone(const character& a, const character& b, Board& board) {
+    auto zonesA = board.getZonesAt(a.getx(), 0);
+    auto zonesB = board.getZonesAt(b.getx(), 0);
+    for (const auto& z1 : zonesA) {
+        for (const auto& z2 : zonesB) {
+            if (z1 == z2) return true;
+        }
+    }
+    return false;
 }
 
 void dcards::resolve_scheme(const card& played_card, hero& dracula, hero& opponent, 
                             const vector<character*>& all_enemies, 
-                            vector<sidekick*>& all_sisters, Board& board) {
+                            vector<sidekick*>& all_sisters, Board& board, GameManager* gm) {
     string name = played_card.get_name();
     
     if (name == "Mistform") {
@@ -34,13 +44,32 @@ void dcards::resolve_scheme(const card& played_card, hero& dracula, hero& oppone
         cout << "Baptism of Blood: Dracula healed 2 HP" << endl;
         
         for (auto &b : all_sisters) {
-            if (b->gethealth() <= 0) {
-                b->heal(1);
-                // قرار دادن در کنار دراکولا
-                auto neighbors = board.getNeighborIds(dracula.getx());
-                if (!neighbors.empty()) {
-                    b->setposition(neighbors[0]);
-                    cout << "Baptism of Blood: Sister revived at n" << neighbors[0] << endl;
+            if (!b->isalive()) {
+                auto zones = board.getZonesAt(dracula.getx(), 0);
+                bool revived = false;
+                for (const auto& zone : zones) {
+                    auto spaces = board.getSpacesInZone(zone);
+                    for (const auto& space : spaces) {
+                        int node = space.first;
+                        bool occupied = false;
+                        for (auto& c : all_sisters) {
+                            if (c->isalive() && c->getx() == node) {
+                                occupied = true;
+                                break;
+                            }
+                        }
+                        if (!occupied && node != dracula.getx()) {
+                            b->sethealth(1);
+                            b->setposition(node);
+                            revived = true;
+                            cout << "Baptism of Blood: Sister revived at n" << node << endl;
+                            break;
+                        }
+                    }
+                    if (revived) break;
+                }
+                if (!revived) {
+                    cout << "Baptism of Blood: No valid node to revive Sister!" << endl;
                 }
                 break;
             }
@@ -64,21 +93,19 @@ void dcards::resolve_scheme(const card& played_card, hero& dracula, hero& oppone
     else if (name == "Ravening Seduction") {
         int adjacent_sisters = 0;
         
-        // حرکت حریف
         auto oppNeighbors = board.getNeighborIds(opponent.getx());
         if (!oppNeighbors.empty()) {
             opponent.setposition(oppNeighbors[0]);
             cout << "Ravening Seduction: Opponent moved to n" << oppNeighbors[0] << endl;
         }
         
-        // حرکت Sisters
         for (auto &sister : all_sisters) {
             auto sisNeighbors = board.getNeighborIds(sister->getx());
             if (!sisNeighbors.empty()) {
                 sister->setposition(sisNeighbors[0]);
             }
             
-            if (sister->gethealth() > 0 && are_adjacent(*sister, opponent)) {
+            if (sister->isalive() && are_adjacent(*sister, opponent)) {
                 adjacent_sisters++;
             }
         }
@@ -116,7 +143,7 @@ void dcards::resolve_combat_effects(const card& attacker_card, hero& attacker,
     else if (atkname == "Feeding Frenzy") {
         int sisternearenemy = 0;
         for (auto &s : all_sisters) {
-            if (s->gethealth() > 0 && are_adjacent(*s, defender)) {
+            if (s->isalive() && are_in_same_zone(*s, defender, board)) {
                 sisternearenemy++;
             }
         }

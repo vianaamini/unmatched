@@ -18,6 +18,11 @@ private:
                         const std::vector<character*>& enemiesList,
                         character* currentChar) const;
     
+    bool canStopAt(int node,
+                   const std::vector<character*>& alliesList,
+                   const std::vector<character*>& enemiesList,
+                   character* currentChar) const;
+    
     bool isPositionOccupiedByEnemy(int node,
                                    const std::vector<character*>& enemiesList) const;
     

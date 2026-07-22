@@ -64,7 +64,7 @@ bool TurnManager::isCharacterAlive(character* character) const {
 }
 
 void TurnManager::startGame(int firstTeam) {
-     turnNumber = 0;
+    turnNumber = 0;
     currentTeam = firstTeam;
     currentPhase = TurnPhase::DRAW;
     actionsRemaining = 2;
@@ -122,6 +122,7 @@ void TurnManager::nextTurn() {
     hero* h = dynamic_cast<hero*>(currentCharacter);
     if (h) {
         h->reset_actions();
+        h->set_actions(2);
     }
     
     std::cout << "\n=== Turn " << turnNumber << " ===" << std::endl;
@@ -255,22 +256,28 @@ std::vector<character*> TurnManager::getTeamCharacters(int team) const {
 }
 
 bool TurnManager::isGameOver() const {
-    int aliveTeam1 = 0, aliveTeam2 = 0;
+    hero* team1Hero = nullptr;
+    hero* team2Hero = nullptr;
 
     for (const auto& c : team1) {
         hero* h = dynamic_cast<hero*>(c);
-        if (h && h->isalive()) {
-            aliveTeam1++;
+        if (h) {
+            team1Hero = h;
+            break;
         }
     }
     for (const auto& c : team2) {
         hero* h = dynamic_cast<hero*>(c);
-        if (h && h->isalive()) {
-            aliveTeam2++;
+        if (h) {
+            team2Hero = h;
+            break;
         }
     }
 
-    return aliveTeam1 == 0 || aliveTeam2 == 0;
+    bool team1HeroDead = team1Hero ? !team1Hero->isalive() : true;
+    bool team2HeroDead = team2Hero ? !team2Hero->isalive() : true;
+
+    return team1HeroDead || team2HeroDead;
 }
 
 character* TurnManager::getWinner() const {

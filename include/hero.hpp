@@ -10,11 +10,15 @@ class hero : public character {
     deck dk;
     vector<card> hand;
     int actions;
+    Board* board;
 
 public:
     hero(const string& name, int maxhp, int movement);
 
     virtual ~hero() = default;
+    
+    void setBoard(Board* b) { board = b; }
+    Board& getBoard() { return *board; }
     
     void set_actions(int new_actions);
     void reset_actions();
@@ -34,7 +38,7 @@ public:
 
     virtual void useability() = 0;
 
-    bool maneuver(int targetNode, Board& board);
+    bool maneuver(int targetNode, Board& board, const card* boostCard = nullptr);
     bool scheme(card& schemeCard, hero& target);
     bool attack(hero& target, card& attackcard, Board& board);
     bool canact() const;

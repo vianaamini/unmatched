@@ -9,6 +9,8 @@
 #include <string>
 #include <vector>
 #include <sstream>
+#include <queue>
+#include <unordered_set>
 
 using namespace std;
 using namespace ftxui;
@@ -423,6 +425,26 @@ Element TuiController::createStatusDashboard() {
     }) | border;
 }
 
+Element TuiController::createActionMenu() {
+    return vbox({
+        text(" ACTION MENU ") | bold | color(Color::Green) | center,
+        separator(),
+        hbox({
+            text(" [Maneuver] ") | border | color(Color::Blue),
+            text(" [Scheme] ") | border | color(Color::Magenta),
+            text(" [Attack] ") | border | color(Color::Red),
+            text(" [Discard] ") | border | color(Color::Yellow),
+        }) | center,
+        hbox({
+            text(" [Draw Card] ") | border | color(Color::Green),
+            text(" [Help] ") | border | color(Color::Cyan),
+            text(" [Back to Menu] ") | border | color(Color::White),
+        }) | center,
+        separator(),
+        text("Select an action using arrow keys and ENTER") | center | dim
+    }) | border | center;
+}
+
 void TuiController::run() {
     auto screen = ScreenInteractive::Fullscreen();
 
@@ -451,21 +473,20 @@ void TuiController::run() {
     });
 
     auto menu_event_handler = CatchEvent(menu_renderer, [&](Event event) {
-       if (event == Event::Return) {
-        if (menu_selected == 0) {
-            screen_mode = 2;
-            
-            gamemanager.startGame(1); 
-            
-            gamelogs.push_back("Game started!");
-        } else if (menu_selected == 1) {
-            screen_mode = 1;
-        } else if (menu_selected == 2) {
-            screen.ExitLoopClosure()();
+        if (event == Event::Return) {
+            if (menu_selected == 0) {
+                screen_mode = 2;
+                int firstTeam = (choice == 1) ? 1 : 2;
+                gamemanager.startGame(firstTeam);
+                gamelogs.push_back("Game started!");
+            } else if (menu_selected == 1) {
+                screen_mode = 1;
+            } else if (menu_selected == 2) {
+                screen.ExitLoopClosure()();
+            }
+            return true;
         }
-        return true;
-    }
-    return false;
+        return false;
     });
 
     auto help_renderer = Renderer([&] {
@@ -545,64 +566,93 @@ void TuiController::run() {
             }
         }
 
-        auto mapElement = drawExactGraphMap() | flex_grow;
-        
         character* watson = nullptr;
         character* s1 = nullptr; 
         character* s2 = nullptr; 
         character* s3 = nullptr;
 
-        for (character* c : allCharacters) {
+        for (character* c : allChars) {
             if (c->getname() == "Watson") watson = c;
             else if (c->getname() == "Sister 1") s1 = c;
             else if (c->getname() == "Sister 2") s2 = c;
             else if (c->getname() == "Sister 3") s3 = c;
         }
 
+        auto title = text(" UNMATCHED TUI - Dracula vs Sherlock Holmes ") | bold | color(Color::Green) | center;
+
+        auto turnDisplay = vbox({
+            text(" Turn: " + to_string(gamemanager.getTurnNumber()) + " | " + 
+                 (gamemanager.getCurrentCharacter() ? gamemanager.getCurrentCharacter()->getname() : "N/A")) | bold | color(Color::Yellow) | center
+        }) | size(HEIGHT, EQUAL, 2);
+
+        auto draculaPanel = vbox({
+            createHeroPanel(dracula, "DRACULA", Color::Red)
+        }) | size(WIDTH, EQUAL, 22);
+
+        auto draculaSisters = vbox({
+            createHeroPanel(s1, "SISTER 1", Color::Red),
+            createHeroPanel(s2, "SISTER 2", Color::Red),
+            createHeroPanel(s3, "SISTER 3", Color::Red)
+        }) | size(WIDTH, EQUAL, 22);
+
+        auto sherlockPanel = vbox({
+            createHeroPanel(sherlock, "SHERLOCK", Color::Blue)
+        }) | size(WIDTH, EQUAL, 22);
+
+        auto watsonPanel = vbox({
+            createHeroPanel(watson, "WATSON", Color::Cyan)
+        }) | size(WIDTH, EQUAL, 22);
+
         auto draculaGroup = vbox({
-            createHeroPanel(dracula, "DRACULA", Color::Red),
-            createHeroPanel(s1, "SISTER 1", Color::LightRed),
-            createHeroPanel(s2, "SISTER 2", Color::LightRed),
-            createHeroPanel(s3, "SISTER 3", Color::LightRed)
+            draculaPanel,
+            draculaSisters
         });
 
         auto sherlockGroup = vbox({
-            createHeroPanel(sherlock, "SHERLOCK", Color::Blue),
-            createHeroPanel(watson, "WATSON", Color::Cyan)
+            sherlockPanel,
+            watsonPanel
         });
+
+        auto mapElement = drawExactGraphMap() | flex | border | size(HEIGHT, EQUAL, 12);
 
         auto topRow = hbox({
             draculaGroup,
             mapElement,
             sherlockGroup
-        });
+        }) | size(HEIGHT, EQUAL, 14);
+
         auto handRow = hbox({
-            createHandPanel(draculaHero, "DRACULA", Color::Red) | flex,
-            createLegend() | flex,
-            createHandPanel(sherlockHero, "SHERLOCK", Color::Blue) | flex
-        });
+            createHandPanel(draculaHero, "DRACULA", Color::Red) | flex | size(WIDTH, EQUAL, 35),
+            createLegend() | size(WIDTH, EQUAL, 18),
+            createHandPanel(sherlockHero, "SHERLOCK", Color::Blue) | flex | size(WIDTH, EQUAL, 35)
+        }) | size(HEIGHT, EQUAL, 9);
 
         auto bottomRow = hbox({
-            createActionLog() | flex,
-            createCommandsPanel() | flex,
-            createLocationInfo() | flex
-        });
+            createActionLog() | flex | size(WIDTH, EQUAL, 35),
+            createCommandsPanel() | size(WIDTH, EQUAL, 22),
+            createLocationInfo() | size(WIDTH, EQUAL, 28)
+        }) | size(HEIGHT, EQUAL, 10);
 
         auto inputLine = hbox({
-            text(" Enter command: ") | bold | color(Color::Cyan),
+            text(" Enter command: ") | bold | color(Color::Cyan) | size(WIDTH, EQUAL, 17),
             input_box->Render() | flex
-        }) | border;
+        }) | border | size(HEIGHT, EQUAL, 3);
+
+        auto actionMenu = createActionMenu() | size(WIDTH, EQUAL, 55) | size(HEIGHT, EQUAL, 8);
 
         auto mainLayout = vbox({
-            text(" UNMATCHED TUI - Dracula vs Sherlock Holmes ") | bold | color(Color::Green) | center,
+            title,
             separator(),
-            createStatusDashboard() | size(HEIGHT, EQUAL, 12),
+            turnDisplay,
             separator(),
             topRow,
+            separator(),
+            actionMenu,
             separator(),
             handRow,
             separator(),
             bottomRow,
+            separator(),
             inputLine
         });
 
@@ -623,51 +673,60 @@ void TuiController::run() {
                     screen_mode = 0;
                     gamelogs.push_back("Returned to main menu");
                 }
-                 else if (cmd.rfind("move ", 0) == 0) {
+                else if (cmd.rfind("move ", 0) == 0) {
                     try {
-                        stringstream ss(cmd);
-                        string moveCmd, p1, p2;
-                        ss >> moveCmd >> p1;
-
-                        character* charToMove = nullptr;
-                        int targetNodeId = -1;
-
-                        if (ss >> p2) {
-                            if (!p2.empty() && p2[0] == 'n') p2 = p2.substr(1);
-                            targetNodeId = stoi(p2);
-
-                            for (character* c : gamemanager.getAllCharacters()) {
-                                if ((p1 == "s1" && c->getname() == "Sister 1") ||
-                                    (p1 == "s2" && c->getname() == "Sister 2") ||
-                                    (p1 == "s3" && c->getname() == "Sister 3") ||
-                                    (p1 == "watson" && c->getname() == "Watson") ||
-                                    (p1 == "dracula" && c->getname() == "Dracula") ||
-                                    (p1 == "sherlock" && c->getname() == "Sherlock Holmes")) {
-                                    charToMove = c;
-                                    break;
-                                }
-                            }
-                        } else {
-                            if (!p1.empty() && p1[0] == 'n') p1 = p1.substr(1);
-                            targetNodeId = stoi(p1);
-                            charToMove = gamemanager.getCurrentCharacter();
+                        string node_part = cmd.substr(5);
+                        if (!node_part.empty() && node_part[0] == 'n') {
+                            node_part = node_part.substr(1);
                         }
-
-                        if (!charToMove || !charToMove->isalive()) {
-                            gamelogs.push_back("Character not found or dead!");
+                        int target_node_id = stoi(node_part);
+                        character* current_char = gamemanager.getCurrentCharacter();
+                        hero* h = dynamic_cast<hero*>(current_char);
+                        
+                        if (!h) {
+                            gamelogs.push_back("Only heroes can move!");
                             return true;
                         }
-
-                        string targetName = "n" + to_string(targetNodeId);
                         
-                        bool success = gamemanager.moveCharacter(charToMove, targetName);
+                        if (!h->canact()) {
+                            gamelogs.push_back("No actions remaining!");
+                            return true;
+                        }
+                        
+                        bool occupied = false;
+                        for (character* c : gamemanager.getAllCharacters()) {
+                            if (c->getx() == target_node_id && c != h && c->isalive()) {
+                                occupied = true;
+                                break;
+                            }
+                        }
+                        if (occupied) {
+                            gamelogs.push_back("Node n" + to_string(target_node_id) + " is occupied!");
+                            return true;
+                        }
+                        
+                        int startNode = h->getx();
+                        string startName = "n" + to_string(startNode);
+                        string targetName = "n" + to_string(target_node_id);
+                        Board& board = gamemanager.getBoard();
+                        
+                        bool isConnected = board.isConnected(startName, targetName);
+                        bool isTeleport = board.isTeleport(startName) && 
+                                          board.getTeleportDestination(startName) == targetName;
+                        
+                        if (!isConnected && !isTeleport) {
+                            gamelogs.push_back("Cannot move to n" + to_string(target_node_id) + " (not adjacent)");
+                            return true;
+                        }
+                        
+                        bool success = gamemanager.moveCharacter(h, targetName);
                         if (success) {
-                            gamelogs.push_back(charToMove->getname() + " moved to node " + targetName);
+                            gamelogs.push_back(h->getname() + " moved to node " + targetName);
                         } else {
-                            gamelogs.push_back("Move failed! Check adjacency or actions.");
+                            gamelogs.push_back("Move failed!");
                         }
                     } catch (...) {
-                        gamelogs.push_back("Syntax Error: Use 'move <node>' or 'move <target> <node>'");
+                        gamelogs.push_back("Syntax Error: Use 'move <node_id>'");
                     }
                 }
                 else if (cmd.rfind("play ", 0) == 0) {
@@ -678,11 +737,25 @@ void TuiController::run() {
 
                         if (h && card_idx >= 1 && card_idx <= h->handsize()) {
                             card playedCard = h->gethand()[card_idx - 1];
+                            
+                            cardowner owner = playedCard.getowner();
+                            if (owner == cardowner::sherlock || owner == cardowner::watson) {
+                                if (h->getname() != "Sherlock Holmes") {
+                                    gamelogs.push_back("Only Sherlock can play this card!");
+                                    return true;
+                                }
+                            }
+                            if (owner == cardowner::dracula || owner == cardowner::sister) {
+                                if (h->getname() != "Dracula") {
+                                    gamelogs.push_back("Only Dracula can play this card!");
+                                    return true;
+                                }
+                            }
 
                             hero* opponent = nullptr;
                             for (character* c : gamemanager.getAllCharacters()) {
                                 hero* otherHero = dynamic_cast<hero*>(c);
-                                if (otherHero && otherHero != h) {
+                                if (otherHero && otherHero != h && otherHero->isalive()) {
                                     opponent = otherHero;
                                     break;
                                 }
@@ -691,7 +764,11 @@ void TuiController::run() {
                             bool actionSuccess = false;
                             Board& board = gamemanager.getBoard();
 
-                            if (playedCard.gettype() == cardtype::attack && opponent) {
+                            if (playedCard.gettype() == cardtype::attack) {
+                                if (!opponent) {
+                                    gamelogs.push_back("No opponent found!");
+                                    return true;
+                                }
                                 actionSuccess = h->attack(*opponent, playedCard, board);
                                 if (actionSuccess) {
                                     gamelogs.push_back(h->getname() + " attacked " + opponent->getname() +
@@ -707,7 +784,11 @@ void TuiController::run() {
                                     gamelogs.push_back("Attack failed! (not adjacent)");
                                 }
                             }
-                            else if (playedCard.gettype() == cardtype::scheme && opponent) {
+                            else if (playedCard.gettype() == cardtype::scheme) {
+                                if (!opponent) {
+                                    gamelogs.push_back("No opponent found!");
+                                    return true;
+                                }
                                 actionSuccess = h->scheme(playedCard, *opponent);
                                 if (actionSuccess) {
                                     gamelogs.push_back(h->getname() + " played scheme: " + playedCard.get_name());
@@ -764,7 +845,7 @@ void TuiController::run() {
                 }
                 else if (cmd == "log") {
                     for (const auto& log : gamelogs) {
-                        cout << log << endl;
+                        std::cout << log << std::endl;
                     }
                 }
                 else if (!cmd.empty()) {
@@ -785,7 +866,11 @@ void TuiController::run() {
         return false;
     });
 
-    Components tabs = {menu_event_handler, help_event_handler, gameplay_event_handler, gameover_event_handler};
+    Components tabs;
+    tabs.push_back(menu_event_handler);
+    tabs.push_back(help_event_handler);
+    tabs.push_back(gameplay_event_handler);
+    tabs.push_back(gameover_event_handler);
     auto main_container = Container::Tab(tabs, &screen_mode);
 
     screen.Loop(main_container);

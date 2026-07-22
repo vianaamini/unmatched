@@ -12,5 +12,6 @@ sherlock::sherlock() : hero("Sherlock Holmes", 16, 2) {
 }
 
 void sherlock::useability() {
-    cout << "Sherlock ability activated" << endl;
+    std::cout << "=== Sherlock Ability ===" << std::endl;
+    std::cout << "Cards related to Watson or Sherlock cannot be canceled by other cards." << std::endl;
 }

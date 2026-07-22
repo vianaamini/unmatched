@@ -45,7 +45,7 @@ public:
     Board& getBoard() { return board; }
     const Board& getBoard() const { return board; }
     TurnManager& getTurnManager() { return turnManager; }
-    bool resurrectSister(const std::string& sisterName, int targetNode);
+    bool resurrectSister(const std::string& sisterName, int heroNode);
     
 private:
     std::vector<character*> getAllies(character* character) const;

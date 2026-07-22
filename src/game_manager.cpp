@@ -1,5 +1,6 @@
 #include "../include/game_manager.hpp"
 #include "../include/hero.hpp"
+#include "../include/dracula.hpp"
 #include <algorithm>
 #include <iostream>
 
@@ -10,6 +11,16 @@ void GameManager::addCharacter(character* c, int team) {
     allCharacters.push_back(c);
     turnManager.addCharacter(c, team);
     
+    hero* h = dynamic_cast<hero*>(c);
+    if (h) {
+        h->setBoard(&board);
+    }
+    
+    dracula* d = dynamic_cast<dracula*>(c);
+    if (d) {
+        d->setAllCharacters(&allCharacters);
+    }
+    
     if (team == 1) {
         team1.push_back(c);
     } else {
@@ -19,6 +30,8 @@ void GameManager::addCharacter(character* c, int team) {
 
 void GameManager::removeCharacter(character* c) {
     if (!c) return;
+    
+    bool isHero = (dynamic_cast<hero*>(c) != nullptr);
     
     auto it = std::find(allCharacters.begin(), allCharacters.end(), c);
     if (it != allCharacters.end()) {
@@ -36,6 +49,12 @@ void GameManager::removeCharacter(character* c) {
     }
     
     turnManager.removeCharacter(c);
+    
+    if (isHero) {
+        std::cout << c->getname() << " has been defeated! Game Over!" << std::endl;
+    } else {
+        std::cout << c->getname() << " has been defeated and removed from the board." << std::endl;
+    }
 }
 
 std::vector<character*> GameManager::getAllies(character* c) const {
@@ -133,24 +152,48 @@ bool GameManager::moveCharacter(character* c, const std::string& targetSpace) {
         }
     }
     
-    int startNode = c->getx();
-    std::string startName = "n" + std::to_string(startNode);
-    
-    bool isConnected = board.isConnected(startName, targetSpace);
-    bool isTeleport = board.isTeleport(startName) && 
-                      board.getTeleportDestination(startName) == targetSpace;
-    
-    if (!isConnected && !isTeleport) {
-        std::cout << "Cannot move to " << targetSpace << " (not adjacent)" << std::endl;
+    bool success = h->maneuver(targetNode, board);
+    if (!success) {
+        std::cout << "Cannot reach " << targetSpace << std::endl;
         return false;
     }
     
-    c->setposition(targetNode);
-    
-    h->drawcard();
-    h->useAction();
     turnManager.endTurn();
     return true;
+}
+
+bool GameManager::resurrectSister(const std::string& sisterName, int heroNode) {
+    character* sister = nullptr;
+    for (character* c : allCharacters) {
+        if (c->getname() == sisterName) {
+            sister = c;
+            break;
+        }
+    }
+
+    if (!sister) return false;
+    if (sister->isalive()) return false;
+
+    auto zones = board.getZonesAt(heroNode, 0);
+    for (const auto& zone : zones) {
+        auto spaces = board.getSpacesInZone(zone);
+        for (const auto& space : spaces) {
+            int node = space.first;
+            bool occupied = false;
+            for (character* c : allCharacters) {
+                if (c->isalive() && c->getx() == node) {
+                    occupied = true;
+                    break;
+                }
+            }
+            if (!occupied && node != heroNode) {
+                sister->sethealth(1);
+                sister->setposition(node);
+                return true;
+            }
+        }
+    }
+    return false;
 }
 
 void GameManager::startGame(int firstTeam) {
@@ -195,22 +238,4 @@ character* GameManager::getWinner() const {
 
 std::vector<character*> GameManager::getAllCharacters() const {
     return allCharacters;
-}
-
-bool GameManager::resurrectSister(const std::string& sisterName, int targetNode) {
-    character* sister = nullptr;
-    for (character* c : allCharacters) {
-        if (c->getname() == sisterName) {
-            sister = c;
-            break;
-        }
-    }
-
-    if (!sister) return false;
-    if (!sister->isalive() || sister->gethealth() <= 0) {
-        sister->sethealth(1);
-        sister->setposition(targetNode);
-        return true;
-    }
-    return false;
 }

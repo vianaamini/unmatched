@@ -1,7 +1,7 @@
 #include "../include/game.hpp"
 #include "../include/deracula_cards.hpp"
 #include "../include/sherlock_card.hpp"
-#include "../include/hero.hpp"  // اضافه کردن این خط
+#include "../include/hero.hpp"
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
@@ -94,17 +94,14 @@ void Game::resolve(hero& attacker, card& atkcard, hero& defender, card& defendCa
     int attackValue = atkcard.getattack();
     int defenseValue = defendCard.getdefense();
     
-    // استفاده از Board از GameManager
     Board* board = gameManager ? &gameManager->getBoard() : nullptr;
     if (!board) {
-        // اگر GameManager نداشتیم، یک Board موقت
         static Board tempBoard;
         board = &tempBoard;
     }
     
     bool isAdjacent = board->isAdjacent(attacker.getx(), defender.getx());
     
-    // کارت‌های شرلوک
     if (atkcard.get_name() == "Counter Punch") {
         card_counter_punch cp;
         cp.execute_effect(attacker, defender, defendCard, isAdjacent, false);
@@ -131,7 +128,6 @@ void Game::resolve(hero& attacker, card& atkcard, hero& defender, card& defendCa
         allSisters.push_back(sisters[i]);
     }
     
-    // کارت‌های دراکولا
     if (atkcard.get_name() == "Feeding Frenzy" || 
         atkcard.get_name() == "Ambush" ||
         atkcard.get_name() == "Beastform" ||
@@ -156,7 +152,7 @@ void Game::resolve(hero& attacker, card& atkcard, hero& defender, card& defendCa
         for (int i = 0; i < 3; i++) {
             allSisters2.push_back(sisters[i]);
         }
-        dcards::resolve_scheme(atkcard, attacker, defender, enemyList, allSisters2, *board);
+        dcards::resolve_scheme(atkcard, attacker, defender, enemyList, allSisters2, *board, gameManager);
     }
     
     checkWinCondition();

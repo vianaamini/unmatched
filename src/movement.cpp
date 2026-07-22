@@ -43,7 +43,8 @@ bool Movement::canMoveThrough(int from, int to,
                               const std::vector<character*>& enemiesList,
                               character* currentChar) const {
     if (!board->hasSpace("n" + to_string(to))) return false;
-    if (isPositionOccupied(to, alliesList, enemiesList, currentChar)) return false;
+    
+    if (isPositionOccupiedByEnemy(to, enemiesList)) return false;
     
     string fromName = "n" + to_string(from);
     string toName = "n" + to_string(to);
@@ -53,6 +54,15 @@ bool Movement::canMoveThrough(int from, int to,
         return true;
     }
     return false;
+}
+
+bool Movement::canStopAt(int node,
+                         const std::vector<character*>& alliesList,
+                         const std::vector<character*>& enemiesList,
+                         character* currentChar) const {
+    if (!board->hasSpace("n" + to_string(node))) return false;
+    if (isPositionOccupied(node, alliesList, enemiesList, currentChar)) return false;
+    return true;
 }
 
 int Movement::getBaseMovement(const character* c) const {
@@ -98,7 +108,9 @@ std::vector<std::string> Movement::getPossibleMoves(
             for (int neighbor : neighbors) {
                 if (visited.find(neighbor) != visited.end()) continue;
                 if (canMoveThrough(current, neighbor, alliesList, enemiesList, c)) {
-                    validMoves.push_back("n" + to_string(neighbor));
+                    if (canStopAt(neighbor, alliesList, enemiesList, c)) {
+                        validMoves.push_back("n" + to_string(neighbor));
+                    }
                     q.push(neighbor);
                     visited.insert(neighbor);
                 }
@@ -147,7 +159,7 @@ bool Movement::canReach(const std::string& start,
             
             for (int neighbor : neighbors) {
                 if (visited.find(neighbor) != visited.end()) continue;
-                if (!isPositionOccupied(neighbor, alliesList, enemiesList, nullptr)) {
+                if (canMoveThrough(current, neighbor, alliesList, enemiesList, nullptr)) {
                     q.push(neighbor);
                     visited.insert(neighbor);
                 }
@@ -195,7 +207,7 @@ std::vector<std::vector<std::string>> Movement::findPaths(
             
             for (int neighbor : neighbors) {
                 if (std::find(path.begin(), path.end(), neighbor) != path.end()) continue;
-                if (!isPositionOccupied(neighbor, alliesList, enemiesList, nullptr)) {
+                if (canMoveThrough(current, neighbor, alliesList, enemiesList, nullptr)) {
                     path.push_back(neighbor);
                     dfs(neighbor, steps + 1, path);
                     path.pop_back();

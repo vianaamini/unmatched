@@ -39,30 +39,18 @@ bool Deployment::isSameZone(int node1, int node2) const {
 
 std::vector<int> Deployment::getDeploymentZone(int heroNode) const {
     std::vector<int> result;
-    std::queue<int> q;
-    std::unordered_set<int> visited;
-
-    q.push(heroNode);
-    visited.insert(heroNode);
-
-    while (!q.empty()) {
-        int current = q.front();
-        q.pop();
-
-        for (int neighbor : board->getNeighborIds(current)) {
-            if (visited.count(neighbor)) continue;
-            visited.insert(neighbor);
-
-            string name = "n" + to_string(neighbor);
-            if (!board->hasSpace(name)) continue;
-
-            if (!isOccupied(neighbor)) {
-                result.push_back(neighbor);
+    auto zones = board->getZonesAt(heroNode, 0);
+    
+    for (const auto& zone : zones) {
+        auto spaces = board->getSpacesInZone(zone);
+        for (const auto& space : spaces) {
+            int node = space.first;
+            if (!isOccupied(node) && node != heroNode) {
+                result.push_back(node);
             }
-            q.push(neighbor);
         }
     }
-
+    
     return result;
 }
 
@@ -111,7 +99,7 @@ Deployment::PlacementResult Deployment::placeSidekick(character* sidekick, int h
         }
     }
     
-    result.message = "No valid position for sidekick near hero";
+    result.message = "No valid position for sidekick in hero's zone";
     return result;
 }
 
