@@ -49,7 +49,6 @@ Board::Board(int width, int height) : width(width), height(height) {
     addEdge("n16", "n19");
     addEdge("n15", "n16");
 
-
     
     addTeleport("n1", "n21");
     addTeleport("n10", "n18");

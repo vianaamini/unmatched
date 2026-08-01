@@ -129,8 +129,7 @@ deck draculadeck() {
         d.addcard(card("Thirst for Sustenance", cardtype::attack, 3, 0, 3, cardowner::sister,
                        "If you win, place Dracula adjacent to opponent"));
     }
-    
-    // Feint - consistent boost value = 1 (same as Sherlock deck)
+
     for (int i = 0; i < 3; i++) {
         d.addcard(card("Feint", cardtype::multipurpose, 2, 2, 1, cardowner::any,
                        "Cancel all effects on opponent's card"));

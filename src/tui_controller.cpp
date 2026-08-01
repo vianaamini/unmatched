@@ -797,6 +797,7 @@ void TuiController::run()
                                     gamelogs.push_back("Attack failed! (not adjacent)");
                                 }
                             }
+                            
                             else if (playedCard.gettype() == cardtype::scheme && opponent) {
                                 actionSuccess = h->scheme(playedCard, *opponent);
                                 if (actionSuccess) {
