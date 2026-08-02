@@ -169,13 +169,17 @@ void card_game_is_afoot::execute_effect(character& attacker, character& defender
                                          bool attacker_won) {
     hero* h = dynamic_cast<hero*>(&attacker);
     if (h) {
-        Board& board = h->getBoard();
-        auto neighbors = board.getNeighborIds(attacker.getx());
-        if (neighbors.size() >= 3) {
-            attacker.setposition(neighbors[2]);
-            std::cout << "The Game is Afoot: Moved 3 spaces to n" << neighbors[2] << std::endl;
+        Board* board = h->getBoard();   // تغییر از ارجاع به اشاره‌گر
+        if (board) {                    // بررسی نال بودن اشاره‌گر
+            auto neighbors = board->getNeighborIds(attacker.getx());
+            if (neighbors.size() >= 3) {
+                attacker.setposition(neighbors[2]);
+                std::cout << "The Game is Afoot: Moved 3 spaces to n" << neighbors[2] << std::endl;
+            } else {
+                std::cout << "The Game is Afoot: Not enough neighbors!" << std::endl;
+            }
         } else {
-            std::cout << "The Game is Afoot: Not enough neighbors!" << std::endl;
+            std::cout << "Board is not available!" << std::endl;
         }
     }
 }

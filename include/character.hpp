@@ -1,6 +1,5 @@
 #pragma once
 #include <string>
-#include <utility>
 
 using namespace std;
 
@@ -14,24 +13,27 @@ private:
 
 public:
     character(string name, int maxhp, int movement);
+    virtual ~character() = default;
 
     string getname() const;
     int gethealth() const;
+    int getMaxHp() const;
     int getmovement() const;
-    int getMaxHp() const { return maxhp; }
+    int getposition() const;
+    int getx() const;
 
     void setposition(int node);
-    int getposition() const;
-    string getPositionString() const;
-    int getx() const { return nodeId; }
-    int gety() const { return 0; }
 
     void takedamage(int amount);
     void heal(int amount);
     void sethealth(int amount);
+
+    bool isalive() const;
+
     void setnewmovement(int newmovement);
     void resetmovement();
 
-    bool isalive() const;
-    virtual void useability() {};
+    std::string getPositionString() const;
+
+    virtual void useability() {}
 };

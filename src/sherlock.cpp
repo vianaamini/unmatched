@@ -1,5 +1,6 @@
 #include "../include/sherlock.hpp"
 #include "../include/deck-builder.hpp"
+// #include "../include/sherlock_card.hpp"  // حذف شده
 #include <iostream>
 
 sherlock::sherlock() : hero("Sherlock Holmes", 16, 2) {
