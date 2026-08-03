@@ -3,6 +3,8 @@
 #include "../include/dracula.hpp"
 #include <algorithm>
 #include <iostream>
+#include <algorithm>
+#include <cctype>
 
 GameManager::GameManager() : board(), movement(&board) {}
 
@@ -290,4 +292,78 @@ bool GameManager::isGameOver() const
 character *GameManager::getWinner() const
 {
     return turnManager.getWinner();
+}
+character* GameManager::findCharacterByName(const std::string& name) {
+    if (name.empty()) return nullptr;
+
+    std::string lowerName = name;
+    std::transform(lowerName.begin(), lowerName.end(), lowerName.begin(), ::tolower);
+
+    for (auto c : allCharacters) {
+        if (!c) continue;
+        std::string cName = c->getname();
+        std::transform(cName.begin(), cName.end(), cName.begin(), ::tolower);
+
+        if (cName == lowerName) return c;
+
+        if ((lowerName == "sh" || lowerName == "sherlock") && cName.find("sherlock") != std::string::npos) return c;
+        if ((lowerName == "w" || lowerName == "watson") && cName.find("watson") != std::string::npos) return c;
+        if ((lowerName == "d" || lowerName == "dracula") && cName.find("dracula") != std::string::npos) return c;
+        if ((lowerName == "s1" || lowerName == "sister1" || lowerName == "sister 1") && cName.find("sister") != std::string::npos && cName.find("1") != std::string::npos) return c;
+        if ((lowerName == "s2" || lowerName == "sister2" || lowerName == "sister 2") && cName.find("sister") != std::string::npos && cName.find("2") != std::string::npos) return c;
+    }
+
+    return nullptr;
+}
+
+bool GameManager::handleMove(const std::string& charIdentifier, const std::string& targetNodeStr) {
+    character* actor = nullptr;
+
+    if (charIdentifier.empty()) {
+        actor = getCurrentCharacter();
+    } else {
+        actor = findCharacterByName(charIdentifier);
+    }
+
+    if (!actor) {
+        return false;
+    }
+
+    return handleMove(actor, targetNodeStr);
+}
+
+bool GameManager::handleMove(character* actor, const std::string& targetNodeStr) {
+    if (!actor || !actor->isalive()) {
+        return false;
+    }
+
+    int activeTeam = getCurrentTeam();
+    const auto& currentTeamChars = (activeTeam == 1) ? team1 : team2;
+    
+    bool belongsToCurrentTeam = false;
+    for (auto c : currentTeamChars) {
+        if (c == actor) {
+            belongsToCurrentTeam = true;
+            break;
+        }
+    }
+
+    if (!belongsToCurrentTeam) {
+        return false;
+    }
+
+    if (getActionsRemaining() <= 0) {
+        return false;
+    }
+
+    std::string formattedNode = targetNodeStr;
+    if (!formattedNode.empty()) {
+        if (formattedNode[0] == 'N' || formattedNode[0] == 'n') {
+            formattedNode[0] = 'n';
+        } else {
+            formattedNode = "n" + formattedNode;
+        }
+    }
+
+    return moveCharacter(actor, formattedNode, nullptr);
 }

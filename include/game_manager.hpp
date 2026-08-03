@@ -18,6 +18,8 @@ private:
     std::vector<character*> team1;
     std::vector<character*> team2;
 
+    character* findCharacterByName(const std::string& name);
+
 public:
     GameManager();
 
@@ -26,6 +28,9 @@ public:
 
     std::vector<std::string> getValidMoves(character* character);
     bool moveCharacter(character* character, const std::string& targetSpace, const card* boostCard = nullptr);
+
+    bool handleMove(const std::string& charIdentifier, const std::string& targetNodeStr);
+    bool handleMove(character* actor, const std::string& targetNodeStr);
 
     void startGame(int firstTeam);
     void nextTurn();

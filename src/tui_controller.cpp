@@ -1,4 +1,3 @@
-// ==================== tui_controller.cpp ====================
 #include "tui_controller.hpp"
 #include "sherlock.hpp"
 #include "dracula.hpp"
@@ -528,95 +527,34 @@ void TuiController::processCommand(const std::string &cmd)
         screenMode = 0;
         gamelogs.push_back("Returned to main menu");
     }
+
     else if (cmd.rfind("move ", 0) == 0)
     {
-        try
+        stringstream ss(cmd);
+        string moveCmd, p1, p2;
+        ss >> moveCmd >> p1;
+
+        bool result = false;
+
+        if (ss >> p2)
         {
-            stringstream ss(cmd);
-            string moveCmd, p1, p2;
-            ss >> moveCmd >> p1;
-
-            character *charToMove = nullptr;
-            int targetNodeId = -1;
-
-            if (ss >> p2)
-            {
-                string targetStr = p2;
-                if (!targetStr.empty() && targetStr[0] == 'n')
-                    targetStr = targetStr.substr(1);
-                targetNodeId = stoi(targetStr);
-
-                string nameLower = p1;
-                transform(nameLower.begin(), nameLower.end(), nameLower.begin(), ::tolower);
-
-                for (character *c : gamemanager.getAllCharacters())
-                {
-                    string cName = c->getname();
-                    transform(cName.begin(), cName.end(), cName.begin(), ::tolower);
-
-                    if ((nameLower == "watson" || nameLower == "w") && cName.find("watson") != string::npos)
-                    {
-                        charToMove = c;
-                        break;
-                    }
-                    if ((nameLower == "s1" || nameLower == "sister1") && cName == "sister 1")
-                    {
-                        charToMove = c;
-                        break;
-                    }
-                    if ((nameLower == "s2" || nameLower == "sister2") && cName == "sister 2")
-                    {
-                        charToMove = c;
-                        break;
-                    }
-                    if ((nameLower == "s3" || nameLower == "sister3") && cName == "sister 3")
-                    {
-                        charToMove = c;
-                        break;
-                    }
-                    if ((nameLower == "sherlock" || nameLower == "s") && cName.find("sherlock") != string::npos)
-                    {
-                        charToMove = c;
-                        break;
-                    }
-                    if ((nameLower == "dracula" || nameLower == "d") && cName.find("dracula") != string::npos)
-                    {
-                        charToMove = c;
-                        break;
-                    }
-                }
-            }
-            else
-            {
-                string targetStr = p1;
-                if (!targetStr.empty() && targetStr[0] == 'n')
-                    targetStr = targetStr.substr(1);
-                targetNodeId = stoi(targetStr);
-                charToMove = gamemanager.getCurrentCharacter();
-            }
-
-            if (!charToMove || !charToMove->isalive())
-            {
-                gamelogs.push_back("Character not found or dead!");
-                return;
-            }
-
-            string targetName = "n" + to_string(targetNodeId);
-            bool success = gamemanager.moveCharacter(charToMove, targetName, nullptr);
-            if (success)
-            {
-                gamelogs.push_back(charToMove->getname() + " moved to node " + targetName);
-            }
-            else
-            {
-                gamelogs.push_back("Move failed! Check adjacency or actions.");
-            }
+            result = gamemanager.handleMove(p1, p2);
         }
-        catch (...)
+        else
         {
-            gamelogs.push_back("Syntax Error: Use 'move <node>' or 'move <target> <node>'");
+            result = gamemanager.handleMove("", p1);
+        }
+
+        if (result)
+        {
+            gamelogs.push_back("Moved successfully!");
+        }
+        else
+        {
+            gamelogs.push_back("Move failed!");
         }
     }
+
     else if (cmd.rfind("play ", 0) == 0)
     {
         try
