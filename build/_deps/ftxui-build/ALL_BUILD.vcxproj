@@ -1,0 +1,465 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="18.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ResolveNugetPackages>false</ResolveNugetPackages>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{5BCECCBD-EF87-390B-9CB7-DDA6F06381B0}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.26100.0</WindowsTargetPlatformVersion>
+    <Platform>x64</Platform>
+    <ProjectName>ALL_BUILD</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v145</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v145</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v145</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v145</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-src\CMakeLists.txt">
+      <UseUtf8Encoding>Always</UseUtf8Encoding>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/User/Desktop/unmatched/build/_deps/ftxui-src/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/User/Desktop/unmatched -BC:/Users/User/Desktop/unmatched/build --check-stamp-file C:/Users/User/Desktop/unmatched/build/_deps/ftxui-build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Program Files\CMake\share\cmake-4.4\Modules\BasicConfigVersion-AnyNewerVersion.cmake.in;C:\Program Files\CMake\share\cmake-4.4\Modules\CMakePackageConfigHelpers.cmake;C:\Program Files\CMake\share\cmake-4.4\Modules\CPack.cmake;C:\Program Files\CMake\share\cmake-4.4\Modules\CPackComponent.cmake;C:\Program Files\CMake\share\cmake-4.4\Modules\CheckCSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.4\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-4.4\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-4.4\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-4.4\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-4.4\Modules\FindThreads.cmake;C:\Program Files\CMake\share\cmake-4.4\Modules\GNUInstallDirs.cmake;C:\Program Files\CMake\share\cmake-4.4\Modules\Internal\CheckSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.4\Modules\WriteBasicConfigVersionFile.cmake;C:\Program Files\CMake\share\cmake-4.4\Templates\CPackConfig.cmake.in;C:\Users\User\Desktop\unmatched\build\_deps\ftxui-src\cmake\ftxui_coverage.cmake;C:\Users\User\Desktop\unmatched\build\_deps\ftxui-src\cmake\ftxui_export.cmake;C:\Users\User\Desktop\unmatched\build\_deps\ftxui-src\cmake\ftxui_install.cmake;C:\Users\User\Desktop\unmatched\build\_deps\ftxui-src\cmake\ftxui_package.cmake;C:\Users\User\Desktop\unmatched\build\_deps\ftxui-src\cmake\ftxui_set_options.cmake;C:\Users\User\Desktop\unmatched\build\_deps\ftxui-src\cmake\iwyu.cmake;C:\Users\User\Desktop\unmatched\build\_deps\ftxui-src\ftxui-config.cmake.in;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Users/User/Desktop/unmatched/build/_deps/ftxui-src/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/User/Desktop/unmatched -BC:/Users/User/Desktop/unmatched/build --check-stamp-file C:/Users/User/Desktop/unmatched/build/_deps/ftxui-build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Program Files\CMake\share\cmake-4.4\Modules\BasicConfigVersion-AnyNewerVersion.cmake.in;C:\Program Files\CMake\share\cmake-4.4\Modules\CMakePackageConfigHelpers.cmake;C:\Program Files\CMake\share\cmake-4.4\Modules\CPack.cmake;C:\Program Files\CMake\share\cmake-4.4\Modules\CPackComponent.cmake;C:\Program Files\CMake\share\cmake-4.4\Modules\CheckCSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.4\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-4.4\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-4.4\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-4.4\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-4.4\Modules\FindThreads.cmake;C:\Program Files\CMake\share\cmake-4.4\Modules\GNUInstallDirs.cmake;C:\Program Files\CMake\share\cmake-4.4\Modules\Internal\CheckSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.4\Modules\WriteBasicConfigVersionFile.cmake;C:\Program Files\CMake\share\cmake-4.4\Templates\CPackConfig.cmake.in;C:\Users\User\Desktop\unmatched\build\_deps\ftxui-src\cmake\ftxui_coverage.cmake;C:\Users\User\Desktop\unmatched\build\_deps\ftxui-src\cmake\ftxui_export.cmake;C:\Users\User\Desktop\unmatched\build\_deps\ftxui-src\cmake\ftxui_install.cmake;C:\Users\User\Desktop\unmatched\build\_deps\ftxui-src\cmake\ftxui_package.cmake;C:\Users\User\Desktop\unmatched\build\_deps\ftxui-src\cmake\ftxui_set_options.cmake;C:\Users\User\Desktop\unmatched\build\_deps\ftxui-src\cmake\iwyu.cmake;C:\Users\User\Desktop\unmatched\build\_deps\ftxui-src\ftxui-config.cmake.in;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule C:/Users/User/Desktop/unmatched/build/_deps/ftxui-src/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/User/Desktop/unmatched -BC:/Users/User/Desktop/unmatched/build --check-stamp-file C:/Users/User/Desktop/unmatched/build/_deps/ftxui-build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Program Files\CMake\share\cmake-4.4\Modules\BasicConfigVersion-AnyNewerVersion.cmake.in;C:\Program Files\CMake\share\cmake-4.4\Modules\CMakePackageConfigHelpers.cmake;C:\Program Files\CMake\share\cmake-4.4\Modules\CPack.cmake;C:\Program Files\CMake\share\cmake-4.4\Modules\CPackComponent.cmake;C:\Program Files\CMake\share\cmake-4.4\Modules\CheckCSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.4\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-4.4\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-4.4\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-4.4\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-4.4\Modules\FindThreads.cmake;C:\Program Files\CMake\share\cmake-4.4\Modules\GNUInstallDirs.cmake;C:\Program Files\CMake\share\cmake-4.4\Modules\Internal\CheckSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.4\Modules\WriteBasicConfigVersionFile.cmake;C:\Program Files\CMake\share\cmake-4.4\Templates\CPackConfig.cmake.in;C:\Users\User\Desktop\unmatched\build\_deps\ftxui-src\cmake\ftxui_coverage.cmake;C:\Users\User\Desktop\unmatched\build\_deps\ftxui-src\cmake\ftxui_export.cmake;C:\Users\User\Desktop\unmatched\build\_deps\ftxui-src\cmake\ftxui_install.cmake;C:\Users\User\Desktop\unmatched\build\_deps\ftxui-src\cmake\ftxui_package.cmake;C:\Users\User\Desktop\unmatched\build\_deps\ftxui-src\cmake\ftxui_set_options.cmake;C:\Users\User\Desktop\unmatched\build\_deps\ftxui-src\cmake\iwyu.cmake;C:\Users\User\Desktop\unmatched\build\_deps\ftxui-src\ftxui-config.cmake.in;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/Users/User/Desktop/unmatched/build/_deps/ftxui-src/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/User/Desktop/unmatched -BC:/Users/User/Desktop/unmatched/build --check-stamp-file C:/Users/User/Desktop/unmatched/build/_deps/ftxui-build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Program Files\CMake\share\cmake-4.4\Modules\BasicConfigVersion-AnyNewerVersion.cmake.in;C:\Program Files\CMake\share\cmake-4.4\Modules\CMakePackageConfigHelpers.cmake;C:\Program Files\CMake\share\cmake-4.4\Modules\CPack.cmake;C:\Program Files\CMake\share\cmake-4.4\Modules\CPackComponent.cmake;C:\Program Files\CMake\share\cmake-4.4\Modules\CheckCSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.4\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-4.4\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-4.4\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-4.4\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-4.4\Modules\FindThreads.cmake;C:\Program Files\CMake\share\cmake-4.4\Modules\GNUInstallDirs.cmake;C:\Program Files\CMake\share\cmake-4.4\Modules\Internal\CheckSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.4\Modules\WriteBasicConfigVersionFile.cmake;C:\Program Files\CMake\share\cmake-4.4\Templates\CPackConfig.cmake.in;C:\Users\User\Desktop\unmatched\build\_deps\ftxui-src\cmake\ftxui_coverage.cmake;C:\Users\User\Desktop\unmatched\build\_deps\ftxui-src\cmake\ftxui_export.cmake;C:\Users\User\Desktop\unmatched\build\_deps\ftxui-src\cmake\ftxui_install.cmake;C:\Users\User\Desktop\unmatched\build\_deps\ftxui-src\cmake\ftxui_package.cmake;C:\Users\User\Desktop\unmatched\build\_deps\ftxui-src\cmake\ftxui_set_options.cmake;C:\Users\User\Desktop\unmatched\build\_deps\ftxui-src\cmake\iwyu.cmake;C:\Users\User\Desktop\unmatched\build\_deps\ftxui-src\ftxui-config.cmake.in;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="C:\Users\User\Desktop\unmatched\build\ZERO_CHECK.vcxproj">
+      <Project>{1B907C0D-6283-3163-B153-535ED25BC5C5}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\component.vcxproj">
+      <Project>{EE145ACB-B263-3A90-86C4-B982F8345B5F}</Project>
+      <Name>component</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\dom.vcxproj">
+      <Project>{6ACB488E-1120-33FD-9540-122294DB402E}</Project>
+      <Name>dom</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\examples\dom\ftxui_example_border.vcxproj">
+      <Project>{14F806FB-961C-344B-9D59-7FCD543677D9}</Project>
+      <Name>ftxui_example_border</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\examples\dom\ftxui_example_border_style.vcxproj">
+      <Project>{5356A1F7-59D6-38D3-A04B-7AEDBC138892}</Project>
+      <Name>ftxui_example_border_style</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\examples\component\ftxui_example_button.vcxproj">
+      <Project>{7B5D0645-F540-362C-9C33-115B12A7021A}</Project>
+      <Name>ftxui_example_button</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\examples\component\ftxui_example_button_animated.vcxproj">
+      <Project>{3C37B3E5-F345-344F-ABCD-585FB8CAA3E1}</Project>
+      <Name>ftxui_example_button_animated</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\examples\component\ftxui_example_button_in_frame.vcxproj">
+      <Project>{FC191BB9-BFC1-3BE5-A27C-1CECDEDDDF73}</Project>
+      <Name>ftxui_example_button_in_frame</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\examples\component\ftxui_example_button_style.vcxproj">
+      <Project>{59FF4125-D5E5-3BE3-8364-80B12D3418A5}</Project>
+      <Name>ftxui_example_button_style</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\examples\dom\ftxui_example_canvas.vcxproj">
+      <Project>{0B1B7609-BCAD-3933-98FE-6DA06EABEAB8}</Project>
+      <Name>ftxui_example_canvas</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\examples\component\ftxui_example_canvas_animated.vcxproj">
+      <Project>{73E2B9B1-2EE1-36CC-ABAC-9F615BF575AE}</Project>
+      <Name>ftxui_example_canvas_animated</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\examples\component\ftxui_example_checkbox.vcxproj">
+      <Project>{6B7A236A-E732-35EB-A483-8048983FA9D7}</Project>
+      <Name>ftxui_example_checkbox</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\examples\component\ftxui_example_checkbox_in_frame.vcxproj">
+      <Project>{A87D2249-A518-3427-984C-39692E4EEC89}</Project>
+      <Name>ftxui_example_checkbox_in_frame</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\examples\component\ftxui_example_collapsible.vcxproj">
+      <Project>{EDDFC94D-E47B-3FF9-9DC4-A06D52A74187}</Project>
+      <Name>ftxui_example_collapsible</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\examples\dom\ftxui_example_color_gallery.vcxproj">
+      <Project>{FA4F1B3C-A45A-3775-9836-3D3A203A9598}</Project>
+      <Name>ftxui_example_color_gallery</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\examples\dom\ftxui_example_color_info_palette256.vcxproj">
+      <Project>{40EC60E2-12BF-3A15-BA1F-00FF5E03C19F}</Project>
+      <Name>ftxui_example_color_info_palette256</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\examples\dom\ftxui_example_color_truecolor_HSV.vcxproj">
+      <Project>{EFFAA1EA-27EF-3CDE-B88E-9B006ED047EC}</Project>
+      <Name>ftxui_example_color_truecolor_HSV</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\examples\dom\ftxui_example_color_truecolor_RGB.vcxproj">
+      <Project>{521550BA-526E-34E1-8346-73BDC29E42EF}</Project>
+      <Name>ftxui_example_color_truecolor_RGB</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\examples\component\ftxui_example_composition.vcxproj">
+      <Project>{F9DF901E-DD8D-3819-83C7-83DC35832EB7}</Project>
+      <Name>ftxui_example_composition</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\examples\dom\ftxui_example_dbox.vcxproj">
+      <Project>{5D0EDCDE-A2DA-3406-B019-5A055FBF3D0A}</Project>
+      <Name>ftxui_example_dbox</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\examples\component\ftxui_example_dropdown.vcxproj">
+      <Project>{6A6037C9-B6D7-342C-971F-9B4109476EAC}</Project>
+      <Name>ftxui_example_dropdown</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\examples\component\ftxui_example_flexbox_gallery.vcxproj">
+      <Project>{09BFF059-D19D-3F01-B7A6-2BE2E17F03E0}</Project>
+      <Name>ftxui_example_flexbox_gallery</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\examples\component\ftxui_example_focus.vcxproj">
+      <Project>{68AE0068-A4E7-3472-84BC-BCF0BC73EB02}</Project>
+      <Name>ftxui_example_focus</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\examples\component\ftxui_example_gallery.vcxproj">
+      <Project>{E78D71DE-3CE1-3C0B-82C3-88C8432D0CB5}</Project>
+      <Name>ftxui_example_gallery</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\examples\dom\ftxui_example_gauge.vcxproj">
+      <Project>{85690BA1-AA49-3831-B8B0-F79FDBEF4BE4}</Project>
+      <Name>ftxui_example_gauge</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\examples\dom\ftxui_example_gauge_direction.vcxproj">
+      <Project>{097E1390-DC25-30E4-8336-E52B6B3338A6}</Project>
+      <Name>ftxui_example_gauge_direction</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\examples\dom\ftxui_example_graph.vcxproj">
+      <Project>{6D2804F2-6EEB-33A3-9F06-E5E8A7829D93}</Project>
+      <Name>ftxui_example_graph</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\examples\dom\ftxui_example_gridbox.vcxproj">
+      <Project>{6E9DCB4F-2104-32E2-8FBD-43B65FBE6781}</Project>
+      <Name>ftxui_example_gridbox</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\examples\dom\ftxui_example_hflow.vcxproj">
+      <Project>{FBD2F7DE-1A77-3495-B455-1DABE592BA32}</Project>
+      <Name>ftxui_example_hflow</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\examples\component\ftxui_example_homescreen.vcxproj">
+      <Project>{E5E85CC9-0068-3CEB-9892-442312779F35}</Project>
+      <Name>ftxui_example_homescreen</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\examples\dom\ftxui_example_html_like.vcxproj">
+      <Project>{62F88858-5531-35F7-81AC-9AC5543D6A1E}</Project>
+      <Name>ftxui_example_html_like</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\examples\component\ftxui_example_input.vcxproj">
+      <Project>{E0D73816-61E1-3E26-9D1D-7B7636F987E7}</Project>
+      <Name>ftxui_example_input</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\examples\component\ftxui_example_maybe.vcxproj">
+      <Project>{F3A3A284-7F51-3977-BEE0-8561C473F25C}</Project>
+      <Name>ftxui_example_maybe</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\examples\component\ftxui_example_menu.vcxproj">
+      <Project>{D4F172CE-53A0-3935-ACB8-16124A3F7A6F}</Project>
+      <Name>ftxui_example_menu</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\examples\component\ftxui_example_menu2.vcxproj">
+      <Project>{3B5B760E-686D-35C3-A912-765A27190261}</Project>
+      <Name>ftxui_example_menu2</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\examples\component\ftxui_example_menu_entries.vcxproj">
+      <Project>{32DB4958-6CF9-321E-B148-0DE1F6BB4584}</Project>
+      <Name>ftxui_example_menu_entries</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\examples\component\ftxui_example_menu_entries_animated.vcxproj">
+      <Project>{EA3E8864-34DF-307B-9815-5FE8ABBF55F0}</Project>
+      <Name>ftxui_example_menu_entries_animated</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\examples\component\ftxui_example_menu_in_frame.vcxproj">
+      <Project>{4915E36A-CCCF-3D8C-B68E-25FD8F0C3921}</Project>
+      <Name>ftxui_example_menu_in_frame</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\examples\component\ftxui_example_menu_multiple.vcxproj">
+      <Project>{070A250B-9BBA-3F1B-93E3-D546DCE3A3AF}</Project>
+      <Name>ftxui_example_menu_multiple</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\examples\component\ftxui_example_menu_style.vcxproj">
+      <Project>{87AEEA98-26CB-3B6D-8552-9CFA6ED8E7F6}</Project>
+      <Name>ftxui_example_menu_style</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\examples\component\ftxui_example_menu_underline_animated_gallery.vcxproj">
+      <Project>{70E47B17-E244-3F7E-B017-8C2E73887829}</Project>
+      <Name>ftxui_example_menu_underline_animated_gallery</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\examples\component\ftxui_example_modal_dialog.vcxproj">
+      <Project>{6F364C56-2D23-3B51-8E43-52A3C81100D9}</Project>
+      <Name>ftxui_example_modal_dialog</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\examples\component\ftxui_example_nested_screen.vcxproj">
+      <Project>{BCA75BFE-FEA4-3F45-ABF6-E613DE5A33BC}</Project>
+      <Name>ftxui_example_nested_screen</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\examples\dom\ftxui_example_package_manager.vcxproj">
+      <Project>{9898AF49-ECB1-384F-AD59-51CABBF5E3EE}</Project>
+      <Name>ftxui_example_package_manager</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\examples\dom\ftxui_example_paragraph.vcxproj">
+      <Project>{8AEBD7B3-F1DB-30BC-85B1-B4AF4AD460FB}</Project>
+      <Name>ftxui_example_paragraph</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\examples\component\ftxui_example_print_key_press.vcxproj">
+      <Project>{B8FE062E-93D3-3CF1-B367-0BD027F121E9}</Project>
+      <Name>ftxui_example_print_key_press</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\examples\component\ftxui_example_radiobox.vcxproj">
+      <Project>{E94B5454-C865-39BD-BF6F-0A2B99D80015}</Project>
+      <Name>ftxui_example_radiobox</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\examples\component\ftxui_example_radiobox_in_frame.vcxproj">
+      <Project>{1A700126-B3E6-3FD5-811C-C38B25DBA2A4}</Project>
+      <Name>ftxui_example_radiobox_in_frame</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\examples\component\ftxui_example_renderer.vcxproj">
+      <Project>{3777004A-5343-3FCA-AAEF-13E092A61524}</Project>
+      <Name>ftxui_example_renderer</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\examples\component\ftxui_example_resizable_split.vcxproj">
+      <Project>{C9EC513E-562C-3A5A-9F9B-03D9146C45F9}</Project>
+      <Name>ftxui_example_resizable_split</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\examples\dom\ftxui_example_separator.vcxproj">
+      <Project>{EB89E939-99E3-3048-8BAC-B7E32E0838F7}</Project>
+      <Name>ftxui_example_separator</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\examples\dom\ftxui_example_separator_style.vcxproj">
+      <Project>{A7866122-78AC-3D18-9A88-BC8095E07049}</Project>
+      <Name>ftxui_example_separator_style</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\examples\dom\ftxui_example_size.vcxproj">
+      <Project>{D5EE346B-E758-3CBC-8463-F2D8ECB82E74}</Project>
+      <Name>ftxui_example_size</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\examples\component\ftxui_example_slider.vcxproj">
+      <Project>{29C33A00-EAF0-3634-A6AC-0CCEF186CEBB}</Project>
+      <Name>ftxui_example_slider</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\examples\component\ftxui_example_slider_rgb.vcxproj">
+      <Project>{7544A0E7-9AEB-3367-8ED3-8FF004A9F957}</Project>
+      <Name>ftxui_example_slider_rgb</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\examples\dom\ftxui_example_spinner.vcxproj">
+      <Project>{E04B7332-E414-363C-A8EC-46F39059B42E}</Project>
+      <Name>ftxui_example_spinner</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\examples\dom\ftxui_example_style_blink.vcxproj">
+      <Project>{A5D61979-8F52-3970-8593-3F9432D4DE50}</Project>
+      <Name>ftxui_example_style_blink</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\examples\dom\ftxui_example_style_bold.vcxproj">
+      <Project>{9D2961AF-3349-3B65-8AF3-0E913C2A78C4}</Project>
+      <Name>ftxui_example_style_bold</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\examples\dom\ftxui_example_style_color.vcxproj">
+      <Project>{454B4B0D-4C04-364E-9544-B4FCD5FBF81D}</Project>
+      <Name>ftxui_example_style_color</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\examples\dom\ftxui_example_style_dim.vcxproj">
+      <Project>{5C95BBCF-D594-3B31-9A50-D1D3AE1C7F24}</Project>
+      <Name>ftxui_example_style_dim</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\examples\dom\ftxui_example_style_gallery.vcxproj">
+      <Project>{214EFDEC-006A-3A4A-922A-576398EE625C}</Project>
+      <Name>ftxui_example_style_gallery</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\examples\dom\ftxui_example_style_inverted.vcxproj">
+      <Project>{E38F0041-417B-30A0-8A09-5A85B5124FF4}</Project>
+      <Name>ftxui_example_style_inverted</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\examples\dom\ftxui_example_style_underlined.vcxproj">
+      <Project>{19943506-510C-35CA-80BB-E98907CE7337}</Project>
+      <Name>ftxui_example_style_underlined</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\examples\component\ftxui_example_tab_horizontal.vcxproj">
+      <Project>{FC4593FA-9FBD-333C-A8B1-F24BFDD9B867}</Project>
+      <Name>ftxui_example_tab_horizontal</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\examples\component\ftxui_example_tab_vertical.vcxproj">
+      <Project>{2C0DEECA-E62B-3000-8405-BB9E9E67E80D}</Project>
+      <Name>ftxui_example_tab_vertical</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\examples\dom\ftxui_example_table.vcxproj">
+      <Project>{5D4BDC9E-0812-3B4C-9BFA-0420A27DE5AD}</Project>
+      <Name>ftxui_example_table</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\examples\component\ftxui_example_toggle.vcxproj">
+      <Project>{509819B8-5BC6-3FDC-957F-01D2F8E419F6}</Project>
+      <Name>ftxui_example_toggle</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\examples\dom\ftxui_example_vbox_hbox.vcxproj">
+      <Project>{F97762AA-3F6C-3065-8393-67395AFEE022}</Project>
+      <Name>ftxui_example_vbox_hbox</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\examples\dom\ftxui_example_vflow.vcxproj">
+      <Project>{C66E6D34-39D4-3D59-B4E0-5BBB0DC3B3D2}</Project>
+      <Name>ftxui_example_vflow</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\examples\dom\ftxui_example_window.vcxproj">
+      <Project>{E56C1FA2-407A-3B91-827A-5ED59269D7BA}</Project>
+      <Name>ftxui_example_window</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\examples\component\ftxui_example_with_restored_io.vcxproj">
+      <Project>{BFD69BDF-EF7F-31B8-ACAD-E82045C814C7}</Project>
+      <Name>ftxui_example_with_restored_io</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Desktop\unmatched\build\_deps\ftxui-build\screen.vcxproj">
+      <Project>{EF102C99-7A82-349E-9A86-2A478EAC89A0}</Project>
+      <Name>screen</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
