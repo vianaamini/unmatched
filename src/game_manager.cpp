@@ -418,5 +418,8 @@ bool GameManager::handleMove(character* actor, const std::string& targetNodeStr)
     }
 
     std::cout << actor->getname() << " successfully moved to " << formattedNode << std::endl;
+
+    turnManager.endTurn();   // <-- این خط اضافه بشه
+
     return true;
 }
