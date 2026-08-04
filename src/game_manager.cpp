@@ -356,6 +356,29 @@ bool GameManager::handleMove(character* actor, const std::string& targetNodeStr)
         return false;
     }
 
+    hero* activeHero = nullptr;
+    for (auto c : currentTeamChars) {
+        hero* h = dynamic_cast<hero*>(c);
+        if (h && h->isalive()) {
+            activeHero = h;
+            break;
+        }
+    }
+
+    if (activeHero) {
+        if (activeHero->getdeck().getsize() > 0) {
+            activeHero->drawcard();
+            std::cout << activeHero->getname() << " drew a card." << std::endl;
+        } else {
+            std::cout << activeHero->getname() << "'s deck is empty! Taking 2 exhaustion damage." << std::endl;
+            activeHero->sethealth(activeHero->gethealth() - 2);
+            if (activeHero->gethealth() <= 0) {
+                activeHero->sethealth(0);
+                removeCharacter(activeHero);
+            }
+        }
+    }
+
     std::string formattedNode = targetNodeStr;
     if (!formattedNode.empty()) {
         if (formattedNode[0] == 'N' || formattedNode[0] == 'n') {
@@ -365,5 +388,35 @@ bool GameManager::handleMove(character* actor, const std::string& targetNodeStr)
         }
     }
 
-    return moveCharacter(actor, formattedNode, nullptr);
+    bool isHero = (dynamic_cast<hero*>(actor) != nullptr);
+    int moveSteps = isHero ? 3 : actor->getmovement();
+
+    auto allies = getAllies(actor);
+    auto enemies = getEnemies(actor);
+    std::string startSpace = "n" + std::to_string(actor->getx());
+
+    bool reachable = movement.canReach(startSpace, formattedNode, moveSteps, allies, enemies);
+    if (!reachable) {
+        std::cout << "Cannot reach " << formattedNode << " within " << moveSteps << " steps!" << std::endl;
+        return false;
+    }
+
+    int targetNode = board.getNodeId(formattedNode);
+    for (character *other : allCharacters) {
+        if (other != actor && other->isalive() && other->getx() == targetNode) {
+            std::cout << "Node " << formattedNode << " is occupied!" << std::endl;
+            return false;
+        }
+    }
+
+    actor->setposition(targetNode);
+
+    character* currentTurnChar = turnManager.getCurrentCharacter();
+    hero* turnHero = dynamic_cast<hero*>(currentTurnChar);
+    if (turnHero) {
+        turnHero->useAction();
+    }
+
+    std::cout << actor->getname() << " successfully moved to " << formattedNode << std::endl;
+    return true;
 }

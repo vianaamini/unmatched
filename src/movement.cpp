@@ -131,6 +131,8 @@ bool Movement::canReach(const std::string& start,
     
     int startNode = board->getNodeId(start);
     int targetNode = board->getNodeId(target);
+
+    if (startNode == targetNode) return true;
     
     std::queue<int> q;
     std::unordered_set<int> visited;
@@ -143,8 +145,6 @@ bool Movement::canReach(const std::string& start,
         for (int i = 0; i < levelSize; ++i) {
             int current = q.front();
             q.pop();
-            
-            if (current == targetNode) return true;
             
             auto neighbors = board->getNeighborIds(current);
             
@@ -160,6 +160,8 @@ bool Movement::canReach(const std::string& start,
             for (int neighbor : neighbors) {
                 if (visited.find(neighbor) != visited.end()) continue;
                 if (canMoveThrough(current, neighbor, alliesList, enemiesList, nullptr)) {
+                    if (neighbor == targetNode) return true;
+                    
                     q.push(neighbor);
                     visited.insert(neighbor);
                 }
@@ -168,58 +170,7 @@ bool Movement::canReach(const std::string& start,
     }
     return false;
 }
-
-std::vector<std::vector<std::string>> Movement::findPaths(
-    const std::string& start,
-    const std::string& target,
-    int maxSteps,
-    const std::vector<character*>& alliesList,
-    const std::vector<character*>& enemiesList) const {
-    
-    std::vector<std::vector<std::string>> result;
-    if (!board->hasSpace(start) || !board->hasSpace(target)) return result;
-    
-    int startNode = board->getNodeId(start);
-    int targetNode = board->getNodeId(target);
-    
-    std::function<void(int, int, std::vector<int>&)> dfs =
-        [&](int current, int steps, std::vector<int>& path) {
-            if (current == targetNode) {
-                std::vector<std::string> stringPath;
-                for (int node : path) {
-                    stringPath.push_back("n" + to_string(node));
-                }
-                result.push_back(stringPath);
-                return;
-            }
-            if (steps >= maxSteps) return;
-            
-            auto neighbors = board->getNeighborIds(current);
-            
-            string currentName = "n" + to_string(current);
-            if (board->isTeleport(currentName)) {
-                string dest = board->getTeleportDestination(currentName);
-                int destId = board->getNodeId(dest);
-                if (destId != current) {
-                    neighbors.push_back(destId);
-                }
-            }
-            
-            for (int neighbor : neighbors) {
-                if (std::find(path.begin(), path.end(), neighbor) != path.end()) continue;
-                if (canMoveThrough(current, neighbor, alliesList, enemiesList, nullptr)) {
-                    path.push_back(neighbor);
-                    dfs(neighbor, steps + 1, path);
-                    path.pop_back();
-                }
-            }
-        };
-    
-    std::vector<int> path = {startNode};
-    dfs(startNode, 0, path);
-    return result;
-}
-
+   
 void Movement::boost(character* c, const card* playedCard, ActionType currentAction) const {
     if (!c || !playedCard || currentAction != ActionType::MANEUVER) return;
     c->setnewmovement(c->getmovement() + playedCard->getboost());
