@@ -1,90 +1,110 @@
 #include "../include/dracula.hpp"
 #include "../include/deck-builder.hpp"
-// #include "../include/dracula_cards.hpp"  // حذف شده
-#include "../include/map.hpp"
 
 #include <iostream>
-#include <vector>
 
-using namespace std;
 
 dracula::dracula()
-    : hero("Dracula", 13, 2),
-      allCharactersPtr(nullptr)
+    :
+    hero("Dracula",13,2),
+    allCharactersPtr(nullptr)
 {
-    deck draculadk = draculadeck();
-    draculadk.shuffle();
 
-    while(!draculadk.isempty())
+    deck d = draculadeck();
+
+    d.shuffle();
+
+
+    while(!d.isempty())
     {
-        getdeck().addcard(draculadk.drawcard());
+        getdeck().addcard(d.drawcard());
     }
+
+
+    drawhand();
 }
+
+
+
+void dracula::setAllCharacters(std::vector<character*>* chars)
+{
+    allCharactersPtr = chars;
+}
+
+
 
 void dracula::useability()
 {
-    cout << "=== Dracula Ability ===" << endl;
-    cout << "Choose an adjacent fighter to deal 1 damage and draw a card." << endl;
-    cout << "Enter target node (n1-n21) or 'skip': ";
 
-    string input;
-    cin >> input;
+    std::cout
+    << "Dracula Ability: Blood Drain\n";
 
-    if(input=="skip")
+
+    if(!allCharactersPtr)
     {
-        cout << "Ability skipped." << endl;
+        std::cout<<"No characters available\n";
         return;
     }
 
-    if(input.empty() || input[0]!='n')
+
+    Board* board = getBoard();
+
+
+    if(!board)
     {
-        cout << "Invalid target!" << endl;
+        std::cout<<"No board\n";
         return;
     }
 
-    try
+
+
+    character* target=nullptr;
+
+
+    for(auto* c:*allCharactersPtr)
     {
-        int targetId = stoi(input.substr(1));
-        character* target=nullptr;
-        Board* board = getBoard();
 
-        if(board==nullptr)
+        if(c==this)
+            continue;
+
+
+        if(!c->isalive())
+            continue;
+
+
+
+        if(board->isAdjacent(
+            getposition(),
+            c->getposition()))
         {
-            cout << "Board not set!" << endl;
-            return;
+            target=c;
+            break;
         }
 
-        if(allCharactersPtr)
-        {
-            for(character* c : *allCharactersPtr)
-            {
-                if(c && c->getx()==targetId && c->isalive() && c!=this)
-                {
-                    target=c;
-                    break;
-                }
-            }
-        }
-
-        if(!target)
-        {
-            cout << "No character at node " << input << "!" << endl;
-            return;
-        }
-
-        if(!board->isAdjacent(getx(), target->getx()))
-        {
-            cout << "Target is not adjacent to Dracula!" << endl;
-            return;
-        }
-
-        target->takedamage(1);
-        drawcard();
-
-        cout << "Dealt 1 damage to " << target->getname() << " and drew a card." << endl;
     }
-    catch(...)
+
+
+
+    if(!target)
     {
-        cout << "Invalid target!" << endl;
+        std::cout
+        <<"No adjacent enemy\n";
+
+        return;
     }
+
+
+
+    target->takedamage(1);
+
+
+    drawcard();
+
+
+
+    std::cout
+    <<"Dracula damaged "
+    <<target->getname()
+    <<" and drew a card\n";
+
 }
