@@ -1,5 +1,6 @@
 #include "raylib.h"
-#include "map.hpp"
+#include "../include/map.hpp"
+#include "../include/gui.hpp"
 #include <vector>
 #include <string>
 
@@ -26,12 +27,10 @@ Texture2D LoadTextureWithFallbacks(const std::string& category, const std::vecto
     return Texture2D{ 0 };
 }
 
-int main() {
+void RunGameUI(Board& board) {
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
     InitWindow(1366, 768, "Unmatched Game - Raylib View");
     SetTargetFPS(60);
-
-    Board board(1366, 768);
 
     Texture2D boardTex = LoadTextureWithFallbacks("", {"board.jpeg", "board.jpg", "board.png"});
     
@@ -101,7 +100,6 @@ int main() {
             }
         }
 
-       
         DrawRectangleRec(p2Panel, GetColor(0x1C1C24FF));
         DrawRectangleLinesEx(p2Panel, 2, BLUE);
 
@@ -136,5 +134,4 @@ int main() {
     UnloadTexture(watsonArt);
 
     CloseWindow();
-    return 0;
 }
