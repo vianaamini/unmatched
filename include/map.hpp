@@ -10,7 +10,7 @@
 using namespace std;
 
 enum class NodeColor {
-    RED, BLUE, YELLOW, GREEN, PURPLE, BROWN, NONE
+    BLUE, Red ,YELLOW, GREEN, PURPLE, BROWN, GRAY ,NONE
 };
 
 class Board {
