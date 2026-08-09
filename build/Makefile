@@ -1596,30 +1596,6 @@ src/sister.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\unmatched.dir\build.make CMakeFiles/unmatched.dir/src/sister.cpp.s
 .PHONY : src/sister.cpp.s
 
-src/tui_controller.obj: src/tui_controller.cpp.obj
-.PHONY : src/tui_controller.obj
-
-# target to build an object file
-src/tui_controller.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\unmatched.dir\build.make CMakeFiles/unmatched.dir/src/tui_controller.cpp.obj
-.PHONY : src/tui_controller.cpp.obj
-
-src/tui_controller.i: src/tui_controller.cpp.i
-.PHONY : src/tui_controller.i
-
-# target to preprocess a source file
-src/tui_controller.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\unmatched.dir\build.make CMakeFiles/unmatched.dir/src/tui_controller.cpp.i
-.PHONY : src/tui_controller.cpp.i
-
-src/tui_controller.s: src/tui_controller.cpp.s
-.PHONY : src/tui_controller.s
-
-# target to generate assembly for a file
-src/tui_controller.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\unmatched.dir\build.make CMakeFiles/unmatched.dir/src/tui_controller.cpp.s
-.PHONY : src/tui_controller.cpp.s
-
 src/turn_manager.obj: src/turn_manager.cpp.obj
 .PHONY : src/turn_manager.obj
 
@@ -1814,9 +1790,6 @@ help:
 	@echo ... src/sister.obj
 	@echo ... src/sister.i
 	@echo ... src/sister.s
-	@echo ... src/tui_controller.obj
-	@echo ... src/tui_controller.i
-	@echo ... src/tui_controller.s
 	@echo ... src/turn_manager.obj
 	@echo ... src/turn_manager.i
 	@echo ... src/turn_manager.s

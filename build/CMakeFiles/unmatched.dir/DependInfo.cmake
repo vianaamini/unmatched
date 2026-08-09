@@ -28,7 +28,6 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "E:/assassins/new/unmatched/src/sherlock_card.cpp" "CMakeFiles/unmatched.dir/src/sherlock_card.cpp.obj" "gcc" "CMakeFiles/unmatched.dir/src/sherlock_card.cpp.obj.d"
   "E:/assassins/new/unmatched/src/sidekick.cpp" "CMakeFiles/unmatched.dir/src/sidekick.cpp.obj" "gcc" "CMakeFiles/unmatched.dir/src/sidekick.cpp.obj.d"
   "E:/assassins/new/unmatched/src/sister.cpp" "CMakeFiles/unmatched.dir/src/sister.cpp.obj" "gcc" "CMakeFiles/unmatched.dir/src/sister.cpp.obj.d"
-  "E:/assassins/new/unmatched/src/tui_controller.cpp" "CMakeFiles/unmatched.dir/src/tui_controller.cpp.obj" "gcc" "CMakeFiles/unmatched.dir/src/tui_controller.cpp.obj.d"
   "E:/assassins/new/unmatched/src/turn_manager.cpp" "CMakeFiles/unmatched.dir/src/turn_manager.cpp.obj" "gcc" "CMakeFiles/unmatched.dir/src/turn_manager.cpp.obj.d"
   "E:/assassins/new/unmatched/src/watson.cpp" "CMakeFiles/unmatched.dir/src/watson.cpp.obj" "gcc" "CMakeFiles/unmatched.dir/src/watson.cpp.obj.d"
   )

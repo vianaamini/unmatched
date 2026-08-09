@@ -7,15 +7,15 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 include(FetchContent)
 
+find_package(raylib REQUIRED)
+
 FetchContent_Declare(
-    ftxui
-    GIT_REPOSITORY https://github.com/ArthurSonzogni/FTXUI.git
-    GIT_TAG v3.0.0
+  ftxui
+  GIT_REPOSITORY https://github.com/ArthurSonzogni/FTXUI.git
+  GIT_TAG v3.0.0
 )
 
 FetchContent_MakeAvailable(ftxui)
-
-find_package(raylib REQUIRED)
 
 add_executable(unmatched
     main.cpp
@@ -40,14 +40,14 @@ add_executable(unmatched
     src/sherlock_card.cpp
     src/sidekick.cpp
     src/sister.cpp
-    src/tui_controller.cpp
+    #src/tui_controller.cpp
     src/turn_manager.cpp
     src/watson.cpp
 )
 
 target_include_directories(unmatched PRIVATE include)
 
-target_link_libraries(unmatched PRIVATE
+target_link_libraries(unmatched PRIVATE 
     ftxui::screen
     ftxui::dom
     ftxui::component

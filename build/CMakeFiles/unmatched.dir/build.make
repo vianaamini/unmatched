@@ -371,26 +371,11 @@ CMakeFiles/unmatched.dir/src/sister.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/unmatched.dir/src/sister.cpp.s"
 	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\assassins\new\unmatched\src\sister.cpp -o CMakeFiles\unmatched.dir\src\sister.cpp.s
 
-CMakeFiles/unmatched.dir/src/tui_controller.cpp.obj: CMakeFiles/unmatched.dir/flags.make
-CMakeFiles/unmatched.dir/src/tui_controller.cpp.obj: CMakeFiles/unmatched.dir/includes_CXX.rsp
-CMakeFiles/unmatched.dir/src/tui_controller.cpp.obj: E:/assassins/new/unmatched/src/tui_controller.cpp
-CMakeFiles/unmatched.dir/src/tui_controller.cpp.obj: CMakeFiles/unmatched.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/unmatched.dir/src/tui_controller.cpp.obj"
-	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/unmatched.dir/src/tui_controller.cpp.obj -MF CMakeFiles\unmatched.dir\src\tui_controller.cpp.obj.d -o CMakeFiles\unmatched.dir\src\tui_controller.cpp.obj -c E:\assassins\new\unmatched\src\tui_controller.cpp
-
-CMakeFiles/unmatched.dir/src/tui_controller.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/unmatched.dir/src/tui_controller.cpp.i"
-	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\assassins\new\unmatched\src\tui_controller.cpp > CMakeFiles\unmatched.dir\src\tui_controller.cpp.i
-
-CMakeFiles/unmatched.dir/src/tui_controller.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/unmatched.dir/src/tui_controller.cpp.s"
-	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\assassins\new\unmatched\src\tui_controller.cpp -o CMakeFiles\unmatched.dir\src\tui_controller.cpp.s
-
 CMakeFiles/unmatched.dir/src/turn_manager.cpp.obj: CMakeFiles/unmatched.dir/flags.make
 CMakeFiles/unmatched.dir/src/turn_manager.cpp.obj: CMakeFiles/unmatched.dir/includes_CXX.rsp
 CMakeFiles/unmatched.dir/src/turn_manager.cpp.obj: E:/assassins/new/unmatched/src/turn_manager.cpp
 CMakeFiles/unmatched.dir/src/turn_manager.cpp.obj: CMakeFiles/unmatched.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/unmatched.dir/src/turn_manager.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/unmatched.dir/src/turn_manager.cpp.obj"
 	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/unmatched.dir/src/turn_manager.cpp.obj -MF CMakeFiles\unmatched.dir\src\turn_manager.cpp.obj.d -o CMakeFiles\unmatched.dir\src\turn_manager.cpp.obj -c E:\assassins\new\unmatched\src\turn_manager.cpp
 
 CMakeFiles/unmatched.dir/src/turn_manager.cpp.i: cmake_force
@@ -405,7 +390,7 @@ CMakeFiles/unmatched.dir/src/watson.cpp.obj: CMakeFiles/unmatched.dir/flags.make
 CMakeFiles/unmatched.dir/src/watson.cpp.obj: CMakeFiles/unmatched.dir/includes_CXX.rsp
 CMakeFiles/unmatched.dir/src/watson.cpp.obj: E:/assassins/new/unmatched/src/watson.cpp
 CMakeFiles/unmatched.dir/src/watson.cpp.obj: CMakeFiles/unmatched.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/unmatched.dir/src/watson.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/unmatched.dir/src/watson.cpp.obj"
 	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/unmatched.dir/src/watson.cpp.obj -MF CMakeFiles\unmatched.dir\src\watson.cpp.obj.d -o CMakeFiles\unmatched.dir\src\watson.cpp.obj -c E:\assassins\new\unmatched\src\watson.cpp
 
 CMakeFiles/unmatched.dir/src/watson.cpp.i: cmake_force
@@ -438,7 +423,6 @@ unmatched_OBJECTS = \
 "CMakeFiles/unmatched.dir/src/sherlock_card.cpp.obj" \
 "CMakeFiles/unmatched.dir/src/sidekick.cpp.obj" \
 "CMakeFiles/unmatched.dir/src/sister.cpp.obj" \
-"CMakeFiles/unmatched.dir/src/tui_controller.cpp.obj" \
 "CMakeFiles/unmatched.dir/src/turn_manager.cpp.obj" \
 "CMakeFiles/unmatched.dir/src/watson.cpp.obj"
 
@@ -465,7 +449,6 @@ unmatched.exe: CMakeFiles/unmatched.dir/src/sherlock.cpp.obj
 unmatched.exe: CMakeFiles/unmatched.dir/src/sherlock_card.cpp.obj
 unmatched.exe: CMakeFiles/unmatched.dir/src/sidekick.cpp.obj
 unmatched.exe: CMakeFiles/unmatched.dir/src/sister.cpp.obj
-unmatched.exe: CMakeFiles/unmatched.dir/src/tui_controller.cpp.obj
 unmatched.exe: CMakeFiles/unmatched.dir/src/turn_manager.cpp.obj
 unmatched.exe: CMakeFiles/unmatched.dir/src/watson.cpp.obj
 unmatched.exe: CMakeFiles/unmatched.dir/build.make
@@ -478,7 +461,7 @@ unmatched.exe: _deps/ftxui-build/libftxui-screen.a
 unmatched.exe: CMakeFiles/unmatched.dir/linkLibs.rsp
 unmatched.exe: CMakeFiles/unmatched.dir/objects1.rsp
 unmatched.exe: CMakeFiles/unmatched.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Linking CXX executable unmatched.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Linking CXX executable unmatched.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\unmatched.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

@@ -226,26 +226,6 @@
 			"path" : "C:/msys64/ucrt64/share/cmake/Modules/ExternalProject/shared_internal_commands.cmake"
 		},
 		{
-			"isCMake" : true,
-			"isExternal" : true,
-			"path" : "C:/msys64/ucrt64/share/cmake/Modules/FindGit.cmake"
-		},
-		{
-			"isCMake" : true,
-			"isExternal" : true,
-			"path" : "C:/msys64/ucrt64/share/cmake/Modules/FindPackageHandleStandardArgs.cmake"
-		},
-		{
-			"isCMake" : true,
-			"isExternal" : true,
-			"path" : "C:/msys64/ucrt64/share/cmake/Modules/FindPackageMessage.cmake"
-		},
-		{
-			"isCMake" : true,
-			"isExternal" : true,
-			"path" : "C:/msys64/ucrt64/share/cmake/Modules/FetchContent/CMakeLists.cmake.in"
-		},
-		{
 			"isExternal" : true,
 			"path" : "C:/msys64/ucrt64/lib/cmake/raylib/raylib-config-version.cmake"
 		},
@@ -265,6 +245,26 @@
 		{
 			"isExternal" : true,
 			"path" : "C:/msys64/ucrt64/lib/cmake/raylib/raylib-targets-release.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "C:/msys64/ucrt64/share/cmake/Modules/FindGit.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "C:/msys64/ucrt64/share/cmake/Modules/FindPackageHandleStandardArgs.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "C:/msys64/ucrt64/share/cmake/Modules/FindPackageMessage.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "C:/msys64/ucrt64/share/cmake/Modules/FetchContent/CMakeLists.cmake.in"
 		},
 		{
 			"isGenerated" : true,

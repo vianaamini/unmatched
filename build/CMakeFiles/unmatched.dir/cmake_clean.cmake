@@ -39,8 +39,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/unmatched.dir/src/sidekick.cpp.obj.d"
   "CMakeFiles/unmatched.dir/src/sister.cpp.obj"
   "CMakeFiles/unmatched.dir/src/sister.cpp.obj.d"
-  "CMakeFiles/unmatched.dir/src/tui_controller.cpp.obj"
-  "CMakeFiles/unmatched.dir/src/tui_controller.cpp.obj.d"
   "CMakeFiles/unmatched.dir/src/turn_manager.cpp.obj"
   "CMakeFiles/unmatched.dir/src/turn_manager.cpp.obj.d"
   "CMakeFiles/unmatched.dir/src/watson.cpp.obj"

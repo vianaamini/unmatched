@@ -10,7 +10,14 @@
 using namespace std;
 
 enum class NodeColor {
-    RED, BLUE, YELLOW, GREEN, PURPLE, BROWN, NONE
+    COLOR_BLUE,
+    COLOR_RED,
+    COLOR_YELLOW,
+    COLOR_GREEN,
+    COLOR_PURPLE,
+    COLOR_BROWN,
+    COLOR_GRAY,
+    NONE
 };
 
 class Board {
@@ -32,7 +39,6 @@ public:
     void setWalkable(int x, int y, bool walkable);
     void setObstacle(int x, int y, bool hasObstacle);
     
-    // برای گره‌ها (فقط با ID)
     bool isAdjacent(int node1, int node2) const;
     vector<int> getNeighborIds(int node) const;
     
@@ -64,4 +70,4 @@ public:
     NodeColor getNodeColorByName(const string& nodeName) const;
 };
 
-#endif
+#endif 

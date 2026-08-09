@@ -121,12 +121,6 @@
 },
 {
   "directory": "E:/assassins/new/unmatched/build",
-  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP -DUSE_LIBTYPE_SHARED @CMakeFiles\\unmatched.dir\\includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\unmatched.dir\\src\\tui_controller.cpp.obj -c E:\\assassins\\new\\unmatched\\src\\tui_controller.cpp",
-  "file": "E:/assassins/new/unmatched/src/tui_controller.cpp",
-  "output": "CMakeFiles/unmatched.dir/src/tui_controller.cpp.obj"
-},
-{
-  "directory": "E:/assassins/new/unmatched/build",
   "command": "C:\\msys64\\ucrt64\\bin\\g++.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP -DUSE_LIBTYPE_SHARED @CMakeFiles\\unmatched.dir\\includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\unmatched.dir\\src\\turn_manager.cpp.obj -c E:\\assassins\\new\\unmatched\\src\\turn_manager.cpp",
   "file": "E:/assassins/new/unmatched/src/turn_manager.cpp",
   "output": "CMakeFiles/unmatched.dir/src/turn_manager.cpp.obj"

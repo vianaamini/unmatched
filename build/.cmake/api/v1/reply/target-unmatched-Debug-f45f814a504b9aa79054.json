@@ -29,19 +29,19 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 20,
+				"line" : 21,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 50,
+				"line" : 51,
 				"parent" : 0
 			},
 			{
 				"command" : 2,
 				"file" : 0,
-				"line" : 48,
+				"line" : 49,
 				"parent" : 0
 			}
 		]
@@ -137,8 +137,7 @@
 				18,
 				19,
 				20,
-				21,
-				22
+				21
 			]
 		}
 	],
@@ -256,8 +255,7 @@
 				18,
 				19,
 				20,
-				21,
-				22
+				21
 			]
 		}
 	],
@@ -461,16 +459,6 @@
 			],
 			"compileGroupIndex" : 0,
 			"path" : "src/sister.cpp",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"backtraces" : 
-			[
-				1
-			],
-			"compileGroupIndex" : 0,
-			"path" : "src/tui_controller.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
