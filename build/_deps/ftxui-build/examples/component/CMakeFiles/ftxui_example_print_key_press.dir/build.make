@@ -76,15 +76,15 @@ _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_print_key_press.di
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_print_key_press.dir/print_key_press.cpp.obj: _deps/ftxui-src/examples/component/print_key_press.cpp
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_print_key_press.dir/print_key_press.cpp.obj: _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_print_key_press.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_print_key_press.dir/print_key_press.cpp.obj"
-	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build\examples\component && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_print_key_press.dir/print_key_press.cpp.obj -MF CMakeFiles\ftxui_example_print_key_press.dir\print_key_press.cpp.obj.d -o CMakeFiles\ftxui_example_print_key_press.dir\print_key_press.cpp.obj -c E:\assassins\new\unmatched\build\_deps\ftxui-src\examples\component\print_key_press.cpp
+	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build\examples\component && C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_print_key_press.dir/print_key_press.cpp.obj -MF CMakeFiles\ftxui_example_print_key_press.dir\print_key_press.cpp.obj.d -o CMakeFiles\ftxui_example_print_key_press.dir\print_key_press.cpp.obj -c E:\assassins\new\unmatched\build\_deps\ftxui-src\examples\component\print_key_press.cpp
 
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_print_key_press.dir/print_key_press.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/ftxui_example_print_key_press.dir/print_key_press.cpp.i"
-	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build\examples\component && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\assassins\new\unmatched\build\_deps\ftxui-src\examples\component\print_key_press.cpp > CMakeFiles\ftxui_example_print_key_press.dir\print_key_press.cpp.i
+	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build\examples\component && C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\assassins\new\unmatched\build\_deps\ftxui-src\examples\component\print_key_press.cpp > CMakeFiles\ftxui_example_print_key_press.dir\print_key_press.cpp.i
 
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_print_key_press.dir/print_key_press.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/ftxui_example_print_key_press.dir/print_key_press.cpp.s"
-	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build\examples\component && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\assassins\new\unmatched\build\_deps\ftxui-src\examples\component\print_key_press.cpp -o CMakeFiles\ftxui_example_print_key_press.dir\print_key_press.cpp.s
+	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build\examples\component && C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\assassins\new\unmatched\build\_deps\ftxui-src\examples\component\print_key_press.cpp -o CMakeFiles\ftxui_example_print_key_press.dir\print_key_press.cpp.s
 
 # Object files for target ftxui_example_print_key_press
 ftxui_example_print_key_press_OBJECTS = \

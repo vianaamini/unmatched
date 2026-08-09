@@ -1140,6 +1140,30 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\unmatched.dir\build.make CMakeFiles/unmatched.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+src/age_screen.obj: src/age_screen.cpp.obj
+.PHONY : src/age_screen.obj
+
+# target to build an object file
+src/age_screen.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\unmatched.dir\build.make CMakeFiles/unmatched.dir/src/age_screen.cpp.obj
+.PHONY : src/age_screen.cpp.obj
+
+src/age_screen.i: src/age_screen.cpp.i
+.PHONY : src/age_screen.i
+
+# target to preprocess a source file
+src/age_screen.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\unmatched.dir\build.make CMakeFiles/unmatched.dir/src/age_screen.cpp.i
+.PHONY : src/age_screen.cpp.i
+
+src/age_screen.s: src/age_screen.cpp.s
+.PHONY : src/age_screen.s
+
+# target to generate assembly for a file
+src/age_screen.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\unmatched.dir\build.make CMakeFiles/unmatched.dir/src/age_screen.cpp.s
+.PHONY : src/age_screen.cpp.s
+
 src/card.obj: src/card.cpp.obj
 .PHONY : src/card.obj
 
@@ -1380,6 +1404,30 @@ src/hero.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\unmatched.dir\build.make CMakeFiles/unmatched.dir/src/hero.cpp.s
 .PHONY : src/hero.cpp.s
 
+src/hero_selection.obj: src/hero_selection.cpp.obj
+.PHONY : src/hero_selection.obj
+
+# target to build an object file
+src/hero_selection.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\unmatched.dir\build.make CMakeFiles/unmatched.dir/src/hero_selection.cpp.obj
+.PHONY : src/hero_selection.cpp.obj
+
+src/hero_selection.i: src/hero_selection.cpp.i
+.PHONY : src/hero_selection.i
+
+# target to preprocess a source file
+src/hero_selection.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\unmatched.dir\build.make CMakeFiles/unmatched.dir/src/hero_selection.cpp.i
+.PHONY : src/hero_selection.cpp.i
+
+src/hero_selection.s: src/hero_selection.cpp.s
+.PHONY : src/hero_selection.s
+
+# target to generate assembly for a file
+src/hero_selection.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\unmatched.dir\build.make CMakeFiles/unmatched.dir/src/hero_selection.cpp.s
+.PHONY : src/hero_selection.cpp.s
+
 src/map.obj: src/map.cpp.obj
 .PHONY : src/map.obj
 
@@ -1403,6 +1451,30 @@ src/map.s: src/map.cpp.s
 src/map.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\unmatched.dir\build.make CMakeFiles/unmatched.dir/src/map.cpp.s
 .PHONY : src/map.cpp.s
+
+src/menu.obj: src/menu.cpp.obj
+.PHONY : src/menu.obj
+
+# target to build an object file
+src/menu.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\unmatched.dir\build.make CMakeFiles/unmatched.dir/src/menu.cpp.obj
+.PHONY : src/menu.cpp.obj
+
+src/menu.i: src/menu.cpp.i
+.PHONY : src/menu.i
+
+# target to preprocess a source file
+src/menu.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\unmatched.dir\build.make CMakeFiles/unmatched.dir/src/menu.cpp.i
+.PHONY : src/menu.cpp.i
+
+src/menu.s: src/menu.cpp.s
+.PHONY : src/menu.s
+
+# target to generate assembly for a file
+src/menu.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\unmatched.dir\build.make CMakeFiles/unmatched.dir/src/menu.cpp.s
+.PHONY : src/menu.cpp.s
 
 src/movement.obj: src/movement.cpp.obj
 .PHONY : src/movement.obj
@@ -1685,6 +1757,9 @@ help:
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
+	@echo ... src/age_screen.obj
+	@echo ... src/age_screen.i
+	@echo ... src/age_screen.s
 	@echo ... src/card.obj
 	@echo ... src/card.i
 	@echo ... src/card.s
@@ -1715,9 +1790,15 @@ help:
 	@echo ... src/hero.obj
 	@echo ... src/hero.i
 	@echo ... src/hero.s
+	@echo ... src/hero_selection.obj
+	@echo ... src/hero_selection.i
+	@echo ... src/hero_selection.s
 	@echo ... src/map.obj
 	@echo ... src/map.i
 	@echo ... src/map.s
+	@echo ... src/menu.obj
+	@echo ... src/menu.i
+	@echo ... src/menu.s
 	@echo ... src/movement.obj
 	@echo ... src/movement.i
 	@echo ... src/movement.s

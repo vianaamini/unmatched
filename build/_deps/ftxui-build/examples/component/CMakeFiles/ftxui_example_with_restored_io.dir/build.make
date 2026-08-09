@@ -76,15 +76,15 @@ _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_with_restored_io.d
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_with_restored_io.dir/with_restored_io.cpp.obj: _deps/ftxui-src/examples/component/with_restored_io.cpp
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_with_restored_io.dir/with_restored_io.cpp.obj: _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_with_restored_io.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_with_restored_io.dir/with_restored_io.cpp.obj"
-	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build\examples\component && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_with_restored_io.dir/with_restored_io.cpp.obj -MF CMakeFiles\ftxui_example_with_restored_io.dir\with_restored_io.cpp.obj.d -o CMakeFiles\ftxui_example_with_restored_io.dir\with_restored_io.cpp.obj -c E:\assassins\new\unmatched\build\_deps\ftxui-src\examples\component\with_restored_io.cpp
+	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build\examples\component && C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_with_restored_io.dir/with_restored_io.cpp.obj -MF CMakeFiles\ftxui_example_with_restored_io.dir\with_restored_io.cpp.obj.d -o CMakeFiles\ftxui_example_with_restored_io.dir\with_restored_io.cpp.obj -c E:\assassins\new\unmatched\build\_deps\ftxui-src\examples\component\with_restored_io.cpp
 
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_with_restored_io.dir/with_restored_io.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/ftxui_example_with_restored_io.dir/with_restored_io.cpp.i"
-	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build\examples\component && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\assassins\new\unmatched\build\_deps\ftxui-src\examples\component\with_restored_io.cpp > CMakeFiles\ftxui_example_with_restored_io.dir\with_restored_io.cpp.i
+	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build\examples\component && C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\assassins\new\unmatched\build\_deps\ftxui-src\examples\component\with_restored_io.cpp > CMakeFiles\ftxui_example_with_restored_io.dir\with_restored_io.cpp.i
 
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_with_restored_io.dir/with_restored_io.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/ftxui_example_with_restored_io.dir/with_restored_io.cpp.s"
-	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build\examples\component && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\assassins\new\unmatched\build\_deps\ftxui-src\examples\component\with_restored_io.cpp -o CMakeFiles\ftxui_example_with_restored_io.dir\with_restored_io.cpp.s
+	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build\examples\component && C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\assassins\new\unmatched\build\_deps\ftxui-src\examples\component\with_restored_io.cpp -o CMakeFiles\ftxui_example_with_restored_io.dir\with_restored_io.cpp.s
 
 # Object files for target ftxui_example_with_restored_io
 ftxui_example_with_restored_io_OBJECTS = \

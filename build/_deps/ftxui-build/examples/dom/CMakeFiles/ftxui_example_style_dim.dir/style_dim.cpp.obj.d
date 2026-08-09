@@ -93,6 +93,8 @@ _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_style_dim.dir/style_dim.
  C:/msys64/ucrt64/include/sec_api/wconio_s.h \
  C:/msys64/ucrt64/include/corecrt_wstdlib.h \
  C:/msys64/ucrt64/include/corecrt_wctype.h \
+ C:/msys64/ucrt64/include/corecrt_wstring.h \
+ C:/msys64/ucrt64/include/_mingw_locale.h \
  C:/msys64/ucrt64/include/_mingw_off_t.h \
  C:/msys64/ucrt64/include/_mingw_stat64.h \
  C:/msys64/ucrt64/include/swprintf.inl \

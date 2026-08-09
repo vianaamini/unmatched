@@ -3,34 +3,27 @@
 
 CMakeFiles/unmatched.dir/main.cpp.obj: E:/assassins/new/unmatched/main.cpp \
   C:/msys64/ucrt64/include/_mingw.h \
+  C:/msys64/ucrt64/include/_mingw_locale.h \
   C:/msys64/ucrt64/include/_mingw_mac.h \
   C:/msys64/ucrt64/include/_mingw_off_t.h \
   C:/msys64/ucrt64/include/_mingw_secapi.h \
   C:/msys64/ucrt64/include/_mingw_stat64.h \
+  C:/msys64/ucrt64/include/_mingw_stdarg.h \
   C:/msys64/ucrt64/include/_timeval.h \
-  C:/msys64/ucrt64/include/c++/16.1.0/array \
-  C:/msys64/ucrt64/include/c++/16.1.0/backward/auto_ptr.h \
   C:/msys64/ucrt64/include/c++/16.1.0/backward/binders.h \
   C:/msys64/ucrt64/include/c++/16.1.0/bit \
-  C:/msys64/ucrt64/include/c++/16.1.0/bits/align.h \
   C:/msys64/ucrt64/include/c++/16.1.0/bits/alloc_traits.h \
-  C:/msys64/ucrt64/include/c++/16.1.0/bits/allocated_ptr.h \
   C:/msys64/ucrt64/include/c++/16.1.0/bits/allocator.h \
-  C:/msys64/ucrt64/include/c++/16.1.0/bits/atomic_base.h \
-  C:/msys64/ucrt64/include/c++/16.1.0/bits/atomic_lockfree_defines.h \
   C:/msys64/ucrt64/include/c++/16.1.0/bits/basic_ios.h \
   C:/msys64/ucrt64/include/c++/16.1.0/bits/basic_ios.tcc \
   C:/msys64/ucrt64/include/c++/16.1.0/bits/basic_string.h \
   C:/msys64/ucrt64/include/c++/16.1.0/bits/basic_string.tcc \
   C:/msys64/ucrt64/include/c++/16.1.0/bits/char_traits.h \
   C:/msys64/ucrt64/include/c++/16.1.0/bits/charconv.h \
-  C:/msys64/ucrt64/include/c++/16.1.0/bits/chrono.h \
   C:/msys64/ucrt64/include/c++/16.1.0/bits/concept_check.h \
   C:/msys64/ucrt64/include/c++/16.1.0/bits/cpp_type_traits.h \
   C:/msys64/ucrt64/include/c++/16.1.0/bits/cxxabi_forced.h \
   C:/msys64/ucrt64/include/c++/16.1.0/bits/cxxabi_init_exception.h \
-  C:/msys64/ucrt64/include/c++/16.1.0/bits/deque.tcc \
-  C:/msys64/ucrt64/include/c++/16.1.0/bits/enable_special_members.h \
   C:/msys64/ucrt64/include/c++/16.1.0/bits/erase_if.h \
   C:/msys64/ucrt64/include/c++/16.1.0/bits/exception.h \
   C:/msys64/ucrt64/include/c++/16.1.0/bits/exception_defines.h \
@@ -38,8 +31,6 @@ CMakeFiles/unmatched.dir/main.cpp.obj: E:/assassins/new/unmatched/main.cpp \
   C:/msys64/ucrt64/include/c++/16.1.0/bits/functexcept.h \
   C:/msys64/ucrt64/include/c++/16.1.0/bits/functional_hash.h \
   C:/msys64/ucrt64/include/c++/16.1.0/bits/hash_bytes.h \
-  C:/msys64/ucrt64/include/c++/16.1.0/bits/hashtable.h \
-  C:/msys64/ucrt64/include/c++/16.1.0/bits/hashtable_policy.h \
   C:/msys64/ucrt64/include/c++/16.1.0/bits/invoke.h \
   C:/msys64/ucrt64/include/c++/16.1.0/bits/ios_base.h \
   C:/msys64/ucrt64/include/c++/16.1.0/bits/istream.tcc \
@@ -55,94 +46,59 @@ CMakeFiles/unmatched.dir/main.cpp.obj: E:/assassins/new/unmatched/main.cpp \
   C:/msys64/ucrt64/include/c++/16.1.0/bits/new_allocator.h \
   C:/msys64/ucrt64/include/c++/16.1.0/bits/new_except.h \
   C:/msys64/ucrt64/include/c++/16.1.0/bits/new_throw.h \
-  C:/msys64/ucrt64/include/c++/16.1.0/bits/node_handle.h \
   C:/msys64/ucrt64/include/c++/16.1.0/bits/ostream.h \
   C:/msys64/ucrt64/include/c++/16.1.0/bits/ostream.tcc \
   C:/msys64/ucrt64/include/c++/16.1.0/bits/ostream_insert.h \
   C:/msys64/ucrt64/include/c++/16.1.0/bits/ostream_print.h \
-  C:/msys64/ucrt64/include/c++/16.1.0/bits/parse_numbers.h \
   C:/msys64/ucrt64/include/c++/16.1.0/bits/postypes.h \
   C:/msys64/ucrt64/include/c++/16.1.0/bits/predefined_ops.h \
   C:/msys64/ucrt64/include/c++/16.1.0/bits/ptr_traits.h \
   C:/msys64/ucrt64/include/c++/16.1.0/bits/range_access.h \
-  C:/msys64/ucrt64/include/c++/16.1.0/bits/refwrap.h \
   C:/msys64/ucrt64/include/c++/16.1.0/bits/requires_hosted.h \
-  C:/msys64/ucrt64/include/c++/16.1.0/bits/shared_ptr.h \
-  C:/msys64/ucrt64/include/c++/16.1.0/bits/shared_ptr_atomic.h \
-  C:/msys64/ucrt64/include/c++/16.1.0/bits/shared_ptr_base.h \
   C:/msys64/ucrt64/include/c++/16.1.0/bits/std_abs.h \
-  C:/msys64/ucrt64/include/c++/16.1.0/bits/std_function.h \
   C:/msys64/ucrt64/include/c++/16.1.0/bits/stdexcept_except.h \
   C:/msys64/ucrt64/include/c++/16.1.0/bits/stdexcept_throw.h \
   C:/msys64/ucrt64/include/c++/16.1.0/bits/stdexcept_throwfwd.h \
   C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_algobase.h \
-  C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_bvector.h \
   C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_construct.h \
-  C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_deque.h \
   C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_function.h \
-  C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_heap.h \
   C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_iterator.h \
   C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_iterator_base_funcs.h \
   C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_iterator_base_types.h \
   C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_pair.h \
-  C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_queue.h \
-  C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_raw_storage_iter.h \
-  C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_relops.h \
-  C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_tempbuf.h \
-  C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_uninitialized.h \
-  C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_vector.h \
   C:/msys64/ucrt64/include/c++/16.1.0/bits/streambuf.tcc \
   C:/msys64/ucrt64/include/c++/16.1.0/bits/streambuf_iterator.h \
   C:/msys64/ucrt64/include/c++/16.1.0/bits/string_view.tcc \
   C:/msys64/ucrt64/include/c++/16.1.0/bits/stringfwd.h \
-  C:/msys64/ucrt64/include/c++/16.1.0/bits/unique_ptr.h \
-  C:/msys64/ucrt64/include/c++/16.1.0/bits/unordered_map.h \
-  C:/msys64/ucrt64/include/c++/16.1.0/bits/unordered_set.h \
   C:/msys64/ucrt64/include/c++/16.1.0/bits/uses_allocator.h \
   C:/msys64/ucrt64/include/c++/16.1.0/bits/uses_allocator_args.h \
   C:/msys64/ucrt64/include/c++/16.1.0/bits/utility.h \
-  C:/msys64/ucrt64/include/c++/16.1.0/bits/vector.tcc \
   C:/msys64/ucrt64/include/c++/16.1.0/bits/version.h \
   C:/msys64/ucrt64/include/c++/16.1.0/cctype \
   C:/msys64/ucrt64/include/c++/16.1.0/cerrno \
-  C:/msys64/ucrt64/include/c++/16.1.0/chrono \
   C:/msys64/ucrt64/include/c++/16.1.0/clocale \
-  C:/msys64/ucrt64/include/c++/16.1.0/compare \
   C:/msys64/ucrt64/include/c++/16.1.0/concepts \
   C:/msys64/ucrt64/include/c++/16.1.0/cstddef \
-  C:/msys64/ucrt64/include/c++/16.1.0/cstdint \
   C:/msys64/ucrt64/include/c++/16.1.0/cstdio \
   C:/msys64/ucrt64/include/c++/16.1.0/cstdlib \
-  C:/msys64/ucrt64/include/c++/16.1.0/ctime \
   C:/msys64/ucrt64/include/c++/16.1.0/cwchar \
   C:/msys64/ucrt64/include/c++/16.1.0/cwctype \
   C:/msys64/ucrt64/include/c++/16.1.0/debug/assertions.h \
   C:/msys64/ucrt64/include/c++/16.1.0/debug/debug.h \
-  C:/msys64/ucrt64/include/c++/16.1.0/deque \
   C:/msys64/ucrt64/include/c++/16.1.0/exception \
-  C:/msys64/ucrt64/include/c++/16.1.0/ext/aligned_buffer.h \
   C:/msys64/ucrt64/include/c++/16.1.0/ext/alloc_traits.h \
   C:/msys64/ucrt64/include/c++/16.1.0/ext/atomicity.h \
-  C:/msys64/ucrt64/include/c++/16.1.0/ext/concurrence.h \
   C:/msys64/ucrt64/include/c++/16.1.0/ext/numeric_traits.h \
   C:/msys64/ucrt64/include/c++/16.1.0/ext/string_conversions.h \
   C:/msys64/ucrt64/include/c++/16.1.0/ext/type_traits.h \
-  C:/msys64/ucrt64/include/c++/16.1.0/functional \
   C:/msys64/ucrt64/include/c++/16.1.0/initializer_list \
   C:/msys64/ucrt64/include/c++/16.1.0/ios \
   C:/msys64/ucrt64/include/c++/16.1.0/iosfwd \
   C:/msys64/ucrt64/include/c++/16.1.0/iostream \
   C:/msys64/ucrt64/include/c++/16.1.0/istream \
-  C:/msys64/ucrt64/include/c++/16.1.0/limits \
-  C:/msys64/ucrt64/include/c++/16.1.0/memory \
   C:/msys64/ucrt64/include/c++/16.1.0/new \
-  C:/msys64/ucrt64/include/c++/16.1.0/optional \
   C:/msys64/ucrt64/include/c++/16.1.0/ostream \
-  C:/msys64/ucrt64/include/c++/16.1.0/pstl/execution_defs.h \
-  C:/msys64/ucrt64/include/c++/16.1.0/pstl/glue_memory_defs.h \
   C:/msys64/ucrt64/include/c++/16.1.0/pstl/pstl_config.h \
-  C:/msys64/ucrt64/include/c++/16.1.0/queue \
-  C:/msys64/ucrt64/include/c++/16.1.0/ratio \
   C:/msys64/ucrt64/include/c++/16.1.0/stdexcept \
   C:/msys64/ucrt64/include/c++/16.1.0/stdlib.h \
   C:/msys64/ucrt64/include/c++/16.1.0/streambuf \
@@ -152,10 +108,6 @@ CMakeFiles/unmatched.dir/main.cpp.obj: E:/assassins/new/unmatched/main.cpp \
   C:/msys64/ucrt64/include/c++/16.1.0/tuple \
   C:/msys64/ucrt64/include/c++/16.1.0/type_traits \
   C:/msys64/ucrt64/include/c++/16.1.0/typeinfo \
-  C:/msys64/ucrt64/include/c++/16.1.0/unordered_map \
-  C:/msys64/ucrt64/include/c++/16.1.0/unordered_set \
-  C:/msys64/ucrt64/include/c++/16.1.0/utility \
-  C:/msys64/ucrt64/include/c++/16.1.0/vector \
   C:/msys64/ucrt64/include/c++/16.1.0/x86_64-w64-mingw32/bits/atomic_word.h \
   C:/msys64/ucrt64/include/c++/16.1.0/x86_64-w64-mingw32/bits/c++allocator.h \
   C:/msys64/ucrt64/include/c++/16.1.0/x86_64-w64-mingw32/bits/c++config.h \
@@ -173,6 +125,7 @@ CMakeFiles/unmatched.dir/main.cpp.obj: E:/assassins/new/unmatched/main.cpp \
   C:/msys64/ucrt64/include/corecrt_wconio.h \
   C:/msys64/ucrt64/include/corecrt_wctype.h \
   C:/msys64/ucrt64/include/corecrt_wstdlib.h \
+  C:/msys64/ucrt64/include/corecrt_wstring.h \
   C:/msys64/ucrt64/include/crtdefs.h \
   C:/msys64/ucrt64/include/ctype.h \
   C:/msys64/ucrt64/include/errno.h \
@@ -185,6 +138,7 @@ CMakeFiles/unmatched.dir/main.cpp.obj: E:/assassins/new/unmatched/main.cpp \
   C:/msys64/ucrt64/include/pthread_signal.h \
   C:/msys64/ucrt64/include/pthread_time.h \
   C:/msys64/ucrt64/include/pthread_unistd.h \
+  C:/msys64/ucrt64/include/raylib.h \
   C:/msys64/ucrt64/include/sched.h \
   C:/msys64/ucrt64/include/sec_api/stdio_s.h \
   C:/msys64/ucrt64/include/sec_api/stdlib_s.h \
@@ -192,8 +146,8 @@ CMakeFiles/unmatched.dir/main.cpp.obj: E:/assassins/new/unmatched/main.cpp \
   C:/msys64/ucrt64/include/sec_api/wchar_s.h \
   C:/msys64/ucrt64/include/sec_api/wconio_s.h \
   C:/msys64/ucrt64/include/signal.h \
+  C:/msys64/ucrt64/include/stdarg.h \
   C:/msys64/ucrt64/include/stddef.h \
-  C:/msys64/ucrt64/include/stdint.h \
   C:/msys64/ucrt64/include/stdio.h \
   C:/msys64/ucrt64/include/stdlib.h \
   C:/msys64/ucrt64/include/swprintf.inl \
@@ -205,43 +159,129 @@ CMakeFiles/unmatched.dir/main.cpp.obj: E:/assassins/new/unmatched/main.cpp \
   C:/msys64/ucrt64/include/wctype.h \
   C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0/include/limits.h \
   C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0/include/mm_malloc.h \
+  C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0/include/stdarg.h \
   C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0/include/stddef.h \
-  C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0/include/stdint.h \
   C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0/include/syslimits.h \
-  _deps/ftxui-src/include/ftxui/component/animation.hpp \
-  _deps/ftxui-src/include/ftxui/component/captured_mouse.hpp \
-  _deps/ftxui-src/include/ftxui/component/component.hpp \
-  _deps/ftxui-src/include/ftxui/component/component_base.hpp \
-  _deps/ftxui-src/include/ftxui/component/component_options.hpp \
-  _deps/ftxui-src/include/ftxui/component/event.hpp \
-  _deps/ftxui-src/include/ftxui/component/mouse.hpp \
-  _deps/ftxui-src/include/ftxui/dom/canvas.hpp \
-  _deps/ftxui-src/include/ftxui/dom/deprecated.hpp \
-  _deps/ftxui-src/include/ftxui/dom/elements.hpp \
-  _deps/ftxui-src/include/ftxui/dom/flexbox_config.hpp \
-  _deps/ftxui-src/include/ftxui/dom/node.hpp \
-  _deps/ftxui-src/include/ftxui/dom/requirement.hpp \
-  _deps/ftxui-src/include/ftxui/dom/take_any_args.hpp \
-  _deps/ftxui-src/include/ftxui/screen/box.hpp \
-  _deps/ftxui-src/include/ftxui/screen/color.hpp \
-  _deps/ftxui-src/include/ftxui/screen/deprecated.hpp \
-  _deps/ftxui-src/include/ftxui/screen/screen.hpp \
-  _deps/ftxui-src/include/ftxui/screen/string.hpp \
-  _deps/ftxui-src/include/ftxui/screen/terminal.hpp \
-  _deps/ftxui-src/include/ftxui/util/ref.hpp \
-  E:/assassins/new/unmatched/include/card.hpp \
-  E:/assassins/new/unmatched/include/character.hpp \
-  E:/assassins/new/unmatched/include/deck.hpp \
-  E:/assassins/new/unmatched/include/deployment.hpp \
-  E:/assassins/new/unmatched/include/game_manager.hpp \
-  E:/assassins/new/unmatched/include/hero.hpp \
-  E:/assassins/new/unmatched/include/map.hpp \
-  E:/assassins/new/unmatched/include/movement.hpp \
-  E:/assassins/new/unmatched/include/tui_controller.hpp \
-  E:/assassins/new/unmatched/include/turn_manager.hpp
+  E:/assassins/new/unmatched/include/age_screen.hpp \
+  E:/assassins/new/unmatched/include/hero_selection.hpp \
+  E:/assassins/new/unmatched/include/menu.hpp
+
+CMakeFiles/unmatched.dir/src/age_screen.cpp.obj: E:/assassins/new/unmatched/src/age_screen.cpp \
+  C:/msys64/ucrt64/include/_mingw.h \
+  C:/msys64/ucrt64/include/_mingw_locale.h \
+  C:/msys64/ucrt64/include/_mingw_mac.h \
+  C:/msys64/ucrt64/include/_mingw_off_t.h \
+  C:/msys64/ucrt64/include/_mingw_secapi.h \
+  C:/msys64/ucrt64/include/_mingw_stat64.h \
+  C:/msys64/ucrt64/include/_mingw_stdarg.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/backward/binders.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bit \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/alloc_traits.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/allocator.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/basic_string.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/basic_string.tcc \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/char_traits.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/charconv.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/concept_check.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/cpp_type_traits.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/cxxabi_forced.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/erase_if.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/exception.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/exception_defines.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/functional_hash.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/hash_bytes.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/invoke.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/localefwd.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/memory_resource.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/memoryfwd.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/move.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/new_allocator.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/new_except.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/new_throw.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/ostream_insert.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/postypes.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/predefined_ops.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/ptr_traits.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/range_access.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/requires_hosted.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/std_abs.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/stdexcept_throw.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/stdexcept_throwfwd.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_algobase.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_construct.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_function.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_iterator.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_iterator_base_funcs.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_iterator_base_types.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_pair.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/string_view.tcc \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/stringfwd.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/uses_allocator.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/uses_allocator_args.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/utility.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/version.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/cctype \
+  C:/msys64/ucrt64/include/c++/16.1.0/cerrno \
+  C:/msys64/ucrt64/include/c++/16.1.0/clocale \
+  C:/msys64/ucrt64/include/c++/16.1.0/concepts \
+  C:/msys64/ucrt64/include/c++/16.1.0/cstddef \
+  C:/msys64/ucrt64/include/c++/16.1.0/cstdio \
+  C:/msys64/ucrt64/include/c++/16.1.0/cstdlib \
+  C:/msys64/ucrt64/include/c++/16.1.0/cwchar \
+  C:/msys64/ucrt64/include/c++/16.1.0/debug/assertions.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/debug/debug.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/ext/alloc_traits.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/ext/numeric_traits.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/ext/string_conversions.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/ext/type_traits.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/initializer_list \
+  C:/msys64/ucrt64/include/c++/16.1.0/iosfwd \
+  C:/msys64/ucrt64/include/c++/16.1.0/new \
+  C:/msys64/ucrt64/include/c++/16.1.0/pstl/pstl_config.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/stdlib.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/string \
+  C:/msys64/ucrt64/include/c++/16.1.0/string_view \
+  C:/msys64/ucrt64/include/c++/16.1.0/tuple \
+  C:/msys64/ucrt64/include/c++/16.1.0/type_traits \
+  C:/msys64/ucrt64/include/c++/16.1.0/x86_64-w64-mingw32/bits/c++allocator.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/x86_64-w64-mingw32/bits/c++config.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/x86_64-w64-mingw32/bits/c++locale.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/x86_64-w64-mingw32/bits/cpu_defines.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/x86_64-w64-mingw32/bits/os_defines.h \
+  C:/msys64/ucrt64/include/corecrt.h \
+  C:/msys64/ucrt64/include/corecrt_stdio_config.h \
+  C:/msys64/ucrt64/include/corecrt_wconio.h \
+  C:/msys64/ucrt64/include/corecrt_wctype.h \
+  C:/msys64/ucrt64/include/corecrt_wstdlib.h \
+  C:/msys64/ucrt64/include/corecrt_wstring.h \
+  C:/msys64/ucrt64/include/crtdefs.h \
+  C:/msys64/ucrt64/include/ctype.h \
+  C:/msys64/ucrt64/include/errno.h \
+  C:/msys64/ucrt64/include/limits.h \
+  C:/msys64/ucrt64/include/locale.h \
+  C:/msys64/ucrt64/include/malloc.h \
+  C:/msys64/ucrt64/include/raylib.h \
+  C:/msys64/ucrt64/include/sec_api/stdio_s.h \
+  C:/msys64/ucrt64/include/sec_api/stdlib_s.h \
+  C:/msys64/ucrt64/include/sec_api/wchar_s.h \
+  C:/msys64/ucrt64/include/sec_api/wconio_s.h \
+  C:/msys64/ucrt64/include/stdarg.h \
+  C:/msys64/ucrt64/include/stddef.h \
+  C:/msys64/ucrt64/include/stdio.h \
+  C:/msys64/ucrt64/include/stdlib.h \
+  C:/msys64/ucrt64/include/swprintf.inl \
+  C:/msys64/ucrt64/include/vadefs.h \
+  C:/msys64/ucrt64/include/wchar.h \
+  C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0/include/limits.h \
+  C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0/include/mm_malloc.h \
+  C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0/include/stdarg.h \
+  C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0/include/stddef.h \
+  C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0/include/syslimits.h \
+  E:/assassins/new/unmatched/include/age_screen.hpp
 
 CMakeFiles/unmatched.dir/src/card.cpp.obj: E:/assassins/new/unmatched/src/card.cpp \
   C:/msys64/ucrt64/include/_mingw.h \
+  C:/msys64/ucrt64/include/_mingw_locale.h \
   C:/msys64/ucrt64/include/_mingw_mac.h \
   C:/msys64/ucrt64/include/_mingw_off_t.h \
   C:/msys64/ucrt64/include/_mingw_secapi.h \
@@ -325,6 +365,7 @@ CMakeFiles/unmatched.dir/src/card.cpp.obj: E:/assassins/new/unmatched/src/card.c
   C:/msys64/ucrt64/include/corecrt_wconio.h \
   C:/msys64/ucrt64/include/corecrt_wctype.h \
   C:/msys64/ucrt64/include/corecrt_wstdlib.h \
+  C:/msys64/ucrt64/include/corecrt_wstring.h \
   C:/msys64/ucrt64/include/crtdefs.h \
   C:/msys64/ucrt64/include/ctype.h \
   C:/msys64/ucrt64/include/errno.h \
@@ -349,6 +390,7 @@ CMakeFiles/unmatched.dir/src/card.cpp.obj: E:/assassins/new/unmatched/src/card.c
 
 CMakeFiles/unmatched.dir/src/character.cpp.obj: E:/assassins/new/unmatched/src/character.cpp \
   C:/msys64/ucrt64/include/_mingw.h \
+  C:/msys64/ucrt64/include/_mingw_locale.h \
   C:/msys64/ucrt64/include/_mingw_mac.h \
   C:/msys64/ucrt64/include/_mingw_off_t.h \
   C:/msys64/ucrt64/include/_mingw_secapi.h \
@@ -432,6 +474,7 @@ CMakeFiles/unmatched.dir/src/character.cpp.obj: E:/assassins/new/unmatched/src/c
   C:/msys64/ucrt64/include/corecrt_wconio.h \
   C:/msys64/ucrt64/include/corecrt_wctype.h \
   C:/msys64/ucrt64/include/corecrt_wstdlib.h \
+  C:/msys64/ucrt64/include/corecrt_wstring.h \
   C:/msys64/ucrt64/include/crtdefs.h \
   C:/msys64/ucrt64/include/ctype.h \
   C:/msys64/ucrt64/include/errno.h \
@@ -456,6 +499,7 @@ CMakeFiles/unmatched.dir/src/character.cpp.obj: E:/assassins/new/unmatched/src/c
 
 CMakeFiles/unmatched.dir/src/deck-builder.cpp.obj: E:/assassins/new/unmatched/src/deck-builder.cpp \
   C:/msys64/ucrt64/include/_mingw.h \
+  C:/msys64/ucrt64/include/_mingw_locale.h \
   C:/msys64/ucrt64/include/_mingw_mac.h \
   C:/msys64/ucrt64/include/_mingw_off_t.h \
   C:/msys64/ucrt64/include/_mingw_secapi.h \
@@ -544,6 +588,7 @@ CMakeFiles/unmatched.dir/src/deck-builder.cpp.obj: E:/assassins/new/unmatched/sr
   C:/msys64/ucrt64/include/corecrt_wconio.h \
   C:/msys64/ucrt64/include/corecrt_wctype.h \
   C:/msys64/ucrt64/include/corecrt_wstdlib.h \
+  C:/msys64/ucrt64/include/corecrt_wstring.h \
   C:/msys64/ucrt64/include/crtdefs.h \
   C:/msys64/ucrt64/include/ctype.h \
   C:/msys64/ucrt64/include/errno.h \
@@ -570,6 +615,7 @@ CMakeFiles/unmatched.dir/src/deck-builder.cpp.obj: E:/assassins/new/unmatched/sr
 
 CMakeFiles/unmatched.dir/src/deck.cpp.obj: E:/assassins/new/unmatched/src/deck.cpp \
   C:/msys64/ucrt64/include/_mingw.h \
+  C:/msys64/ucrt64/include/_mingw_locale.h \
   C:/msys64/ucrt64/include/_mingw_mac.h \
   C:/msys64/ucrt64/include/_mingw_off_t.h \
   C:/msys64/ucrt64/include/_mingw_secapi.h \
@@ -708,6 +754,7 @@ CMakeFiles/unmatched.dir/src/deck.cpp.obj: E:/assassins/new/unmatched/src/deck.c
   C:/msys64/ucrt64/include/corecrt_wconio.h \
   C:/msys64/ucrt64/include/corecrt_wctype.h \
   C:/msys64/ucrt64/include/corecrt_wstdlib.h \
+  C:/msys64/ucrt64/include/corecrt_wstring.h \
   C:/msys64/ucrt64/include/crtdefs.h \
   C:/msys64/ucrt64/include/ctype.h \
   C:/msys64/ucrt64/include/errno.h \
@@ -753,6 +800,7 @@ CMakeFiles/unmatched.dir/src/deck.cpp.obj: E:/assassins/new/unmatched/src/deck.c
 
 CMakeFiles/unmatched.dir/src/deployment.cpp.obj: E:/assassins/new/unmatched/src/deployment.cpp \
   C:/msys64/ucrt64/include/_mingw.h \
+  C:/msys64/ucrt64/include/_mingw_locale.h \
   C:/msys64/ucrt64/include/_mingw_mac.h \
   C:/msys64/ucrt64/include/_mingw_off_t.h \
   C:/msys64/ucrt64/include/_mingw_secapi.h \
@@ -895,6 +943,7 @@ CMakeFiles/unmatched.dir/src/deployment.cpp.obj: E:/assassins/new/unmatched/src/
   C:/msys64/ucrt64/include/corecrt_wconio.h \
   C:/msys64/ucrt64/include/corecrt_wctype.h \
   C:/msys64/ucrt64/include/corecrt_wstdlib.h \
+  C:/msys64/ucrt64/include/corecrt_wstring.h \
   C:/msys64/ucrt64/include/crtdefs.h \
   C:/msys64/ucrt64/include/ctype.h \
   C:/msys64/ucrt64/include/errno.h \
@@ -934,6 +983,7 @@ CMakeFiles/unmatched.dir/src/deployment.cpp.obj: E:/assassins/new/unmatched/src/
 
 CMakeFiles/unmatched.dir/src/dracula.cpp.obj: E:/assassins/new/unmatched/src/dracula.cpp \
   C:/msys64/ucrt64/include/_mingw.h \
+  C:/msys64/ucrt64/include/_mingw_locale.h \
   C:/msys64/ucrt64/include/_mingw_mac.h \
   C:/msys64/ucrt64/include/_mingw_off_t.h \
   C:/msys64/ucrt64/include/_mingw_secapi.h \
@@ -1070,6 +1120,7 @@ CMakeFiles/unmatched.dir/src/dracula.cpp.obj: E:/assassins/new/unmatched/src/dra
   C:/msys64/ucrt64/include/corecrt_wconio.h \
   C:/msys64/ucrt64/include/corecrt_wctype.h \
   C:/msys64/ucrt64/include/corecrt_wstdlib.h \
+  C:/msys64/ucrt64/include/corecrt_wstring.h \
   C:/msys64/ucrt64/include/crtdefs.h \
   C:/msys64/ucrt64/include/ctype.h \
   C:/msys64/ucrt64/include/errno.h \
@@ -1113,6 +1164,7 @@ CMakeFiles/unmatched.dir/src/dracula.cpp.obj: E:/assassins/new/unmatched/src/dra
 
 CMakeFiles/unmatched.dir/src/dracula_cards.cpp.obj: E:/assassins/new/unmatched/src/dracula_cards.cpp \
   C:/msys64/ucrt64/include/_mingw.h \
+  C:/msys64/ucrt64/include/_mingw_locale.h \
   C:/msys64/ucrt64/include/_mingw_mac.h \
   C:/msys64/ucrt64/include/_mingw_off_t.h \
   C:/msys64/ucrt64/include/_mingw_secapi.h \
@@ -1270,6 +1322,7 @@ CMakeFiles/unmatched.dir/src/dracula_cards.cpp.obj: E:/assassins/new/unmatched/s
   C:/msys64/ucrt64/include/corecrt_wconio.h \
   C:/msys64/ucrt64/include/corecrt_wctype.h \
   C:/msys64/ucrt64/include/corecrt_wstdlib.h \
+  C:/msys64/ucrt64/include/corecrt_wstring.h \
   C:/msys64/ucrt64/include/crtdefs.h \
   C:/msys64/ucrt64/include/ctype.h \
   C:/msys64/ucrt64/include/errno.h \
@@ -1319,6 +1372,7 @@ CMakeFiles/unmatched.dir/src/dracula_cards.cpp.obj: E:/assassins/new/unmatched/s
 
 CMakeFiles/unmatched.dir/src/game.cpp.obj: E:/assassins/new/unmatched/src/game.cpp \
   C:/msys64/ucrt64/include/_mingw.h \
+  C:/msys64/ucrt64/include/_mingw_locale.h \
   C:/msys64/ucrt64/include/_mingw_mac.h \
   C:/msys64/ucrt64/include/_mingw_off_t.h \
   C:/msys64/ucrt64/include/_mingw_secapi.h \
@@ -1462,6 +1516,7 @@ CMakeFiles/unmatched.dir/src/game.cpp.obj: E:/assassins/new/unmatched/src/game.c
   C:/msys64/ucrt64/include/corecrt_wconio.h \
   C:/msys64/ucrt64/include/corecrt_wctype.h \
   C:/msys64/ucrt64/include/corecrt_wstdlib.h \
+  C:/msys64/ucrt64/include/corecrt_wstring.h \
   C:/msys64/ucrt64/include/crtdefs.h \
   C:/msys64/ucrt64/include/ctype.h \
   C:/msys64/ucrt64/include/errno.h \
@@ -1515,6 +1570,7 @@ CMakeFiles/unmatched.dir/src/game.cpp.obj: E:/assassins/new/unmatched/src/game.c
 
 CMakeFiles/unmatched.dir/src/game_manager.cpp.obj: E:/assassins/new/unmatched/src/game_manager.cpp \
   C:/msys64/ucrt64/include/_mingw.h \
+  C:/msys64/ucrt64/include/_mingw_locale.h \
   C:/msys64/ucrt64/include/_mingw_mac.h \
   C:/msys64/ucrt64/include/_mingw_off_t.h \
   C:/msys64/ucrt64/include/_mingw_secapi.h \
@@ -1664,6 +1720,7 @@ CMakeFiles/unmatched.dir/src/game_manager.cpp.obj: E:/assassins/new/unmatched/sr
   C:/msys64/ucrt64/include/corecrt_wconio.h \
   C:/msys64/ucrt64/include/corecrt_wctype.h \
   C:/msys64/ucrt64/include/corecrt_wstdlib.h \
+  C:/msys64/ucrt64/include/corecrt_wstring.h \
   C:/msys64/ucrt64/include/crtdefs.h \
   C:/msys64/ucrt64/include/ctype.h \
   C:/msys64/ucrt64/include/errno.h \
@@ -1710,6 +1767,7 @@ CMakeFiles/unmatched.dir/src/game_manager.cpp.obj: E:/assassins/new/unmatched/sr
 
 CMakeFiles/unmatched.dir/src/hero.cpp.obj: E:/assassins/new/unmatched/src/hero.cpp \
   C:/msys64/ucrt64/include/_mingw.h \
+  C:/msys64/ucrt64/include/_mingw_locale.h \
   C:/msys64/ucrt64/include/_mingw_mac.h \
   C:/msys64/ucrt64/include/_mingw_off_t.h \
   C:/msys64/ucrt64/include/_mingw_secapi.h \
@@ -1806,6 +1864,7 @@ CMakeFiles/unmatched.dir/src/hero.cpp.obj: E:/assassins/new/unmatched/src/hero.c
   C:/msys64/ucrt64/include/c++/16.1.0/cstddef \
   C:/msys64/ucrt64/include/c++/16.1.0/cstdio \
   C:/msys64/ucrt64/include/c++/16.1.0/cstdlib \
+  C:/msys64/ucrt64/include/c++/16.1.0/ctime \
   C:/msys64/ucrt64/include/c++/16.1.0/cwchar \
   C:/msys64/ucrt64/include/c++/16.1.0/cwctype \
   C:/msys64/ucrt64/include/c++/16.1.0/debug/assertions.h \
@@ -1859,6 +1918,7 @@ CMakeFiles/unmatched.dir/src/hero.cpp.obj: E:/assassins/new/unmatched/src/hero.c
   C:/msys64/ucrt64/include/corecrt_wconio.h \
   C:/msys64/ucrt64/include/corecrt_wctype.h \
   C:/msys64/ucrt64/include/corecrt_wstdlib.h \
+  C:/msys64/ucrt64/include/corecrt_wstring.h \
   C:/msys64/ucrt64/include/crtdefs.h \
   C:/msys64/ucrt64/include/ctype.h \
   C:/msys64/ucrt64/include/errno.h \
@@ -1902,8 +1962,122 @@ CMakeFiles/unmatched.dir/src/hero.cpp.obj: E:/assassins/new/unmatched/src/hero.c
   E:/assassins/new/unmatched/include/movement.hpp \
   E:/assassins/new/unmatched/include/turn_manager.hpp
 
+CMakeFiles/unmatched.dir/src/hero_selection.cpp.obj: E:/assassins/new/unmatched/src/hero_selection.cpp \
+  C:/msys64/ucrt64/include/_mingw.h \
+  C:/msys64/ucrt64/include/_mingw_locale.h \
+  C:/msys64/ucrt64/include/_mingw_mac.h \
+  C:/msys64/ucrt64/include/_mingw_off_t.h \
+  C:/msys64/ucrt64/include/_mingw_secapi.h \
+  C:/msys64/ucrt64/include/_mingw_stat64.h \
+  C:/msys64/ucrt64/include/_mingw_stdarg.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/backward/binders.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bit \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/alloc_traits.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/allocator.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/basic_string.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/basic_string.tcc \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/char_traits.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/charconv.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/concept_check.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/cpp_type_traits.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/cxxabi_forced.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/erase_if.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/exception.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/exception_defines.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/functional_hash.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/hash_bytes.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/invoke.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/localefwd.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/memory_resource.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/memoryfwd.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/move.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/new_allocator.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/new_except.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/new_throw.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/ostream_insert.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/postypes.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/predefined_ops.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/ptr_traits.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/range_access.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/requires_hosted.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/std_abs.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/stdexcept_throw.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/stdexcept_throwfwd.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_algobase.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_construct.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_function.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_iterator.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_iterator_base_funcs.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_iterator_base_types.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_pair.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/string_view.tcc \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/stringfwd.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/uses_allocator.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/uses_allocator_args.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/utility.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/bits/version.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/cctype \
+  C:/msys64/ucrt64/include/c++/16.1.0/cerrno \
+  C:/msys64/ucrt64/include/c++/16.1.0/clocale \
+  C:/msys64/ucrt64/include/c++/16.1.0/concepts \
+  C:/msys64/ucrt64/include/c++/16.1.0/cstddef \
+  C:/msys64/ucrt64/include/c++/16.1.0/cstdio \
+  C:/msys64/ucrt64/include/c++/16.1.0/cstdlib \
+  C:/msys64/ucrt64/include/c++/16.1.0/cwchar \
+  C:/msys64/ucrt64/include/c++/16.1.0/debug/assertions.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/debug/debug.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/ext/alloc_traits.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/ext/numeric_traits.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/ext/string_conversions.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/ext/type_traits.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/initializer_list \
+  C:/msys64/ucrt64/include/c++/16.1.0/iosfwd \
+  C:/msys64/ucrt64/include/c++/16.1.0/new \
+  C:/msys64/ucrt64/include/c++/16.1.0/pstl/pstl_config.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/stdlib.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/string \
+  C:/msys64/ucrt64/include/c++/16.1.0/string_view \
+  C:/msys64/ucrt64/include/c++/16.1.0/tuple \
+  C:/msys64/ucrt64/include/c++/16.1.0/type_traits \
+  C:/msys64/ucrt64/include/c++/16.1.0/x86_64-w64-mingw32/bits/c++allocator.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/x86_64-w64-mingw32/bits/c++config.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/x86_64-w64-mingw32/bits/c++locale.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/x86_64-w64-mingw32/bits/cpu_defines.h \
+  C:/msys64/ucrt64/include/c++/16.1.0/x86_64-w64-mingw32/bits/os_defines.h \
+  C:/msys64/ucrt64/include/corecrt.h \
+  C:/msys64/ucrt64/include/corecrt_stdio_config.h \
+  C:/msys64/ucrt64/include/corecrt_wconio.h \
+  C:/msys64/ucrt64/include/corecrt_wctype.h \
+  C:/msys64/ucrt64/include/corecrt_wstdlib.h \
+  C:/msys64/ucrt64/include/corecrt_wstring.h \
+  C:/msys64/ucrt64/include/crtdefs.h \
+  C:/msys64/ucrt64/include/ctype.h \
+  C:/msys64/ucrt64/include/errno.h \
+  C:/msys64/ucrt64/include/limits.h \
+  C:/msys64/ucrt64/include/locale.h \
+  C:/msys64/ucrt64/include/malloc.h \
+  C:/msys64/ucrt64/include/raylib.h \
+  C:/msys64/ucrt64/include/sec_api/stdio_s.h \
+  C:/msys64/ucrt64/include/sec_api/stdlib_s.h \
+  C:/msys64/ucrt64/include/sec_api/wchar_s.h \
+  C:/msys64/ucrt64/include/sec_api/wconio_s.h \
+  C:/msys64/ucrt64/include/stdarg.h \
+  C:/msys64/ucrt64/include/stddef.h \
+  C:/msys64/ucrt64/include/stdio.h \
+  C:/msys64/ucrt64/include/stdlib.h \
+  C:/msys64/ucrt64/include/swprintf.inl \
+  C:/msys64/ucrt64/include/vadefs.h \
+  C:/msys64/ucrt64/include/wchar.h \
+  C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0/include/limits.h \
+  C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0/include/mm_malloc.h \
+  C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0/include/stdarg.h \
+  C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0/include/stddef.h \
+  C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0/include/syslimits.h \
+  E:/assassins/new/unmatched/include/hero_selection.hpp
+
 CMakeFiles/unmatched.dir/src/map.cpp.obj: E:/assassins/new/unmatched/src/map.cpp \
   C:/msys64/ucrt64/include/_mingw.h \
+  C:/msys64/ucrt64/include/_mingw_locale.h \
   C:/msys64/ucrt64/include/_mingw_mac.h \
   C:/msys64/ucrt64/include/_mingw_off_t.h \
   C:/msys64/ucrt64/include/_mingw_secapi.h \
@@ -2026,6 +2200,7 @@ CMakeFiles/unmatched.dir/src/map.cpp.obj: E:/assassins/new/unmatched/src/map.cpp
   C:/msys64/ucrt64/include/corecrt_wconio.h \
   C:/msys64/ucrt64/include/corecrt_wctype.h \
   C:/msys64/ucrt64/include/corecrt_wstdlib.h \
+  C:/msys64/ucrt64/include/corecrt_wstring.h \
   C:/msys64/ucrt64/include/crtdefs.h \
   C:/msys64/ucrt64/include/ctype.h \
   C:/msys64/ucrt64/include/errno.h \
@@ -2049,8 +2224,20 @@ CMakeFiles/unmatched.dir/src/map.cpp.obj: E:/assassins/new/unmatched/src/map.cpp
   C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0/include/syslimits.h \
   E:/assassins/new/unmatched/include/map.hpp
 
+CMakeFiles/unmatched.dir/src/menu.cpp.obj: E:/assassins/new/unmatched/src/menu.cpp \
+  C:/msys64/ucrt64/include/_mingw.h \
+  C:/msys64/ucrt64/include/_mingw_mac.h \
+  C:/msys64/ucrt64/include/_mingw_secapi.h \
+  C:/msys64/ucrt64/include/_mingw_stdarg.h \
+  C:/msys64/ucrt64/include/raylib.h \
+  C:/msys64/ucrt64/include/stdarg.h \
+  C:/msys64/ucrt64/include/vadefs.h \
+  C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0/include/stdarg.h \
+  E:/assassins/new/unmatched/include/menu.hpp
+
 CMakeFiles/unmatched.dir/src/movement.cpp.obj: E:/assassins/new/unmatched/src/movement.cpp \
   C:/msys64/ucrt64/include/_mingw.h \
+  C:/msys64/ucrt64/include/_mingw_locale.h \
   C:/msys64/ucrt64/include/_mingw_mac.h \
   C:/msys64/ucrt64/include/_mingw_off_t.h \
   C:/msys64/ucrt64/include/_mingw_secapi.h \
@@ -2205,6 +2392,7 @@ CMakeFiles/unmatched.dir/src/movement.cpp.obj: E:/assassins/new/unmatched/src/mo
   C:/msys64/ucrt64/include/corecrt_wconio.h \
   C:/msys64/ucrt64/include/corecrt_wctype.h \
   C:/msys64/ucrt64/include/corecrt_wstdlib.h \
+  C:/msys64/ucrt64/include/corecrt_wstring.h \
   C:/msys64/ucrt64/include/crtdefs.h \
   C:/msys64/ucrt64/include/ctype.h \
   C:/msys64/ucrt64/include/errno.h \
@@ -2246,6 +2434,7 @@ CMakeFiles/unmatched.dir/src/movement.cpp.obj: E:/assassins/new/unmatched/src/mo
 
 CMakeFiles/unmatched.dir/src/sherlock.cpp.obj: E:/assassins/new/unmatched/src/sherlock.cpp \
   C:/msys64/ucrt64/include/_mingw.h \
+  C:/msys64/ucrt64/include/_mingw_locale.h \
   C:/msys64/ucrt64/include/_mingw_mac.h \
   C:/msys64/ucrt64/include/_mingw_off_t.h \
   C:/msys64/ucrt64/include/_mingw_secapi.h \
@@ -2382,6 +2571,7 @@ CMakeFiles/unmatched.dir/src/sherlock.cpp.obj: E:/assassins/new/unmatched/src/sh
   C:/msys64/ucrt64/include/corecrt_wconio.h \
   C:/msys64/ucrt64/include/corecrt_wctype.h \
   C:/msys64/ucrt64/include/corecrt_wstdlib.h \
+  C:/msys64/ucrt64/include/corecrt_wstring.h \
   C:/msys64/ucrt64/include/crtdefs.h \
   C:/msys64/ucrt64/include/ctype.h \
   C:/msys64/ucrt64/include/errno.h \
@@ -2425,6 +2615,7 @@ CMakeFiles/unmatched.dir/src/sherlock.cpp.obj: E:/assassins/new/unmatched/src/sh
 
 CMakeFiles/unmatched.dir/src/sherlock_card.cpp.obj: E:/assassins/new/unmatched/src/sherlock_card.cpp \
   C:/msys64/ucrt64/include/_mingw.h \
+  C:/msys64/ucrt64/include/_mingw_locale.h \
   C:/msys64/ucrt64/include/_mingw_mac.h \
   C:/msys64/ucrt64/include/_mingw_off_t.h \
   C:/msys64/ucrt64/include/_mingw_secapi.h \
@@ -2561,6 +2752,7 @@ CMakeFiles/unmatched.dir/src/sherlock_card.cpp.obj: E:/assassins/new/unmatched/s
   C:/msys64/ucrt64/include/corecrt_wconio.h \
   C:/msys64/ucrt64/include/corecrt_wctype.h \
   C:/msys64/ucrt64/include/corecrt_wstdlib.h \
+  C:/msys64/ucrt64/include/corecrt_wstring.h \
   C:/msys64/ucrt64/include/crtdefs.h \
   C:/msys64/ucrt64/include/ctype.h \
   C:/msys64/ucrt64/include/errno.h \
@@ -2603,6 +2795,7 @@ CMakeFiles/unmatched.dir/src/sherlock_card.cpp.obj: E:/assassins/new/unmatched/s
 
 CMakeFiles/unmatched.dir/src/sidekick.cpp.obj: E:/assassins/new/unmatched/src/sidekick.cpp \
   C:/msys64/ucrt64/include/_mingw.h \
+  C:/msys64/ucrt64/include/_mingw_locale.h \
   C:/msys64/ucrt64/include/_mingw_mac.h \
   C:/msys64/ucrt64/include/_mingw_off_t.h \
   C:/msys64/ucrt64/include/_mingw_secapi.h \
@@ -2686,6 +2879,7 @@ CMakeFiles/unmatched.dir/src/sidekick.cpp.obj: E:/assassins/new/unmatched/src/si
   C:/msys64/ucrt64/include/corecrt_wconio.h \
   C:/msys64/ucrt64/include/corecrt_wctype.h \
   C:/msys64/ucrt64/include/corecrt_wstdlib.h \
+  C:/msys64/ucrt64/include/corecrt_wstring.h \
   C:/msys64/ucrt64/include/crtdefs.h \
   C:/msys64/ucrt64/include/ctype.h \
   C:/msys64/ucrt64/include/errno.h \
@@ -2711,6 +2905,7 @@ CMakeFiles/unmatched.dir/src/sidekick.cpp.obj: E:/assassins/new/unmatched/src/si
 
 CMakeFiles/unmatched.dir/src/sister.cpp.obj: E:/assassins/new/unmatched/src/sister.cpp \
   C:/msys64/ucrt64/include/_mingw.h \
+  C:/msys64/ucrt64/include/_mingw_locale.h \
   C:/msys64/ucrt64/include/_mingw_mac.h \
   C:/msys64/ucrt64/include/_mingw_off_t.h \
   C:/msys64/ucrt64/include/_mingw_secapi.h \
@@ -2794,6 +2989,7 @@ CMakeFiles/unmatched.dir/src/sister.cpp.obj: E:/assassins/new/unmatched/src/sist
   C:/msys64/ucrt64/include/corecrt_wconio.h \
   C:/msys64/ucrt64/include/corecrt_wctype.h \
   C:/msys64/ucrt64/include/corecrt_wstdlib.h \
+  C:/msys64/ucrt64/include/corecrt_wstring.h \
   C:/msys64/ucrt64/include/crtdefs.h \
   C:/msys64/ucrt64/include/ctype.h \
   C:/msys64/ucrt64/include/errno.h \
@@ -2820,6 +3016,7 @@ CMakeFiles/unmatched.dir/src/sister.cpp.obj: E:/assassins/new/unmatched/src/sist
 
 CMakeFiles/unmatched.dir/src/tui_controller.cpp.obj: E:/assassins/new/unmatched/src/tui_controller.cpp \
   C:/msys64/ucrt64/include/_mingw.h \
+  C:/msys64/ucrt64/include/_mingw_locale.h \
   C:/msys64/ucrt64/include/_mingw_mac.h \
   C:/msys64/ucrt64/include/_mingw_off_t.h \
   C:/msys64/ucrt64/include/_mingw_secapi.h \
@@ -3007,6 +3204,7 @@ CMakeFiles/unmatched.dir/src/tui_controller.cpp.obj: E:/assassins/new/unmatched/
   C:/msys64/ucrt64/include/corecrt_wconio.h \
   C:/msys64/ucrt64/include/corecrt_wctype.h \
   C:/msys64/ucrt64/include/corecrt_wstdlib.h \
+  C:/msys64/ucrt64/include/corecrt_wstring.h \
   C:/msys64/ucrt64/include/crtdefs.h \
   C:/msys64/ucrt64/include/ctype.h \
   C:/msys64/ucrt64/include/errno.h \
@@ -3084,6 +3282,7 @@ CMakeFiles/unmatched.dir/src/tui_controller.cpp.obj: E:/assassins/new/unmatched/
 
 CMakeFiles/unmatched.dir/src/turn_manager.cpp.obj: E:/assassins/new/unmatched/src/turn_manager.cpp \
   C:/msys64/ucrt64/include/_mingw.h \
+  C:/msys64/ucrt64/include/_mingw_locale.h \
   C:/msys64/ucrt64/include/_mingw_mac.h \
   C:/msys64/ucrt64/include/_mingw_off_t.h \
   C:/msys64/ucrt64/include/_mingw_secapi.h \
@@ -3233,6 +3432,7 @@ CMakeFiles/unmatched.dir/src/turn_manager.cpp.obj: E:/assassins/new/unmatched/sr
   C:/msys64/ucrt64/include/corecrt_wconio.h \
   C:/msys64/ucrt64/include/corecrt_wctype.h \
   C:/msys64/ucrt64/include/corecrt_wstdlib.h \
+  C:/msys64/ucrt64/include/corecrt_wstring.h \
   C:/msys64/ucrt64/include/crtdefs.h \
   C:/msys64/ucrt64/include/ctype.h \
   C:/msys64/ucrt64/include/errno.h \
@@ -3275,6 +3475,7 @@ CMakeFiles/unmatched.dir/src/turn_manager.cpp.obj: E:/assassins/new/unmatched/sr
 
 CMakeFiles/unmatched.dir/src/watson.cpp.obj: E:/assassins/new/unmatched/src/watson.cpp \
   C:/msys64/ucrt64/include/_mingw.h \
+  C:/msys64/ucrt64/include/_mingw_locale.h \
   C:/msys64/ucrt64/include/_mingw_mac.h \
   C:/msys64/ucrt64/include/_mingw_off_t.h \
   C:/msys64/ucrt64/include/_mingw_secapi.h \
@@ -3358,6 +3559,7 @@ CMakeFiles/unmatched.dir/src/watson.cpp.obj: E:/assassins/new/unmatched/src/wats
   C:/msys64/ucrt64/include/corecrt_wconio.h \
   C:/msys64/ucrt64/include/corecrt_wctype.h \
   C:/msys64/ucrt64/include/corecrt_wstdlib.h \
+  C:/msys64/ucrt64/include/corecrt_wstring.h \
   C:/msys64/ucrt64/include/crtdefs.h \
   C:/msys64/ucrt64/include/ctype.h \
   C:/msys64/ucrt64/include/errno.h \
@@ -3387,7 +3589,25 @@ E:/assassins/new/unmatched/src/watson.cpp:
 
 E:/assassins/new/unmatched/src/turn_manager.cpp:
 
+_deps/ftxui-src/include/ftxui/screen/terminal.hpp:
+
+_deps/ftxui-src/include/ftxui/screen/screen.hpp:
+
+_deps/ftxui-src/include/ftxui/screen/color.hpp:
+
+_deps/ftxui-src/include/ftxui/dom/take_any_args.hpp:
+
+_deps/ftxui-src/include/ftxui/dom/flexbox_config.hpp:
+
+_deps/ftxui-src/include/ftxui/dom/canvas.hpp:
+
 _deps/ftxui-src/include/ftxui/component/screen_interactive.hpp:
+
+_deps/ftxui-src/include/ftxui/component/component_options.hpp:
+
+_deps/ftxui-src/include/ftxui/component/component.hpp:
+
+_deps/ftxui-src/include/ftxui/component/animation.hpp:
 
 C:/msys64/ucrt64/include/c++/16.1.0/variant:
 
@@ -3395,13 +3615,45 @@ C:/msys64/ucrt64/include/c++/16.1.0/thread:
 
 C:/msys64/ucrt64/include/c++/16.1.0/sstream:
 
+C:/msys64/ucrt64/include/c++/16.1.0/ratio:
+
+C:/msys64/ucrt64/include/c++/16.1.0/optional:
+
+C:/msys64/ucrt64/include/c++/16.1.0/chrono:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/unique_ptr.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/ext/concurrence.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/unique_lock.h:
+
 C:/msys64/ucrt64/include/c++/16.1.0/bits/this_thread_sleep.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/std_mutex.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/sstream.tcc:
 
+C:/msys64/ucrt64/include/c++/16.1.0/bits/shared_ptr_base.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/shared_ptr_atomic.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/shared_ptr.h:
+
+E:/assassins/new/unmatched/include/tui_controller.hpp:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/parse_numbers.h:
+
 C:/msys64/ucrt64/include/c++/16.1.0/bits/monostate.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/atomic_lockfree_defines.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/atomic_base.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/allocated_ptr.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/align.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/backward/auto_ptr.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/atomic:
 
@@ -3411,79 +3663,73 @@ E:/assassins/new/unmatched/src/sidekick.cpp:
 
 E:/assassins/new/unmatched/src/sherlock.cpp:
 
+C:/msys64/ucrt64/include/c++/16.1.0/compare:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/chrono.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/std_function.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/refwrap.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/array:
+
 E:/assassins/new/unmatched/src/movement.cpp:
 
-E:/assassins/new/unmatched/src/map.cpp:
+C:/msys64/ucrt64/include/crtdefs.h:
 
-E:/assassins/new/unmatched/src/hero.cpp:
+C:/msys64/ucrt64/include/corecrt_wstring.h:
 
-E:/assassins/new/unmatched/src/game_manager.cpp:
+C:/msys64/ucrt64/include/corecrt_wconio.h:
 
-E:/assassins/new/unmatched/include/sister.hpp:
+C:/msys64/ucrt64/include/c++/16.1.0/pstl/glue_memory_defs.h:
 
-E:/assassins/new/unmatched/include/sherlock.hpp:
+C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_deque.h:
 
-E:/assassins/new/unmatched/include/game.hpp:
+C:/msys64/ucrt64/include/c++/16.1.0/typeinfo:
 
-E:/assassins/new/unmatched/include/sidekick.hpp:
+C:/msys64/ucrt64/include/corecrt_startup.h:
 
-E:/assassins/new/unmatched/include/dracula_cards.hpp:
+C:/msys64/ucrt64/include/c++/16.1.0/x86_64-w64-mingw32/bits/os_defines.h:
 
-E:/assassins/new/unmatched/src/dracula_cards.cpp:
+C:/msys64/ucrt64/include/c++/16.1.0/x86_64-w64-mingw32/bits/error_constants.h:
 
-E:/assassins/new/unmatched/src/dracula.cpp:
+C:/msys64/ucrt64/include/c++/16.1.0/x86_64-w64-mingw32/bits/cpu_defines.h:
 
-E:/assassins/new/unmatched/src/deployment.cpp:
+C:/msys64/ucrt64/include/c++/16.1.0/unordered_set:
 
-C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0/include/mwaitintrin.h:
+C:/msys64/ucrt64/include/corecrt.h:
 
-C:/msys64/ucrt64/include/c++/16.1.0/bits/std_thread.h:
+_deps/ftxui-src/include/ftxui/screen/deprecated.hpp:
 
-C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0/include/mmintrin.h:
+C:/msys64/ucrt64/include/c++/16.1.0/tuple:
 
-C:/msys64/ucrt64/include/c++/16.1.0/tr1/riemann_zeta.tcc:
+C:/msys64/ucrt64/include/c++/16.1.0/limits:
 
-C:/msys64/ucrt64/include/c++/16.1.0/tr1/poly_hermite.tcc:
+C:/msys64/ucrt64/include/c++/16.1.0/istream:
 
-C:/msys64/ucrt64/include/c++/16.1.0/tr1/modified_bessel_func.tcc:
+C:/msys64/ucrt64/include/c++/16.1.0/bits/cxxabi_init_exception.h:
 
-C:/msys64/ucrt64/include/c++/16.1.0/tr1/legendre_function.tcc:
-
-C:/msys64/ucrt64/include/c++/16.1.0/tr1/exp_integral.tcc:
-
-C:/msys64/ucrt64/include/c++/16.1.0/tr1/ell_integral.tcc:
-
-C:/msys64/ucrt64/include/c++/16.1.0/tr1/poly_laguerre.tcc:
-
-C:/msys64/ucrt64/include/c++/16.1.0/functional:
-
-C:/msys64/ucrt64/include/c++/16.1.0/initializer_list:
-
-C:/msys64/ucrt64/include/c++/16.1.0/ratio:
+C:/msys64/ucrt64/include/c++/16.1.0/bits/hashtable_policy.h:
 
 E:/assassins/new/unmatched/src/card.cpp:
+
+C:/msys64/ucrt64/include/c++/16.1.0/x86_64-w64-mingw32/bits/ctype_base.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/ext/atomicity.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/ext/alloc_traits.h:
 
-C:/msys64/ucrt64/include/c++/16.1.0/deque:
+_deps/ftxui-src/include/ftxui/dom/requirement.hpp:
 
-_deps/ftxui-src/include/ftxui/dom/elements.hpp:
-
-C:/msys64/ucrt64/include/c++/16.1.0/cmath:
+C:/msys64/ucrt64/include/c++/16.1.0/ext/numeric_traits.h:
 
 C:/msys64/ucrt64/include/errno.h:
 
-C:/msys64/ucrt64/include/c++/16.1.0/bits/charconv.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/memory_resource.h:
-
-E:/assassins/new/unmatched/include/turn_manager.hpp:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/random.tcc:
+C:/msys64/ucrt64/include/c++/16.1.0/tr1/legendre_function.tcc:
 
 C:/msys64/ucrt64/include/c++/16.1.0/debug/debug.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/pstl/pstl_config.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/cstdlib:
 
@@ -3491,17 +3737,15 @@ E:/assassins/new/unmatched/src/sherlock_card.cpp:
 
 C:/msys64/ucrt64/include/c++/16.1.0/pstl/execution_defs.h:
 
-C:/msys64/ucrt64/include/c++/16.1.0/compare:
+C:/msys64/ucrt64/include/c++/16.1.0/ostream:
 
-C:/msys64/ucrt64/include/c++/16.1.0/x86_64-w64-mingw32/bits/c++config.h:
+C:/msys64/ucrt64/include/c++/16.1.0/concepts:
 
 C:/msys64/ucrt64/include/pthread_signal.h:
 
+C:/msys64/ucrt64/include/c++/16.1.0/cerrno:
+
 C:/msys64/ucrt64/include/c++/16.1.0/cctype:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/unique_lock.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/ext/concurrence.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/uses_allocator.h:
 
@@ -3513,15 +3757,11 @@ C:/msys64/ucrt64/include/c++/16.1.0/bits/stringfwd.h:
 
 C:/msys64/ucrt64/include/stdlib.h:
 
-_deps/ftxui-src/include/ftxui/screen/terminal.hpp:
-
 C:/msys64/ucrt64/include/c++/16.1.0/bits/algorithmfwd.h:
 
-C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_queue.h:
+C:/msys64/ucrt64/include/c++/16.1.0/clocale:
 
-C:/msys64/ucrt64/include/c++/16.1.0/bits/stdexcept_throw.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/unique_ptr.h:
+C:/msys64/ucrt64/include/c++/16.1.0/bits/streambuf_iterator.h:
 
 _deps/ftxui-src/include/ftxui/component/task.hpp:
 
@@ -3531,147 +3771,97 @@ C:/msys64/ucrt64/include/c++/16.1.0/bits/ios_base.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/functexcept.h:
 
+C:/msys64/ucrt64/include/c++/16.1.0/type_traits:
+
+E:/assassins/new/unmatched/include/sherlock.hpp:
+
 C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_iterator.h:
 
-C:/msys64/ucrt64/include/c++/16.1.0/tr1/hypergeometric.tcc:
+C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_raw_storage_iter.h:
 
-C:/msys64/ucrt64/include/c++/16.1.0/cwctype:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_heap.h:
-
-E:/assassins/new/unmatched/include/dracula.hpp:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/enable_special_members.h:
+C:/msys64/ucrt64/include/c++/16.1.0/bits/uses_allocator_args.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/string_view.tcc:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_function.h:
 
-C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_algobase.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/backward/auto_ptr.h:
-
 C:/msys64/ucrt64/include/c++/16.1.0/x86_64-w64-mingw32/bits/atomic_word.h:
 
-C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0/include/emmintrin.h:
+C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_algobase.h:
 
-_deps/ftxui-src/include/ftxui/component/event.hpp:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/stdexcept_throwfwd.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_bvector.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/shared_ptr_base.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/shared_ptr.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/cerrno:
-
-E:/assassins/new/unmatched/src/game.cpp:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/memoryfwd.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/refwrap.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/align.h:
-
-C:/msys64/ucrt64/include/vadefs.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/std_abs.h:
+C:/msys64/ucrt64/include/c++/16.1.0/bits/exception_defines.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/ptr_traits.h:
 
 E:/assassins/new/unmatched/include/deployment.hpp:
 
-C:/msys64/ucrt64/include/c++/16.1.0/bits/vector.tcc:
-
-C:/msys64/ucrt64/include/c++/16.1.0/string:
-
-C:/msys64/ucrt64/include/locale.h:
-
-C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0/include/syslimits.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/unordered_map.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/deque.tcc:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/uses_allocator_args.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_raw_storage_iter.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/stdlib.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/invoke.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/memory:
-
-E:/assassins/new/unmatched/include/character.hpp:
-
 C:/msys64/ucrt64/include/c++/16.1.0/bits/ostream.tcc:
 
-C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_construct.h:
+C:/msys64/ucrt64/include/corecrt_wctype.h:
 
-C:/msys64/ucrt64/include/math.h:
+C:/msys64/ucrt64/include/c++/16.1.0/bits/localefwd.h:
 
-C:/msys64/ucrt64/include/c++/16.1.0/bits/hashtable.h:
+C:/msys64/ucrt64/include/c++/16.1.0/bits/istream.tcc:
 
-C:/msys64/ucrt64/include/c++/16.1.0/bits/allocated_ptr.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/ext/aligned_buffer.h:
-
-C:/msys64/ucrt64/include/process.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/exception_defines.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/specfun.h:
-
-C:/msys64/ucrt64/include/corecrt_wconio.h:
-
-_deps/ftxui-src/include/ftxui/component/component.hpp:
-
-_deps/ftxui-src/include/ftxui/dom/canvas.hpp:
+C:/msys64/ucrt64/include/c++/16.1.0/bits/exception.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/basic_ios.h:
 
-C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_relops.h:
+C:/msys64/ucrt64/include/c++/16.1.0/bits/specfun.h:
 
-C:/msys64/ucrt64/include/c++/16.1.0/x86_64-w64-mingw32/bits/opt_random.h:
+C:/msys64/ucrt64/include/_mingw_stdarg.h:
 
-E:/assassins/new/unmatched/include/deck.hpp:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/std_function.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/chrono.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/ctime:
-
-C:/msys64/ucrt64/include/sys/types.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/atomic_base.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/shared_ptr_atomic.h:
-
-C:/msys64/ucrt64/include/wchar.h:
+C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_bvector.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/cstddef:
 
 E:/assassins/new/unmatched/main.cpp:
 
+C:/msys64/ucrt64/include/c++/16.1.0/mutex:
+
+C:/msys64/ucrt64/include/c++/16.1.0/iostream:
+
+C:/msys64/ucrt64/include/limits.h:
+
+C:/msys64/ucrt64/include/stdio.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/predefined_ops.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_construct.h:
+
+_deps/ftxui-src/include/ftxui/util/ref.hpp:
+
+C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0/include/xmmintrin.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/stdlib.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/invoke.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/deque.tcc:
+
 C:/msys64/ucrt64/include/_timeval.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/streambuf.tcc:
+
+C:/msys64/ucrt64/include/c++/16.1.0/x86_64-w64-mingw32/bits/gthr-default.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/cxxabi_forced.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/basic_string.h:
 
-_deps/ftxui-src/include/ftxui/screen/color.hpp:
+C:/msys64/ucrt64/include/c++/16.1.0/stdexcept:
 
-C:/msys64/ucrt64/include/c++/16.1.0/bits/requires_hosted.h:
+C:/msys64/ucrt64/include/c++/16.1.0/bits/memory_resource.h:
 
-C:/msys64/ucrt64/include/c++/16.1.0/bits/version.h:
+C:/msys64/ucrt64/include/c++/16.1.0/bits/charconv.h:
 
-C:/msys64/ucrt64/include/c++/16.1.0/clocale:
+C:/msys64/ucrt64/include/c++/16.1.0/memory:
+
+C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0/include/stdarg.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/random.tcc:
+
+E:/assassins/new/unmatched/include/turn_manager.hpp:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/ostream_print.h:
 
@@ -3683,55 +3873,63 @@ C:/msys64/ucrt64/include/_mingw_off_t.h:
 
 C:/msys64/ucrt64/include/_mingw_secapi.h:
 
-C:/msys64/ucrt64/include/c++/16.1.0/bits/streambuf_iterator.h:
+C:/msys64/ucrt64/include/c++/16.1.0/bits/hashtable.h:
 
-C:/msys64/ucrt64/include/c++/16.1.0/array:
+C:/msys64/ucrt64/include/math.h:
 
-C:/msys64/ucrt64/include/c++/16.1.0/bits/range_access.h:
+C:/msys64/ucrt64/include/c++/16.1.0/bits/stdexcept_throw.h:
 
-C:/msys64/ucrt64/include/c++/16.1.0/bits/new_allocator.h:
-
-E:/assassins/new/unmatched/include/game_manager.hpp:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_algo.h:
+C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_queue.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bit:
 
-C:/msys64/ucrt64/include/c++/16.1.0/cstdio:
+_deps/ftxui-src/include/ftxui/component/component_base.hpp:
 
-C:/msys64/ucrt64/include/c++/16.1.0/cstdint:
+E:/assassins/new/unmatched/src/deck-builder.cpp:
+
+C:/msys64/ucrt64/include/c++/16.1.0/cstdio:
 
 _deps/ftxui-src/include/ftxui/dom/deprecated.hpp:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/new_except.h:
 
-C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_vector.h:
+C:/msys64/ucrt64/include/c++/16.1.0/x86_64-w64-mingw32/bits/c++locale.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/basic_ios.tcc:
 
+C:/msys64/ucrt64/include/c++/16.1.0/bits/exception_ptr.h:
+
 C:/msys64/ucrt64/include/c++/16.1.0/bits/alloc_traits.h:
 
-C:/msys64/ucrt64/include/c++/16.1.0/bits/hashtable_policy.h:
+_deps/ftxui-src/include/ftxui/screen/box.hpp:
 
-C:/msys64/ucrt64/include/c++/16.1.0/bits/cxxabi_init_exception.h:
+_deps/ftxui-src/include/ftxui/dom/node.hpp:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_tempbuf.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/locale_facets.h:
 
-C:/msys64/ucrt64/include/_mingw.h:
-
-_deps/ftxui-src/include/ftxui/screen/screen.hpp:
-
 C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_iterator_base_types.h:
 
-C:/msys64/ucrt64/include/c++/16.1.0/utility:
+C:/msys64/ucrt64/include/raylib.h:
 
 E:/assassins/new/unmatched/src/character.cpp:
 
+C:/msys64/ucrt64/include/c++/16.1.0/tr1/ell_integral.tcc:
+
+C:/msys64/ucrt64/include/c++/16.1.0/utility:
+
+C:/msys64/ucrt64/include/c++/16.1.0/x86_64-w64-mingw32/bits/gthr.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/backward/binders.h:
+
 C:/msys64/ucrt64/include/c++/16.1.0/bits/locale_classes.tcc:
 
-_deps/ftxui-src/include/ftxui/component/component_options.hpp:
+C:/msys64/ucrt64/include/c++/16.1.0/cwchar:
 
-C:/msys64/ucrt64/include/c++/16.1.0/bits/cpp_type_traits.h:
+C:/msys64/ucrt64/include/c++/16.1.0/x86_64-w64-mingw32/bits/c++allocator.h:
+
+E:/assassins/new/unmatched/include/movement.hpp:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/erase_if.h:
 
@@ -3739,39 +3937,17 @@ C:/msys64/ucrt64/include/c++/16.1.0/exception:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/nested_exception.h:
 
-C:/msys64/ucrt64/include/c++/16.1.0/bits/atomic_lockfree_defines.h:
+C:/msys64/ucrt64/include/c++/16.1.0/bits/cpp_type_traits.h:
 
-C:/msys64/ucrt64/include/c++/16.1.0/bits/exception_ptr.h:
+C:/msys64/ucrt64/include/c++/16.1.0/ios:
 
-C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_numeric.h:
+C:/msys64/ucrt64/include/c++/16.1.0/bits/allocator.h:
 
-C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0/include/pmmintrin.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/functional_hash.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/exception.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/localefwd.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/istream.tcc:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_deque.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/pstl/glue_memory_defs.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/unordered_set.h:
+C:/msys64/ucrt64/include/c++/16.1.0/string_view:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/concept_check.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/ostream_insert.h:
-
-C:/msys64/ucrt64/include/sec_api/sys/timeb_s.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/chrono:
-
-E:/assassins/new/unmatched/src/tui_controller.cpp:
-
-C:/msys64/ucrt64/include/stdint.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/condition_variable:
 
@@ -3779,21 +3955,43 @@ C:/msys64/ucrt64/include/_mingw_stat64.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/locale_classes.h:
 
-C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_uninitialized.h:
+C:/msys64/ucrt64/include/c++/16.1.0/bits/version.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/requires_hosted.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/tr1/exp_integral.tcc:
+
+C:/msys64/ucrt64/include/c++/16.1.0/string:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/vector.tcc:
+
+C:/msys64/ucrt64/include/_mingw.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/initializer_list:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_pair.h:
 
 C:/msys64/ucrt64/include/sec_api/wchar_s.h:
 
-E:/assassins/new/unmatched/include/sherlock_card.hpp:
+C:/msys64/ucrt64/include/ctype.h:
 
-C:/msys64/ucrt64/include/_mingw_mac.h:
+C:/msys64/ucrt64/include/time.h:
+
+E:/assassins/new/unmatched/src/age_screen.cpp:
 
 C:/msys64/ucrt64/include/c++/16.1.0/tr1/bessel_function.tcc:
 
-C:/msys64/ucrt64/include/corecrt_wstdlib.h:
+C:/msys64/ucrt64/include/sec_api/stdlib_s.h:
 
-C:/msys64/ucrt64/include/c++/16.1.0/bits/node_handle.h:
+C:/msys64/ucrt64/include/c++/16.1.0/x86_64-w64-mingw32/bits/ctype_inline.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/random.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/iosfwd:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/enable_special_members.h:
+
+E:/assassins/new/unmatched/include/dracula.hpp:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/move.h:
 
@@ -3803,123 +4001,49 @@ C:/msys64/ucrt64/include/c++/16.1.0/bits/new_throw.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/ostream.h:
 
-C:/msys64/ucrt64/include/c++/16.1.0/bits/allocator.h:
+_deps/ftxui-src/include/ftxui/screen/string.hpp:
 
-C:/msys64/ucrt64/include/c++/16.1.0/string_view:
+C:/msys64/ucrt64/include/c++/16.1.0/bits/hash_bytes.h:
 
-C:/msys64/ucrt64/include/c++/16.1.0/ios:
+C:/msys64/ucrt64/include/c++/16.1.0/bits/postypes.h:
 
-C:/msys64/ucrt64/include/c++/16.1.0/iosfwd:
+C:/msys64/ucrt64/include/locale.h:
 
-C:/msys64/ucrt64/include/c++/16.1.0/mutex:
+C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0/include/syslimits.h:
 
-C:/msys64/ucrt64/include/c++/16.1.0/iostream:
+C:/msys64/ucrt64/include/c++/16.1.0/bits/std_abs.h:
 
-C:/msys64/ucrt64/include/limits.h:
+C:/msys64/ucrt64/include/c++/16.1.0/bits/new_allocator.h:
 
-C:/msys64/ucrt64/include/c++/16.1.0/istream:
-
-C:/msys64/ucrt64/include/c++/16.1.0/limits:
-
-C:/msys64/ucrt64/include/c++/16.1.0/concepts:
-
-C:/msys64/ucrt64/include/c++/16.1.0/ostream:
-
-C:/msys64/ucrt64/include/c++/16.1.0/optional:
-
-C:/msys64/ucrt64/include/c++/16.1.0/algorithm:
-
-C:/msys64/ucrt64/include/c++/16.1.0/pstl/pstl_config.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/queue:
-
-C:/msys64/ucrt64/include/c++/16.1.0/stdexcept:
-
-C:/msys64/ucrt64/include/c++/16.1.0/streambuf:
-
-C:/msys64/ucrt64/include/pthread_time.h:
-
-C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0/include/xmmintrin.h:
-
-_deps/ftxui-src/include/ftxui/util/ref.hpp:
+C:/msys64/ucrt64/include/c++/16.1.0/bits/range_access.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/stdexcept_except.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/system_error:
 
-C:/msys64/ucrt64/include/c++/16.1.0/type_traits:
+C:/msys64/ucrt64/include/c++/16.1.0/bits/stdexcept_throwfwd.h:
 
-C:/msys64/ucrt64/include/c++/16.1.0/tuple:
+C:/msys64/ucrt64/include/c++/16.1.0/streambuf:
 
-_deps/ftxui-src/include/ftxui/screen/deprecated.hpp:
+C:/msys64/ucrt64/include/pthread_time.h:
 
-C:/msys64/ucrt64/include/c++/16.1.0/bits/basic_string.tcc:
+C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_algo.h:
 
-C:/msys64/ucrt64/include/c++/16.1.0/unordered_map:
-
-C:/msys64/ucrt64/include/c++/16.1.0/unordered_set:
-
-C:/msys64/ucrt64/include/c++/16.1.0/x86_64-w64-mingw32/bits/cpu_defines.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/cwchar:
-
-C:/msys64/ucrt64/include/c++/16.1.0/x86_64-w64-mingw32/bits/c++allocator.h:
-
-E:/assassins/new/unmatched/include/movement.hpp:
-
-C:/msys64/ucrt64/include/c++/16.1.0/x86_64-w64-mingw32/bits/c++locale.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/x86_64-w64-mingw32/bits/ctype_base.h:
-
-C:/msys64/ucrt64/include/sec_api/stdlib_s.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/x86_64-w64-mingw32/bits/ctype_inline.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/random.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/x86_64-w64-mingw32/bits/error_constants.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/x86_64-w64-mingw32/bits/gthr-default.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/backward/binders.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/x86_64-w64-mingw32/bits/gthr.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/x86_64-w64-mingw32/bits/os_defines.h:
-
-C:/msys64/ucrt64/include/corecrt.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/typeinfo:
-
-C:/msys64/ucrt64/include/corecrt_startup.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/predefined_ops.h:
-
-C:/msys64/ucrt64/include/stdio.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/postypes.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/hash_bytes.h:
-
-_deps/ftxui-src/include/ftxui/screen/string.hpp:
-
-C:/msys64/ucrt64/include/corecrt_wctype.h:
-
-C:/msys64/ucrt64/include/crtdefs.h:
-
-C:/msys64/ucrt64/include/time.h:
-
-C:/msys64/ucrt64/include/ctype.h:
+E:/assassins/new/unmatched/include/game_manager.hpp:
 
 C:/msys64/ucrt64/include/malloc.h:
 
+C:/msys64/ucrt64/include/c++/16.1.0/ext/aligned_buffer.h:
+
+C:/msys64/ucrt64/include/process.h:
+
 C:/msys64/ucrt64/include/pthread.h:
 
-C:/msys64/ucrt64/include/pthread_compat.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/utility.h:
+E:/assassins/new/unmatched/src/dracula_cards.cpp:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/char_traits.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/utility.h:
 
 C:/msys64/ucrt64/include/pthread_unistd.h:
 
@@ -3927,11 +4051,9 @@ C:/msys64/ucrt64/include/sched.h:
 
 C:/msys64/ucrt64/include/swprintf.inl:
 
-C:/msys64/ucrt64/include/c++/16.1.0/tr1/gamma.tcc:
-
-C:/msys64/ucrt64/include/sec_api/wconio_s.h:
-
 C:/msys64/ucrt64/include/signal.h:
+
+C:/msys64/ucrt64/include/stdarg.h:
 
 C:/msys64/ucrt64/include/stddef.h:
 
@@ -3941,63 +4063,75 @@ C:/msys64/ucrt64/include/sec_api/stdio_s.h:
 
 C:/msys64/ucrt64/include/sys/timeb.h:
 
-C:/msys64/ucrt64/include/c++/16.1.0/ext/numeric_traits.h:
+C:/msys64/ucrt64/include/sys/types.h:
 
-_deps/ftxui-src/include/ftxui/dom/requirement.hpp:
+C:/msys64/ucrt64/include/c++/16.1.0/ctime:
+
+C:/msys64/ucrt64/include/vadefs.h:
+
+C:/msys64/ucrt64/include/wchar.h:
 
 C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0/include/limits.h:
 
 C:/msys64/ucrt64/include/wctype.h:
 
+E:/assassins/new/unmatched/src/dracula.cpp:
+
 C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0/include/mm_malloc.h:
+
+E:/assassins/new/unmatched/src/game_manager.cpp:
 
 C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0/include/stddef.h:
 
-_deps/ftxui-src/include/ftxui/component/captured_mouse.hpp:
+C:/msys64/ucrt64/include/c++/16.1.0/tr1/poly_hermite.tcc:
 
-C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0/include/stdint.h:
+C:/msys64/ucrt64/include/pthread_compat.h:
 
-_deps/ftxui-src/include/ftxui/component/animation.hpp:
+E:/assassins/new/unmatched/include/age_screen.hpp:
 
-E:/assassins/new/unmatched/src/deck-builder.cpp:
+E:/assassins/new/unmatched/include/character.hpp:
 
-_deps/ftxui-src/include/ftxui/component/component_base.hpp:
+E:/assassins/new/unmatched/include/hero_selection.hpp:
 
-E:/assassins/new/unmatched/src/deck.cpp:
+C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_numeric.h:
 
-_deps/ftxui-src/include/ftxui/component/mouse.hpp:
-
-_deps/ftxui-src/include/ftxui/dom/flexbox_config.hpp:
-
-_deps/ftxui-src/include/ftxui/dom/take_any_args.hpp:
-
-_deps/ftxui-src/include/ftxui/dom/node.hpp:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_tempbuf.h:
-
-_deps/ftxui-src/include/ftxui/screen/box.hpp:
+E:/assassins/new/unmatched/include/menu.hpp:
 
 C:/msys64/ucrt64/include/c++/16.1.0/ext/string_conversions.h:
 
 E:/assassins/new/unmatched/include/card.hpp:
 
-C:/msys64/ucrt64/include/c++/16.1.0/ext/type_traits.h:
+C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_uninitialized.h:
 
-E:/assassins/new/unmatched/include/hero.hpp:
-
-C:/msys64/ucrt64/include/c++/16.1.0/tr1/special_function_util.h:
-
-E:/assassins/new/unmatched/include/map.hpp:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/parse_numbers.h:
-
-E:/assassins/new/unmatched/include/tui_controller.hpp:
+C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_vector.h:
 
 E:/assassins/new/unmatched/include/deck-builder.hpp:
 
+C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_relops.h:
+
+_deps/ftxui-src/include/ftxui/component/mouse.hpp:
+
+E:/assassins/new/unmatched/src/deck.cpp:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/unordered_set.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/algorithm:
+
 C:/msys64/ucrt64/include/c++/16.1.0/bits/uniform_int_dist.h:
 
+_deps/ftxui-src/include/ftxui/dom/elements.hpp:
+
+C:/msys64/ucrt64/include/c++/16.1.0/cmath:
+
+C:/msys64/ucrt64/include/c++/16.1.0/deque:
+
+C:/msys64/ucrt64/include/c++/16.1.0/cstdint:
+
 C:/msys64/ucrt64/include/c++/16.1.0/numeric:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/functional_hash.h:
+
+C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0/include/pmmintrin.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/tr1/beta_function.tcc:
 
@@ -4008,3 +4142,95 @@ C:/msys64/ucrt64/include/c++/16.1.0/pstl/glue_numeric_defs.h:
 E:/assassins/new/unmatched/include/watson.hpp:
 
 C:/msys64/ucrt64/include/c++/16.1.0/random:
+
+C:/msys64/ucrt64/include/sec_api/wconio_s.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/tr1/gamma.tcc:
+
+C:/msys64/ucrt64/include/c++/16.1.0/cwctype:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_heap.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/tr1/hypergeometric.tcc:
+
+C:/msys64/ucrt64/include/c++/16.1.0/tr1/modified_bessel_func.tcc:
+
+C:/msys64/ucrt64/include/c++/16.1.0/functional:
+
+C:/msys64/ucrt64/include/c++/16.1.0/tr1/poly_laguerre.tcc:
+
+C:/msys64/ucrt64/include/c++/16.1.0/tr1/riemann_zeta.tcc:
+
+E:/assassins/new/unmatched/include/deck.hpp:
+
+C:/msys64/ucrt64/include/c++/16.1.0/x86_64-w64-mingw32/bits/opt_random.h:
+
+E:/assassins/new/unmatched/src/tui_controller.cpp:
+
+C:/msys64/ucrt64/include/stdint.h:
+
+_deps/ftxui-src/include/ftxui/component/event.hpp:
+
+C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0/include/emmintrin.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/unordered_map.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/std_thread.h:
+
+C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0/include/mmintrin.h:
+
+C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0/include/mwaitintrin.h:
+
+_deps/ftxui-src/include/ftxui/component/captured_mouse.hpp:
+
+C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0/include/stdint.h:
+
+E:/assassins/new/unmatched/src/deployment.cpp:
+
+C:/msys64/ucrt64/include/corecrt_wstdlib.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/node_handle.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/queue:
+
+E:/assassins/new/unmatched/include/dracula_cards.hpp:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/basic_string.tcc:
+
+C:/msys64/ucrt64/include/c++/16.1.0/unordered_map:
+
+C:/msys64/ucrt64/include/c++/16.1.0/tr1/special_function_util.h:
+
+E:/assassins/new/unmatched/include/map.hpp:
+
+C:/msys64/ucrt64/include/c++/16.1.0/ext/type_traits.h:
+
+E:/assassins/new/unmatched/include/hero.hpp:
+
+E:/assassins/new/unmatched/include/sidekick.hpp:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/memoryfwd.h:
+
+C:/msys64/ucrt64/include/_mingw_locale.h:
+
+E:/assassins/new/unmatched/src/game.cpp:
+
+E:/assassins/new/unmatched/include/game.hpp:
+
+C:/msys64/ucrt64/include/sec_api/sys/timeb_s.h:
+
+E:/assassins/new/unmatched/src/menu.cpp:
+
+C:/msys64/ucrt64/include/_mingw_mac.h:
+
+E:/assassins/new/unmatched/include/sherlock_card.hpp:
+
+E:/assassins/new/unmatched/include/sister.hpp:
+
+E:/assassins/new/unmatched/src/hero.cpp:
+
+C:/msys64/ucrt64/include/c++/16.1.0/x86_64-w64-mingw32/bits/c++config.h:
+
+E:/assassins/new/unmatched/src/hero_selection.cpp:
+
+E:/assassins/new/unmatched/src/map.cpp:

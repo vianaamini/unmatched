@@ -37,6 +37,8 @@ _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_with_restored_io.d
  C:/msys64/ucrt64/include/stddef.h \
  C:/msys64/ucrt64/include/sec_api/wconio_s.h \
  C:/msys64/ucrt64/include/corecrt_wctype.h \
+ C:/msys64/ucrt64/include/corecrt_wstring.h \
+ C:/msys64/ucrt64/include/_mingw_locale.h \
  C:/msys64/ucrt64/include/_mingw_off_t.h \
  C:/msys64/ucrt64/include/_mingw_stat64.h \
  C:/msys64/ucrt64/include/swprintf.inl \

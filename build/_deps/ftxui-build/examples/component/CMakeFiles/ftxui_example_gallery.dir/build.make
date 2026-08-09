@@ -76,15 +76,15 @@ _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_gallery.dir/galler
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_gallery.dir/gallery.cpp.obj: _deps/ftxui-src/examples/component/gallery.cpp
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_gallery.dir/gallery.cpp.obj: _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_gallery.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_gallery.dir/gallery.cpp.obj"
-	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build\examples\component && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_gallery.dir/gallery.cpp.obj -MF CMakeFiles\ftxui_example_gallery.dir\gallery.cpp.obj.d -o CMakeFiles\ftxui_example_gallery.dir\gallery.cpp.obj -c E:\assassins\new\unmatched\build\_deps\ftxui-src\examples\component\gallery.cpp
+	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build\examples\component && C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_gallery.dir/gallery.cpp.obj -MF CMakeFiles\ftxui_example_gallery.dir\gallery.cpp.obj.d -o CMakeFiles\ftxui_example_gallery.dir\gallery.cpp.obj -c E:\assassins\new\unmatched\build\_deps\ftxui-src\examples\component\gallery.cpp
 
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_gallery.dir/gallery.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/ftxui_example_gallery.dir/gallery.cpp.i"
-	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build\examples\component && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\assassins\new\unmatched\build\_deps\ftxui-src\examples\component\gallery.cpp > CMakeFiles\ftxui_example_gallery.dir\gallery.cpp.i
+	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build\examples\component && C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\assassins\new\unmatched\build\_deps\ftxui-src\examples\component\gallery.cpp > CMakeFiles\ftxui_example_gallery.dir\gallery.cpp.i
 
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_gallery.dir/gallery.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/ftxui_example_gallery.dir/gallery.cpp.s"
-	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build\examples\component && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\assassins\new\unmatched\build\_deps\ftxui-src\examples\component\gallery.cpp -o CMakeFiles\ftxui_example_gallery.dir\gallery.cpp.s
+	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build\examples\component && C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\assassins\new\unmatched\build\_deps\ftxui-src\examples\component\gallery.cpp -o CMakeFiles\ftxui_example_gallery.dir\gallery.cpp.s
 
 # Object files for target ftxui_example_gallery
 ftxui_example_gallery_OBJECTS = \

@@ -3,6 +3,7 @@
 
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_menu_entries.dir/menu_entries.cpp.obj: _deps/ftxui-src/examples/component/menu_entries.cpp \
   C:/msys64/ucrt64/include/_mingw.h \
+  C:/msys64/ucrt64/include/_mingw_locale.h \
   C:/msys64/ucrt64/include/_mingw_mac.h \
   C:/msys64/ucrt64/include/_mingw_off_t.h \
   C:/msys64/ucrt64/include/_mingw_secapi.h \
@@ -186,6 +187,7 @@ _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_menu_entries.dir/m
   C:/msys64/ucrt64/include/corecrt_wconio.h \
   C:/msys64/ucrt64/include/corecrt_wctype.h \
   C:/msys64/ucrt64/include/corecrt_wstdlib.h \
+  C:/msys64/ucrt64/include/corecrt_wstring.h \
   C:/msys64/ucrt64/include/crtdefs.h \
   C:/msys64/ucrt64/include/ctype.h \
   C:/msys64/ucrt64/include/errno.h \
@@ -383,7 +385,7 @@ C:/msys64/ucrt64/include/c++/16.1.0/exception:
 
 C:/msys64/ucrt64/include/c++/16.1.0/deque:
 
-C:/msys64/ucrt64/include/c++/16.1.0/bits/node_handle.h:
+C:/msys64/ucrt64/include/c++/16.1.0/debug/debug.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/new_throw.h:
 
@@ -447,6 +449,14 @@ C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_tempbuf.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/cxxabi_forced.h:
 
+C:/msys64/ucrt64/include/c++/16.1.0/bits/erase_if.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/nested_exception.h:
+
+C:/msys64/ucrt64/include/sec_api/sys/timeb_s.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/ostream_insert.h:
+
 _deps/ftxui-src/include/ftxui/component/component_options.hpp:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/locale_classes.tcc:
@@ -463,14 +473,6 @@ _deps/ftxui-src/include/ftxui/screen/screen.hpp:
 
 C:/msys64/ucrt64/include/_mingw.h:
 
-C:/msys64/ucrt64/include/c++/16.1.0/bits/erase_if.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/nested_exception.h:
-
-C:/msys64/ucrt64/include/sec_api/sys/timeb_s.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/ostream_insert.h:
-
 _deps/ftxui-src/include/ftxui/screen/deprecated.hpp:
 
 C:/msys64/ucrt64/include/c++/16.1.0/type_traits:
@@ -486,6 +488,8 @@ C:/msys64/ucrt64/include/c++/16.1.0/bits/atomic_base.h:
 C:/msys64/ucrt64/include/sys/types.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/ctime:
+
+C:/msys64/ucrt64/include/corecrt_wstring.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/typeinfo:
 
@@ -527,8 +531,6 @@ C:/msys64/ucrt64/include/c++/16.1.0/cstdint:
 
 C:/msys64/ucrt64/include/c++/16.1.0/cstdio:
 
-C:/msys64/ucrt64/include/c++/16.1.0/bit:
-
 C:/msys64/ucrt64/include/c++/16.1.0/istream:
 
 _deps/ftxui-src/examples/component/menu_entries.cpp:
@@ -544,6 +546,10 @@ C:/msys64/ucrt64/include/c++/16.1.0/backward/auto_ptr.h:
 C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_algobase.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/utility.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bit:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/node_handle.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/basic_ios.tcc:
 
@@ -567,7 +573,23 @@ C:/msys64/ucrt64/include/c++/16.1.0/bits/deque.tcc:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/invoke.h:
 
+C:/msys64/ucrt64/include/_mingw_locale.h:
+
 C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_raw_storage_iter.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/move.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/ostream.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_construct.h:
+
+_deps/ftxui-src/include/ftxui/component/task.hpp:
+
+C:/msys64/ucrt64/include/process.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/allocated_ptr.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/cstddef:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/basic_ios.h:
 
@@ -580,20 +602,6 @@ C:/msys64/ucrt64/include/corecrt_wconio.h:
 C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_deque.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/exception_defines.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/move.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/ostream.h:
-
-_deps/ftxui-src/include/ftxui/component/task.hpp:
-
-C:/msys64/ucrt64/include/process.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/allocated_ptr.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/cstddef:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_construct.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/cwchar:
 
@@ -726,8 +734,6 @@ C:/msys64/ucrt64/include/c++/16.1.0/pstl/execution_defs.h:
 C:/msys64/ucrt64/include/c++/16.1.0/cstdlib:
 
 C:/msys64/ucrt64/include/c++/16.1.0/cwctype:
-
-C:/msys64/ucrt64/include/c++/16.1.0/debug/debug.h:
 
 C:/msys64/ucrt64/include/errno.h:
 

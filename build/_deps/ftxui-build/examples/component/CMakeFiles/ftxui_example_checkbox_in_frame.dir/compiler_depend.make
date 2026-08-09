@@ -3,6 +3,7 @@
 
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_checkbox_in_frame.dir/checkbox_in_frame.cpp.obj: _deps/ftxui-src/examples/component/checkbox_in_frame.cpp \
   C:/msys64/ucrt64/include/_mingw.h \
+  C:/msys64/ucrt64/include/_mingw_locale.h \
   C:/msys64/ucrt64/include/_mingw_mac.h \
   C:/msys64/ucrt64/include/_mingw_off_t.h \
   C:/msys64/ucrt64/include/_mingw_secapi.h \
@@ -186,6 +187,7 @@ _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_checkbox_in_frame.
   C:/msys64/ucrt64/include/corecrt_wconio.h \
   C:/msys64/ucrt64/include/corecrt_wctype.h \
   C:/msys64/ucrt64/include/corecrt_wstdlib.h \
+  C:/msys64/ucrt64/include/corecrt_wstring.h \
   C:/msys64/ucrt64/include/crtdefs.h \
   C:/msys64/ucrt64/include/ctype.h \
   C:/msys64/ucrt64/include/errno.h \
@@ -385,7 +387,7 @@ C:/msys64/ucrt64/include/c++/16.1.0/exception:
 
 C:/msys64/ucrt64/include/c++/16.1.0/deque:
 
-C:/msys64/ucrt64/include/c++/16.1.0/bits/node_handle.h:
+C:/msys64/ucrt64/include/c++/16.1.0/debug/debug.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/new_throw.h:
 
@@ -469,19 +471,13 @@ C:/msys64/ucrt64/include/sys/types.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/ctime:
 
+C:/msys64/ucrt64/include/corecrt_wstring.h:
+
 C:/msys64/ucrt64/include/c++/16.1.0/typeinfo:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/chrono.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_relops.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/new_except.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/cstdint:
-
-C:/msys64/ucrt64/include/c++/16.1.0/cstdio:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bit:
 
 C:/msys64/ucrt64/include/c++/16.1.0/optional:
 
@@ -507,6 +503,12 @@ C:/msys64/ucrt64/include/c++/16.1.0/bits/basic_string.tcc:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/version.h:
 
+C:/msys64/ucrt64/include/c++/16.1.0/pstl/glue_memory_defs.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/hash_bytes.h:
+
+_deps/ftxui-src/examples/component/checkbox_in_frame.cpp:
+
 _deps/ftxui-src/include/ftxui/screen/screen.hpp:
 
 C:/msys64/ucrt64/include/_mingw.h:
@@ -527,11 +529,15 @@ C:/msys64/ucrt64/include/c++/16.1.0/utility:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_iterator_base_types.h:
 
-C:/msys64/ucrt64/include/c++/16.1.0/pstl/glue_memory_defs.h:
+C:/msys64/ucrt64/include/c++/16.1.0/bits/new_except.h:
 
-C:/msys64/ucrt64/include/c++/16.1.0/bits/hash_bytes.h:
+C:/msys64/ucrt64/include/c++/16.1.0/cstdint:
 
-_deps/ftxui-src/examples/component/checkbox_in_frame.cpp:
+C:/msys64/ucrt64/include/c++/16.1.0/cstdio:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bit:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/node_handle.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/basic_ios.tcc:
 
@@ -554,6 +560,8 @@ C:/msys64/ucrt64/include/c++/16.1.0/memory:
 C:/msys64/ucrt64/include/c++/16.1.0/bits/deque.tcc:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/invoke.h:
+
+C:/msys64/ucrt64/include/_mingw_locale.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_raw_storage_iter.h:
 
@@ -726,8 +734,6 @@ C:/msys64/ucrt64/include/c++/16.1.0/pstl/execution_defs.h:
 C:/msys64/ucrt64/include/c++/16.1.0/cstdlib:
 
 C:/msys64/ucrt64/include/c++/16.1.0/cwctype:
-
-C:/msys64/ucrt64/include/c++/16.1.0/debug/debug.h:
 
 C:/msys64/ucrt64/include/errno.h:
 

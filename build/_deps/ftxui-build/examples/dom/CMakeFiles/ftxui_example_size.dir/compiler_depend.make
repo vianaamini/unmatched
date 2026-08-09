@@ -3,6 +3,7 @@
 
 _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_size.dir/size.cpp.obj: _deps/ftxui-src/examples/dom/size.cpp \
   C:/msys64/ucrt64/include/_mingw.h \
+  C:/msys64/ucrt64/include/_mingw_locale.h \
   C:/msys64/ucrt64/include/_mingw_mac.h \
   C:/msys64/ucrt64/include/_mingw_off_t.h \
   C:/msys64/ucrt64/include/_mingw_secapi.h \
@@ -133,6 +134,7 @@ _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_size.dir/size.cpp.obj: _
   C:/msys64/ucrt64/include/corecrt_wconio.h \
   C:/msys64/ucrt64/include/corecrt_wctype.h \
   C:/msys64/ucrt64/include/corecrt_wstdlib.h \
+  C:/msys64/ucrt64/include/corecrt_wstring.h \
   C:/msys64/ucrt64/include/crtdefs.h \
   C:/msys64/ucrt64/include/ctype.h \
   C:/msys64/ucrt64/include/errno.h \
@@ -245,9 +247,7 @@ C:/msys64/ucrt64/include/stdio.h:
 
 C:/msys64/ucrt64/include/corecrt_startup.h:
 
-_deps/ftxui-src/include/ftxui/dom/node.hpp:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/stdexcept_throwfwd.h:
+C:/msys64/ucrt64/include/corecrt.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/shared_ptr_base.h:
 
@@ -291,14 +291,6 @@ C:/msys64/ucrt64/include/c++/16.1.0/bits/exception_ptr.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/atomic_lockfree_defines.h:
 
-_deps/ftxui-src/examples/dom/size.cpp:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/nested_exception.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/erase_if.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/x86_64-w64-mingw32/bits/c++allocator.h:
-
 C:/msys64/ucrt64/include/c++/16.1.0/backward/binders.h:
 
 _deps/ftxui-src/include/ftxui/screen/screen.hpp:
@@ -329,10 +321,6 @@ C:/msys64/ucrt64/include/c++/16.1.0/cerrno:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/new_allocator.h:
 
-C:/msys64/ucrt64/include/c++/16.1.0/bits/cpp_type_traits.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/string_view:
-
 C:/msys64/ucrt64/include/c++/16.1.0/array:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/unordered_map.h:
@@ -341,45 +329,7 @@ C:/msys64/ucrt64/include/c++/16.1.0/bits/std_function.h:
 
 C:/msys64/ucrt64/include/_mingw_secapi.h:
 
-C:/msys64/ucrt64/include/c++/16.1.0/bits/cxxabi_forced.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/x86_64-w64-mingw32/bits/gthr-default.h:
-
-C:/msys64/ucrt64/include/_timeval.h:
-
-C:/msys64/ucrt64/include/_mingw_off_t.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/clocale:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/concept_check.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/basic_string.tcc:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/version.h:
-
 C:/msys64/ucrt64/include/c++/16.1.0/bits/node_handle.h:
-
-C:/msys64/ucrt64/include/wchar.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/shared_ptr_atomic.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/atomic_base.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/move.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/iosfwd:
-
-C:/msys64/ucrt64/include/process.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/allocated_ptr.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/cstddef:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/hashtable.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/char_traits.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_construct.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/predefined_ops.h:
 
@@ -391,6 +341,66 @@ C:/msys64/ucrt64/include/c++/16.1.0/bits/alloc_traits.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_tempbuf.h:
 
+C:/msys64/ucrt64/include/_mingw_off_t.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/clocale:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/concept_check.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/basic_string.tcc:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/version.h:
+
+_deps/ftxui-src/examples/dom/size.cpp:
+
+C:/msys64/ucrt64/include/c++/16.1.0/string_view:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/cpp_type_traits.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/nested_exception.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/erase_if.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/x86_64-w64-mingw32/bits/c++allocator.h:
+
+C:/msys64/ucrt64/include/_timeval.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/cxxabi_forced.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/x86_64-w64-mingw32/bits/gthr-default.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/move.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/iosfwd:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/hashtable.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/char_traits.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_construct.h:
+
+C:/msys64/ucrt64/include/process.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/allocated_ptr.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/cstddef:
+
+C:/msys64/ucrt64/include/wchar.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/shared_ptr_atomic.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/atomic_base.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/exception_defines.h:
+
+_deps/ftxui-src/include/ftxui/screen/color.hpp:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/allocator.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/basic_string.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_vector.h:
+
 C:/msys64/ucrt64/include/c++/16.1.0/cwchar:
 
 C:/msys64/ucrt64/include/c++/16.1.0/pstl/pstl_config.h:
@@ -401,15 +411,9 @@ C:/msys64/ucrt64/include/c++/16.1.0/bits/shared_ptr.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/ptr_traits.h:
 
-_deps/ftxui-src/include/ftxui/screen/color.hpp:
+_deps/ftxui-src/include/ftxui/dom/node.hpp:
 
-C:/msys64/ucrt64/include/c++/16.1.0/bits/allocator.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/basic_string.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_vector.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/exception_defines.h:
+C:/msys64/ucrt64/include/c++/16.1.0/bits/stdexcept_throwfwd.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/backward/auto_ptr.h:
 
@@ -513,6 +517,8 @@ C:/msys64/ucrt64/include/sec_api/stdlib_s.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/invoke.h:
 
+C:/msys64/ucrt64/include/_mingw_locale.h:
+
 C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_raw_storage_iter.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/memory:
@@ -527,7 +533,7 @@ C:/msys64/ucrt64/include/c++/16.1.0/pstl/glue_memory_defs.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/tuple:
 
-C:/msys64/ucrt64/include/corecrt.h:
+C:/msys64/ucrt64/include/corecrt_wstring.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/typeinfo:
 

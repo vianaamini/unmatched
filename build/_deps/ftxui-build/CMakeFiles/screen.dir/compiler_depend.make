@@ -63,6 +63,7 @@ _deps/ftxui-build/CMakeFiles/screen.dir/src/ftxui/screen/box.cpp.obj: _deps/ftxu
 
 _deps/ftxui-build/CMakeFiles/screen.dir/src/ftxui/screen/color.cpp.obj: _deps/ftxui-src/src/ftxui/screen/color.cpp \
   C:/msys64/ucrt64/include/_mingw.h \
+  C:/msys64/ucrt64/include/_mingw_locale.h \
   C:/msys64/ucrt64/include/_mingw_mac.h \
   C:/msys64/ucrt64/include/_mingw_off_t.h \
   C:/msys64/ucrt64/include/_mingw_secapi.h \
@@ -149,6 +150,7 @@ _deps/ftxui-build/CMakeFiles/screen.dir/src/ftxui/screen/color.cpp.obj: _deps/ft
   C:/msys64/ucrt64/include/corecrt_wconio.h \
   C:/msys64/ucrt64/include/corecrt_wctype.h \
   C:/msys64/ucrt64/include/corecrt_wstdlib.h \
+  C:/msys64/ucrt64/include/corecrt_wstring.h \
   C:/msys64/ucrt64/include/crtdefs.h \
   C:/msys64/ucrt64/include/ctype.h \
   C:/msys64/ucrt64/include/errno.h \
@@ -177,6 +179,7 @@ _deps/ftxui-build/CMakeFiles/screen.dir/src/ftxui/screen/color.cpp.obj: _deps/ft
 
 _deps/ftxui-build/CMakeFiles/screen.dir/src/ftxui/screen/color_info.cpp.obj: _deps/ftxui-src/src/ftxui/screen/color_info.cpp \
   C:/msys64/ucrt64/include/_mingw.h \
+  C:/msys64/ucrt64/include/_mingw_locale.h \
   C:/msys64/ucrt64/include/_mingw_mac.h \
   C:/msys64/ucrt64/include/_mingw_off_t.h \
   C:/msys64/ucrt64/include/_mingw_secapi.h \
@@ -263,6 +266,7 @@ _deps/ftxui-build/CMakeFiles/screen.dir/src/ftxui/screen/color_info.cpp.obj: _de
   C:/msys64/ucrt64/include/corecrt_wconio.h \
   C:/msys64/ucrt64/include/corecrt_wctype.h \
   C:/msys64/ucrt64/include/corecrt_wstdlib.h \
+  C:/msys64/ucrt64/include/corecrt_wstring.h \
   C:/msys64/ucrt64/include/crtdefs.h \
   C:/msys64/ucrt64/include/ctype.h \
   C:/msys64/ucrt64/include/errno.h \
@@ -290,6 +294,7 @@ _deps/ftxui-build/CMakeFiles/screen.dir/src/ftxui/screen/color_info.cpp.obj: _de
 
 _deps/ftxui-build/CMakeFiles/screen.dir/src/ftxui/screen/screen.cpp.obj: _deps/ftxui-src/src/ftxui/screen/screen.cpp \
   C:/msys64/ucrt64/include/_mingw.h \
+  C:/msys64/ucrt64/include/_mingw_locale.h \
   C:/msys64/ucrt64/include/_mingw_mac.h \
   C:/msys64/ucrt64/include/_mingw_off_t.h \
   C:/msys64/ucrt64/include/_mingw_secapi.h \
@@ -453,6 +458,7 @@ _deps/ftxui-build/CMakeFiles/screen.dir/src/ftxui/screen/screen.cpp.obj: _deps/f
   C:/msys64/ucrt64/include/corecrt_wconio.h \
   C:/msys64/ucrt64/include/corecrt_wctype.h \
   C:/msys64/ucrt64/include/corecrt_wstdlib.h \
+  C:/msys64/ucrt64/include/corecrt_wstring.h \
   C:/msys64/ucrt64/include/crtdefs.h \
   C:/msys64/ucrt64/include/ctype.h \
   C:/msys64/ucrt64/include/datetimeapi.h \
@@ -683,6 +689,7 @@ _deps/ftxui-build/CMakeFiles/screen.dir/src/ftxui/screen/screen.cpp.obj: _deps/f
 
 _deps/ftxui-build/CMakeFiles/screen.dir/src/ftxui/screen/string.cpp.obj: _deps/ftxui-src/src/ftxui/screen/string.cpp \
   C:/msys64/ucrt64/include/_mingw.h \
+  C:/msys64/ucrt64/include/_mingw_locale.h \
   C:/msys64/ucrt64/include/_mingw_mac.h \
   C:/msys64/ucrt64/include/_mingw_off_t.h \
   C:/msys64/ucrt64/include/_mingw_secapi.h \
@@ -810,6 +817,7 @@ _deps/ftxui-build/CMakeFiles/screen.dir/src/ftxui/screen/string.cpp.obj: _deps/f
   C:/msys64/ucrt64/include/corecrt_wconio.h \
   C:/msys64/ucrt64/include/corecrt_wctype.h \
   C:/msys64/ucrt64/include/corecrt_wstdlib.h \
+  C:/msys64/ucrt64/include/corecrt_wstring.h \
   C:/msys64/ucrt64/include/crtdefs.h \
   C:/msys64/ucrt64/include/ctype.h \
   C:/msys64/ucrt64/include/errno.h \
@@ -850,6 +858,7 @@ _deps/ftxui-build/CMakeFiles/screen.dir/src/ftxui/screen/string.cpp.obj: _deps/f
 
 _deps/ftxui-build/CMakeFiles/screen.dir/src/ftxui/screen/terminal.cpp.obj: _deps/ftxui-src/src/ftxui/screen/terminal.cpp \
   C:/msys64/ucrt64/include/_mingw.h \
+  C:/msys64/ucrt64/include/_mingw_locale.h \
   C:/msys64/ucrt64/include/_mingw_mac.h \
   C:/msys64/ucrt64/include/_mingw_off_t.h \
   C:/msys64/ucrt64/include/_mingw_secapi.h \
@@ -944,6 +953,7 @@ _deps/ftxui-build/CMakeFiles/screen.dir/src/ftxui/screen/terminal.cpp.obj: _deps
   C:/msys64/ucrt64/include/corecrt_wconio.h \
   C:/msys64/ucrt64/include/corecrt_wctype.h \
   C:/msys64/ucrt64/include/corecrt_wstdlib.h \
+  C:/msys64/ucrt64/include/corecrt_wstring.h \
   C:/msys64/ucrt64/include/crtdefs.h \
   C:/msys64/ucrt64/include/ctype.h \
   C:/msys64/ucrt64/include/datetimeapi.h \
@@ -1333,7 +1343,7 @@ C:/msys64/ucrt64/include/sysinfoapi.h:
 
 C:/msys64/ucrt64/include/sys/types.h:
 
-C:/msys64/ucrt64/include/_mingw_stdarg.h:
+C:/msys64/ucrt64/include/string.h:
 
 C:/msys64/ucrt64/include/swprintf.inl:
 
@@ -1391,8 +1401,6 @@ C:/msys64/ucrt64/include/stdlib.h:
 
 _deps/ftxui-src/include/ftxui/screen/terminal.hpp:
 
-C:/msys64/ucrt64/include/c++/16.1.0/bits/memoryfwd.h:
-
 C:/msys64/ucrt64/include/c++/16.1.0/cerrno:
 
 C:/msys64/ucrt64/include/c++/16.1.0/sstream:
@@ -1404,6 +1412,10 @@ C:/msys64/ucrt64/include/consoleapi2.h:
 C:/msys64/ucrt64/include/tvout.h:
 
 C:/msys64/ucrt64/include/sec_api/sys/timeb_s.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/memoryfwd.h:
+
+C:/msys64/ucrt64/include/_mingw_locale.h:
 
 C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0/include/stdarg.h:
 
@@ -1425,9 +1437,19 @@ C:/msys64/ucrt64/include/winapifamily.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/stdexcept_throw.h:
 
+C:/msys64/ucrt64/include/consoleapi3.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/unique_ptr.h:
+
 C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0/include/pmmintrin.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/functional_hash.h:
+
+C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0/include/fma4intrin.h:
+
+C:/msys64/ucrt64/include/stringapiset.h:
+
+C:/msys64/ucrt64/include/stddef.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/x86_64-w64-mingw32/bits/c++locale.h:
 
@@ -1572,6 +1594,10 @@ C:/msys64/ucrt64/include/pshpack8.h:
 C:/msys64/ucrt64/include/winsvc.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bit:
+
+C:/msys64/ucrt64/include/c++/16.1.0/typeinfo:
+
+C:/msys64/ucrt64/include/corecrt_startup.h:
 
 C:/msys64/ucrt64/include/limits.h:
 
@@ -1725,6 +1751,8 @@ C:/msys64/ucrt64/include/c++/16.1.0/bits/refwrap.h:
 
 C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0/include/mm_malloc.h:
 
+C:/msys64/ucrt64/include/_mingw_stdarg.h:
+
 C:/msys64/ucrt64/include/_timeval.h:
 
 C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0/include/amxbf16intrin.h:
@@ -1855,14 +1883,6 @@ C:/msys64/ucrt64/include/c++/16.1.0/bits/stdexcept_except.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/system_error:
 
-C:/msys64/ucrt64/include/corecrt_startup.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/typeinfo:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/unique_ptr.h:
-
-C:/msys64/ucrt64/include/consoleapi3.h:
-
 C:/msys64/ucrt64/include/sec_api/stdlib_s.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/x86_64-w64-mingw32/bits/ctype_inline.h:
@@ -1921,6 +1941,8 @@ C:/msys64/ucrt64/include/namedpipeapi.h:
 
 C:/msys64/ucrt64/include/namespaceapi.h:
 
+C:/msys64/ucrt64/include/corecrt_wstring.h:
+
 C:/msys64/ucrt64/include/processenv.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/cctype:
@@ -1974,11 +1996,3 @@ C:/msys64/ucrt64/include/securitybaseapi.h:
 C:/msys64/ucrt64/include/signal.h:
 
 C:/msys64/ucrt64/include/stdarg.h:
-
-C:/msys64/ucrt64/include/string.h:
-
-C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0/include/fma4intrin.h:
-
-C:/msys64/ucrt64/include/stddef.h:
-
-C:/msys64/ucrt64/include/stringapiset.h:

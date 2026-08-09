@@ -399,12 +399,12 @@ CMakeFiles/unmatched.dir/all: _deps/ftxui-build/CMakeFiles/dom.dir/all
 CMakeFiles/unmatched.dir/all: _deps/ftxui-build/CMakeFiles/component.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\unmatched.dir\build.make CMakeFiles/unmatched.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\unmatched.dir\build.make CMakeFiles/unmatched.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=91,92,93,94,95,96,97,98,99,100 "Built target unmatched"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=90,91,92,93,94,95,96,97,98,99,100 "Built target unmatched"
 .PHONY : CMakeFiles/unmatched.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/unmatched.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start E:\assassins\new\unmatched\build\CMakeFiles 38
+	$(CMAKE_COMMAND) -E cmake_progress_start E:\assassins\new\unmatched\build\CMakeFiles 39
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/unmatched.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start E:\assassins\new\unmatched\build\CMakeFiles 0
 .PHONY : CMakeFiles/unmatched.dir/rule
@@ -416,7 +416,7 @@ unmatched: CMakeFiles/unmatched.dir/rule
 # codegen rule for target.
 CMakeFiles/unmatched.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\unmatched.dir\build.make CMakeFiles/unmatched.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=91,92,93,94,95,96,97,98,99,100 "Finished codegen for target unmatched"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=90,91,92,93,94,95,96,97,98,99,100 "Finished codegen for target unmatched"
 .PHONY : CMakeFiles/unmatched.dir/codegen
 
 # clean rule for target.
@@ -431,7 +431,7 @@ CMakeFiles/unmatched.dir/clean:
 _deps/ftxui-build/CMakeFiles/screen.dir/all:
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\CMakeFiles\screen.dir\build.make _deps/ftxui-build/CMakeFiles/screen.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\CMakeFiles\screen.dir\build.make _deps/ftxui-build/CMakeFiles/screen.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=88,89,90 "Built target screen"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=87,88,89 "Built target screen"
 .PHONY : _deps/ftxui-build/CMakeFiles/screen.dir/all
 
 # Build rule for subdir invocation for target.
@@ -448,7 +448,7 @@ screen: _deps/ftxui-build/CMakeFiles/screen.dir/rule
 # codegen rule for target.
 _deps/ftxui-build/CMakeFiles/screen.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\CMakeFiles\screen.dir\build.make _deps/ftxui-build/CMakeFiles/screen.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=88,89,90 "Finished codegen for target screen"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=87,88,89 "Finished codegen for target screen"
 .PHONY : _deps/ftxui-build/CMakeFiles/screen.dir/codegen
 
 # clean rule for target.
@@ -598,12 +598,12 @@ _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_button_in_frame.di
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_button_in_frame.dir/all: _deps/ftxui-build/CMakeFiles/component.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_button_in_frame.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_button_in_frame.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_button_in_frame.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_button_in_frame.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=30 "Built target ftxui_example_button_in_frame"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num= "Built target ftxui_example_button_in_frame"
 .PHONY : _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_button_in_frame.dir/all
 
 # Build rule for subdir invocation for target.
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_button_in_frame.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start E:\assassins\new\unmatched\build\CMakeFiles 29
+	$(CMAKE_COMMAND) -E cmake_progress_start E:\assassins\new\unmatched\build\CMakeFiles 28
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_button_in_frame.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start E:\assassins\new\unmatched\build\CMakeFiles 0
 .PHONY : _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_button_in_frame.dir/rule
@@ -615,7 +615,7 @@ ftxui_example_button_in_frame: _deps/ftxui-build/examples/component/CMakeFiles/f
 # codegen rule for target.
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_button_in_frame.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_button_in_frame.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_button_in_frame.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=30 "Finished codegen for target ftxui_example_button_in_frame"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num= "Finished codegen for target ftxui_example_button_in_frame"
 .PHONY : _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_button_in_frame.dir/codegen
 
 # clean rule for target.
@@ -632,7 +632,7 @@ _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_button_style.dir/a
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_button_style.dir/all: _deps/ftxui-build/CMakeFiles/component.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_button_style.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_button_style.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_button_style.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_button_style.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=31 "Built target ftxui_example_button_style"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=30 "Built target ftxui_example_button_style"
 .PHONY : _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_button_style.dir/all
 
 # Build rule for subdir invocation for target.
@@ -649,7 +649,7 @@ ftxui_example_button_style: _deps/ftxui-build/examples/component/CMakeFiles/ftxu
 # codegen rule for target.
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_button_style.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_button_style.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_button_style.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=31 "Finished codegen for target ftxui_example_button_style"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=30 "Finished codegen for target ftxui_example_button_style"
 .PHONY : _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_button_style.dir/codegen
 
 # clean rule for target.
@@ -666,7 +666,7 @@ _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_canvas_animated.di
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_canvas_animated.dir/all: _deps/ftxui-build/CMakeFiles/component.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_canvas_animated.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_canvas_animated.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_canvas_animated.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_canvas_animated.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=33 "Built target ftxui_example_canvas_animated"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=32 "Built target ftxui_example_canvas_animated"
 .PHONY : _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_canvas_animated.dir/all
 
 # Build rule for subdir invocation for target.
@@ -683,7 +683,7 @@ ftxui_example_canvas_animated: _deps/ftxui-build/examples/component/CMakeFiles/f
 # codegen rule for target.
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_canvas_animated.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_canvas_animated.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_canvas_animated.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=33 "Finished codegen for target ftxui_example_canvas_animated"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=32 "Finished codegen for target ftxui_example_canvas_animated"
 .PHONY : _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_canvas_animated.dir/codegen
 
 # clean rule for target.
@@ -700,12 +700,12 @@ _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_checkbox.dir/all: 
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_checkbox.dir/all: _deps/ftxui-build/CMakeFiles/component.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_checkbox.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_checkbox.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_checkbox.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_checkbox.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num= "Built target ftxui_example_checkbox"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=33 "Built target ftxui_example_checkbox"
 .PHONY : _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_checkbox.dir/all
 
 # Build rule for subdir invocation for target.
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_checkbox.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start E:\assassins\new\unmatched\build\CMakeFiles 28
+	$(CMAKE_COMMAND) -E cmake_progress_start E:\assassins\new\unmatched\build\CMakeFiles 29
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_checkbox.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start E:\assassins\new\unmatched\build\CMakeFiles 0
 .PHONY : _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_checkbox.dir/rule
@@ -717,7 +717,7 @@ ftxui_example_checkbox: _deps/ftxui-build/examples/component/CMakeFiles/ftxui_ex
 # codegen rule for target.
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_checkbox.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_checkbox.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_checkbox.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num= "Finished codegen for target ftxui_example_checkbox"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=33 "Finished codegen for target ftxui_example_checkbox"
 .PHONY : _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_checkbox.dir/codegen
 
 # clean rule for target.
@@ -802,7 +802,7 @@ _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_composition.dir/al
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_composition.dir/all: _deps/ftxui-build/CMakeFiles/component.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_composition.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_composition.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_composition.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_composition.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=40 "Built target ftxui_example_composition"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=39 "Built target ftxui_example_composition"
 .PHONY : _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_composition.dir/all
 
 # Build rule for subdir invocation for target.
@@ -819,7 +819,7 @@ ftxui_example_composition: _deps/ftxui-build/examples/component/CMakeFiles/ftxui
 # codegen rule for target.
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_composition.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_composition.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_composition.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=40 "Finished codegen for target ftxui_example_composition"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=39 "Finished codegen for target ftxui_example_composition"
 .PHONY : _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_composition.dir/codegen
 
 # clean rule for target.
@@ -836,7 +836,7 @@ _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_dropdown.dir/all: 
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_dropdown.dir/all: _deps/ftxui-build/CMakeFiles/component.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_dropdown.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_dropdown.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_dropdown.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_dropdown.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=42 "Built target ftxui_example_dropdown"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=41 "Built target ftxui_example_dropdown"
 .PHONY : _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_dropdown.dir/all
 
 # Build rule for subdir invocation for target.
@@ -853,7 +853,7 @@ ftxui_example_dropdown: _deps/ftxui-build/examples/component/CMakeFiles/ftxui_ex
 # codegen rule for target.
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_dropdown.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_dropdown.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_dropdown.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=42 "Finished codegen for target ftxui_example_dropdown"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=41 "Finished codegen for target ftxui_example_dropdown"
 .PHONY : _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_dropdown.dir/codegen
 
 # clean rule for target.
@@ -870,12 +870,12 @@ _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_flexbox_gallery.di
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_flexbox_gallery.dir/all: _deps/ftxui-build/CMakeFiles/component.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_flexbox_gallery.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_flexbox_gallery.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_flexbox_gallery.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_flexbox_gallery.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num= "Built target ftxui_example_flexbox_gallery"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=42 "Built target ftxui_example_flexbox_gallery"
 .PHONY : _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_flexbox_gallery.dir/all
 
 # Build rule for subdir invocation for target.
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_flexbox_gallery.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start E:\assassins\new\unmatched\build\CMakeFiles 28
+	$(CMAKE_COMMAND) -E cmake_progress_start E:\assassins\new\unmatched\build\CMakeFiles 29
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_flexbox_gallery.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start E:\assassins\new\unmatched\build\CMakeFiles 0
 .PHONY : _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_flexbox_gallery.dir/rule
@@ -887,7 +887,7 @@ ftxui_example_flexbox_gallery: _deps/ftxui-build/examples/component/CMakeFiles/f
 # codegen rule for target.
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_flexbox_gallery.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_flexbox_gallery.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_flexbox_gallery.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num= "Finished codegen for target ftxui_example_flexbox_gallery"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=42 "Finished codegen for target ftxui_example_flexbox_gallery"
 .PHONY : _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_flexbox_gallery.dir/codegen
 
 # clean rule for target.
@@ -972,7 +972,7 @@ _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_homescreen.dir/all
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_homescreen.dir/all: _deps/ftxui-build/CMakeFiles/component.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_homescreen.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_homescreen.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_homescreen.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_homescreen.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=50 "Built target ftxui_example_homescreen"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=49 "Built target ftxui_example_homescreen"
 .PHONY : _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_homescreen.dir/all
 
 # Build rule for subdir invocation for target.
@@ -989,7 +989,7 @@ ftxui_example_homescreen: _deps/ftxui-build/examples/component/CMakeFiles/ftxui_
 # codegen rule for target.
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_homescreen.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_homescreen.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_homescreen.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=50 "Finished codegen for target ftxui_example_homescreen"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=49 "Finished codegen for target ftxui_example_homescreen"
 .PHONY : _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_homescreen.dir/codegen
 
 # clean rule for target.
@@ -1006,7 +1006,7 @@ _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_input.dir/all: _de
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_input.dir/all: _deps/ftxui-build/CMakeFiles/component.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_input.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_input.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_input.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_input.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=52 "Built target ftxui_example_input"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=51 "Built target ftxui_example_input"
 .PHONY : _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_input.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1023,7 +1023,7 @@ ftxui_example_input: _deps/ftxui-build/examples/component/CMakeFiles/ftxui_examp
 # codegen rule for target.
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_input.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_input.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_input.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=52 "Finished codegen for target ftxui_example_input"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=51 "Finished codegen for target ftxui_example_input"
 .PHONY : _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_input.dir/codegen
 
 # clean rule for target.
@@ -1040,12 +1040,12 @@ _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_maybe.dir/all: _de
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_maybe.dir/all: _deps/ftxui-build/CMakeFiles/component.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_maybe.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_maybe.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_maybe.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_maybe.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num= "Built target ftxui_example_maybe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=52 "Built target ftxui_example_maybe"
 .PHONY : _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_maybe.dir/all
 
 # Build rule for subdir invocation for target.
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_maybe.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start E:\assassins\new\unmatched\build\CMakeFiles 28
+	$(CMAKE_COMMAND) -E cmake_progress_start E:\assassins\new\unmatched\build\CMakeFiles 29
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_maybe.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start E:\assassins\new\unmatched\build\CMakeFiles 0
 .PHONY : _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_maybe.dir/rule
@@ -1057,7 +1057,7 @@ ftxui_example_maybe: _deps/ftxui-build/examples/component/CMakeFiles/ftxui_examp
 # codegen rule for target.
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_maybe.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_maybe.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_maybe.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num= "Finished codegen for target ftxui_example_maybe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=52 "Finished codegen for target ftxui_example_maybe"
 .PHONY : _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_maybe.dir/codegen
 
 # clean rule for target.
@@ -1142,12 +1142,12 @@ _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_menu_entries.dir/a
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_menu_entries.dir/all: _deps/ftxui-build/CMakeFiles/component.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_menu_entries.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_menu_entries.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_menu_entries.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_menu_entries.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=55 "Built target ftxui_example_menu_entries"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num= "Built target ftxui_example_menu_entries"
 .PHONY : _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_menu_entries.dir/all
 
 # Build rule for subdir invocation for target.
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_menu_entries.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start E:\assassins\new\unmatched\build\CMakeFiles 29
+	$(CMAKE_COMMAND) -E cmake_progress_start E:\assassins\new\unmatched\build\CMakeFiles 28
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_menu_entries.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start E:\assassins\new\unmatched\build\CMakeFiles 0
 .PHONY : _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_menu_entries.dir/rule
@@ -1159,7 +1159,7 @@ ftxui_example_menu_entries: _deps/ftxui-build/examples/component/CMakeFiles/ftxu
 # codegen rule for target.
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_menu_entries.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_menu_entries.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_menu_entries.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=55 "Finished codegen for target ftxui_example_menu_entries"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num= "Finished codegen for target ftxui_example_menu_entries"
 .PHONY : _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_menu_entries.dir/codegen
 
 # clean rule for target.
@@ -1176,7 +1176,7 @@ _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_menu_entries_anima
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_menu_entries_animated.dir/all: _deps/ftxui-build/CMakeFiles/component.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_menu_entries_animated.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_menu_entries_animated.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_menu_entries_animated.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_menu_entries_animated.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=56 "Built target ftxui_example_menu_entries_animated"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=55 "Built target ftxui_example_menu_entries_animated"
 .PHONY : _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_menu_entries_animated.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1193,7 +1193,7 @@ ftxui_example_menu_entries_animated: _deps/ftxui-build/examples/component/CMakeF
 # codegen rule for target.
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_menu_entries_animated.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_menu_entries_animated.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_menu_entries_animated.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=56 "Finished codegen for target ftxui_example_menu_entries_animated"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=55 "Finished codegen for target ftxui_example_menu_entries_animated"
 .PHONY : _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_menu_entries_animated.dir/codegen
 
 # clean rule for target.
@@ -1210,7 +1210,7 @@ _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_menu_in_frame.dir/
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_menu_in_frame.dir/all: _deps/ftxui-build/CMakeFiles/component.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_menu_in_frame.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_menu_in_frame.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_menu_in_frame.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_menu_in_frame.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=57 "Built target ftxui_example_menu_in_frame"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=56 "Built target ftxui_example_menu_in_frame"
 .PHONY : _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_menu_in_frame.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1227,7 +1227,7 @@ ftxui_example_menu_in_frame: _deps/ftxui-build/examples/component/CMakeFiles/ftx
 # codegen rule for target.
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_menu_in_frame.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_menu_in_frame.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_menu_in_frame.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=57 "Finished codegen for target ftxui_example_menu_in_frame"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=56 "Finished codegen for target ftxui_example_menu_in_frame"
 .PHONY : _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_menu_in_frame.dir/codegen
 
 # clean rule for target.
@@ -1244,7 +1244,7 @@ _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_menu_multiple.dir/
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_menu_multiple.dir/all: _deps/ftxui-build/CMakeFiles/component.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_menu_multiple.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_menu_multiple.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_menu_multiple.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_menu_multiple.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=58 "Built target ftxui_example_menu_multiple"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=57 "Built target ftxui_example_menu_multiple"
 .PHONY : _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_menu_multiple.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1261,7 +1261,7 @@ ftxui_example_menu_multiple: _deps/ftxui-build/examples/component/CMakeFiles/ftx
 # codegen rule for target.
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_menu_multiple.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_menu_multiple.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_menu_multiple.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=58 "Finished codegen for target ftxui_example_menu_multiple"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=57 "Finished codegen for target ftxui_example_menu_multiple"
 .PHONY : _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_menu_multiple.dir/codegen
 
 # clean rule for target.
@@ -1278,7 +1278,7 @@ _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_menu_style.dir/all
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_menu_style.dir/all: _deps/ftxui-build/CMakeFiles/component.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_menu_style.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_menu_style.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_menu_style.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_menu_style.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=59 "Built target ftxui_example_menu_style"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=58 "Built target ftxui_example_menu_style"
 .PHONY : _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_menu_style.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1295,7 +1295,7 @@ ftxui_example_menu_style: _deps/ftxui-build/examples/component/CMakeFiles/ftxui_
 # codegen rule for target.
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_menu_style.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_menu_style.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_menu_style.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=59 "Finished codegen for target ftxui_example_menu_style"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=58 "Finished codegen for target ftxui_example_menu_style"
 .PHONY : _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_menu_style.dir/codegen
 
 # clean rule for target.
@@ -1312,7 +1312,7 @@ _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_menu_underline_ani
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_menu_underline_animated_gallery.dir/all: _deps/ftxui-build/CMakeFiles/component.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_menu_underline_animated_gallery.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_menu_underline_animated_gallery.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_menu_underline_animated_gallery.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_menu_underline_animated_gallery.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=60 "Built target ftxui_example_menu_underline_animated_gallery"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=59 "Built target ftxui_example_menu_underline_animated_gallery"
 .PHONY : _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_menu_underline_animated_gallery.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1329,7 +1329,7 @@ ftxui_example_menu_underline_animated_gallery: _deps/ftxui-build/examples/compon
 # codegen rule for target.
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_menu_underline_animated_gallery.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_menu_underline_animated_gallery.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_menu_underline_animated_gallery.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=60 "Finished codegen for target ftxui_example_menu_underline_animated_gallery"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=59 "Finished codegen for target ftxui_example_menu_underline_animated_gallery"
 .PHONY : _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_menu_underline_animated_gallery.dir/codegen
 
 # clean rule for target.
@@ -1346,7 +1346,7 @@ _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_modal_dialog.dir/a
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_modal_dialog.dir/all: _deps/ftxui-build/CMakeFiles/component.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_modal_dialog.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_modal_dialog.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_modal_dialog.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_modal_dialog.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=61 "Built target ftxui_example_modal_dialog"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=60 "Built target ftxui_example_modal_dialog"
 .PHONY : _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_modal_dialog.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1363,7 +1363,7 @@ ftxui_example_modal_dialog: _deps/ftxui-build/examples/component/CMakeFiles/ftxu
 # codegen rule for target.
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_modal_dialog.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_modal_dialog.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_modal_dialog.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=61 "Finished codegen for target ftxui_example_modal_dialog"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=60 "Finished codegen for target ftxui_example_modal_dialog"
 .PHONY : _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_modal_dialog.dir/codegen
 
 # clean rule for target.
@@ -1380,12 +1380,12 @@ _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_nested_screen.dir/
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_nested_screen.dir/all: _deps/ftxui-build/CMakeFiles/component.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_nested_screen.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_nested_screen.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_nested_screen.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_nested_screen.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num= "Built target ftxui_example_nested_screen"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=61 "Built target ftxui_example_nested_screen"
 .PHONY : _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_nested_screen.dir/all
 
 # Build rule for subdir invocation for target.
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_nested_screen.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start E:\assassins\new\unmatched\build\CMakeFiles 28
+	$(CMAKE_COMMAND) -E cmake_progress_start E:\assassins\new\unmatched\build\CMakeFiles 29
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_nested_screen.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start E:\assassins\new\unmatched\build\CMakeFiles 0
 .PHONY : _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_nested_screen.dir/rule
@@ -1397,7 +1397,7 @@ ftxui_example_nested_screen: _deps/ftxui-build/examples/component/CMakeFiles/ftx
 # codegen rule for target.
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_nested_screen.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_nested_screen.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_nested_screen.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num= "Finished codegen for target ftxui_example_nested_screen"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=61 "Finished codegen for target ftxui_example_nested_screen"
 .PHONY : _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_nested_screen.dir/codegen
 
 # clean rule for target.
@@ -1414,7 +1414,7 @@ _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_print_key_press.di
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_print_key_press.dir/all: _deps/ftxui-build/CMakeFiles/component.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_print_key_press.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_print_key_press.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_print_key_press.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_print_key_press.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=64 "Built target ftxui_example_print_key_press"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=63 "Built target ftxui_example_print_key_press"
 .PHONY : _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_print_key_press.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1431,7 +1431,7 @@ ftxui_example_print_key_press: _deps/ftxui-build/examples/component/CMakeFiles/f
 # codegen rule for target.
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_print_key_press.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_print_key_press.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_print_key_press.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=64 "Finished codegen for target ftxui_example_print_key_press"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=63 "Finished codegen for target ftxui_example_print_key_press"
 .PHONY : _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_print_key_press.dir/codegen
 
 # clean rule for target.
@@ -1448,7 +1448,7 @@ _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_radiobox.dir/all: 
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_radiobox.dir/all: _deps/ftxui-build/CMakeFiles/component.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_radiobox.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_radiobox.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_radiobox.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_radiobox.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=65 "Built target ftxui_example_radiobox"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=64 "Built target ftxui_example_radiobox"
 .PHONY : _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_radiobox.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1465,7 +1465,7 @@ ftxui_example_radiobox: _deps/ftxui-build/examples/component/CMakeFiles/ftxui_ex
 # codegen rule for target.
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_radiobox.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_radiobox.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_radiobox.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=65 "Finished codegen for target ftxui_example_radiobox"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=64 "Finished codegen for target ftxui_example_radiobox"
 .PHONY : _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_radiobox.dir/codegen
 
 # clean rule for target.
@@ -1482,7 +1482,7 @@ _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_radiobox_in_frame.
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_radiobox_in_frame.dir/all: _deps/ftxui-build/CMakeFiles/component.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_radiobox_in_frame.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_radiobox_in_frame.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_radiobox_in_frame.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_radiobox_in_frame.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=66 "Built target ftxui_example_radiobox_in_frame"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=65 "Built target ftxui_example_radiobox_in_frame"
 .PHONY : _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_radiobox_in_frame.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1499,7 +1499,7 @@ ftxui_example_radiobox_in_frame: _deps/ftxui-build/examples/component/CMakeFiles
 # codegen rule for target.
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_radiobox_in_frame.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_radiobox_in_frame.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_radiobox_in_frame.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=66 "Finished codegen for target ftxui_example_radiobox_in_frame"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=65 "Finished codegen for target ftxui_example_radiobox_in_frame"
 .PHONY : _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_radiobox_in_frame.dir/codegen
 
 # clean rule for target.
@@ -1516,7 +1516,7 @@ _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_renderer.dir/all: 
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_renderer.dir/all: _deps/ftxui-build/CMakeFiles/component.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_renderer.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_renderer.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_renderer.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_renderer.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=67 "Built target ftxui_example_renderer"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=66 "Built target ftxui_example_renderer"
 .PHONY : _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_renderer.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1533,7 +1533,7 @@ ftxui_example_renderer: _deps/ftxui-build/examples/component/CMakeFiles/ftxui_ex
 # codegen rule for target.
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_renderer.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_renderer.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_renderer.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=67 "Finished codegen for target ftxui_example_renderer"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=66 "Finished codegen for target ftxui_example_renderer"
 .PHONY : _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_renderer.dir/codegen
 
 # clean rule for target.
@@ -1550,7 +1550,7 @@ _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_resizable_split.di
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_resizable_split.dir/all: _deps/ftxui-build/CMakeFiles/component.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_resizable_split.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_resizable_split.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_resizable_split.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_resizable_split.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=68 "Built target ftxui_example_resizable_split"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=67 "Built target ftxui_example_resizable_split"
 .PHONY : _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_resizable_split.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1567,7 +1567,7 @@ ftxui_example_resizable_split: _deps/ftxui-build/examples/component/CMakeFiles/f
 # codegen rule for target.
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_resizable_split.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_resizable_split.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_resizable_split.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=68 "Finished codegen for target ftxui_example_resizable_split"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=67 "Finished codegen for target ftxui_example_resizable_split"
 .PHONY : _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_resizable_split.dir/codegen
 
 # clean rule for target.
@@ -1618,7 +1618,7 @@ _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_slider_rgb.dir/all
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_slider_rgb.dir/all: _deps/ftxui-build/CMakeFiles/component.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_slider_rgb.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_slider_rgb.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_slider_rgb.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_slider_rgb.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=72 "Built target ftxui_example_slider_rgb"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=71 "Built target ftxui_example_slider_rgb"
 .PHONY : _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_slider_rgb.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1635,7 +1635,7 @@ ftxui_example_slider_rgb: _deps/ftxui-build/examples/component/CMakeFiles/ftxui_
 # codegen rule for target.
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_slider_rgb.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_slider_rgb.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_slider_rgb.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=72 "Finished codegen for target ftxui_example_slider_rgb"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=71 "Finished codegen for target ftxui_example_slider_rgb"
 .PHONY : _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_slider_rgb.dir/codegen
 
 # clean rule for target.
@@ -1686,7 +1686,7 @@ _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_tab_vertical.dir/a
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_tab_vertical.dir/all: _deps/ftxui-build/CMakeFiles/component.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_tab_vertical.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_tab_vertical.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_tab_vertical.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_tab_vertical.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=81 "Built target ftxui_example_tab_vertical"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=80 "Built target ftxui_example_tab_vertical"
 .PHONY : _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_tab_vertical.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1703,7 +1703,7 @@ ftxui_example_tab_vertical: _deps/ftxui-build/examples/component/CMakeFiles/ftxu
 # codegen rule for target.
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_tab_vertical.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_tab_vertical.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_tab_vertical.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=81 "Finished codegen for target ftxui_example_tab_vertical"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=80 "Finished codegen for target ftxui_example_tab_vertical"
 .PHONY : _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_tab_vertical.dir/codegen
 
 # clean rule for target.
@@ -1720,7 +1720,7 @@ _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_toggle.dir/all: _d
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_toggle.dir/all: _deps/ftxui-build/CMakeFiles/component.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_toggle.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_toggle.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_toggle.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_toggle.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=83 "Built target ftxui_example_toggle"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=82 "Built target ftxui_example_toggle"
 .PHONY : _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_toggle.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1737,7 +1737,7 @@ ftxui_example_toggle: _deps/ftxui-build/examples/component/CMakeFiles/ftxui_exam
 # codegen rule for target.
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_toggle.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_toggle.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_toggle.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=83 "Finished codegen for target ftxui_example_toggle"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=82 "Finished codegen for target ftxui_example_toggle"
 .PHONY : _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_toggle.dir/codegen
 
 # clean rule for target.
@@ -1754,7 +1754,7 @@ _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_with_restored_io.d
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_with_restored_io.dir/all: _deps/ftxui-build/CMakeFiles/component.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_with_restored_io.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_with_restored_io.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_with_restored_io.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_with_restored_io.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=87 "Built target ftxui_example_with_restored_io"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=86 "Built target ftxui_example_with_restored_io"
 .PHONY : _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_with_restored_io.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1771,7 +1771,7 @@ ftxui_example_with_restored_io: _deps/ftxui-build/examples/component/CMakeFiles/
 # codegen rule for target.
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_with_restored_io.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\component\CMakeFiles\ftxui_example_with_restored_io.dir\build.make _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_with_restored_io.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=87 "Finished codegen for target ftxui_example_with_restored_io"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=86 "Finished codegen for target ftxui_example_with_restored_io"
 .PHONY : _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_with_restored_io.dir/codegen
 
 # clean rule for target.
@@ -1919,12 +1919,12 @@ _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_color_truecolor_HSV.dir/
 _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_color_truecolor_HSV.dir/all: _deps/ftxui-build/CMakeFiles/dom.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_color_truecolor_HSV.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_color_truecolor_HSV.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_color_truecolor_HSV.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_color_truecolor_HSV.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=38 "Built target ftxui_example_color_truecolor_HSV"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num= "Built target ftxui_example_color_truecolor_HSV"
 .PHONY : _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_color_truecolor_HSV.dir/all
 
 # Build rule for subdir invocation for target.
 _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_color_truecolor_HSV.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start E:\assassins\new\unmatched\build\CMakeFiles 20
+	$(CMAKE_COMMAND) -E cmake_progress_start E:\assassins\new\unmatched\build\CMakeFiles 19
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_color_truecolor_HSV.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start E:\assassins\new\unmatched\build\CMakeFiles 0
 .PHONY : _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_color_truecolor_HSV.dir/rule
@@ -1936,7 +1936,7 @@ ftxui_example_color_truecolor_HSV: _deps/ftxui-build/examples/dom/CMakeFiles/ftx
 # codegen rule for target.
 _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_color_truecolor_HSV.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_color_truecolor_HSV.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_color_truecolor_HSV.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=38 "Finished codegen for target ftxui_example_color_truecolor_HSV"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num= "Finished codegen for target ftxui_example_color_truecolor_HSV"
 .PHONY : _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_color_truecolor_HSV.dir/codegen
 
 # clean rule for target.
@@ -1952,7 +1952,7 @@ _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_color_truecolor_RGB.dir/
 _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_color_truecolor_RGB.dir/all: _deps/ftxui-build/CMakeFiles/dom.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_color_truecolor_RGB.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_color_truecolor_RGB.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_color_truecolor_RGB.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_color_truecolor_RGB.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=39 "Built target ftxui_example_color_truecolor_RGB"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=38 "Built target ftxui_example_color_truecolor_RGB"
 .PHONY : _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_color_truecolor_RGB.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1969,7 +1969,7 @@ ftxui_example_color_truecolor_RGB: _deps/ftxui-build/examples/dom/CMakeFiles/ftx
 # codegen rule for target.
 _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_color_truecolor_RGB.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_color_truecolor_RGB.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_color_truecolor_RGB.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=39 "Finished codegen for target ftxui_example_color_truecolor_RGB"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=38 "Finished codegen for target ftxui_example_color_truecolor_RGB"
 .PHONY : _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_color_truecolor_RGB.dir/codegen
 
 # clean rule for target.
@@ -1985,7 +1985,7 @@ _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_dbox.dir/all: _deps/ftxu
 _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_dbox.dir/all: _deps/ftxui-build/CMakeFiles/dom.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_dbox.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_dbox.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_dbox.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_dbox.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=41 "Built target ftxui_example_dbox"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=40 "Built target ftxui_example_dbox"
 .PHONY : _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_dbox.dir/all
 
 # Build rule for subdir invocation for target.
@@ -2002,7 +2002,7 @@ ftxui_example_dbox: _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_dbox
 # codegen rule for target.
 _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_dbox.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_dbox.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_dbox.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=41 "Finished codegen for target ftxui_example_dbox"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=40 "Finished codegen for target ftxui_example_dbox"
 .PHONY : _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_dbox.dir/codegen
 
 # clean rule for target.
@@ -2018,7 +2018,7 @@ _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_canvas.dir/all: _deps/ft
 _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_canvas.dir/all: _deps/ftxui-build/CMakeFiles/dom.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_canvas.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_canvas.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_canvas.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_canvas.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=32 "Built target ftxui_example_canvas"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=31 "Built target ftxui_example_canvas"
 .PHONY : _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_canvas.dir/all
 
 # Build rule for subdir invocation for target.
@@ -2035,7 +2035,7 @@ ftxui_example_canvas: _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_ca
 # codegen rule for target.
 _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_canvas.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_canvas.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_canvas.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=32 "Finished codegen for target ftxui_example_canvas"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=31 "Finished codegen for target ftxui_example_canvas"
 .PHONY : _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_canvas.dir/codegen
 
 # clean rule for target.
@@ -2084,12 +2084,12 @@ _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_gauge_direction.dir/all:
 _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_gauge_direction.dir/all: _deps/ftxui-build/CMakeFiles/dom.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_gauge_direction.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_gauge_direction.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_gauge_direction.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_gauge_direction.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=46 "Built target ftxui_example_gauge_direction"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num= "Built target ftxui_example_gauge_direction"
 .PHONY : _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_gauge_direction.dir/all
 
 # Build rule for subdir invocation for target.
 _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_gauge_direction.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start E:\assassins\new\unmatched\build\CMakeFiles 20
+	$(CMAKE_COMMAND) -E cmake_progress_start E:\assassins\new\unmatched\build\CMakeFiles 19
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_gauge_direction.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start E:\assassins\new\unmatched\build\CMakeFiles 0
 .PHONY : _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_gauge_direction.dir/rule
@@ -2101,7 +2101,7 @@ ftxui_example_gauge_direction: _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_e
 # codegen rule for target.
 _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_gauge_direction.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_gauge_direction.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_gauge_direction.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=46 "Finished codegen for target ftxui_example_gauge_direction"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num= "Finished codegen for target ftxui_example_gauge_direction"
 .PHONY : _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_gauge_direction.dir/codegen
 
 # clean rule for target.
@@ -2117,7 +2117,7 @@ _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_graph.dir/all: _deps/ftx
 _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_graph.dir/all: _deps/ftxui-build/CMakeFiles/dom.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_graph.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_graph.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_graph.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_graph.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=47 "Built target ftxui_example_graph"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=46 "Built target ftxui_example_graph"
 .PHONY : _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_graph.dir/all
 
 # Build rule for subdir invocation for target.
@@ -2134,7 +2134,7 @@ ftxui_example_graph: _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_gra
 # codegen rule for target.
 _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_graph.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_graph.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_graph.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=47 "Finished codegen for target ftxui_example_graph"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=46 "Finished codegen for target ftxui_example_graph"
 .PHONY : _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_graph.dir/codegen
 
 # clean rule for target.
@@ -2150,7 +2150,7 @@ _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_gridbox.dir/all: _deps/f
 _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_gridbox.dir/all: _deps/ftxui-build/CMakeFiles/dom.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_gridbox.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_gridbox.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_gridbox.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_gridbox.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=48 "Built target ftxui_example_gridbox"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=47 "Built target ftxui_example_gridbox"
 .PHONY : _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_gridbox.dir/all
 
 # Build rule for subdir invocation for target.
@@ -2167,7 +2167,7 @@ ftxui_example_gridbox: _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_g
 # codegen rule for target.
 _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_gridbox.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_gridbox.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_gridbox.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=48 "Finished codegen for target ftxui_example_gridbox"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=47 "Finished codegen for target ftxui_example_gridbox"
 .PHONY : _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_gridbox.dir/codegen
 
 # clean rule for target.
@@ -2183,7 +2183,7 @@ _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_hflow.dir/all: _deps/ftx
 _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_hflow.dir/all: _deps/ftxui-build/CMakeFiles/dom.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_hflow.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_hflow.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_hflow.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_hflow.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=49 "Built target ftxui_example_hflow"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=48 "Built target ftxui_example_hflow"
 .PHONY : _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_hflow.dir/all
 
 # Build rule for subdir invocation for target.
@@ -2200,7 +2200,7 @@ ftxui_example_hflow: _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_hfl
 # codegen rule for target.
 _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_hflow.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_hflow.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_hflow.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=49 "Finished codegen for target ftxui_example_hflow"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=48 "Finished codegen for target ftxui_example_hflow"
 .PHONY : _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_hflow.dir/codegen
 
 # clean rule for target.
@@ -2216,7 +2216,7 @@ _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_html_like.dir/all: _deps
 _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_html_like.dir/all: _deps/ftxui-build/CMakeFiles/dom.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_html_like.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_html_like.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_html_like.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_html_like.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=51 "Built target ftxui_example_html_like"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=50 "Built target ftxui_example_html_like"
 .PHONY : _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_html_like.dir/all
 
 # Build rule for subdir invocation for target.
@@ -2233,7 +2233,7 @@ ftxui_example_html_like: _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example
 # codegen rule for target.
 _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_html_like.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_html_like.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_html_like.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=51 "Finished codegen for target ftxui_example_html_like"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=50 "Finished codegen for target ftxui_example_html_like"
 .PHONY : _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_html_like.dir/codegen
 
 # clean rule for target.
@@ -2282,12 +2282,12 @@ _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_paragraph.dir/all: _deps
 _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_paragraph.dir/all: _deps/ftxui-build/CMakeFiles/dom.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_paragraph.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_paragraph.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_paragraph.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_paragraph.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=63 "Built target ftxui_example_paragraph"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num= "Built target ftxui_example_paragraph"
 .PHONY : _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_paragraph.dir/all
 
 # Build rule for subdir invocation for target.
 _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_paragraph.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start E:\assassins\new\unmatched\build\CMakeFiles 20
+	$(CMAKE_COMMAND) -E cmake_progress_start E:\assassins\new\unmatched\build\CMakeFiles 19
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_paragraph.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start E:\assassins\new\unmatched\build\CMakeFiles 0
 .PHONY : _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_paragraph.dir/rule
@@ -2299,7 +2299,7 @@ ftxui_example_paragraph: _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example
 # codegen rule for target.
 _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_paragraph.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_paragraph.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_paragraph.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=63 "Finished codegen for target ftxui_example_paragraph"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num= "Finished codegen for target ftxui_example_paragraph"
 .PHONY : _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_paragraph.dir/codegen
 
 # clean rule for target.
@@ -2315,7 +2315,7 @@ _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_separator.dir/all: _deps
 _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_separator.dir/all: _deps/ftxui-build/CMakeFiles/dom.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_separator.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_separator.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_separator.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_separator.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=69 "Built target ftxui_example_separator"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=68 "Built target ftxui_example_separator"
 .PHONY : _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_separator.dir/all
 
 # Build rule for subdir invocation for target.
@@ -2332,7 +2332,7 @@ ftxui_example_separator: _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example
 # codegen rule for target.
 _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_separator.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_separator.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_separator.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=69 "Finished codegen for target ftxui_example_separator"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=68 "Finished codegen for target ftxui_example_separator"
 .PHONY : _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_separator.dir/codegen
 
 # clean rule for target.
@@ -2348,7 +2348,7 @@ _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_separator_style.dir/all:
 _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_separator_style.dir/all: _deps/ftxui-build/CMakeFiles/dom.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_separator_style.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_separator_style.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_separator_style.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_separator_style.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=70 "Built target ftxui_example_separator_style"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=69 "Built target ftxui_example_separator_style"
 .PHONY : _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_separator_style.dir/all
 
 # Build rule for subdir invocation for target.
@@ -2365,7 +2365,7 @@ ftxui_example_separator_style: _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_e
 # codegen rule for target.
 _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_separator_style.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_separator_style.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_separator_style.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=70 "Finished codegen for target ftxui_example_separator_style"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=69 "Finished codegen for target ftxui_example_separator_style"
 .PHONY : _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_separator_style.dir/codegen
 
 # clean rule for target.
@@ -2381,7 +2381,7 @@ _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_size.dir/all: _deps/ftxu
 _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_size.dir/all: _deps/ftxui-build/CMakeFiles/dom.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_size.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_size.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_size.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_size.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=71 "Built target ftxui_example_size"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=70 "Built target ftxui_example_size"
 .PHONY : _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_size.dir/all
 
 # Build rule for subdir invocation for target.
@@ -2398,7 +2398,7 @@ ftxui_example_size: _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_size
 # codegen rule for target.
 _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_size.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_size.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_size.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=71 "Finished codegen for target ftxui_example_size"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=70 "Finished codegen for target ftxui_example_size"
 .PHONY : _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_size.dir/codegen
 
 # clean rule for target.
@@ -2414,7 +2414,7 @@ _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_spinner.dir/all: _deps/f
 _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_spinner.dir/all: _deps/ftxui-build/CMakeFiles/dom.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_spinner.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_spinner.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_spinner.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_spinner.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=73 "Built target ftxui_example_spinner"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=72 "Built target ftxui_example_spinner"
 .PHONY : _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_spinner.dir/all
 
 # Build rule for subdir invocation for target.
@@ -2431,7 +2431,7 @@ ftxui_example_spinner: _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_s
 # codegen rule for target.
 _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_spinner.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_spinner.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_spinner.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=73 "Finished codegen for target ftxui_example_spinner"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=72 "Finished codegen for target ftxui_example_spinner"
 .PHONY : _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_spinner.dir/codegen
 
 # clean rule for target.
@@ -2447,7 +2447,7 @@ _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_style_blink.dir/all: _de
 _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_style_blink.dir/all: _deps/ftxui-build/CMakeFiles/dom.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_style_blink.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_style_blink.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_style_blink.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_style_blink.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=74 "Built target ftxui_example_style_blink"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=73 "Built target ftxui_example_style_blink"
 .PHONY : _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_style_blink.dir/all
 
 # Build rule for subdir invocation for target.
@@ -2464,7 +2464,7 @@ ftxui_example_style_blink: _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_examp
 # codegen rule for target.
 _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_style_blink.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_style_blink.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_style_blink.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=74 "Finished codegen for target ftxui_example_style_blink"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=73 "Finished codegen for target ftxui_example_style_blink"
 .PHONY : _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_style_blink.dir/codegen
 
 # clean rule for target.
@@ -2480,7 +2480,7 @@ _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_style_bold.dir/all: _dep
 _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_style_bold.dir/all: _deps/ftxui-build/CMakeFiles/dom.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_style_bold.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_style_bold.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_style_bold.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_style_bold.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=75 "Built target ftxui_example_style_bold"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=74 "Built target ftxui_example_style_bold"
 .PHONY : _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_style_bold.dir/all
 
 # Build rule for subdir invocation for target.
@@ -2497,7 +2497,7 @@ ftxui_example_style_bold: _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_exampl
 # codegen rule for target.
 _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_style_bold.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_style_bold.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_style_bold.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=75 "Finished codegen for target ftxui_example_style_bold"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=74 "Finished codegen for target ftxui_example_style_bold"
 .PHONY : _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_style_bold.dir/codegen
 
 # clean rule for target.
@@ -2513,7 +2513,7 @@ _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_style_color.dir/all: _de
 _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_style_color.dir/all: _deps/ftxui-build/CMakeFiles/dom.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_style_color.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_style_color.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_style_color.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_style_color.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=76 "Built target ftxui_example_style_color"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=75 "Built target ftxui_example_style_color"
 .PHONY : _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_style_color.dir/all
 
 # Build rule for subdir invocation for target.
@@ -2530,7 +2530,7 @@ ftxui_example_style_color: _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_examp
 # codegen rule for target.
 _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_style_color.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_style_color.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_style_color.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=76 "Finished codegen for target ftxui_example_style_color"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=75 "Finished codegen for target ftxui_example_style_color"
 .PHONY : _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_style_color.dir/codegen
 
 # clean rule for target.
@@ -2546,7 +2546,7 @@ _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_style_dim.dir/all: _deps
 _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_style_dim.dir/all: _deps/ftxui-build/CMakeFiles/dom.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_style_dim.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_style_dim.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_style_dim.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_style_dim.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=77 "Built target ftxui_example_style_dim"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=76 "Built target ftxui_example_style_dim"
 .PHONY : _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_style_dim.dir/all
 
 # Build rule for subdir invocation for target.
@@ -2563,7 +2563,7 @@ ftxui_example_style_dim: _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example
 # codegen rule for target.
 _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_style_dim.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_style_dim.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_style_dim.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=77 "Finished codegen for target ftxui_example_style_dim"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=76 "Finished codegen for target ftxui_example_style_dim"
 .PHONY : _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_style_dim.dir/codegen
 
 # clean rule for target.
@@ -2579,7 +2579,7 @@ _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_style_gallery.dir/all: _
 _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_style_gallery.dir/all: _deps/ftxui-build/CMakeFiles/dom.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_style_gallery.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_style_gallery.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_style_gallery.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_style_gallery.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=78 "Built target ftxui_example_style_gallery"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=77 "Built target ftxui_example_style_gallery"
 .PHONY : _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_style_gallery.dir/all
 
 # Build rule for subdir invocation for target.
@@ -2596,7 +2596,7 @@ ftxui_example_style_gallery: _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_exa
 # codegen rule for target.
 _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_style_gallery.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_style_gallery.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_style_gallery.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=78 "Finished codegen for target ftxui_example_style_gallery"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=77 "Finished codegen for target ftxui_example_style_gallery"
 .PHONY : _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_style_gallery.dir/codegen
 
 # clean rule for target.
@@ -2612,7 +2612,7 @@ _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_style_inverted.dir/all: 
 _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_style_inverted.dir/all: _deps/ftxui-build/CMakeFiles/dom.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_style_inverted.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_style_inverted.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_style_inverted.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_style_inverted.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=79 "Built target ftxui_example_style_inverted"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=78 "Built target ftxui_example_style_inverted"
 .PHONY : _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_style_inverted.dir/all
 
 # Build rule for subdir invocation for target.
@@ -2629,7 +2629,7 @@ ftxui_example_style_inverted: _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_ex
 # codegen rule for target.
 _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_style_inverted.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_style_inverted.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_style_inverted.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=79 "Finished codegen for target ftxui_example_style_inverted"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=78 "Finished codegen for target ftxui_example_style_inverted"
 .PHONY : _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_style_inverted.dir/codegen
 
 # clean rule for target.
@@ -2645,7 +2645,7 @@ _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_style_underlined.dir/all
 _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_style_underlined.dir/all: _deps/ftxui-build/CMakeFiles/dom.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_style_underlined.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_style_underlined.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_style_underlined.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_style_underlined.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=80 "Built target ftxui_example_style_underlined"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=79 "Built target ftxui_example_style_underlined"
 .PHONY : _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_style_underlined.dir/all
 
 # Build rule for subdir invocation for target.
@@ -2662,7 +2662,7 @@ ftxui_example_style_underlined: _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_
 # codegen rule for target.
 _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_style_underlined.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_style_underlined.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_style_underlined.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=80 "Finished codegen for target ftxui_example_style_underlined"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=79 "Finished codegen for target ftxui_example_style_underlined"
 .PHONY : _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_style_underlined.dir/codegen
 
 # clean rule for target.
@@ -2678,7 +2678,7 @@ _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_table.dir/all: _deps/ftx
 _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_table.dir/all: _deps/ftxui-build/CMakeFiles/dom.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_table.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_table.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_table.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_table.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=82 "Built target ftxui_example_table"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=81 "Built target ftxui_example_table"
 .PHONY : _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_table.dir/all
 
 # Build rule for subdir invocation for target.
@@ -2695,7 +2695,7 @@ ftxui_example_table: _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_tab
 # codegen rule for target.
 _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_table.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_table.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_table.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=82 "Finished codegen for target ftxui_example_table"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=81 "Finished codegen for target ftxui_example_table"
 .PHONY : _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_table.dir/codegen
 
 # clean rule for target.
@@ -2711,7 +2711,7 @@ _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_vbox_hbox.dir/all: _deps
 _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_vbox_hbox.dir/all: _deps/ftxui-build/CMakeFiles/dom.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_vbox_hbox.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_vbox_hbox.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_vbox_hbox.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_vbox_hbox.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=84 "Built target ftxui_example_vbox_hbox"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=83 "Built target ftxui_example_vbox_hbox"
 .PHONY : _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_vbox_hbox.dir/all
 
 # Build rule for subdir invocation for target.
@@ -2728,7 +2728,7 @@ ftxui_example_vbox_hbox: _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example
 # codegen rule for target.
 _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_vbox_hbox.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_vbox_hbox.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_vbox_hbox.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=84 "Finished codegen for target ftxui_example_vbox_hbox"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=83 "Finished codegen for target ftxui_example_vbox_hbox"
 .PHONY : _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_vbox_hbox.dir/codegen
 
 # clean rule for target.
@@ -2744,7 +2744,7 @@ _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_vflow.dir/all: _deps/ftx
 _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_vflow.dir/all: _deps/ftxui-build/CMakeFiles/dom.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_vflow.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_vflow.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_vflow.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_vflow.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=85 "Built target ftxui_example_vflow"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=84 "Built target ftxui_example_vflow"
 .PHONY : _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_vflow.dir/all
 
 # Build rule for subdir invocation for target.
@@ -2761,7 +2761,7 @@ ftxui_example_vflow: _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_vfl
 # codegen rule for target.
 _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_vflow.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_vflow.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_vflow.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=85 "Finished codegen for target ftxui_example_vflow"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=84 "Finished codegen for target ftxui_example_vflow"
 .PHONY : _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_vflow.dir/codegen
 
 # clean rule for target.
@@ -2777,7 +2777,7 @@ _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_window.dir/all: _deps/ft
 _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_window.dir/all: _deps/ftxui-build/CMakeFiles/dom.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_window.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_window.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_window.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_window.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=86 "Built target ftxui_example_window"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=85 "Built target ftxui_example_window"
 .PHONY : _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_window.dir/all
 
 # Build rule for subdir invocation for target.
@@ -2794,7 +2794,7 @@ ftxui_example_window: _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_wi
 # codegen rule for target.
 _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_window.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f _deps\ftxui-build\examples\dom\CMakeFiles\ftxui_example_window.dir\build.make _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_window.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=86 "Finished codegen for target ftxui_example_window"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=85 "Finished codegen for target ftxui_example_window"
 .PHONY : _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_window.dir/codegen
 
 # clean rule for target.

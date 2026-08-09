@@ -76,300 +76,300 @@ _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/animation.cpp.obj
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/animation.cpp.obj: _deps/ftxui-src/src/ftxui/component/animation.cpp
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/animation.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/animation.cpp.obj"
-	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/animation.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\animation.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\animation.cpp.obj -c E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\animation.cpp
+	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/animation.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\animation.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\animation.cpp.obj -c E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\animation.cpp
 
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/animation.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/component.dir/src/ftxui/component/animation.cpp.i"
-	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\animation.cpp > CMakeFiles\component.dir\src\ftxui\component\animation.cpp.i
+	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\animation.cpp > CMakeFiles\component.dir\src\ftxui\component\animation.cpp.i
 
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/animation.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/component.dir/src/ftxui/component/animation.cpp.s"
-	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\animation.cpp -o CMakeFiles\component.dir\src\ftxui\component\animation.cpp.s
+	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\animation.cpp -o CMakeFiles\component.dir\src\ftxui\component\animation.cpp.s
 
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/button.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/flags.make
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/button.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/includes_CXX.rsp
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/button.cpp.obj: _deps/ftxui-src/src/ftxui/component/button.cpp
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/button.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/button.cpp.obj"
-	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/button.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\button.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\button.cpp.obj -c E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\button.cpp
+	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/button.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\button.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\button.cpp.obj -c E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\button.cpp
 
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/button.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/component.dir/src/ftxui/component/button.cpp.i"
-	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\button.cpp > CMakeFiles\component.dir\src\ftxui\component\button.cpp.i
+	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\button.cpp > CMakeFiles\component.dir\src\ftxui\component\button.cpp.i
 
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/button.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/component.dir/src/ftxui/component/button.cpp.s"
-	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\button.cpp -o CMakeFiles\component.dir\src\ftxui\component\button.cpp.s
+	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\button.cpp -o CMakeFiles\component.dir\src\ftxui\component\button.cpp.s
 
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/catch_event.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/flags.make
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/catch_event.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/includes_CXX.rsp
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/catch_event.cpp.obj: _deps/ftxui-src/src/ftxui/component/catch_event.cpp
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/catch_event.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/catch_event.cpp.obj"
-	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/catch_event.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\catch_event.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\catch_event.cpp.obj -c E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\catch_event.cpp
+	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/catch_event.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\catch_event.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\catch_event.cpp.obj -c E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\catch_event.cpp
 
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/catch_event.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/component.dir/src/ftxui/component/catch_event.cpp.i"
-	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\catch_event.cpp > CMakeFiles\component.dir\src\ftxui\component\catch_event.cpp.i
+	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\catch_event.cpp > CMakeFiles\component.dir\src\ftxui\component\catch_event.cpp.i
 
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/catch_event.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/component.dir/src/ftxui/component/catch_event.cpp.s"
-	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\catch_event.cpp -o CMakeFiles\component.dir\src\ftxui\component\catch_event.cpp.s
+	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\catch_event.cpp -o CMakeFiles\component.dir\src\ftxui\component\catch_event.cpp.s
 
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/checkbox.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/flags.make
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/checkbox.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/includes_CXX.rsp
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/checkbox.cpp.obj: _deps/ftxui-src/src/ftxui/component/checkbox.cpp
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/checkbox.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/checkbox.cpp.obj"
-	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/checkbox.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\checkbox.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\checkbox.cpp.obj -c E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\checkbox.cpp
+	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/checkbox.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\checkbox.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\checkbox.cpp.obj -c E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\checkbox.cpp
 
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/checkbox.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/component.dir/src/ftxui/component/checkbox.cpp.i"
-	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\checkbox.cpp > CMakeFiles\component.dir\src\ftxui\component\checkbox.cpp.i
+	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\checkbox.cpp > CMakeFiles\component.dir\src\ftxui\component\checkbox.cpp.i
 
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/checkbox.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/component.dir/src/ftxui/component/checkbox.cpp.s"
-	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\checkbox.cpp -o CMakeFiles\component.dir\src\ftxui\component\checkbox.cpp.s
+	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\checkbox.cpp -o CMakeFiles\component.dir\src\ftxui\component\checkbox.cpp.s
 
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/collapsible.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/flags.make
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/collapsible.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/includes_CXX.rsp
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/collapsible.cpp.obj: _deps/ftxui-src/src/ftxui/component/collapsible.cpp
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/collapsible.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/collapsible.cpp.obj"
-	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/collapsible.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\collapsible.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\collapsible.cpp.obj -c E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\collapsible.cpp
+	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/collapsible.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\collapsible.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\collapsible.cpp.obj -c E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\collapsible.cpp
 
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/collapsible.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/component.dir/src/ftxui/component/collapsible.cpp.i"
-	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\collapsible.cpp > CMakeFiles\component.dir\src\ftxui\component\collapsible.cpp.i
+	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\collapsible.cpp > CMakeFiles\component.dir\src\ftxui\component\collapsible.cpp.i
 
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/collapsible.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/component.dir/src/ftxui/component/collapsible.cpp.s"
-	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\collapsible.cpp -o CMakeFiles\component.dir\src\ftxui\component\collapsible.cpp.s
+	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\collapsible.cpp -o CMakeFiles\component.dir\src\ftxui\component\collapsible.cpp.s
 
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/component.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/flags.make
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/component.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/includes_CXX.rsp
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/component.cpp.obj: _deps/ftxui-src/src/ftxui/component/component.cpp
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/component.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/component.cpp.obj"
-	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/component.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\component.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\component.cpp.obj -c E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\component.cpp
+	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/component.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\component.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\component.cpp.obj -c E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\component.cpp
 
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/component.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/component.dir/src/ftxui/component/component.cpp.i"
-	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\component.cpp > CMakeFiles\component.dir\src\ftxui\component\component.cpp.i
+	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\component.cpp > CMakeFiles\component.dir\src\ftxui\component\component.cpp.i
 
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/component.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/component.dir/src/ftxui/component/component.cpp.s"
-	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\component.cpp -o CMakeFiles\component.dir\src\ftxui\component\component.cpp.s
+	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\component.cpp -o CMakeFiles\component.dir\src\ftxui\component\component.cpp.s
 
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/component_options.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/flags.make
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/component_options.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/includes_CXX.rsp
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/component_options.cpp.obj: _deps/ftxui-src/src/ftxui/component/component_options.cpp
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/component_options.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/component_options.cpp.obj"
-	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/component_options.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\component_options.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\component_options.cpp.obj -c E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\component_options.cpp
+	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/component_options.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\component_options.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\component_options.cpp.obj -c E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\component_options.cpp
 
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/component_options.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/component.dir/src/ftxui/component/component_options.cpp.i"
-	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\component_options.cpp > CMakeFiles\component.dir\src\ftxui\component\component_options.cpp.i
+	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\component_options.cpp > CMakeFiles\component.dir\src\ftxui\component\component_options.cpp.i
 
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/component_options.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/component.dir/src/ftxui/component/component_options.cpp.s"
-	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\component_options.cpp -o CMakeFiles\component.dir\src\ftxui\component\component_options.cpp.s
+	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\component_options.cpp -o CMakeFiles\component.dir\src\ftxui\component\component_options.cpp.s
 
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/container.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/flags.make
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/container.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/includes_CXX.rsp
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/container.cpp.obj: _deps/ftxui-src/src/ftxui/component/container.cpp
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/container.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/container.cpp.obj"
-	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/container.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\container.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\container.cpp.obj -c E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\container.cpp
+	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/container.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\container.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\container.cpp.obj -c E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\container.cpp
 
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/container.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/component.dir/src/ftxui/component/container.cpp.i"
-	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\container.cpp > CMakeFiles\component.dir\src\ftxui\component\container.cpp.i
+	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\container.cpp > CMakeFiles\component.dir\src\ftxui\component\container.cpp.i
 
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/container.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/component.dir/src/ftxui/component/container.cpp.s"
-	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\container.cpp -o CMakeFiles\component.dir\src\ftxui\component\container.cpp.s
+	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\container.cpp -o CMakeFiles\component.dir\src\ftxui\component\container.cpp.s
 
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/dropdown.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/flags.make
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/dropdown.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/includes_CXX.rsp
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/dropdown.cpp.obj: _deps/ftxui-src/src/ftxui/component/dropdown.cpp
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/dropdown.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/dropdown.cpp.obj"
-	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/dropdown.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\dropdown.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\dropdown.cpp.obj -c E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\dropdown.cpp
+	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/dropdown.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\dropdown.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\dropdown.cpp.obj -c E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\dropdown.cpp
 
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/dropdown.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/component.dir/src/ftxui/component/dropdown.cpp.i"
-	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\dropdown.cpp > CMakeFiles\component.dir\src\ftxui\component\dropdown.cpp.i
+	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\dropdown.cpp > CMakeFiles\component.dir\src\ftxui\component\dropdown.cpp.i
 
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/dropdown.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/component.dir/src/ftxui/component/dropdown.cpp.s"
-	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\dropdown.cpp -o CMakeFiles\component.dir\src\ftxui\component\dropdown.cpp.s
+	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\dropdown.cpp -o CMakeFiles\component.dir\src\ftxui\component\dropdown.cpp.s
 
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/event.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/flags.make
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/event.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/includes_CXX.rsp
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/event.cpp.obj: _deps/ftxui-src/src/ftxui/component/event.cpp
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/event.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/event.cpp.obj"
-	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/event.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\event.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\event.cpp.obj -c E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\event.cpp
+	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/event.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\event.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\event.cpp.obj -c E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\event.cpp
 
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/event.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/component.dir/src/ftxui/component/event.cpp.i"
-	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\event.cpp > CMakeFiles\component.dir\src\ftxui\component\event.cpp.i
+	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\event.cpp > CMakeFiles\component.dir\src\ftxui\component\event.cpp.i
 
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/event.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/component.dir/src/ftxui/component/event.cpp.s"
-	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\event.cpp -o CMakeFiles\component.dir\src\ftxui\component\event.cpp.s
+	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\event.cpp -o CMakeFiles\component.dir\src\ftxui\component\event.cpp.s
 
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/input.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/flags.make
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/input.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/includes_CXX.rsp
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/input.cpp.obj: _deps/ftxui-src/src/ftxui/component/input.cpp
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/input.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/input.cpp.obj"
-	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/input.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\input.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\input.cpp.obj -c E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\input.cpp
+	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/input.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\input.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\input.cpp.obj -c E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\input.cpp
 
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/input.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/component.dir/src/ftxui/component/input.cpp.i"
-	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\input.cpp > CMakeFiles\component.dir\src\ftxui\component\input.cpp.i
+	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\input.cpp > CMakeFiles\component.dir\src\ftxui\component\input.cpp.i
 
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/input.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/component.dir/src/ftxui/component/input.cpp.s"
-	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\input.cpp -o CMakeFiles\component.dir\src\ftxui\component\input.cpp.s
+	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\input.cpp -o CMakeFiles\component.dir\src\ftxui\component\input.cpp.s
 
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/maybe.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/flags.make
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/maybe.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/includes_CXX.rsp
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/maybe.cpp.obj: _deps/ftxui-src/src/ftxui/component/maybe.cpp
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/maybe.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/maybe.cpp.obj"
-	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/maybe.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\maybe.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\maybe.cpp.obj -c E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\maybe.cpp
+	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/maybe.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\maybe.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\maybe.cpp.obj -c E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\maybe.cpp
 
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/maybe.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/component.dir/src/ftxui/component/maybe.cpp.i"
-	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\maybe.cpp > CMakeFiles\component.dir\src\ftxui\component\maybe.cpp.i
+	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\maybe.cpp > CMakeFiles\component.dir\src\ftxui\component\maybe.cpp.i
 
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/maybe.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/component.dir/src/ftxui/component/maybe.cpp.s"
-	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\maybe.cpp -o CMakeFiles\component.dir\src\ftxui\component\maybe.cpp.s
+	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\maybe.cpp -o CMakeFiles\component.dir\src\ftxui\component\maybe.cpp.s
 
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/menu.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/flags.make
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/menu.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/includes_CXX.rsp
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/menu.cpp.obj: _deps/ftxui-src/src/ftxui/component/menu.cpp
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/menu.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/menu.cpp.obj"
-	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/menu.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\menu.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\menu.cpp.obj -c E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\menu.cpp
+	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/menu.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\menu.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\menu.cpp.obj -c E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\menu.cpp
 
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/menu.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/component.dir/src/ftxui/component/menu.cpp.i"
-	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\menu.cpp > CMakeFiles\component.dir\src\ftxui\component\menu.cpp.i
+	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\menu.cpp > CMakeFiles\component.dir\src\ftxui\component\menu.cpp.i
 
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/menu.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/component.dir/src/ftxui/component/menu.cpp.s"
-	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\menu.cpp -o CMakeFiles\component.dir\src\ftxui\component\menu.cpp.s
+	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\menu.cpp -o CMakeFiles\component.dir\src\ftxui\component\menu.cpp.s
 
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/radiobox.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/flags.make
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/radiobox.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/includes_CXX.rsp
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/radiobox.cpp.obj: _deps/ftxui-src/src/ftxui/component/radiobox.cpp
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/radiobox.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/radiobox.cpp.obj"
-	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/radiobox.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\radiobox.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\radiobox.cpp.obj -c E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\radiobox.cpp
+	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/radiobox.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\radiobox.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\radiobox.cpp.obj -c E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\radiobox.cpp
 
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/radiobox.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/component.dir/src/ftxui/component/radiobox.cpp.i"
-	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\radiobox.cpp > CMakeFiles\component.dir\src\ftxui\component\radiobox.cpp.i
+	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\radiobox.cpp > CMakeFiles\component.dir\src\ftxui\component\radiobox.cpp.i
 
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/radiobox.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/component.dir/src/ftxui/component/radiobox.cpp.s"
-	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\radiobox.cpp -o CMakeFiles\component.dir\src\ftxui\component\radiobox.cpp.s
+	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\radiobox.cpp -o CMakeFiles\component.dir\src\ftxui\component\radiobox.cpp.s
 
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/renderer.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/flags.make
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/renderer.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/includes_CXX.rsp
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/renderer.cpp.obj: _deps/ftxui-src/src/ftxui/component/renderer.cpp
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/renderer.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/renderer.cpp.obj"
-	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/renderer.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\renderer.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\renderer.cpp.obj -c E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\renderer.cpp
+	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/renderer.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\renderer.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\renderer.cpp.obj -c E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\renderer.cpp
 
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/renderer.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/component.dir/src/ftxui/component/renderer.cpp.i"
-	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\renderer.cpp > CMakeFiles\component.dir\src\ftxui\component\renderer.cpp.i
+	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\renderer.cpp > CMakeFiles\component.dir\src\ftxui\component\renderer.cpp.i
 
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/renderer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/component.dir/src/ftxui/component/renderer.cpp.s"
-	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\renderer.cpp -o CMakeFiles\component.dir\src\ftxui\component\renderer.cpp.s
+	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\renderer.cpp -o CMakeFiles\component.dir\src\ftxui\component\renderer.cpp.s
 
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/resizable_split.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/flags.make
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/resizable_split.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/includes_CXX.rsp
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/resizable_split.cpp.obj: _deps/ftxui-src/src/ftxui/component/resizable_split.cpp
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/resizable_split.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/resizable_split.cpp.obj"
-	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/resizable_split.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\resizable_split.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\resizable_split.cpp.obj -c E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\resizable_split.cpp
+	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/resizable_split.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\resizable_split.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\resizable_split.cpp.obj -c E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\resizable_split.cpp
 
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/resizable_split.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/component.dir/src/ftxui/component/resizable_split.cpp.i"
-	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\resizable_split.cpp > CMakeFiles\component.dir\src\ftxui\component\resizable_split.cpp.i
+	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\resizable_split.cpp > CMakeFiles\component.dir\src\ftxui\component\resizable_split.cpp.i
 
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/resizable_split.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/component.dir/src/ftxui/component/resizable_split.cpp.s"
-	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\resizable_split.cpp -o CMakeFiles\component.dir\src\ftxui\component\resizable_split.cpp.s
+	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\resizable_split.cpp -o CMakeFiles\component.dir\src\ftxui\component\resizable_split.cpp.s
 
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/screen_interactive.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/flags.make
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/screen_interactive.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/includes_CXX.rsp
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/screen_interactive.cpp.obj: _deps/ftxui-src/src/ftxui/component/screen_interactive.cpp
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/screen_interactive.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/screen_interactive.cpp.obj"
-	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/screen_interactive.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\screen_interactive.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\screen_interactive.cpp.obj -c E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\screen_interactive.cpp
+	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/screen_interactive.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\screen_interactive.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\screen_interactive.cpp.obj -c E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\screen_interactive.cpp
 
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/screen_interactive.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/component.dir/src/ftxui/component/screen_interactive.cpp.i"
-	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\screen_interactive.cpp > CMakeFiles\component.dir\src\ftxui\component\screen_interactive.cpp.i
+	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\screen_interactive.cpp > CMakeFiles\component.dir\src\ftxui\component\screen_interactive.cpp.i
 
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/screen_interactive.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/component.dir/src/ftxui/component/screen_interactive.cpp.s"
-	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\screen_interactive.cpp -o CMakeFiles\component.dir\src\ftxui\component\screen_interactive.cpp.s
+	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\screen_interactive.cpp -o CMakeFiles\component.dir\src\ftxui\component\screen_interactive.cpp.s
 
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/slider.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/flags.make
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/slider.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/includes_CXX.rsp
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/slider.cpp.obj: _deps/ftxui-src/src/ftxui/component/slider.cpp
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/slider.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/slider.cpp.obj"
-	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/slider.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\slider.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\slider.cpp.obj -c E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\slider.cpp
+	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/slider.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\slider.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\slider.cpp.obj -c E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\slider.cpp
 
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/slider.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/component.dir/src/ftxui/component/slider.cpp.i"
-	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\slider.cpp > CMakeFiles\component.dir\src\ftxui\component\slider.cpp.i
+	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\slider.cpp > CMakeFiles\component.dir\src\ftxui\component\slider.cpp.i
 
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/slider.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/component.dir/src/ftxui/component/slider.cpp.s"
-	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\slider.cpp -o CMakeFiles\component.dir\src\ftxui\component\slider.cpp.s
+	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\slider.cpp -o CMakeFiles\component.dir\src\ftxui\component\slider.cpp.s
 
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/terminal_input_parser.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/flags.make
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/terminal_input_parser.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/includes_CXX.rsp
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/terminal_input_parser.cpp.obj: _deps/ftxui-src/src/ftxui/component/terminal_input_parser.cpp
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/terminal_input_parser.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/terminal_input_parser.cpp.obj"
-	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/terminal_input_parser.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\terminal_input_parser.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\terminal_input_parser.cpp.obj -c E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\terminal_input_parser.cpp
+	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/terminal_input_parser.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\terminal_input_parser.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\terminal_input_parser.cpp.obj -c E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\terminal_input_parser.cpp
 
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/terminal_input_parser.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/component.dir/src/ftxui/component/terminal_input_parser.cpp.i"
-	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\terminal_input_parser.cpp > CMakeFiles\component.dir\src\ftxui\component\terminal_input_parser.cpp.i
+	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\terminal_input_parser.cpp > CMakeFiles\component.dir\src\ftxui\component\terminal_input_parser.cpp.i
 
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/terminal_input_parser.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/component.dir/src/ftxui/component/terminal_input_parser.cpp.s"
-	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\terminal_input_parser.cpp -o CMakeFiles\component.dir\src\ftxui\component\terminal_input_parser.cpp.s
+	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\terminal_input_parser.cpp -o CMakeFiles\component.dir\src\ftxui\component\terminal_input_parser.cpp.s
 
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/util.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/flags.make
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/util.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/includes_CXX.rsp
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/util.cpp.obj: _deps/ftxui-src/src/ftxui/component/util.cpp
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/util.cpp.obj: _deps/ftxui-build/CMakeFiles/component.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/util.cpp.obj"
-	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/util.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\util.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\util.cpp.obj -c E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\util.cpp
+	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/util.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\util.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\util.cpp.obj -c E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\util.cpp
 
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/util.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/component.dir/src/ftxui/component/util.cpp.i"
-	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\util.cpp > CMakeFiles\component.dir\src\ftxui\component\util.cpp.i
+	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\util.cpp > CMakeFiles\component.dir\src\ftxui\component\util.cpp.i
 
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/util.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/component.dir/src/ftxui/component/util.cpp.s"
-	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\util.cpp -o CMakeFiles\component.dir\src\ftxui\component\util.cpp.s
+	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build && C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\assassins\new\unmatched\build\_deps\ftxui-src\src\ftxui\component\util.cpp -o CMakeFiles\component.dir\src\ftxui\component\util.cpp.s
 
 # Object files for target component
 component_OBJECTS = \

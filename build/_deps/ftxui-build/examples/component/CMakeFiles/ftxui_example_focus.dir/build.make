@@ -76,15 +76,15 @@ _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_focus.dir/focus.cp
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_focus.dir/focus.cpp.obj: _deps/ftxui-src/examples/component/focus.cpp
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_focus.dir/focus.cpp.obj: _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_focus.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_focus.dir/focus.cpp.obj"
-	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build\examples\component && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_focus.dir/focus.cpp.obj -MF CMakeFiles\ftxui_example_focus.dir\focus.cpp.obj.d -o CMakeFiles\ftxui_example_focus.dir\focus.cpp.obj -c E:\assassins\new\unmatched\build\_deps\ftxui-src\examples\component\focus.cpp
+	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build\examples\component && C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_focus.dir/focus.cpp.obj -MF CMakeFiles\ftxui_example_focus.dir\focus.cpp.obj.d -o CMakeFiles\ftxui_example_focus.dir\focus.cpp.obj -c E:\assassins\new\unmatched\build\_deps\ftxui-src\examples\component\focus.cpp
 
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_focus.dir/focus.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/ftxui_example_focus.dir/focus.cpp.i"
-	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build\examples\component && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\assassins\new\unmatched\build\_deps\ftxui-src\examples\component\focus.cpp > CMakeFiles\ftxui_example_focus.dir\focus.cpp.i
+	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build\examples\component && C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\assassins\new\unmatched\build\_deps\ftxui-src\examples\component\focus.cpp > CMakeFiles\ftxui_example_focus.dir\focus.cpp.i
 
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_focus.dir/focus.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/ftxui_example_focus.dir/focus.cpp.s"
-	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build\examples\component && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\assassins\new\unmatched\build\_deps\ftxui-src\examples\component\focus.cpp -o CMakeFiles\ftxui_example_focus.dir\focus.cpp.s
+	cd /d E:\assassins\new\unmatched\build\_deps\ftxui-build\examples\component && C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\assassins\new\unmatched\build\_deps\ftxui-src\examples\component\focus.cpp -o CMakeFiles\ftxui_example_focus.dir\focus.cpp.s
 
 # Object files for target ftxui_example_focus
 ftxui_example_focus_OBJECTS = \

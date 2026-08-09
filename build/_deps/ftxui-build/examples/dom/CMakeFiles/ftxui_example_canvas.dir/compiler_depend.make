@@ -3,6 +3,7 @@
 
 _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_canvas.dir/canvas.cpp.obj: _deps/ftxui-src/examples/dom/canvas.cpp \
   C:/msys64/ucrt64/include/_mingw.h \
+  C:/msys64/ucrt64/include/_mingw_locale.h \
   C:/msys64/ucrt64/include/_mingw_mac.h \
   C:/msys64/ucrt64/include/_mingw_off_t.h \
   C:/msys64/ucrt64/include/_mingw_secapi.h \
@@ -146,6 +147,7 @@ _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_canvas.dir/canvas.cpp.ob
   C:/msys64/ucrt64/include/corecrt_wconio.h \
   C:/msys64/ucrt64/include/corecrt_wctype.h \
   C:/msys64/ucrt64/include/corecrt_wstdlib.h \
+  C:/msys64/ucrt64/include/corecrt_wstring.h \
   C:/msys64/ucrt64/include/crtdefs.h \
   C:/msys64/ucrt64/include/ctype.h \
   C:/msys64/ucrt64/include/errno.h \
@@ -269,11 +271,15 @@ C:/msys64/ucrt64/include/c++/16.1.0/x86_64-w64-mingw32/bits/c++allocator.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/unordered_map:
 
+C:/msys64/ucrt64/include/corecrt_wstring.h:
+
 C:/msys64/ucrt64/include/c++/16.1.0/typeinfo:
 
 _deps/ftxui-src/include/ftxui/screen/deprecated.hpp:
 
 C:/msys64/ucrt64/include/c++/16.1.0/type_traits:
+
+C:/msys64/ucrt64/include/c++/16.1.0/tuple:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/shared_ptr_base.h:
 
@@ -321,14 +327,6 @@ C:/msys64/ucrt64/include/c++/16.1.0/bits/exception_ptr.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/atomic_lockfree_defines.h:
 
-C:/msys64/ucrt64/include/c++/16.1.0/bits/nested_exception.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/erase_if.h:
-
-_deps/ftxui-src/include/ftxui/screen/box.hpp:
-
-C:/msys64/ucrt64/include/c++/16.1.0/tr1/hypergeometric.tcc:
-
 C:/msys64/ucrt64/include/c++/16.1.0/backward/binders.h:
 
 C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0/include/limits.h:
@@ -371,10 +369,6 @@ C:/msys64/ucrt64/include/c++/16.1.0/cerrno:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/new_allocator.h:
 
-C:/msys64/ucrt64/include/c++/16.1.0/bits/cpp_type_traits.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/string_view:
-
 C:/msys64/ucrt64/include/c++/16.1.0/array:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/unordered_map.h:
@@ -395,42 +389,6 @@ C:/msys64/ucrt64/include/c++/16.1.0/bits/basic_string.tcc:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/version.h:
 
-C:/msys64/ucrt64/include/c++/16.1.0/bits/cxxabi_forced.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/tr1/poly_laguerre.tcc:
-
-C:/msys64/ucrt64/include/_timeval.h:
-
-_deps/ftxui-src/examples/dom/canvas.cpp:
-
-_deps/ftxui-src/include/ftxui/dom/elements.hpp:
-
-C:/msys64/ucrt64/include/c++/16.1.0/ext/string_conversions.h:
-
-C:/msys64/ucrt64/include/wchar.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/shared_ptr_atomic.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/atomic_base.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/move.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/iosfwd:
-
-C:/msys64/ucrt64/include/process.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/allocated_ptr.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/cstddef:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/hashtable.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/char_traits.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_construct.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/tr1/modified_bessel_func.tcc:
-
 C:/msys64/ucrt64/include/c++/16.1.0/bits/predefined_ops.h:
 
 C:/msys64/ucrt64/include/corecrt_stdio_config.h:
@@ -441,15 +399,57 @@ C:/msys64/ucrt64/include/c++/16.1.0/bits/alloc_traits.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_tempbuf.h:
 
-C:/msys64/ucrt64/include/c++/16.1.0/cwchar:
+_deps/ftxui-src/examples/dom/canvas.cpp:
 
-C:/msys64/ucrt64/include/c++/16.1.0/pstl/pstl_config.h:
+_deps/ftxui-src/include/ftxui/dom/elements.hpp:
 
-C:/msys64/ucrt64/include/c++/16.1.0/bits/shared_ptr.h:
+C:/msys64/ucrt64/include/c++/16.1.0/ext/string_conversions.h:
 
-C:/msys64/ucrt64/include/c++/16.1.0/tr1/riemann_zeta.tcc:
+C:/msys64/ucrt64/include/_timeval.h:
 
-C:/msys64/ucrt64/include/c++/16.1.0/bits/ptr_traits.h:
+C:/msys64/ucrt64/include/c++/16.1.0/bits/cxxabi_forced.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/tr1/poly_laguerre.tcc:
+
+C:/msys64/ucrt64/include/c++/16.1.0/string_view:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/cpp_type_traits.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/nested_exception.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/erase_if.h:
+
+_deps/ftxui-src/include/ftxui/screen/box.hpp:
+
+C:/msys64/ucrt64/include/c++/16.1.0/tr1/hypergeometric.tcc:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/move.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/iosfwd:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/hashtable.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/char_traits.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_construct.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/tr1/modified_bessel_func.tcc:
+
+C:/msys64/ucrt64/include/process.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/allocated_ptr.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/cstddef:
+
+C:/msys64/ucrt64/include/wchar.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/shared_ptr_atomic.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/atomic_base.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/specfun.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/exception_defines.h:
 
 _deps/ftxui-src/include/ftxui/screen/color.hpp:
 
@@ -459,9 +459,15 @@ C:/msys64/ucrt64/include/c++/16.1.0/bits/basic_string.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_vector.h:
 
-C:/msys64/ucrt64/include/c++/16.1.0/bits/specfun.h:
+C:/msys64/ucrt64/include/c++/16.1.0/cwchar:
 
-C:/msys64/ucrt64/include/c++/16.1.0/bits/exception_defines.h:
+C:/msys64/ucrt64/include/c++/16.1.0/pstl/pstl_config.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/shared_ptr.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/tr1/riemann_zeta.tcc:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/ptr_traits.h:
 
 _deps/ftxui-src/include/ftxui/dom/node.hpp:
 
@@ -563,6 +569,8 @@ C:/msys64/ucrt64/include/c++/16.1.0/limits:
 
 C:/msys64/ucrt64/include/sec_api/stdlib_s.h:
 
+C:/msys64/ucrt64/include/_mingw_locale.h:
+
 C:/msys64/ucrt64/include/c++/16.1.0/bits/invoke.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_raw_storage_iter.h:
@@ -582,5 +590,3 @@ C:/msys64/ucrt64/include/c++/16.1.0/tr1/beta_function.tcc:
 C:/msys64/ucrt64/include/c++/16.1.0/bits/requires_hosted.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/tr1/exp_integral.tcc:
-
-C:/msys64/ucrt64/include/c++/16.1.0/tuple:

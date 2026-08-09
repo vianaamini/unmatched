@@ -3,6 +3,7 @@
 
 _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_homescreen.dir/homescreen.cpp.obj: _deps/ftxui-src/examples/component/homescreen.cpp \
   C:/msys64/ucrt64/include/_mingw.h \
+  C:/msys64/ucrt64/include/_mingw_locale.h \
   C:/msys64/ucrt64/include/_mingw_mac.h \
   C:/msys64/ucrt64/include/_mingw_off_t.h \
   C:/msys64/ucrt64/include/_mingw_secapi.h \
@@ -200,6 +201,7 @@ _deps/ftxui-build/examples/component/CMakeFiles/ftxui_example_homescreen.dir/hom
   C:/msys64/ucrt64/include/corecrt_wconio.h \
   C:/msys64/ucrt64/include/corecrt_wctype.h \
   C:/msys64/ucrt64/include/corecrt_wstdlib.h \
+  C:/msys64/ucrt64/include/corecrt_wstring.h \
   C:/msys64/ucrt64/include/crtdefs.h \
   C:/msys64/ucrt64/include/ctype.h \
   C:/msys64/ucrt64/include/errno.h \
@@ -270,7 +272,7 @@ _deps/ftxui-src/include/ftxui/screen/terminal.hpp:
 
 _deps/ftxui-src/include/ftxui/screen/screen.hpp:
 
-C:/msys64/ucrt64/include/c++/16.1.0/tr1/special_function_util.h:
+_deps/ftxui-src/include/ftxui/screen/color_info.hpp:
 
 C:/msys64/ucrt64/include/c++/16.1.0/cstdlib:
 
@@ -350,8 +352,6 @@ C:/msys64/ucrt64/include/c++/16.1.0/tr1/exp_integral.tcc:
 
 C:/msys64/ucrt64/include/c++/16.1.0/cerrno:
 
-C:/msys64/ucrt64/include/c++/16.1.0/bits/memoryfwd.h:
-
 C:/msys64/ucrt64/include/c++/16.1.0/bits/refwrap.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/align.h:
@@ -380,7 +380,13 @@ C:/msys64/ucrt64/include/c++/16.1.0/bits/charconv.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/memory_resource.h:
 
-C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_construct.h:
+C:/msys64/ucrt64/include/corecrt_wconio.h:
+
+_deps/ftxui-src/include/ftxui/component/component.hpp:
+
+_deps/ftxui-src/include/ftxui/dom/canvas.hpp:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/basic_ios.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/cstddef:
 
@@ -394,19 +400,17 @@ C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_iterator_base_funcs.h:
 
 _deps/ftxui-src/include/ftxui/component/task.hpp:
 
+C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_construct.h:
+
 C:/msys64/ucrt64/include/c++/16.1.0/bits/move.h:
-
-C:/msys64/ucrt64/include/corecrt_wconio.h:
-
-_deps/ftxui-src/include/ftxui/component/component.hpp:
-
-_deps/ftxui-src/include/ftxui/dom/canvas.hpp:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/basic_ios.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/uses_allocator_args.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_raw_storage_iter.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/memoryfwd.h:
+
+C:/msys64/ucrt64/include/_mingw_locale.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/stdlib.h:
 
@@ -428,11 +432,27 @@ _deps/ftxui-src/include/ftxui/screen/color.hpp:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/basic_ios.tcc:
 
+C:/msys64/ucrt64/include/corecrt_wstdlib.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/node_handle.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bit:
+
+C:/msys64/ucrt64/include/c++/16.1.0/cstdio:
+
+C:/msys64/ucrt64/include/c++/16.1.0/cstdint:
+
+_deps/ftxui-src/include/ftxui/dom/deprecated.hpp:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/new_except.h:
+
 C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_relops.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/std_function.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/chrono.h:
+
+C:/msys64/ucrt64/include/corecrt_wstring.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/ctime:
 
@@ -448,17 +468,9 @@ C:/msys64/ucrt64/include/c++/16.1.0/atomic:
 
 C:/msys64/ucrt64/include/c++/16.1.0/type_traits:
 
-C:/msys64/ucrt64/include/sec_api/sys/timeb_s.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/erase_if.h:
-
 C:/msys64/ucrt64/include/c++/16.1.0/bits/requires_hosted.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/version.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/ostream_insert.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/concept_check.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/clocale:
 
@@ -486,16 +498,6 @@ C:/msys64/ucrt64/include/c++/16.1.0/algorithm:
 
 C:/msys64/ucrt64/include/c++/16.1.0/optional:
 
-C:/msys64/ucrt64/include/c++/16.1.0/bit:
-
-C:/msys64/ucrt64/include/c++/16.1.0/cstdio:
-
-C:/msys64/ucrt64/include/c++/16.1.0/cstdint:
-
-_deps/ftxui-src/include/ftxui/dom/deprecated.hpp:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/new_except.h:
-
 C:/msys64/ucrt64/include/_mingw.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_iterator_base_types.h:
@@ -507,6 +509,14 @@ C:/msys64/ucrt64/include/c++/16.1.0/utility:
 C:/msys64/ucrt64/include/c++/16.1.0/bits/locale_classes.tcc:
 
 _deps/ftxui-src/include/ftxui/component/component_options.hpp:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/concept_check.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/ostream_insert.h:
+
+C:/msys64/ucrt64/include/sec_api/sys/timeb_s.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/erase_if.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/cxxabi_forced.h:
 
@@ -576,9 +586,7 @@ C:/msys64/ucrt64/include/c++/16.1.0/bits/new_throw.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/tr1/bessel_function.tcc:
 
-C:/msys64/ucrt64/include/corecrt_wstdlib.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/node_handle.h:
+C:/msys64/ucrt64/include/c++/16.1.0/tr1/special_function_util.h:
 
 C:/msys64/ucrt64/include/_mingw_off_t.h:
 
@@ -654,9 +662,9 @@ C:/msys64/ucrt64/include/c++/16.1.0/system_error:
 
 _deps/ftxui-src/include/ftxui/dom/take_any_args.hpp:
 
-C:/msys64/ucrt64/include/c++/16.1.0/cwctype:
-
 C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_heap.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/cwctype:
 
 C:/msys64/ucrt64/include/c++/16.1.0/tr1/hypergeometric.tcc:
 
@@ -693,8 +701,6 @@ C:/msys64/ucrt64/include/c++/16.1.0/x86_64-w64-mingw32/bits/c++locale.h:
 C:/msys64/ucrt64/include/c++/16.1.0/x86_64-w64-mingw32/bits/cpu_defines.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/x86_64-w64-mingw32/bits/ctype_base.h:
-
-_deps/ftxui-src/include/ftxui/screen/color_info.hpp:
 
 C:/msys64/ucrt64/include/sec_api/stdlib_s.h:
 

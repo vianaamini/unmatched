@@ -3,6 +3,7 @@
 
 _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_border_style.dir/border_style.cpp.obj: _deps/ftxui-src/examples/dom/border_style.cpp \
   C:/msys64/ucrt64/include/_mingw.h \
+  C:/msys64/ucrt64/include/_mingw_locale.h \
   C:/msys64/ucrt64/include/_mingw_mac.h \
   C:/msys64/ucrt64/include/_mingw_off_t.h \
   C:/msys64/ucrt64/include/_mingw_secapi.h \
@@ -156,6 +157,7 @@ _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_border_style.dir/border_
   C:/msys64/ucrt64/include/corecrt_wconio.h \
   C:/msys64/ucrt64/include/corecrt_wctype.h \
   C:/msys64/ucrt64/include/corecrt_wstdlib.h \
+  C:/msys64/ucrt64/include/corecrt_wstring.h \
   C:/msys64/ucrt64/include/crtdefs.h \
   C:/msys64/ucrt64/include/ctype.h \
   C:/msys64/ucrt64/include/errno.h \
@@ -287,6 +289,8 @@ C:/msys64/ucrt64/include/c++/16.1.0/x86_64-w64-mingw32/bits/c++allocator.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/unordered_map:
 
+C:/msys64/ucrt64/include/corecrt_wstring.h:
+
 C:/msys64/ucrt64/include/c++/16.1.0/typeinfo:
 
 _deps/ftxui-src/include/ftxui/screen/deprecated.hpp:
@@ -304,6 +308,8 @@ C:/msys64/ucrt64/include/pthread_time.h:
 C:/msys64/ucrt64/include/c++/16.1.0/streambuf:
 
 C:/msys64/ucrt64/include/c++/16.1.0/stdexcept:
+
+C:/msys64/ucrt64/include/c++/16.1.0/pstl/pstl_config.h:
 
 C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0/include/syslimits.h:
 
@@ -359,13 +365,13 @@ C:/msys64/ucrt64/include/c++/16.1.0/bits/exception_ptr.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/atomic_lockfree_defines.h:
 
-C:/msys64/ucrt64/include/c++/16.1.0/string_view:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/cpp_type_traits.h:
-
 C:/msys64/ucrt64/include/c++/16.1.0/bits/nested_exception.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/erase_if.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/string_view:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/cpp_type_traits.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/locale_classes.tcc:
 
@@ -378,20 +384,6 @@ C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_iterator_base_types.h:
 _deps/ftxui-src/include/ftxui/screen/screen.hpp:
 
 C:/msys64/ucrt64/include/_mingw.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/locale_facets.h:
-
-C:/msys64/ucrt64/include/corecrt_stdio_config.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/cxxabi_init_exception.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/alloc_traits.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_tempbuf.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/basic_ios.tcc:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_vector.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/new_except.h:
 
@@ -425,35 +417,15 @@ C:/msys64/ucrt64/include/c++/16.1.0/bits/basic_string.tcc:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/version.h:
 
-_deps/ftxui-src/include/ftxui/screen/color.hpp:
+C:/msys64/ucrt64/include/corecrt_stdio_config.h:
 
-C:/msys64/ucrt64/include/c++/16.1.0/bits/basic_string.h:
+C:/msys64/ucrt64/include/c++/16.1.0/bits/cxxabi_init_exception.h:
 
-C:/msys64/ucrt64/include/c++/16.1.0/bits/allocator.h:
+C:/msys64/ucrt64/include/c++/16.1.0/bits/locale_facets.h:
 
-C:/msys64/ucrt64/include/c++/16.1.0/bits/streambuf.tcc:
+C:/msys64/ucrt64/include/c++/16.1.0/bits/alloc_traits.h:
 
-C:/msys64/ucrt64/include/_timeval.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/cxxabi_forced.h:
-
-_deps/ftxui-src/examples/dom/border_style.cpp:
-
-C:/msys64/ucrt64/include/wchar.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/shared_ptr_atomic.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/atomic_base.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/basic_ios.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/exception_defines.h:
-
-C:/msys64/ucrt64/include/process.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/allocated_ptr.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/cstddef:
+C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_tempbuf.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/hashtable.h:
 
@@ -465,17 +437,49 @@ C:/msys64/ucrt64/include/c++/16.1.0/cctype:
 
 C:/msys64/ucrt64/include/c++/16.1.0/ext/concurrence.h:
 
+C:/msys64/ucrt64/include/process.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/allocated_ptr.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/cstddef:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/basic_ios.tcc:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_vector.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/streambuf.tcc:
+
+C:/msys64/ucrt64/include/_timeval.h:
+
+_deps/ftxui-src/include/ftxui/screen/color.hpp:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/basic_string.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/allocator.h:
+
+_deps/ftxui-src/examples/dom/border_style.cpp:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/cxxabi_forced.h:
+
+C:/msys64/ucrt64/include/wchar.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/shared_ptr_atomic.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/atomic_base.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/basic_ios.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/exception_defines.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/cwchar:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/ostream.tcc:
+
 C:/msys64/ucrt64/include/c++/16.1.0/bits/predefined_ops.h:
 
 C:/msys64/ucrt64/include/limits.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/iostream:
-
-C:/msys64/ucrt64/include/c++/16.1.0/cwchar:
-
-C:/msys64/ucrt64/include/c++/16.1.0/pstl/pstl_config.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/ostream.tcc:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/ptr_traits.h:
 
@@ -600,6 +604,8 @@ C:/msys64/ucrt64/include/c++/16.1.0/initializer_list:
 C:/msys64/ucrt64/include/c++/16.1.0/functional:
 
 C:/msys64/ucrt64/include/sec_api/stdlib_s.h:
+
+C:/msys64/ucrt64/include/_mingw_locale.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/invoke.h:
 

@@ -3,6 +3,7 @@
 
 _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_color_gallery.dir/color_gallery.cpp.obj: _deps/ftxui-src/examples/dom/color_gallery.cpp \
   C:/msys64/ucrt64/include/_mingw.h \
+  C:/msys64/ucrt64/include/_mingw_locale.h \
   C:/msys64/ucrt64/include/_mingw_mac.h \
   C:/msys64/ucrt64/include/_mingw_off_t.h \
   C:/msys64/ucrt64/include/_mingw_secapi.h \
@@ -154,6 +155,7 @@ _deps/ftxui-build/examples/dom/CMakeFiles/ftxui_example_color_gallery.dir/color_
   C:/msys64/ucrt64/include/corecrt_wconio.h \
   C:/msys64/ucrt64/include/corecrt_wctype.h \
   C:/msys64/ucrt64/include/corecrt_wstdlib.h \
+  C:/msys64/ucrt64/include/corecrt_wstring.h \
   C:/msys64/ucrt64/include/crtdefs.h \
   C:/msys64/ucrt64/include/ctype.h \
   C:/msys64/ucrt64/include/errno.h \
@@ -283,6 +285,8 @@ C:/msys64/ucrt64/include/c++/16.1.0/x86_64-w64-mingw32/bits/c++allocator.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/unordered_map:
 
+C:/msys64/ucrt64/include/corecrt_wstring.h:
+
 C:/msys64/ucrt64/include/c++/16.1.0/typeinfo:
 
 _deps/ftxui-src/include/ftxui/screen/deprecated.hpp:
@@ -302,6 +306,10 @@ C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0/include/stddef.h:
 C:/msys64/ucrt64/include/c++/16.1.0/tr1/poly_hermite.tcc:
 
 C:/msys64/ucrt64/include/c++/16.1.0/tr1/modified_bessel_func.tcc:
+
+_deps/ftxui-src/include/ftxui/screen/box.hpp:
+
+C:/msys64/ucrt64/include/c++/16.1.0/tr1/hypergeometric.tcc:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/shared_ptr_base.h:
 
@@ -345,6 +353,10 @@ C:/msys64/ucrt64/include/c++/16.1.0/bits/exception_ptr.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/atomic_lockfree_defines.h:
 
+C:/msys64/ucrt64/include/c++/16.1.0/bits/nested_exception.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/erase_if.h:
+
 C:/msys64/ucrt64/include/c++/16.1.0/backward/binders.h:
 
 C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/16.1.0/include/limits.h:
@@ -377,6 +389,10 @@ C:/msys64/ucrt64/include/c++/16.1.0/bits/memoryfwd.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/cerrno:
 
+C:/msys64/ucrt64/include/c++/16.1.0/bits/cpp_type_traits.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/string_view:
+
 C:/msys64/ucrt64/include/c++/16.1.0/array:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/unordered_map.h:
@@ -385,13 +401,19 @@ C:/msys64/ucrt64/include/math.h:
 
 C:/msys64/ucrt64/include/_mingw_secapi.h:
 
-_deps/ftxui-src/include/ftxui/screen/terminal.hpp:
+C:/msys64/ucrt64/include/c++/16.1.0/bits/predefined_ops.h:
 
-C:/msys64/ucrt64/include/stdlib.h:
+C:/msys64/ucrt64/include/corecrt_stdio_config.h:
 
-C:/msys64/ucrt64/include/c++/16.1.0/bits/stringfwd.h:
+C:/msys64/ucrt64/include/c++/16.1.0/bits/cxxabi_init_exception.h:
 
-C:/msys64/ucrt64/include/c++/16.1.0/bits/algorithmfwd.h:
+C:/msys64/ucrt64/include/c++/16.1.0/bits/new_allocator.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_algo.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/alloc_traits.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_tempbuf.h:
 
 C:/msys64/ucrt64/include/_mingw_off_t.h:
 
@@ -405,6 +427,14 @@ C:/msys64/ucrt64/include/c++/16.1.0/bits/version.h:
 
 _deps/ftxui-src/examples/dom/color_gallery.cpp:
 
+_deps/ftxui-src/include/ftxui/screen/terminal.hpp:
+
+C:/msys64/ucrt64/include/stdlib.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/stringfwd.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/algorithmfwd.h:
+
 C:/msys64/ucrt64/include/vadefs.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/refwrap.h:
@@ -415,17 +445,21 @@ C:/msys64/ucrt64/include/_timeval.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/cxxabi_forced.h:
 
-C:/msys64/ucrt64/include/c++/16.1.0/string_view:
+C:/msys64/ucrt64/include/c++/16.1.0/bits/move.h:
 
-C:/msys64/ucrt64/include/c++/16.1.0/bits/cpp_type_traits.h:
+C:/msys64/ucrt64/include/c++/16.1.0/iosfwd:
 
-C:/msys64/ucrt64/include/c++/16.1.0/bits/nested_exception.h:
+C:/msys64/ucrt64/include/c++/16.1.0/bits/hashtable.h:
 
-C:/msys64/ucrt64/include/c++/16.1.0/bits/erase_if.h:
+C:/msys64/ucrt64/include/c++/16.1.0/bits/char_traits.h:
 
-_deps/ftxui-src/include/ftxui/screen/box.hpp:
+C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_construct.h:
 
-C:/msys64/ucrt64/include/c++/16.1.0/tr1/hypergeometric.tcc:
+C:/msys64/ucrt64/include/process.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/bits/allocated_ptr.h:
+
+C:/msys64/ucrt64/include/c++/16.1.0/cstddef:
 
 C:/msys64/ucrt64/include/wchar.h:
 
@@ -444,36 +478,6 @@ C:/msys64/ucrt64/include/c++/16.1.0/bits/allocator.h:
 C:/msys64/ucrt64/include/c++/16.1.0/bits/basic_string.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_vector.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/move.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/iosfwd:
-
-C:/msys64/ucrt64/include/process.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/allocated_ptr.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/cstddef:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/hashtable.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/char_traits.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_construct.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/predefined_ops.h:
-
-C:/msys64/ucrt64/include/corecrt_stdio_config.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/cxxabi_init_exception.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/new_allocator.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_algo.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/alloc_traits.h:
-
-C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_tempbuf.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/cwchar:
 
@@ -592,6 +596,8 @@ C:/msys64/ucrt64/include/c++/16.1.0/functional:
 C:/msys64/ucrt64/include/c++/16.1.0/limits:
 
 C:/msys64/ucrt64/include/sec_api/stdlib_s.h:
+
+C:/msys64/ucrt64/include/_mingw_locale.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/bits/invoke.h:
 

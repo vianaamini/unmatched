@@ -9,6 +9,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "E:/assassins/new/unmatched/main.cpp" "CMakeFiles/unmatched.dir/main.cpp.obj" "gcc" "CMakeFiles/unmatched.dir/main.cpp.obj.d"
+  "E:/assassins/new/unmatched/src/age_screen.cpp" "CMakeFiles/unmatched.dir/src/age_screen.cpp.obj" "gcc" "CMakeFiles/unmatched.dir/src/age_screen.cpp.obj.d"
   "E:/assassins/new/unmatched/src/card.cpp" "CMakeFiles/unmatched.dir/src/card.cpp.obj" "gcc" "CMakeFiles/unmatched.dir/src/card.cpp.obj.d"
   "E:/assassins/new/unmatched/src/character.cpp" "CMakeFiles/unmatched.dir/src/character.cpp.obj" "gcc" "CMakeFiles/unmatched.dir/src/character.cpp.obj.d"
   "E:/assassins/new/unmatched/src/deck-builder.cpp" "CMakeFiles/unmatched.dir/src/deck-builder.cpp.obj" "gcc" "CMakeFiles/unmatched.dir/src/deck-builder.cpp.obj.d"
@@ -19,7 +20,9 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "E:/assassins/new/unmatched/src/game.cpp" "CMakeFiles/unmatched.dir/src/game.cpp.obj" "gcc" "CMakeFiles/unmatched.dir/src/game.cpp.obj.d"
   "E:/assassins/new/unmatched/src/game_manager.cpp" "CMakeFiles/unmatched.dir/src/game_manager.cpp.obj" "gcc" "CMakeFiles/unmatched.dir/src/game_manager.cpp.obj.d"
   "E:/assassins/new/unmatched/src/hero.cpp" "CMakeFiles/unmatched.dir/src/hero.cpp.obj" "gcc" "CMakeFiles/unmatched.dir/src/hero.cpp.obj.d"
+  "E:/assassins/new/unmatched/src/hero_selection.cpp" "CMakeFiles/unmatched.dir/src/hero_selection.cpp.obj" "gcc" "CMakeFiles/unmatched.dir/src/hero_selection.cpp.obj.d"
   "E:/assassins/new/unmatched/src/map.cpp" "CMakeFiles/unmatched.dir/src/map.cpp.obj" "gcc" "CMakeFiles/unmatched.dir/src/map.cpp.obj.d"
+  "E:/assassins/new/unmatched/src/menu.cpp" "CMakeFiles/unmatched.dir/src/menu.cpp.obj" "gcc" "CMakeFiles/unmatched.dir/src/menu.cpp.obj.d"
   "E:/assassins/new/unmatched/src/movement.cpp" "CMakeFiles/unmatched.dir/src/movement.cpp.obj" "gcc" "CMakeFiles/unmatched.dir/src/movement.cpp.obj.d"
   "E:/assassins/new/unmatched/src/sherlock.cpp" "CMakeFiles/unmatched.dir/src/sherlock.cpp.obj" "gcc" "CMakeFiles/unmatched.dir/src/sherlock.cpp.obj.d"
   "E:/assassins/new/unmatched/src/sherlock_card.cpp" "CMakeFiles/unmatched.dir/src/sherlock_card.cpp.obj" "gcc" "CMakeFiles/unmatched.dir/src/sherlock_card.cpp.obj.d"
