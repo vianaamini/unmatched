@@ -1,5 +1,5 @@
-cmake_minimum_required(VERSION 3.20)
-
+cmake_minimum_required(VERSION 3.5...3.30)
+set(CMAKE_POLICY_VERSION_MINIMUM 3.5)
 project(unmatched)
 
 set(CMAKE_CXX_STANDARD 17)
@@ -7,23 +7,22 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 include(FetchContent)
 
-find_package(raylib REQUIRED)
+#FetchContent_Declare(
+  #ftxui
+  #GIT_REPOSITORY https://github.com/ArthurSonzogni/FTXUI.git
+  #GIT_TAG v3.0.0
+#)
 
 FetchContent_Declare(
-  ftxui
-  GIT_REPOSITORY https://github.com/ArthurSonzogni/FTXUI.git
-  GIT_TAG v3.0.0
+    raylib
+    GIT_REPOSITORY https://github.com/raysan5/raylib.git
+    GIT_TAG 5.0
 )
-
-FetchContent_MakeAvailable(ftxui)
+FetchContent_MakeAvailable(raylib)
+#FetchContent_MakeAvailable(ftxui)
 
 add_executable(unmatched
     main.cpp
-
-    src/menu.cpp
-    src/age_screen.cpp
-    src/hero_selection.cpp
-
     src/card.cpp
     src/character.cpp
     src/deck.cpp
@@ -43,13 +42,17 @@ add_executable(unmatched
     #src/tui_controller.cpp
     src/turn_manager.cpp
     src/watson.cpp
+    src/menu.cpp
+    src/age_screen.cpp
+    src/hero_selection.cpp
+    src/raylib.cpp
 )
 
 target_include_directories(unmatched PRIVATE include)
 
-target_link_libraries(unmatched PRIVATE 
-    ftxui::screen
-    ftxui::dom
-    ftxui::component
-    raylib
-)
+#target_link_libraries(unmatched PRIVATE 
+    #ftxui::screen
+    #ftxui::dom
+    #ftxui::component
+#)
+target_link_libraries(unmatched PRIVATE raylib)

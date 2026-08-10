@@ -9,15 +9,15 @@ MenuResult Menu::show()
     InitWindow(screenWidth, screenHeight, "Unmatched - Main Menu");
     SetTargetFPS(60);
 
-    Texture2D bg = LoadTexture("E:/assassins/new/unmatched/assets/menu_bg.png");
+    Texture2D bg = LoadTexture("assets/menu_bg.png");
     if (bg.id != 0)
     {
         SetTextureFilter(bg, TEXTURE_FILTER_BILINEAR);
     }
 
-    Font titleFont = LoadFontEx("E:/assassins/new/unmatched/assets/fonts/Cinzel-Black.ttf", 110, nullptr, 0);
-    Font semiFont = LoadFontEx("E:/assassins/new/unmatched/assets/fonts/Cinzel-SemiBold.ttf", 56, nullptr, 0);
-    Font regularFont = LoadFontEx("E:/assassins/new/unmatched/assets/fonts/Cinzel-Regular.ttf", 56, nullptr, 0);
+    Font titleFont = LoadFontEx("assets/fonts/Cinzel-Black.ttf", 110, nullptr, 0);
+    Font semiFont = LoadFontEx("assets/fonts/Cinzel-SemiBold.ttf", 56, nullptr, 0);
+    Font regularFont = LoadFontEx("assets/fonts/Cinzel-Regular.ttf", 56, nullptr, 0);
 
     if (titleFont.texture.id != 0) SetTextureFilter(titleFont.texture, TEXTURE_FILTER_BILINEAR);
     if (semiFont.texture.id != 0) SetTextureFilter(semiFont.texture, TEXTURE_FILTER_BILINEAR);
@@ -110,7 +110,7 @@ MenuResult Menu::show()
         DrawRectangleRounded(startBtn, 0.22f, 20,
                              hoverStart ? redHover : redBtn);
 
-        DrawRectangleRoundedLinesEx(startBtn, 0.22f, 20, 1.2f,
+        DrawRectangleRoundedLines(startBtn, 0.22f, 20, 1.2f,
                                     { 255, 255, 255, 35 });
 
         Vector2 startTextSize = MeasureTextEx(semiFont, "START", 22, 1.0f);
@@ -128,7 +128,7 @@ MenuResult Menu::show()
         DrawRectangleRounded(loadBtn, 0.22f, 20,
                              hoverLoad ? glassHover : glass);
 
-        DrawRectangleRoundedLinesEx(loadBtn, 0.22f, 20, 1.2f,
+        DrawRectangleRoundedLines(loadBtn, 0.22f, 20, 1.2f,
                                     { 255, 255, 255, 35 });
 
         DrawText("[ SAVE ]",
@@ -154,7 +154,7 @@ MenuResult Menu::show()
         DrawRectangleRounded(exitBtn, 0.22f, 20,
                              hoverExit ? glassHover : glass);
 
-        DrawRectangleRoundedLinesEx(exitBtn, 0.22f, 20, 1.2f,
+        DrawRectangleRoundedLines(exitBtn, 0.22f, 20, 1.2f,
                                     { 255, 255, 255, 35 });
 
         Vector2 exitTextSize = MeasureTextEx(regularFont,

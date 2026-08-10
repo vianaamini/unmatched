@@ -33,12 +33,12 @@ HeroSelectionResult HeroSelection::show(int firstPlayer)
     InitWindow(WIDTH, HEIGHT, "Unmatched - Hero Selection");
     SetTargetFPS(60);
 
-    Texture2D background = LoadTexture("E:/assassins/new/unmatched/assets/menu_bg.png");
+    Texture2D background = LoadTexture("assets/menu_bg.png");
     if (background.id != 0) SetTextureFilter(background, TEXTURE_FILTER_BILINEAR);
 
-    Font titleFont = LoadFontEx("E:/assassins/new/unmatched/assets/fonts/Cinzel-Black.ttf", 76, nullptr, 0);
-    Font regularFont = LoadFontEx("E:/assassins/new/unmatched/assets/fonts/Cinzel-Regular.ttf", 60, nullptr, 0);
-    Font semiBoldFont = LoadFontEx("E:/assassins/new/unmatched/assets/fonts/Cinzel-SemiBold.ttf", 60, nullptr, 0);
+    Font titleFont = LoadFontEx("assets/fonts/Cinzel-Black.ttf", 76, nullptr, 0);
+    Font regularFont = LoadFontEx("assets/fonts/Cinzel-Regular.ttf", 60, nullptr, 0);
+    Font semiBoldFont = LoadFontEx("assets/fonts/Cinzel-SemiBold.ttf", 60, nullptr, 0);
 
     if (titleFont.texture.id != 0) SetTextureFilter(titleFont.texture, TEXTURE_FILTER_BILINEAR);
     if (regularFont.texture.id != 0) SetTextureFilter(regularFont.texture, TEXTURE_FILTER_BILINEAR);
@@ -46,9 +46,9 @@ HeroSelectionResult HeroSelection::show(int firstPlayer)
 
     FighterCard fighters[3] =
     {
-        { "DRACULA", "THE LORD OF BLOODS", "E:/assassins/new/unmatched/assets/heroes/dracula (1).png", {} },
-        { "INVISIBLE MAN", "THE GHOST", "E:/assassins/new/unmatched/assets/heroes/tranInv (1).png", {} },
-        { "SHERLOCK HOLMES", "THE GRAND DETECTIVE", "E:/assassins/new/unmatched/assets/heroes/sherlockTran (1).png", {} }
+        { "DRACULA", "THE LORD OF BLOODS", "assets/heroes/dracula (1).png", {} },
+        { "INVISIBLE MAN", "THE GHOST", "assets/heroes/tranInv (1).png", {} },
+        { "SHERLOCK HOLMES", "THE GRAND DETECTIVE", "assets/heroes/sherlockTran (1).png", {} }
     };
 
     for (auto& fighter : fighters)
@@ -160,7 +160,7 @@ HeroSelectionResult HeroSelection::show(int firstPlayer)
             DrawRectangleRounded(card, 0.045f, 16, cardColor);
 
             Color borderColor = selected ? GOLD_LIGHT_COLOR : (hover ? GOLD_COLOR : Color{ 58, 54, 47, 255 });
-            DrawRectangleRoundedLinesEx(card, 0.045f, 16, selected ? 2.5f : 1.2f, borderColor);
+            DrawRectangleRoundedLines(card, 0.045f, 16, selected ? 2.5f : 1.2f, borderColor);
 
             Rectangle imageArea = { card.x + 20, card.y + 25, card.width - 40, 340 };
             Texture2D texture = fighters[i].texture;
@@ -203,7 +203,7 @@ HeroSelectionResult HeroSelection::show(int firstPlayer)
         }
 
         DrawRectangleRounded(retreatButton, 0.18f, 10, retreatHover ? Color{ 35, 35, 43, 255 } : Color{ 18, 18, 25, 255 });
-        DrawRectangleRoundedLinesEx(retreatButton, 0.18f, 10, 1, { 55, 55, 65, 255 });
+        DrawRectangleRoundedLines(retreatButton, 0.18f, 10, 1, { 55, 55, 65, 255 });
         CenterText(semiBoldFont, "RESET CHOICES", retreatButton.x + retreatButton.width / 2.0f, retreatButton.y + 9, 13, 0.7f, DIM_COLOR);
 
         EndDrawing();

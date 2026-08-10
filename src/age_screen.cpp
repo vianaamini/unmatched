@@ -31,12 +31,12 @@ AgeScreenResult AgeScreen::show()
     InitWindow(W, H, "Unmatched - Assessment of Mortality");
     SetTargetFPS(60);
 
-    Texture2D bg = LoadTexture("E:/assassins/new/unmatched/assets/menu_bg.png");
+    Texture2D bg = LoadTexture("assets/menu_bg.png");
     if (bg.id != 0) SetTextureFilter(bg, TEXTURE_FILTER_BILINEAR);
 
-    Font titleFont = LoadFontEx("E:/assassins/new/unmatched/assets/fonts/Cinzel-Black.ttf", 72, nullptr, 0);
-    Font normalFont = LoadFontEx("E:/assassins/new/unmatched/assets/fonts/Cinzel-Regular.ttf", 56, nullptr, 0);
-    Font semiFont = LoadFontEx("E:/assassins/new/unmatched/assets/fonts/Cinzel-SemiBold.ttf", 56, nullptr, 0);
+    Font titleFont = LoadFontEx("assets/fonts/Cinzel-Black.ttf", 72, nullptr, 0);
+    Font normalFont = LoadFontEx("assets/fonts/Cinzel-Regular.ttf", 56, nullptr, 0);
+    Font semiFont = LoadFontEx("assets/fonts/Cinzel-SemiBold.ttf", 56, nullptr, 0);
 
     if (titleFont.texture.id != 0) SetTextureFilter(titleFont.texture, TEXTURE_FILTER_BILINEAR);
     if (normalFont.texture.id != 0) SetTextureFilter(normalFont.texture, TEXTURE_FILTER_BILINEAR);
@@ -118,7 +118,7 @@ AgeScreenResult AgeScreen::show()
 
         DrawRectangle(0, 0, W, H, { 0, 0, 0, 170 });
         DrawRectangleRounded(card, 0.04f, 20, PANEL_C);
-        DrawRectangleRoundedLinesEx(card, 0.04f, 20, 1.5f, GOLD_C);
+        DrawRectangleRoundedLines(card, 0.04f, 20, 1.5f, GOLD_C);
 
         CenterText(titleFont, "ASSESSMENT OF", card.x + card.width / 2, card.y + 45, 27, 1.2f, GOLD_C);
         CenterText(titleFont, "MORTALITY", card.x + card.width / 2, card.y + 80, 29, 1.2f, GOLD_LIGHT_C);
@@ -128,7 +128,7 @@ AgeScreenResult AgeScreen::show()
         // Player 1 Box
         DrawTextEx(semiFont, "LIFE CYCLE OF PLAYER 1:", { box1.x, box1.y - 32 }, 14, 0.8f, GOLD_C);
         DrawRectangleRounded(box1, 0.18f, 12, INPUT_C);
-        DrawRectangleRoundedLinesEx(box1, 0.18f, 12, 1.3f, activeField == 1 ? GOLD_C : Color{ 40, 45, 58, 255 });
+        DrawRectangleRoundedLines(box1, 0.18f, 12, 1.3f, activeField == 1 ? GOLD_C : Color{ 40, 45, 58, 255 });
 
         std::string age1 = (player1Age == 0) ? "Enter age" : std::to_string(player1Age);
         CenterText(normalFont, age1.c_str(), box1.x + box1.width / 2 - 10, box1.y + 17, 19, 0.5f, player1Age == 0 ? Color{ 75, 80, 92, 255 } : TEXT_C);
@@ -137,7 +137,7 @@ AgeScreenResult AgeScreen::show()
         // Player 2 Box
         DrawTextEx(semiFont, "LIFE CYCLE OF PLAYER 2:", { box2.x, box2.y - 32 }, 14, 0.8f, GOLD_C);
         DrawRectangleRounded(box2, 0.18f, 12, INPUT_C);
-        DrawRectangleRoundedLinesEx(box2, 0.18f, 12, 1.3f, activeField == 2 ? GOLD_C : Color{ 40, 45, 58, 255 });
+        DrawRectangleRoundedLines(box2, 0.18f, 12, 1.3f, activeField == 2 ? GOLD_C : Color{ 40, 45, 58, 255 });
 
         std::string age2 = (player2Age == 0) ? "Enter age" : std::to_string(player2Age);
         CenterText(normalFont, age2.c_str(), box2.x + box2.width / 2 - 10, box2.y + 17, 19, 0.5f, player2Age == 0 ? Color{ 75, 80, 92, 255 } : TEXT_C);
@@ -149,14 +149,14 @@ AgeScreenResult AgeScreen::show()
 
         // Retreat Button
         DrawRectangleRounded(retreatButton, 0.18f, 12, retreatHover ? Color{ 35, 39, 52, 255 } : Color{ 18, 21, 30, 255 });
-        DrawRectangleRoundedLinesEx(retreatButton, 0.18f, 12, 1, { 55, 60, 75, 255 });
+        DrawRectangleRoundedLines(retreatButton, 0.18f, 12, 1, { 55, 60, 75, 255 });
         CenterText(semiFont, "RETREAT", retreatButton.x + retreatButton.width / 2, retreatButton.y + 15, 17, 0.8f, retreatHover ? GOLD_C : DIM_C);
 
         if (submitted)
         {
             Rectangle resultBox = { card.x + 45, card.y + 500, card.width - 90, 190 };
             DrawRectangleRounded(resultBox, 0.08f, 12, { 27, 9, 13, 250 });
-            DrawRectangleRoundedLinesEx(resultBox, 0.08f, 12, 1.2f, { 115, 25, 32, 255 });
+            DrawRectangleRoundedLines(resultBox, 0.08f, 12, 1.2f, { 115, 25, 32, 255 });
 
             CenterText(titleFont, "VERDICT", resultBox.x + resultBox.width / 2, resultBox.y + 12, 19, 1.0f, RED_LIGHT_C);
 
