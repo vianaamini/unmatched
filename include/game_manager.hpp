@@ -54,6 +54,7 @@ public:
     std::vector<character*> getEnemies(character* c) const;
 
     bool resurrectSister(const std::string& sisterName, int heroNode);
+    
 };
 
 #endif

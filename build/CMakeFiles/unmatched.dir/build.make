@@ -86,56 +86,11 @@ CMakeFiles/unmatched.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/unmatched.dir/main.cpp.s"
 	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\assassins\new\unmatched\main.cpp -o CMakeFiles\unmatched.dir\main.cpp.s
 
-CMakeFiles/unmatched.dir/src/menu.cpp.obj: CMakeFiles/unmatched.dir/flags.make
-CMakeFiles/unmatched.dir/src/menu.cpp.obj: CMakeFiles/unmatched.dir/includes_CXX.rsp
-CMakeFiles/unmatched.dir/src/menu.cpp.obj: E:/assassins/new/unmatched/src/menu.cpp
-CMakeFiles/unmatched.dir/src/menu.cpp.obj: CMakeFiles/unmatched.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/unmatched.dir/src/menu.cpp.obj"
-	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/unmatched.dir/src/menu.cpp.obj -MF CMakeFiles\unmatched.dir\src\menu.cpp.obj.d -o CMakeFiles\unmatched.dir\src\menu.cpp.obj -c E:\assassins\new\unmatched\src\menu.cpp
-
-CMakeFiles/unmatched.dir/src/menu.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/unmatched.dir/src/menu.cpp.i"
-	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\assassins\new\unmatched\src\menu.cpp > CMakeFiles\unmatched.dir\src\menu.cpp.i
-
-CMakeFiles/unmatched.dir/src/menu.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/unmatched.dir/src/menu.cpp.s"
-	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\assassins\new\unmatched\src\menu.cpp -o CMakeFiles\unmatched.dir\src\menu.cpp.s
-
-CMakeFiles/unmatched.dir/src/age_screen.cpp.obj: CMakeFiles/unmatched.dir/flags.make
-CMakeFiles/unmatched.dir/src/age_screen.cpp.obj: CMakeFiles/unmatched.dir/includes_CXX.rsp
-CMakeFiles/unmatched.dir/src/age_screen.cpp.obj: E:/assassins/new/unmatched/src/age_screen.cpp
-CMakeFiles/unmatched.dir/src/age_screen.cpp.obj: CMakeFiles/unmatched.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/unmatched.dir/src/age_screen.cpp.obj"
-	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/unmatched.dir/src/age_screen.cpp.obj -MF CMakeFiles\unmatched.dir\src\age_screen.cpp.obj.d -o CMakeFiles\unmatched.dir\src\age_screen.cpp.obj -c E:\assassins\new\unmatched\src\age_screen.cpp
-
-CMakeFiles/unmatched.dir/src/age_screen.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/unmatched.dir/src/age_screen.cpp.i"
-	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\assassins\new\unmatched\src\age_screen.cpp > CMakeFiles\unmatched.dir\src\age_screen.cpp.i
-
-CMakeFiles/unmatched.dir/src/age_screen.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/unmatched.dir/src/age_screen.cpp.s"
-	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\assassins\new\unmatched\src\age_screen.cpp -o CMakeFiles\unmatched.dir\src\age_screen.cpp.s
-
-CMakeFiles/unmatched.dir/src/hero_selection.cpp.obj: CMakeFiles/unmatched.dir/flags.make
-CMakeFiles/unmatched.dir/src/hero_selection.cpp.obj: CMakeFiles/unmatched.dir/includes_CXX.rsp
-CMakeFiles/unmatched.dir/src/hero_selection.cpp.obj: E:/assassins/new/unmatched/src/hero_selection.cpp
-CMakeFiles/unmatched.dir/src/hero_selection.cpp.obj: CMakeFiles/unmatched.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/unmatched.dir/src/hero_selection.cpp.obj"
-	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/unmatched.dir/src/hero_selection.cpp.obj -MF CMakeFiles\unmatched.dir\src\hero_selection.cpp.obj.d -o CMakeFiles\unmatched.dir\src\hero_selection.cpp.obj -c E:\assassins\new\unmatched\src\hero_selection.cpp
-
-CMakeFiles/unmatched.dir/src/hero_selection.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/unmatched.dir/src/hero_selection.cpp.i"
-	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\assassins\new\unmatched\src\hero_selection.cpp > CMakeFiles\unmatched.dir\src\hero_selection.cpp.i
-
-CMakeFiles/unmatched.dir/src/hero_selection.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/unmatched.dir/src/hero_selection.cpp.s"
-	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\assassins\new\unmatched\src\hero_selection.cpp -o CMakeFiles\unmatched.dir\src\hero_selection.cpp.s
-
 CMakeFiles/unmatched.dir/src/card.cpp.obj: CMakeFiles/unmatched.dir/flags.make
 CMakeFiles/unmatched.dir/src/card.cpp.obj: CMakeFiles/unmatched.dir/includes_CXX.rsp
 CMakeFiles/unmatched.dir/src/card.cpp.obj: E:/assassins/new/unmatched/src/card.cpp
 CMakeFiles/unmatched.dir/src/card.cpp.obj: CMakeFiles/unmatched.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/unmatched.dir/src/card.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/unmatched.dir/src/card.cpp.obj"
 	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/unmatched.dir/src/card.cpp.obj -MF CMakeFiles\unmatched.dir\src\card.cpp.obj.d -o CMakeFiles\unmatched.dir\src\card.cpp.obj -c E:\assassins\new\unmatched\src\card.cpp
 
 CMakeFiles/unmatched.dir/src/card.cpp.i: cmake_force
@@ -150,7 +105,7 @@ CMakeFiles/unmatched.dir/src/character.cpp.obj: CMakeFiles/unmatched.dir/flags.m
 CMakeFiles/unmatched.dir/src/character.cpp.obj: CMakeFiles/unmatched.dir/includes_CXX.rsp
 CMakeFiles/unmatched.dir/src/character.cpp.obj: E:/assassins/new/unmatched/src/character.cpp
 CMakeFiles/unmatched.dir/src/character.cpp.obj: CMakeFiles/unmatched.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/unmatched.dir/src/character.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/unmatched.dir/src/character.cpp.obj"
 	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/unmatched.dir/src/character.cpp.obj -MF CMakeFiles\unmatched.dir\src\character.cpp.obj.d -o CMakeFiles\unmatched.dir\src\character.cpp.obj -c E:\assassins\new\unmatched\src\character.cpp
 
 CMakeFiles/unmatched.dir/src/character.cpp.i: cmake_force
@@ -165,7 +120,7 @@ CMakeFiles/unmatched.dir/src/deck.cpp.obj: CMakeFiles/unmatched.dir/flags.make
 CMakeFiles/unmatched.dir/src/deck.cpp.obj: CMakeFiles/unmatched.dir/includes_CXX.rsp
 CMakeFiles/unmatched.dir/src/deck.cpp.obj: E:/assassins/new/unmatched/src/deck.cpp
 CMakeFiles/unmatched.dir/src/deck.cpp.obj: CMakeFiles/unmatched.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/unmatched.dir/src/deck.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/unmatched.dir/src/deck.cpp.obj"
 	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/unmatched.dir/src/deck.cpp.obj -MF CMakeFiles\unmatched.dir\src\deck.cpp.obj.d -o CMakeFiles\unmatched.dir\src\deck.cpp.obj -c E:\assassins\new\unmatched\src\deck.cpp
 
 CMakeFiles/unmatched.dir/src/deck.cpp.i: cmake_force
@@ -180,7 +135,7 @@ CMakeFiles/unmatched.dir/src/deck-builder.cpp.obj: CMakeFiles/unmatched.dir/flag
 CMakeFiles/unmatched.dir/src/deck-builder.cpp.obj: CMakeFiles/unmatched.dir/includes_CXX.rsp
 CMakeFiles/unmatched.dir/src/deck-builder.cpp.obj: E:/assassins/new/unmatched/src/deck-builder.cpp
 CMakeFiles/unmatched.dir/src/deck-builder.cpp.obj: CMakeFiles/unmatched.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/unmatched.dir/src/deck-builder.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/unmatched.dir/src/deck-builder.cpp.obj"
 	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/unmatched.dir/src/deck-builder.cpp.obj -MF CMakeFiles\unmatched.dir\src\deck-builder.cpp.obj.d -o CMakeFiles\unmatched.dir\src\deck-builder.cpp.obj -c E:\assassins\new\unmatched\src\deck-builder.cpp
 
 CMakeFiles/unmatched.dir/src/deck-builder.cpp.i: cmake_force
@@ -195,7 +150,7 @@ CMakeFiles/unmatched.dir/src/deployment.cpp.obj: CMakeFiles/unmatched.dir/flags.
 CMakeFiles/unmatched.dir/src/deployment.cpp.obj: CMakeFiles/unmatched.dir/includes_CXX.rsp
 CMakeFiles/unmatched.dir/src/deployment.cpp.obj: E:/assassins/new/unmatched/src/deployment.cpp
 CMakeFiles/unmatched.dir/src/deployment.cpp.obj: CMakeFiles/unmatched.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/unmatched.dir/src/deployment.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/unmatched.dir/src/deployment.cpp.obj"
 	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/unmatched.dir/src/deployment.cpp.obj -MF CMakeFiles\unmatched.dir\src\deployment.cpp.obj.d -o CMakeFiles\unmatched.dir\src\deployment.cpp.obj -c E:\assassins\new\unmatched\src\deployment.cpp
 
 CMakeFiles/unmatched.dir/src/deployment.cpp.i: cmake_force
@@ -210,7 +165,7 @@ CMakeFiles/unmatched.dir/src/dracula_cards.cpp.obj: CMakeFiles/unmatched.dir/fla
 CMakeFiles/unmatched.dir/src/dracula_cards.cpp.obj: CMakeFiles/unmatched.dir/includes_CXX.rsp
 CMakeFiles/unmatched.dir/src/dracula_cards.cpp.obj: E:/assassins/new/unmatched/src/dracula_cards.cpp
 CMakeFiles/unmatched.dir/src/dracula_cards.cpp.obj: CMakeFiles/unmatched.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/unmatched.dir/src/dracula_cards.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/unmatched.dir/src/dracula_cards.cpp.obj"
 	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/unmatched.dir/src/dracula_cards.cpp.obj -MF CMakeFiles\unmatched.dir\src\dracula_cards.cpp.obj.d -o CMakeFiles\unmatched.dir\src\dracula_cards.cpp.obj -c E:\assassins\new\unmatched\src\dracula_cards.cpp
 
 CMakeFiles/unmatched.dir/src/dracula_cards.cpp.i: cmake_force
@@ -225,7 +180,7 @@ CMakeFiles/unmatched.dir/src/dracula.cpp.obj: CMakeFiles/unmatched.dir/flags.mak
 CMakeFiles/unmatched.dir/src/dracula.cpp.obj: CMakeFiles/unmatched.dir/includes_CXX.rsp
 CMakeFiles/unmatched.dir/src/dracula.cpp.obj: E:/assassins/new/unmatched/src/dracula.cpp
 CMakeFiles/unmatched.dir/src/dracula.cpp.obj: CMakeFiles/unmatched.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/unmatched.dir/src/dracula.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/unmatched.dir/src/dracula.cpp.obj"
 	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/unmatched.dir/src/dracula.cpp.obj -MF CMakeFiles\unmatched.dir\src\dracula.cpp.obj.d -o CMakeFiles\unmatched.dir\src\dracula.cpp.obj -c E:\assassins\new\unmatched\src\dracula.cpp
 
 CMakeFiles/unmatched.dir/src/dracula.cpp.i: cmake_force
@@ -240,7 +195,7 @@ CMakeFiles/unmatched.dir/src/game.cpp.obj: CMakeFiles/unmatched.dir/flags.make
 CMakeFiles/unmatched.dir/src/game.cpp.obj: CMakeFiles/unmatched.dir/includes_CXX.rsp
 CMakeFiles/unmatched.dir/src/game.cpp.obj: E:/assassins/new/unmatched/src/game.cpp
 CMakeFiles/unmatched.dir/src/game.cpp.obj: CMakeFiles/unmatched.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/unmatched.dir/src/game.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/unmatched.dir/src/game.cpp.obj"
 	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/unmatched.dir/src/game.cpp.obj -MF CMakeFiles\unmatched.dir\src\game.cpp.obj.d -o CMakeFiles\unmatched.dir\src\game.cpp.obj -c E:\assassins\new\unmatched\src\game.cpp
 
 CMakeFiles/unmatched.dir/src/game.cpp.i: cmake_force
@@ -255,7 +210,7 @@ CMakeFiles/unmatched.dir/src/game_manager.cpp.obj: CMakeFiles/unmatched.dir/flag
 CMakeFiles/unmatched.dir/src/game_manager.cpp.obj: CMakeFiles/unmatched.dir/includes_CXX.rsp
 CMakeFiles/unmatched.dir/src/game_manager.cpp.obj: E:/assassins/new/unmatched/src/game_manager.cpp
 CMakeFiles/unmatched.dir/src/game_manager.cpp.obj: CMakeFiles/unmatched.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/unmatched.dir/src/game_manager.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/unmatched.dir/src/game_manager.cpp.obj"
 	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/unmatched.dir/src/game_manager.cpp.obj -MF CMakeFiles\unmatched.dir\src\game_manager.cpp.obj.d -o CMakeFiles\unmatched.dir\src\game_manager.cpp.obj -c E:\assassins\new\unmatched\src\game_manager.cpp
 
 CMakeFiles/unmatched.dir/src/game_manager.cpp.i: cmake_force
@@ -270,7 +225,7 @@ CMakeFiles/unmatched.dir/src/hero.cpp.obj: CMakeFiles/unmatched.dir/flags.make
 CMakeFiles/unmatched.dir/src/hero.cpp.obj: CMakeFiles/unmatched.dir/includes_CXX.rsp
 CMakeFiles/unmatched.dir/src/hero.cpp.obj: E:/assassins/new/unmatched/src/hero.cpp
 CMakeFiles/unmatched.dir/src/hero.cpp.obj: CMakeFiles/unmatched.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/unmatched.dir/src/hero.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/unmatched.dir/src/hero.cpp.obj"
 	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/unmatched.dir/src/hero.cpp.obj -MF CMakeFiles\unmatched.dir\src\hero.cpp.obj.d -o CMakeFiles\unmatched.dir\src\hero.cpp.obj -c E:\assassins\new\unmatched\src\hero.cpp
 
 CMakeFiles/unmatched.dir/src/hero.cpp.i: cmake_force
@@ -285,7 +240,7 @@ CMakeFiles/unmatched.dir/src/map.cpp.obj: CMakeFiles/unmatched.dir/flags.make
 CMakeFiles/unmatched.dir/src/map.cpp.obj: CMakeFiles/unmatched.dir/includes_CXX.rsp
 CMakeFiles/unmatched.dir/src/map.cpp.obj: E:/assassins/new/unmatched/src/map.cpp
 CMakeFiles/unmatched.dir/src/map.cpp.obj: CMakeFiles/unmatched.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/unmatched.dir/src/map.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/unmatched.dir/src/map.cpp.obj"
 	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/unmatched.dir/src/map.cpp.obj -MF CMakeFiles\unmatched.dir\src\map.cpp.obj.d -o CMakeFiles\unmatched.dir\src\map.cpp.obj -c E:\assassins\new\unmatched\src\map.cpp
 
 CMakeFiles/unmatched.dir/src/map.cpp.i: cmake_force
@@ -300,7 +255,7 @@ CMakeFiles/unmatched.dir/src/movement.cpp.obj: CMakeFiles/unmatched.dir/flags.ma
 CMakeFiles/unmatched.dir/src/movement.cpp.obj: CMakeFiles/unmatched.dir/includes_CXX.rsp
 CMakeFiles/unmatched.dir/src/movement.cpp.obj: E:/assassins/new/unmatched/src/movement.cpp
 CMakeFiles/unmatched.dir/src/movement.cpp.obj: CMakeFiles/unmatched.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/unmatched.dir/src/movement.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/unmatched.dir/src/movement.cpp.obj"
 	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/unmatched.dir/src/movement.cpp.obj -MF CMakeFiles\unmatched.dir\src\movement.cpp.obj.d -o CMakeFiles\unmatched.dir\src\movement.cpp.obj -c E:\assassins\new\unmatched\src\movement.cpp
 
 CMakeFiles/unmatched.dir/src/movement.cpp.i: cmake_force
@@ -315,7 +270,7 @@ CMakeFiles/unmatched.dir/src/sherlock.cpp.obj: CMakeFiles/unmatched.dir/flags.ma
 CMakeFiles/unmatched.dir/src/sherlock.cpp.obj: CMakeFiles/unmatched.dir/includes_CXX.rsp
 CMakeFiles/unmatched.dir/src/sherlock.cpp.obj: E:/assassins/new/unmatched/src/sherlock.cpp
 CMakeFiles/unmatched.dir/src/sherlock.cpp.obj: CMakeFiles/unmatched.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/unmatched.dir/src/sherlock.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/unmatched.dir/src/sherlock.cpp.obj"
 	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/unmatched.dir/src/sherlock.cpp.obj -MF CMakeFiles\unmatched.dir\src\sherlock.cpp.obj.d -o CMakeFiles\unmatched.dir\src\sherlock.cpp.obj -c E:\assassins\new\unmatched\src\sherlock.cpp
 
 CMakeFiles/unmatched.dir/src/sherlock.cpp.i: cmake_force
@@ -330,7 +285,7 @@ CMakeFiles/unmatched.dir/src/sherlock_card.cpp.obj: CMakeFiles/unmatched.dir/fla
 CMakeFiles/unmatched.dir/src/sherlock_card.cpp.obj: CMakeFiles/unmatched.dir/includes_CXX.rsp
 CMakeFiles/unmatched.dir/src/sherlock_card.cpp.obj: E:/assassins/new/unmatched/src/sherlock_card.cpp
 CMakeFiles/unmatched.dir/src/sherlock_card.cpp.obj: CMakeFiles/unmatched.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/unmatched.dir/src/sherlock_card.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/unmatched.dir/src/sherlock_card.cpp.obj"
 	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/unmatched.dir/src/sherlock_card.cpp.obj -MF CMakeFiles\unmatched.dir\src\sherlock_card.cpp.obj.d -o CMakeFiles\unmatched.dir\src\sherlock_card.cpp.obj -c E:\assassins\new\unmatched\src\sherlock_card.cpp
 
 CMakeFiles/unmatched.dir/src/sherlock_card.cpp.i: cmake_force
@@ -345,7 +300,7 @@ CMakeFiles/unmatched.dir/src/sidekick.cpp.obj: CMakeFiles/unmatched.dir/flags.ma
 CMakeFiles/unmatched.dir/src/sidekick.cpp.obj: CMakeFiles/unmatched.dir/includes_CXX.rsp
 CMakeFiles/unmatched.dir/src/sidekick.cpp.obj: E:/assassins/new/unmatched/src/sidekick.cpp
 CMakeFiles/unmatched.dir/src/sidekick.cpp.obj: CMakeFiles/unmatched.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/unmatched.dir/src/sidekick.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/unmatched.dir/src/sidekick.cpp.obj"
 	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/unmatched.dir/src/sidekick.cpp.obj -MF CMakeFiles\unmatched.dir\src\sidekick.cpp.obj.d -o CMakeFiles\unmatched.dir\src\sidekick.cpp.obj -c E:\assassins\new\unmatched\src\sidekick.cpp
 
 CMakeFiles/unmatched.dir/src/sidekick.cpp.i: cmake_force
@@ -360,7 +315,7 @@ CMakeFiles/unmatched.dir/src/sister.cpp.obj: CMakeFiles/unmatched.dir/flags.make
 CMakeFiles/unmatched.dir/src/sister.cpp.obj: CMakeFiles/unmatched.dir/includes_CXX.rsp
 CMakeFiles/unmatched.dir/src/sister.cpp.obj: E:/assassins/new/unmatched/src/sister.cpp
 CMakeFiles/unmatched.dir/src/sister.cpp.obj: CMakeFiles/unmatched.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/unmatched.dir/src/sister.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/unmatched.dir/src/sister.cpp.obj"
 	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/unmatched.dir/src/sister.cpp.obj -MF CMakeFiles\unmatched.dir\src\sister.cpp.obj.d -o CMakeFiles\unmatched.dir\src\sister.cpp.obj -c E:\assassins\new\unmatched\src\sister.cpp
 
 CMakeFiles/unmatched.dir/src/sister.cpp.i: cmake_force
@@ -375,7 +330,7 @@ CMakeFiles/unmatched.dir/src/turn_manager.cpp.obj: CMakeFiles/unmatched.dir/flag
 CMakeFiles/unmatched.dir/src/turn_manager.cpp.obj: CMakeFiles/unmatched.dir/includes_CXX.rsp
 CMakeFiles/unmatched.dir/src/turn_manager.cpp.obj: E:/assassins/new/unmatched/src/turn_manager.cpp
 CMakeFiles/unmatched.dir/src/turn_manager.cpp.obj: CMakeFiles/unmatched.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/unmatched.dir/src/turn_manager.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/unmatched.dir/src/turn_manager.cpp.obj"
 	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/unmatched.dir/src/turn_manager.cpp.obj -MF CMakeFiles\unmatched.dir\src\turn_manager.cpp.obj.d -o CMakeFiles\unmatched.dir\src\turn_manager.cpp.obj -c E:\assassins\new\unmatched\src\turn_manager.cpp
 
 CMakeFiles/unmatched.dir/src/turn_manager.cpp.i: cmake_force
@@ -390,7 +345,7 @@ CMakeFiles/unmatched.dir/src/watson.cpp.obj: CMakeFiles/unmatched.dir/flags.make
 CMakeFiles/unmatched.dir/src/watson.cpp.obj: CMakeFiles/unmatched.dir/includes_CXX.rsp
 CMakeFiles/unmatched.dir/src/watson.cpp.obj: E:/assassins/new/unmatched/src/watson.cpp
 CMakeFiles/unmatched.dir/src/watson.cpp.obj: CMakeFiles/unmatched.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/unmatched.dir/src/watson.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/unmatched.dir/src/watson.cpp.obj"
 	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/unmatched.dir/src/watson.cpp.obj -MF CMakeFiles\unmatched.dir\src\watson.cpp.obj.d -o CMakeFiles\unmatched.dir\src\watson.cpp.obj -c E:\assassins\new\unmatched\src\watson.cpp
 
 CMakeFiles/unmatched.dir/src/watson.cpp.i: cmake_force
@@ -401,12 +356,69 @@ CMakeFiles/unmatched.dir/src/watson.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/unmatched.dir/src/watson.cpp.s"
 	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\assassins\new\unmatched\src\watson.cpp -o CMakeFiles\unmatched.dir\src\watson.cpp.s
 
+CMakeFiles/unmatched.dir/src/menu.cpp.obj: CMakeFiles/unmatched.dir/flags.make
+CMakeFiles/unmatched.dir/src/menu.cpp.obj: CMakeFiles/unmatched.dir/includes_CXX.rsp
+CMakeFiles/unmatched.dir/src/menu.cpp.obj: E:/assassins/new/unmatched/src/menu.cpp
+CMakeFiles/unmatched.dir/src/menu.cpp.obj: CMakeFiles/unmatched.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/unmatched.dir/src/menu.cpp.obj"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/unmatched.dir/src/menu.cpp.obj -MF CMakeFiles\unmatched.dir\src\menu.cpp.obj.d -o CMakeFiles\unmatched.dir\src\menu.cpp.obj -c E:\assassins\new\unmatched\src\menu.cpp
+
+CMakeFiles/unmatched.dir/src/menu.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/unmatched.dir/src/menu.cpp.i"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\assassins\new\unmatched\src\menu.cpp > CMakeFiles\unmatched.dir\src\menu.cpp.i
+
+CMakeFiles/unmatched.dir/src/menu.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/unmatched.dir/src/menu.cpp.s"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\assassins\new\unmatched\src\menu.cpp -o CMakeFiles\unmatched.dir\src\menu.cpp.s
+
+CMakeFiles/unmatched.dir/src/age_screen.cpp.obj: CMakeFiles/unmatched.dir/flags.make
+CMakeFiles/unmatched.dir/src/age_screen.cpp.obj: CMakeFiles/unmatched.dir/includes_CXX.rsp
+CMakeFiles/unmatched.dir/src/age_screen.cpp.obj: E:/assassins/new/unmatched/src/age_screen.cpp
+CMakeFiles/unmatched.dir/src/age_screen.cpp.obj: CMakeFiles/unmatched.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/unmatched.dir/src/age_screen.cpp.obj"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/unmatched.dir/src/age_screen.cpp.obj -MF CMakeFiles\unmatched.dir\src\age_screen.cpp.obj.d -o CMakeFiles\unmatched.dir\src\age_screen.cpp.obj -c E:\assassins\new\unmatched\src\age_screen.cpp
+
+CMakeFiles/unmatched.dir/src/age_screen.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/unmatched.dir/src/age_screen.cpp.i"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\assassins\new\unmatched\src\age_screen.cpp > CMakeFiles\unmatched.dir\src\age_screen.cpp.i
+
+CMakeFiles/unmatched.dir/src/age_screen.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/unmatched.dir/src/age_screen.cpp.s"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\assassins\new\unmatched\src\age_screen.cpp -o CMakeFiles\unmatched.dir\src\age_screen.cpp.s
+
+CMakeFiles/unmatched.dir/src/hero_selection.cpp.obj: CMakeFiles/unmatched.dir/flags.make
+CMakeFiles/unmatched.dir/src/hero_selection.cpp.obj: CMakeFiles/unmatched.dir/includes_CXX.rsp
+CMakeFiles/unmatched.dir/src/hero_selection.cpp.obj: E:/assassins/new/unmatched/src/hero_selection.cpp
+CMakeFiles/unmatched.dir/src/hero_selection.cpp.obj: CMakeFiles/unmatched.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/unmatched.dir/src/hero_selection.cpp.obj"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/unmatched.dir/src/hero_selection.cpp.obj -MF CMakeFiles\unmatched.dir\src\hero_selection.cpp.obj.d -o CMakeFiles\unmatched.dir\src\hero_selection.cpp.obj -c E:\assassins\new\unmatched\src\hero_selection.cpp
+
+CMakeFiles/unmatched.dir/src/hero_selection.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/unmatched.dir/src/hero_selection.cpp.i"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\assassins\new\unmatched\src\hero_selection.cpp > CMakeFiles\unmatched.dir\src\hero_selection.cpp.i
+
+CMakeFiles/unmatched.dir/src/hero_selection.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/unmatched.dir/src/hero_selection.cpp.s"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\assassins\new\unmatched\src\hero_selection.cpp -o CMakeFiles\unmatched.dir\src\hero_selection.cpp.s
+
+CMakeFiles/unmatched.dir/src/raylib.cpp.obj: CMakeFiles/unmatched.dir/flags.make
+CMakeFiles/unmatched.dir/src/raylib.cpp.obj: CMakeFiles/unmatched.dir/includes_CXX.rsp
+CMakeFiles/unmatched.dir/src/raylib.cpp.obj: E:/assassins/new/unmatched/src/raylib.cpp
+CMakeFiles/unmatched.dir/src/raylib.cpp.obj: CMakeFiles/unmatched.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/unmatched.dir/src/raylib.cpp.obj"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/unmatched.dir/src/raylib.cpp.obj -MF CMakeFiles\unmatched.dir\src\raylib.cpp.obj.d -o CMakeFiles\unmatched.dir\src\raylib.cpp.obj -c E:\assassins\new\unmatched\src\raylib.cpp
+
+CMakeFiles/unmatched.dir/src/raylib.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/unmatched.dir/src/raylib.cpp.i"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\assassins\new\unmatched\src\raylib.cpp > CMakeFiles\unmatched.dir\src\raylib.cpp.i
+
+CMakeFiles/unmatched.dir/src/raylib.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/unmatched.dir/src/raylib.cpp.s"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\assassins\new\unmatched\src\raylib.cpp -o CMakeFiles\unmatched.dir\src\raylib.cpp.s
+
 # Object files for target unmatched
 unmatched_OBJECTS = \
 "CMakeFiles/unmatched.dir/main.cpp.obj" \
-"CMakeFiles/unmatched.dir/src/menu.cpp.obj" \
-"CMakeFiles/unmatched.dir/src/age_screen.cpp.obj" \
-"CMakeFiles/unmatched.dir/src/hero_selection.cpp.obj" \
 "CMakeFiles/unmatched.dir/src/card.cpp.obj" \
 "CMakeFiles/unmatched.dir/src/character.cpp.obj" \
 "CMakeFiles/unmatched.dir/src/deck.cpp.obj" \
@@ -424,15 +436,16 @@ unmatched_OBJECTS = \
 "CMakeFiles/unmatched.dir/src/sidekick.cpp.obj" \
 "CMakeFiles/unmatched.dir/src/sister.cpp.obj" \
 "CMakeFiles/unmatched.dir/src/turn_manager.cpp.obj" \
-"CMakeFiles/unmatched.dir/src/watson.cpp.obj"
+"CMakeFiles/unmatched.dir/src/watson.cpp.obj" \
+"CMakeFiles/unmatched.dir/src/menu.cpp.obj" \
+"CMakeFiles/unmatched.dir/src/age_screen.cpp.obj" \
+"CMakeFiles/unmatched.dir/src/hero_selection.cpp.obj" \
+"CMakeFiles/unmatched.dir/src/raylib.cpp.obj"
 
 # External object files for target unmatched
 unmatched_EXTERNAL_OBJECTS =
 
 unmatched.exe: CMakeFiles/unmatched.dir/main.cpp.obj
-unmatched.exe: CMakeFiles/unmatched.dir/src/menu.cpp.obj
-unmatched.exe: CMakeFiles/unmatched.dir/src/age_screen.cpp.obj
-unmatched.exe: CMakeFiles/unmatched.dir/src/hero_selection.cpp.obj
 unmatched.exe: CMakeFiles/unmatched.dir/src/card.cpp.obj
 unmatched.exe: CMakeFiles/unmatched.dir/src/character.cpp.obj
 unmatched.exe: CMakeFiles/unmatched.dir/src/deck.cpp.obj
@@ -451,17 +464,17 @@ unmatched.exe: CMakeFiles/unmatched.dir/src/sidekick.cpp.obj
 unmatched.exe: CMakeFiles/unmatched.dir/src/sister.cpp.obj
 unmatched.exe: CMakeFiles/unmatched.dir/src/turn_manager.cpp.obj
 unmatched.exe: CMakeFiles/unmatched.dir/src/watson.cpp.obj
+unmatched.exe: CMakeFiles/unmatched.dir/src/menu.cpp.obj
+unmatched.exe: CMakeFiles/unmatched.dir/src/age_screen.cpp.obj
+unmatched.exe: CMakeFiles/unmatched.dir/src/hero_selection.cpp.obj
+unmatched.exe: CMakeFiles/unmatched.dir/src/raylib.cpp.obj
 unmatched.exe: CMakeFiles/unmatched.dir/build.make
-unmatched.exe: _deps/ftxui-build/libftxui-screen.a
-unmatched.exe: _deps/ftxui-build/libftxui-dom.a
-unmatched.exe: _deps/ftxui-build/libftxui-component.a
-unmatched.exe: C:/msys64/ucrt64/lib/libraylib.dll.a
-unmatched.exe: _deps/ftxui-build/libftxui-dom.a
-unmatched.exe: _deps/ftxui-build/libftxui-screen.a
+unmatched.exe: _deps/raylib-build/raylib/libraylib.a
+unmatched.exe: _deps/raylib-build/raylib/external/glfw/src/libglfw3.a
 unmatched.exe: CMakeFiles/unmatched.dir/linkLibs.rsp
 unmatched.exe: CMakeFiles/unmatched.dir/objects1.rsp
 unmatched.exe: CMakeFiles/unmatched.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Linking CXX executable unmatched.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=E:\assassins\new\unmatched\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Linking CXX executable unmatched.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\unmatched.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

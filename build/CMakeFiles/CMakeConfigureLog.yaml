@@ -3833,3 +3833,115 @@ events:
         - "C:/msys64/ucrt64"
         - "C:/Program Files (x86)/unmatched"
 ...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/msys64/ucrt64/share/cmake/Modules/Internal/CheckSourceCompiles.cmake:81 (try_compile)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/Internal/CheckCompilerFlag.cmake:18 (cmake_check_source_compiles)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/CheckCCompilerFlag.cmake:105 (cmake_check_compiler_flag)"
+      - "build/_deps/raylib-src/cmake/AddIfFlagCompiles.cmake:3 (CHECK_C_COMPILER_FLAG)"
+      - "build/_deps/raylib-src/cmake/CompilerFlags.cmake:5 (add_if_flag_compiles)"
+      - "build/_deps/raylib-src/CMakeLists.txt:29 (include)"
+    checks:
+      - "Performing Test COMPILER_HAS_THOSE_TOGGLES"
+    directories:
+      source: "E:/assassins/new/unmatched/build/CMakeFiles/CMakeScratch/TryCompile-jfuj25"
+      binary: "E:/assassins/new/unmatched/build/CMakeFiles/CMakeScratch/TryCompile-jfuj25"
+    cmakeVariables:
+      CMAKE_CXX_STDLIB_MODULES_JSON: ""
+      CMAKE_C_FLAGS: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "E:/assassins/new/unmatched/build/_deps/raylib-src/cmake"
+    buildResult:
+      variable: "COMPILER_HAS_THOSE_TOGGLES"
+      cached: true
+      stdout: |
+        Change Dir: 'E:/assassins/new/unmatched/build/CMakeFiles/CMakeScratch/TryCompile-jfuj25'
+        
+        Run Build Command(s): C:/msys64/ucrt64/bin/cmake.exe -E env VERBOSE=1 C:/msys64/ucrt64/bin/mingw32-make.exe -f Makefile cmTC_68527/fast
+        C:/msys64/ucrt64/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_68527.dir\\build.make CMakeFiles/cmTC_68527.dir/build
+        mingw32-make[1]: Entering directory 'E:/assassins/new/unmatched/build/CMakeFiles/CMakeScratch/TryCompile-jfuj25'
+        Building C object CMakeFiles/cmTC_68527.dir/src.c.obj
+        C:\\msys64\\ucrt64\\bin\\gcc.exe -DCOMPILER_HAS_THOSE_TOGGLES  -Werror=pointer-arith -o CMakeFiles\\cmTC_68527.dir\\src.c.obj -c E:\\assassins\\new\\unmatched\\build\\CMakeFiles\\CMakeScratch\\TryCompile-jfuj25\\src.c
+        Linking C executable cmTC_68527.exe
+        C:\\msys64\\ucrt64\\bin\\cmake.exe -E cmake_link_script CMakeFiles\\cmTC_68527.dir\\link.txt --verbose=1
+        C:\\msys64\\ucrt64\\bin\\cmake.exe -E rm -f CMakeFiles\\cmTC_68527.dir/objects.a
+        C:\\msys64\\ucrt64\\bin\\ar.exe qc CMakeFiles\\cmTC_68527.dir/objects.a @CMakeFiles\\cmTC_68527.dir\\objects1.rsp
+        C:\\msys64\\ucrt64\\bin\\gcc.exe -Wl,--whole-archive CMakeFiles\\cmTC_68527.dir/objects.a -Wl,--no-whole-archive -o cmTC_68527.exe -Wl,--out-implib,libcmTC_68527.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\\cmTC_68527.dir\\linkLibs.rsp
+        mingw32-make[1]: Leaving directory 'E:/assassins/new/unmatched/build/CMakeFiles/CMakeScratch/TryCompile-jfuj25'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/msys64/ucrt64/share/cmake/Modules/CheckIncludeFile.cmake:157 (try_compile)"
+      - "build/_deps/raylib-src/src/external/glfw/src/CMakeLists.txt:291 (check_include_file)"
+    checks:
+      - "Looking for dinput.h"
+    directories:
+      source: "E:/assassins/new/unmatched/build/CMakeFiles/CMakeScratch/TryCompile-gnwq0i"
+      binary: "E:/assassins/new/unmatched/build/CMakeFiles/CMakeScratch/TryCompile-gnwq0i"
+    cmakeVariables:
+      CMAKE_CXX_STDLIB_MODULES_JSON: ""
+      CMAKE_C_FLAGS: "-fno-strict-aliasing -Werror=implicit-function-declaration -Werror=pointer-arith "
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "E:/assassins/new/unmatched/build/_deps/raylib-src/cmake;E:/assassins/new/unmatched/build/_deps/raylib-src/src/external/glfw/CMake/modules"
+    buildResult:
+      variable: "DINPUT_H_FOUND"
+      cached: true
+      stdout: |
+        Change Dir: 'E:/assassins/new/unmatched/build/CMakeFiles/CMakeScratch/TryCompile-gnwq0i'
+        
+        Run Build Command(s): C:/msys64/ucrt64/bin/cmake.exe -E env VERBOSE=1 C:/msys64/ucrt64/bin/mingw32-make.exe -f Makefile cmTC_df245/fast
+        C:/msys64/ucrt64/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_df245.dir\\build.make CMakeFiles/cmTC_df245.dir/build
+        mingw32-make[1]: Entering directory 'E:/assassins/new/unmatched/build/CMakeFiles/CMakeScratch/TryCompile-gnwq0i'
+        Building C object CMakeFiles/cmTC_df245.dir/CheckIncludeFile.c.obj
+        C:\\msys64\\ucrt64\\bin\\gcc.exe   -fno-strict-aliasing -Werror=implicit-function-declaration -Werror=pointer-arith   -std=gnu99 -o CMakeFiles\\cmTC_df245.dir\\CheckIncludeFile.c.obj -c E:\\assassins\\new\\unmatched\\build\\CMakeFiles\\CMakeScratch\\TryCompile-gnwq0i\\CheckIncludeFile.c
+        Linking C executable cmTC_df245.exe
+        C:\\msys64\\ucrt64\\bin\\cmake.exe -E cmake_link_script CMakeFiles\\cmTC_df245.dir\\link.txt --verbose=1
+        C:\\msys64\\ucrt64\\bin\\cmake.exe -E rm -f CMakeFiles\\cmTC_df245.dir/objects.a
+        C:\\msys64\\ucrt64\\bin\\ar.exe qc CMakeFiles\\cmTC_df245.dir/objects.a @CMakeFiles\\cmTC_df245.dir\\objects1.rsp
+        C:\\msys64\\ucrt64\\bin\\gcc.exe -fno-strict-aliasing -Werror=implicit-function-declaration -Werror=pointer-arith   -Wl,--whole-archive CMakeFiles\\cmTC_df245.dir/objects.a -Wl,--no-whole-archive -o cmTC_df245.exe -Wl,--out-implib,libcmTC_df245.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\\cmTC_df245.dir\\linkLibs.rsp
+        mingw32-make[1]: Leaving directory 'E:/assassins/new/unmatched/build/CMakeFiles/CMakeScratch/TryCompile-gnwq0i'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/msys64/ucrt64/share/cmake/Modules/CheckIncludeFile.cmake:157 (try_compile)"
+      - "build/_deps/raylib-src/src/external/glfw/src/CMakeLists.txt:292 (check_include_file)"
+    checks:
+      - "Looking for xinput.h"
+    directories:
+      source: "E:/assassins/new/unmatched/build/CMakeFiles/CMakeScratch/TryCompile-gtirsw"
+      binary: "E:/assassins/new/unmatched/build/CMakeFiles/CMakeScratch/TryCompile-gtirsw"
+    cmakeVariables:
+      CMAKE_CXX_STDLIB_MODULES_JSON: ""
+      CMAKE_C_FLAGS: "-fno-strict-aliasing -Werror=implicit-function-declaration -Werror=pointer-arith "
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "E:/assassins/new/unmatched/build/_deps/raylib-src/cmake;E:/assassins/new/unmatched/build/_deps/raylib-src/src/external/glfw/CMake/modules"
+    buildResult:
+      variable: "XINPUT_H_FOUND"
+      cached: true
+      stdout: |
+        Change Dir: 'E:/assassins/new/unmatched/build/CMakeFiles/CMakeScratch/TryCompile-gtirsw'
+        
+        Run Build Command(s): C:/msys64/ucrt64/bin/cmake.exe -E env VERBOSE=1 C:/msys64/ucrt64/bin/mingw32-make.exe -f Makefile cmTC_b8b06/fast
+        C:/msys64/ucrt64/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_b8b06.dir\\build.make CMakeFiles/cmTC_b8b06.dir/build
+        mingw32-make[1]: Entering directory 'E:/assassins/new/unmatched/build/CMakeFiles/CMakeScratch/TryCompile-gtirsw'
+        Building C object CMakeFiles/cmTC_b8b06.dir/CheckIncludeFile.c.obj
+        C:\\msys64\\ucrt64\\bin\\gcc.exe   -fno-strict-aliasing -Werror=implicit-function-declaration -Werror=pointer-arith   -std=gnu99 -o CMakeFiles\\cmTC_b8b06.dir\\CheckIncludeFile.c.obj -c E:\\assassins\\new\\unmatched\\build\\CMakeFiles\\CMakeScratch\\TryCompile-gtirsw\\CheckIncludeFile.c
+        Linking C executable cmTC_b8b06.exe
+        C:\\msys64\\ucrt64\\bin\\cmake.exe -E cmake_link_script CMakeFiles\\cmTC_b8b06.dir\\link.txt --verbose=1
+        C:\\msys64\\ucrt64\\bin\\cmake.exe -E rm -f CMakeFiles\\cmTC_b8b06.dir/objects.a
+        C:\\msys64\\ucrt64\\bin\\ar.exe qc CMakeFiles\\cmTC_b8b06.dir/objects.a @CMakeFiles\\cmTC_b8b06.dir\\objects1.rsp
+        C:\\msys64\\ucrt64\\bin\\gcc.exe -fno-strict-aliasing -Werror=implicit-function-declaration -Werror=pointer-arith   -Wl,--whole-archive CMakeFiles\\cmTC_b8b06.dir/objects.a -Wl,--no-whole-archive -o cmTC_b8b06.exe -Wl,--out-implib,libcmTC_b8b06.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\\cmTC_b8b06.dir\\linkLibs.rsp
+        mingw32-make[1]: Leaving directory 'E:/assassins/new/unmatched/build/CMakeFiles/CMakeScratch/TryCompile-gtirsw'
+        
+      exitCode: 0
+...

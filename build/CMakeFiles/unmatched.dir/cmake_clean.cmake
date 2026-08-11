@@ -31,6 +31,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/unmatched.dir/src/menu.cpp.obj.d"
   "CMakeFiles/unmatched.dir/src/movement.cpp.obj"
   "CMakeFiles/unmatched.dir/src/movement.cpp.obj.d"
+  "CMakeFiles/unmatched.dir/src/raylib.cpp.obj"
+  "CMakeFiles/unmatched.dir/src/raylib.cpp.obj.d"
   "CMakeFiles/unmatched.dir/src/sherlock.cpp.obj"
   "CMakeFiles/unmatched.dir/src/sherlock.cpp.obj.d"
   "CMakeFiles/unmatched.dir/src/sherlock_card.cpp.obj"

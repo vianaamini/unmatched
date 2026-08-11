@@ -3,42 +3,16 @@
 #include "age_screen.hpp"
 #include "hero_selection.hpp"
 #include "../include/map.hpp"
+#include "character.hpp"
+#include "hero.hpp"
+#include "dracula.hpp"
+#include "sherlock.hpp"
+#include "sister.hpp"
+#include "watson.hpp"
 #include "raylib.hpp"
 #include <iostream>
 #include <vector>
 #include <string>
-static Texture2D LoadTextureWithFallbacksForMain(const std::string& category, const std::vector<std::string>& filenames) {
-    std::vector<std::string> basePaths = {
-        "assets/",               
-        "assets/heroes/",        
-        "assets/images/",
-        "assest/",                
-        "assest/heroes/",
-        "../assets/",
-        "../assets/heroes/",
-        "build/assets/",
-        "build/assets/heroes/"
-    };
-
-    for (const auto& filename : filenames) {
-        for (const auto& basePath : basePaths) {
-            std::string fullPath = basePath + (category.empty() ? "" : category + "/") + filename;
-            
-            if (FileExists(fullPath.c_str())) {
-                Texture2D tex = LoadTexture(fullPath.c_str());
-                if (tex.id > 0) {
-                    SetTextureFilter(tex, TEXTURE_FILTER_BILINEAR);
-                    std::cout << "[SUCCESS] Loaded: " << fullPath << std::endl;
-                    return tex;
-                }
-            }
-        }
-    }
-    std::cout << "[ERROR] Could not find texture for: " << (filenames.empty() ? "" : filenames[0]) << std::endl;
-    return Texture2D{ 0 };
-}
-
-
 
 enum class GameState {
     MainMenu,
@@ -113,7 +87,7 @@ int main()
                     p2Hero = heroResult.player2Hero;
                     currentState = GameState::Playing;
                 }
-                else // Retreat / Reset
+                else // Retreat / Reset -> بازگشت به صفحه انتخاب سن
                 {
                     currentState = GameState::AgeSelection;
                 }
@@ -123,11 +97,28 @@ int main()
             case GameState::Playing:
             {
                 Board board;
+
+                // ساخت نمونه کاراکترها برای اجرای بازی
+                dracula* draculaPtr = new dracula();
+                sister* sister1Ptr = new sister(1);
+                sister* sister2Ptr = new sister(2);
+                sister* sister3Ptr = new sister(3);
+                sherlock* sherlockPtr = new sherlock();
+                watson* watsonPtr = new watson();
                 
-                RunGameUI(board); 
+                // اجرای صفحه گرافیکی اصلی رایلیب
+                RunGameUI(board, draculaPtr, sister1Ptr, sister2Ptr, sister3Ptr, sherlockPtr, watsonPtr);
+
+                // پاکسازی حافظه پس از اتمام بازی و بازگشت به منوی اصلی
+                delete draculaPtr;
+                delete sister1Ptr;
+                delete sister2Ptr;
+                delete sister3Ptr;
+                delete sherlockPtr;
+                delete watsonPtr;
+
                 currentState = GameState::MainMenu; 
                 break;
-
             }
 
             case GameState::Exit:
