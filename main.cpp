@@ -85,9 +85,13 @@ int main()
                 {
                     p1Hero = heroResult.player1Hero;
                     p2Hero = heroResult.player2Hero;
+                    
+                    // تنظیم دقیق نوبت‌دهی بر اساس خروجی
+                    firstPlayer = heroResult.firstPlayer; 
+
                     currentState = GameState::Playing;
                 }
-                else // Retreat / Reset -> بازگشت به صفحه انتخاب سن
+                else 
                 {
                     currentState = GameState::AgeSelection;
                 }
@@ -98,7 +102,6 @@ int main()
             {
                 Board board;
 
-                // ساخت نمونه کاراکترها برای اجرای بازی
                 dracula* draculaPtr = new dracula();
                 sister* sister1Ptr = new sister(1);
                 sister* sister2Ptr = new sister(2);
@@ -106,10 +109,9 @@ int main()
                 sherlock* sherlockPtr = new sherlock();
                 watson* watsonPtr = new watson();
                 
-                // اجرای صفحه گرافیکی اصلی رایلیب
-                RunGameUI(board, draculaPtr, sister1Ptr, sister2Ptr, sister3Ptr, sherlockPtr, watsonPtr);
+                // پاس دادن درست متغیر firstPlayer به محیط بازی
+                RunGameUI(board, draculaPtr, sister1Ptr, sister2Ptr, sister3Ptr, sherlockPtr, watsonPtr, firstPlayer);
 
-                // پاکسازی حافظه پس از اتمام بازی و بازگشت به منوی اصلی
                 delete draculaPtr;
                 delete sister1Ptr;
                 delete sister2Ptr;
@@ -120,7 +122,7 @@ int main()
                 currentState = GameState::MainMenu; 
                 break;
             }
-
+            
             case GameState::Exit:
                 break;
         }

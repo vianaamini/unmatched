@@ -80,9 +80,7 @@ HeroSelectionResult HeroSelection::show(int firstPlayer)
         for (int i = 0; i < 3; ++i)
         {
             bool hover = CheckCollisionPointRec(mouse, cards[i]);
-            bool alreadySelected = (i == selectedFirst || i == selectedSecond);
 
-            // قابلیت کلیک و انتخاب یا تغییر انتخاب
             if (hover && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
             {
                 if (!firstSelected)
@@ -98,7 +96,6 @@ HeroSelectionResult HeroSelection::show(int firstPlayer)
                 }
                 else
                 {
-                    // اگر هر دو انتخاب شده بودند و کاربر خواست دوباره از اول انتخاب کند، با کلیک روی کارت‌ها بازنشانی شود
                     selectedFirst = i;
                     selectedSecond = -1;
                     firstSelected = true;
@@ -124,7 +121,6 @@ HeroSelectionResult HeroSelection::show(int firstPlayer)
             return { HeroSelectionResultType::EnterGame, firstPlayer, player1Hero, player2Hero };
         }
 
-        // دکمه ریتریت: پاک کردن انتخاب‌ها بدون بستن پنجره تا کاربر بتواند دوباره هیرو انتخاب کند
         if (retreatHover && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
         {
             selectedFirst = -1;
