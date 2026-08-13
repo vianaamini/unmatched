@@ -39,7 +39,7 @@ Texture2D LoadTextureWithFallbacksForMain(const std::string& category, const std
     return Texture2D{ 0 };
 }
 
-void RunGameUI(Board& board, character* dracula, character* sis1Obj, character* sis2Obj, character* sis3Obj, character* sherlock, character* watson, int firstPlayer) {
+void RunGameUI(Board& board, character* dracula, character* sis1Obj, character* sis2Obj, character* sis3Obj, character* sherlock, character* watson, int firstPlayer, hero* draculaHero, hero* sherlockHero) {
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
     InitWindow(1366, 768, "Unmatched: Gothic Shadows");
     SetTargetFPS(60);
@@ -54,26 +54,36 @@ void RunGameUI(Board& board, character* dracula, character* sis1Obj, character* 
 
     int currentRound = 1;
     int activePlayerTurn = firstPlayer; 
+    bool showHandP1 = false;
+    bool showHandP2 = false;
 
     while (!WindowShouldClose()) {
         float sw = (float)GetScreenWidth();
         float sh = (float)GetScreenHeight();
 
-        // کمی بزرگ‌تر کردن پنل‌ها برای استفاده از فضای خالی
         Rectangle p1Panel = { sw * 0.015f, sh * 0.025f, sw * 0.20f, sh * 0.74f };
         Rectangle mapDest = { sw * 0.23f, sh * 0.025f, sw * 0.54f, sh * 0.74f };
         Rectangle p2Panel = { sw * 0.785f, sh * 0.025f, sw * 0.20f, sh * 0.74f };
 
         Rectangle endTurnButton = { p2Panel.x, p2Panel.y + p2Panel.height + 12, p2Panel.width, 48 };
+        Rectangle turnOrderBox = { p2Panel.x, endTurnButton.y + endTurnButton.height + 12, p2Panel.width, 78 };
+        Rectangle handBox = { p2Panel.x - p2Panel.width - 15, endTurnButton.y, p2Panel.width, endTurnButton.height + 12 + turnOrderBox.height };
 
         Vector2 mousePos = GetMousePosition();
-        if (CheckCollisionPointRec(mousePos, endTurnButton) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+        
+        // با زدن دکمه End Turn یا کلید Enter، نوبت جابجا شده و وضعیت نمایش هند برای بازیکن جدید ریست/تنظیم می‌شود
+        if ((CheckCollisionPointRec(mousePos, endTurnButton) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) || IsKeyPressed(KEY_ENTER)) {
             if (activePlayerTurn == 1) {
                 activePlayerTurn = 2; 
             } else {
                 activePlayerTurn = 1; 
                 currentRound++;
             }
+        }
+
+        if (CheckCollisionPointRec(mousePos, handBox) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+            if (activePlayerTurn == 1) showHandP1 = !showHandP1;
+            else showHandP2 = !showHandP2;
         }
 
         BeginDrawing();
@@ -84,13 +94,10 @@ void RunGameUI(Board& board, character* dracula, character* sis1Obj, character* 
         } else {
             DrawRectangleRec(mapDest, GetColor(0x0F0D12FF));
         }
-        // ضخامت بیشتر خط دور مپ (بولدتر کردن)
         DrawRectangleLinesEx(mapDest, 4, GetColor(0x342936FF));
         DrawRectangleLines((int)mapDest.x - 3, (int)mapDest.y - 3, (int)mapDest.width + 6, (int)mapDest.height + 6, GetColor(0x5A4B53FF));
 
-        // --- پنل بازیکن اول (دراکولا) ---
         DrawRectangleRec(p1Panel, GetColor(0x0B080CFF));
-        // ضخامت بیشتر حاشیه پنل (بولدتر)
         DrawRectangleLinesEx(p1Panel, 3, GetColor(0x7A1A24FF));
         DrawRectangleLines((int)p1Panel.x - 3, (int)p1Panel.y - 3, (int)p1Panel.width + 6, (int)p1Panel.height + 6, GetColor(0x361C22FF));
 
@@ -134,9 +141,7 @@ void RunGameUI(Board& board, character* dracula, character* sis1Obj, character* 
             }
         }
 
-        // --- پنل بازیکن دوم (شرلوک) ---
         DrawRectangleRec(p2Panel, GetColor(0x0B080CFF));
-        // ضخامت بیشتر حاشیه پنل (بولدتر)
         DrawRectangleLinesEx(p2Panel, 3, GetColor(0x1C3D66FF));
         DrawRectangleLines((int)p2Panel.x - 3, (int)p2Panel.y - 3, (int)p2Panel.width + 6, (int)p2Panel.height + 6, GetColor(0x162A45FF));
 
@@ -168,13 +173,10 @@ void RunGameUI(Board& board, character* dracula, character* sis1Obj, character* 
             }
         }
 
-        // رسم دکمه END TURN با کادر بولدتر
         DrawRectangleRec(endTurnButton, GetColor(0x1B0A0DFF));
         DrawRectangleLinesEx(endTurnButton, 3, GetColor(0x9E2230FF));
         DrawText("END TURN", (int)(endTurnButton.x + (endTurnButton.width - MeasureText("END TURN", 14)) / 2), (int)(endTurnButton.y + 17), 14, GetColor(0xE5C158FF));
 
-        // باکس TURN ORDER و ROUND با حاشیه ضخیم‌تر
-        Rectangle turnOrderBox = { p2Panel.x, endTurnButton.y + endTurnButton.height + 12, p2Panel.width, 78 };
         DrawRectangleRec(turnOrderBox, GetColor(0x0B080CFF));
         DrawRectangleLinesEx(turnOrderBox, 3, GetColor(0x342936FF));
 
@@ -197,6 +199,51 @@ void RunGameUI(Board& board, character* dracula, character* sis1Obj, character* 
 
         std::string roundStr = "ROUND " + std::to_string(currentRound);
         DrawText(roundStr.c_str(), (int)(turnOrderBox.x + (turnOrderBox.width - MeasureText(roundStr.c_str(), 9)) / 2), (int)(turnOrderBox.y + 62), 9, GetColor(0x8A8085FF));
+
+        // بخش رسم باکس هند که به طور کاملاً داینامیک بر اساس نوبت هیروی فعال را می‌خواند
+        DrawRectangleRec(handBox, GetColor(0x0B080CFF));
+        DrawRectangleLinesEx(handBox, 3, GetColor(0x342936FF));
+
+        hero* activeHero = (activePlayerTurn == 1) ? draculaHero : sherlockHero;
+        std::string handTitle = (activePlayerTurn == 1) ? "DRACULA - HAND" : "SHERLOCK - HAND";
+        DrawText(handTitle.c_str(), (int)(handBox.x + (handBox.width - MeasureText(handTitle.c_str(), 10)) / 2), (int)(handBox.y + 10), 10, GetColor(0xE5C158FF));
+
+        bool currentShowHand = (activePlayerTurn == 1) ? showHandP1 : showHandP2;
+        if (!currentShowHand) {
+            DrawText("CARDS IN HAND", (int)(handBox.x + (handBox.width - MeasureText("CARDS IN HAND", 9)) / 2), (int)(handBox.y + 35), 9, GetColor(0x8A8085FF));
+            for (int i = 0; i < 5; i++) {
+                Rectangle cardBack = { handBox.x + 12.0f + (i * 30.0f), handBox.y + 55.0f, 26.0f, 42.0f };
+                DrawRectangleRec(cardBack, GetColor(0x151218FF));
+                DrawRectangleLinesEx(cardBack, 1, GetColor(0xE5C158FF));
+            }
+            DrawText("TAP TO VIEW HAND", (int)(handBox.x + (handBox.width - MeasureText("TAP TO VIEW HAND", 10)) / 2), (int)(handBox.y + 115), 10, GetColor(0xE5C158FF));
+        } else {
+            if (activeHero) {
+                auto hand = activeHero->gethand();
+                for (size_t i = 0; i < hand.size() && i < 5; i++) {
+                    Rectangle cardFace = { handBox.x + 8.0f + (i * 30.0f), handBox.y + 30.0f, 27.0f, 75.0f };
+                    DrawRectangleRec(cardFace, GetColor(0xE2D6BCFF));
+                    DrawRectangleLinesEx(cardFace, 1, GetColor(0x5A1A24FF));
+
+                    std::string cName = hand[i].get_name();
+                    if (cName.length() > 4) cName = cName.substr(0, 4);
+                    DrawText(cName.c_str(), (int)cardFace.x + 2, (int)cardFace.y + 4, 6, BLACK);
+
+                    std::string typeStr = "";
+                    if (hand[i].gettype() == cardtype::attack) typeStr = "ATK";
+                    else if (hand[i].gettype() == cardtype::defense) typeStr = "DEF";
+                    else typeStr = "SCH";
+                    DrawText(typeStr.c_str(), (int)cardFace.x + 2, (int)cardFace.y + 25, 6, DARKBLUE);
+
+                    std::string valStr = "";
+                    if (hand[i].gettype() == cardtype::attack) valStr = std::to_string(hand[i].getattack());
+                    else if (hand[i].gettype() == cardtype::defense) valStr = std::to_string(hand[i].getdefense());
+                    else valStr = std::to_string(hand[i].getboost());
+                    DrawText(valStr.c_str(), (int)cardFace.x + 8, (int)cardFace.y + 45, 8, RED);
+                }
+            }
+            DrawText("TAP TO HIDE HAND", (int)(handBox.x + (handBox.width - MeasureText("TAP TO HIDE HAND", 10)) / 2), (int)(handBox.y + 115), 10, GetColor(0x9E2230FF));
+        }
 
         EndDrawing();
     }

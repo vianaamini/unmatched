@@ -110,7 +110,7 @@ int main()
                 watson* watsonPtr = new watson();
                 
                 // پاس دادن درست متغیر firstPlayer به محیط بازی
-                RunGameUI(board, draculaPtr, sister1Ptr, sister2Ptr, sister3Ptr, sherlockPtr, watsonPtr, firstPlayer);
+                RunGameUI(board, draculaPtr, sister1Ptr, sister2Ptr, sister3Ptr, sherlockPtr, watsonPtr, firstPlayer, draculaPtr, sherlockPtr);
 
                 delete draculaPtr;
                 delete sister1Ptr;

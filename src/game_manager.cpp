@@ -423,4 +423,3 @@ bool GameManager::handleMove(character* actor, const std::string& targetNodeStr)
 
     return true;
 }
-
