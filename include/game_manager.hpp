@@ -8,6 +8,7 @@
 #include "turn_manager.hpp"
 #include "deployment.hpp"
 #include "character.hpp"
+#include "invisible_man.hpp"
 
 class GameManager {
 private:

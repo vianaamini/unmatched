@@ -35,6 +35,9 @@ add_executable(unmatched
     src/tui_controller.cpp
     src/turn_manager.cpp
     src/watson.cpp
+    src/invisible_man.cpp
+    src/invisible_man_cards.cpp
+
 )
 
 target_include_directories(unmatched PRIVATE include)
