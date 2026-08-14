@@ -108,7 +108,16 @@ int main()
                 sister* sister3Ptr = new sister(3);
                 sherlock* sherlockPtr = new sherlock();
                 watson* watsonPtr = new watson();
-                
+
+                // موقعیت اولیه‌ی هر کاراکتر روی نقشه (نودهای n1 تا n32 طبق map.cpp)
+                // بدون این خط‌ها هیچ کاراکتری روی نقشه نمایش داده نمی‌شه.
+                draculaPtr->setposition(10);
+                sister1Ptr->setposition(1);
+                sister2Ptr->setposition(2);
+                sister3Ptr->setposition(3);
+                sherlockPtr->setposition(23);
+                watsonPtr->setposition(22);
+
                 // پاس دادن درست متغیر firstPlayer به محیط بازی
                 RunGameUI(board, draculaPtr, sister1Ptr, sister2Ptr, sister3Ptr, sherlockPtr, watsonPtr, firstPlayer, draculaPtr, sherlockPtr);
 
