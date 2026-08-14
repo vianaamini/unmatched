@@ -5,6 +5,9 @@
 #include <vector>
 #include <string>
 #include <iostream>
+#include <unordered_map>
+#include <algorithm>
+#include <cctype>
 
 void DrawGothicHealthBar(float x, float y, float width, int currentHp, int maxHp) {
     float percent = (maxHp > 0) ? (float)currentHp / (float)maxHp : 0.0f;
@@ -39,7 +42,58 @@ Texture2D LoadTextureWithFallbacksForMain(const std::string& category, const std
     return Texture2D{ 0 };
 }
 
-void RunGameUI(Board& board, character* dracula, character* sis1Obj, character* sis2Obj, character* sis3Obj, character* sherlock, character* watson, int firstPlayer, hero* draculaHero, hero* sherlockHero) {
+static std::string GetCardFilename(const std::string& cardName, const std::string& faction) {
+    std::string normalized = cardName;
+    std::transform(normalized.begin(), normalized.end(), normalized.begin(), ::tolower);
+    normalized.erase(std::remove(normalized.begin(), normalized.end(), ' '), normalized.end());
+    normalized.erase(std::remove(normalized.begin(), normalized.end(), '-'), normalized.end());
+
+    static std::unordered_map<std::string, std::string> nameToFile = {
+        {"ambush", "ambush.png"},
+        {"baptismofblood", "baptism-of-blood.png"},
+        {"beastform", "beastform.png"},
+        {"confirmsuspicion", "confirm-suspicion.png"},
+        {"counterpunch", "counterpunch.png"},
+        {"dash", "dash.png"},
+        {"deducestrategy", "deduce-strategy.png"},
+        {"domybidding", "do-my-bidding.png"},
+        {"educationneverends", "education-never-ends.png"},
+        {"elementary", "elementary.png"},
+        {"eliminatetheimpossible", "eliminate-the-impossible.png"},
+        {"exploit", "exploit.png"},
+        {"feedingfrenzy", "feeding-frenzy.png"},
+        {"fixedpoint", "fixed-point-in-a-changing-age.png"},
+        {"fixedpointinachangingage", "fixed-point-in-a-changing-age.png"},
+        {"lookintomyeyes", "look-into-my-eyes.png"},
+        {"masterofdisguise", "master-of-disguise.png"},
+        {"mistform", "mistform.png"},
+        {"preyupon", "prey-upon.png"},
+        {"raveningseduction", "ravening-seduction.png"},
+        {"servicerevolver", "service-revolver.png"},
+        {"studymethods", "study-methods.png"},
+        {"thegameisafoot", "the-game-is-afoot.png"},
+        {"thirstforsustenance", "thirst-for-sustenance.png"},
+        {"administeraid", "administer-aid.png"}
+    };
+
+    if (normalized == "feint") {
+        if (faction == "DRACULA")
+            return "feint (1).png";
+        else if (faction == "SHERLOCK HOLMES")
+            return "feint (2).png";
+        else
+            return "feint.png";
+    }
+
+    auto it = nameToFile.find(normalized);
+    if (it != nameToFile.end())
+        return it->second;
+
+    return normalized + ".png";
+}
+
+void RunGameUI(Board& board, character* dracula, character* sis1Obj, character* sis2Obj, character* sis3Obj,
+               character* sherlock, character* watson, int firstPlayer, hero* draculaHero, hero* sherlockHero) {
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
     InitWindow(1366, 768, "Unmatched: Gothic Shadows");
     SetTargetFPS(60);
@@ -52,8 +106,11 @@ void RunGameUI(Board& board, character* dracula, character* sis1Obj, character* 
     Texture2D sherArt  = LoadTextureWithFallbacksForMain("", {"holmsArtTransparent.png", "sherlockTran (1).png"});
     Texture2D watsonArt= LoadTextureWithFallbacksForMain("", {"drwatson.png"});
 
+    std::unordered_map<std::string, Texture2D> cardTextures;
+    std::vector<Texture2D> loadedCardTextures;
+
     int currentRound = 1;
-    int activePlayerTurn = firstPlayer; 
+    int activePlayerTurn = firstPlayer;
     bool showHandP1 = false;
     bool showHandP2 = false;
 
@@ -70,15 +127,16 @@ void RunGameUI(Board& board, character* dracula, character* sis1Obj, character* 
         Rectangle handBox = { p2Panel.x - p2Panel.width - 15, endTurnButton.y, p2Panel.width, endTurnButton.height + 12 + turnOrderBox.height };
 
         Vector2 mousePos = GetMousePosition();
-        
-        // با زدن دکمه End Turn یا کلید Enter، نوبت جابجا شده و وضعیت نمایش هند برای بازیکن جدید ریست/تنظیم می‌شود
+
         if ((CheckCollisionPointRec(mousePos, endTurnButton) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) || IsKeyPressed(KEY_ENTER)) {
             if (activePlayerTurn == 1) {
-                activePlayerTurn = 2; 
+                activePlayerTurn = 2;
             } else {
-                activePlayerTurn = 1; 
+                activePlayerTurn = 1;
                 currentRound++;
             }
+            showHandP1 = false;
+            showHandP2 = false;
         }
 
         if (CheckCollisionPointRec(mousePos, handBox) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
@@ -200,7 +258,6 @@ void RunGameUI(Board& board, character* dracula, character* sis1Obj, character* 
         std::string roundStr = "ROUND " + std::to_string(currentRound);
         DrawText(roundStr.c_str(), (int)(turnOrderBox.x + (turnOrderBox.width - MeasureText(roundStr.c_str(), 9)) / 2), (int)(turnOrderBox.y + 62), 9, GetColor(0x8A8085FF));
 
-        // بخش رسم باکس هند که به طور کاملاً داینامیک بر اساس نوبت هیروی فعال را می‌خواند
         DrawRectangleRec(handBox, GetColor(0x0B080CFF));
         DrawRectangleLinesEx(handBox, 3, GetColor(0x342936FF));
 
@@ -218,31 +275,82 @@ void RunGameUI(Board& board, character* dracula, character* sis1Obj, character* 
             }
             DrawText("TAP TO VIEW HAND", (int)(handBox.x + (handBox.width - MeasureText("TAP TO VIEW HAND", 10)) / 2), (int)(handBox.y + 115), 10, GetColor(0xE5C158FF));
         } else {
-            if (activeHero) {
-                auto hand = activeHero->gethand();
-                for (size_t i = 0; i < hand.size() && i < 5; i++) {
-                    Rectangle cardFace = { handBox.x + 8.0f + (i * 30.0f), handBox.y + 30.0f, 27.0f, 75.0f };
-                    DrawRectangleRec(cardFace, GetColor(0xE2D6BCFF));
-                    DrawRectangleLinesEx(cardFace, 1, GetColor(0x5A1A24FF));
+            DrawText("HAND OPENED (MODAL)", (int)(handBox.x + (handBox.width - MeasureText("HAND OPENED (MODAL)", 8)) / 2), (int)(handBox.y + 55), 8, GetColor(0x8A8085FF));
+            DrawText("TAP TO HIDE HAND", (int)(handBox.x + (handBox.width - MeasureText("TAP TO HIDE HAND", 10)) / 2), (int)(handBox.y + 115), 10, GetColor(0x9E2230FF));
+        }
 
-                    std::string cName = hand[i].get_name();
-                    if (cName.length() > 4) cName = cName.substr(0, 4);
-                    DrawText(cName.c_str(), (int)cardFace.x + 2, (int)cardFace.y + 4, 6, BLACK);
+        if (currentShowHand && activeHero) {
+            auto hand = activeHero->gethand();
+            std::string faction = (activeHero == draculaHero) ? "DRACULA" : "SHERLOCK HOLMES";
 
-                    std::string typeStr = "";
-                    if (hand[i].gettype() == cardtype::attack) typeStr = "ATK";
-                    else if (hand[i].gettype() == cardtype::defense) typeStr = "DEF";
-                    else typeStr = "SCH";
-                    DrawText(typeStr.c_str(), (int)cardFace.x + 2, (int)cardFace.y + 25, 6, DARKBLUE);
+            float modalW = sw * 0.65f;
+            float modalH = sh * 0.50f;
+            float modalX = (sw - modalW) / 2.0f;
+            float modalY = (sh - modalH) / 2.0f;
+            Rectangle modalRect = { modalX, modalY, modalW, modalH };
 
-                    std::string valStr = "";
-                    if (hand[i].gettype() == cardtype::attack) valStr = std::to_string(hand[i].getattack());
-                    else if (hand[i].gettype() == cardtype::defense) valStr = std::to_string(hand[i].getdefense());
-                    else valStr = std::to_string(hand[i].getboost());
-                    DrawText(valStr.c_str(), (int)cardFace.x + 8, (int)cardFace.y + 45, 8, RED);
+            Rectangle closeBtnRect = { modalX + modalW - 35.0f, modalY + 12.0f, 25.0f, 25.0f };
+
+            if (CheckCollisionPointRec(mousePos, closeBtnRect) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+                if (activePlayerTurn == 1) showHandP1 = false;
+                else showHandP2 = false;
+            }
+
+            DrawRectangle(0, 0, (int)sw, (int)sh, Fade(BLACK, 0.7f));
+            DrawRectangleRec(modalRect, GetColor(0x0B080CFF));
+            DrawRectangleLinesEx(modalRect, 4, GetColor(0xE5C158FF));
+
+            DrawRectangleRec(closeBtnRect, GetColor(0x9E2230FF));
+            DrawRectangleLinesEx(closeBtnRect, 1, GetColor(0xE5C158FF));
+            DrawText("X", (int)closeBtnRect.x + 8, (int)closeBtnRect.y + 5, 14, WHITE);
+
+            std::string modalTitle = (activePlayerTurn == 1) ? "DRACULA - EXPANDED HAND" : "SHERLOCK - EXPANDED HAND";
+            DrawText(modalTitle.c_str(), (int)(modalX + (modalW - MeasureText(modalTitle.c_str(), 18)) / 2), (int)(modalY + 20), 18, GetColor(0xE5C158FF));
+            DrawText("Click on any card to play/interact", (int)(modalX + (modalW - MeasureText("Click on any card to play/interact", 10)) / 2), (int)(modalY + 45), 10, GetColor(0x8A8085FF));
+
+            int cardCount = (int)hand.size();
+            if (cardCount > 5) cardCount = 5;
+
+            float cardW = 90.0f;
+            float cardH = 145.0f;
+            float spacing = 20.0f;
+            float totalWidth = (cardCount * cardW) + ((cardCount - 1) * spacing);
+            float startX = modalX + (modalW - totalWidth) / 2.0f;
+            float startY = modalY + 75.0f;
+
+            for (int i = 0; i < cardCount; i++) {
+                Rectangle cardRect = { startX + i * (cardW + spacing), startY, cardW, cardH };
+
+                std::string cardName = hand[i].get_name();
+                std::string filename = GetCardFilename(cardName, faction);
+                Texture2D tex = {0};
+                auto it = cardTextures.find(filename);
+                if (it != cardTextures.end()) {
+                    tex = it->second;
+                } else {
+                    tex = LoadTextureWithFallbacksForMain("card", {filename});
+                    if (tex.id != 0) {
+                        cardTextures[filename] = tex;
+                        loadedCardTextures.push_back(tex);
+                    }
+                }
+
+                if (CheckCollisionPointRec(mousePos, cardRect) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+                    std::cout << "Clicked on card: " << cardName << std::endl;
+                }
+
+                if (CheckCollisionPointRec(mousePos, cardRect)) {
+                    DrawRectangleLinesEx(cardRect, 2, GREEN);
+                }
+
+                if (tex.id != 0) {
+                    DrawTexturePro(tex, {0, 0, (float)tex.width, (float)tex.height}, cardRect, {0, 0}, 0.0f, WHITE);
+                } else {
+                    DrawRectangleRec(cardRect, GetColor(0xE2D6BCFF));
+                    DrawRectangleLinesEx(cardRect, 2, GetColor(0x5A1A24FF));
+                    DrawText(cardName.c_str(), (int)cardRect.x + 5, (int)cardRect.y + 10, 10, BLACK);
                 }
             }
-            DrawText("TAP TO HIDE HAND", (int)(handBox.x + (handBox.width - MeasureText("TAP TO HIDE HAND", 10)) / 2), (int)(handBox.y + 115), 10, GetColor(0x9E2230FF));
         }
 
         EndDrawing();
@@ -255,5 +363,8 @@ void RunGameUI(Board& board, character* dracula, character* sis1Obj, character* 
     UnloadTexture(sis3);
     UnloadTexture(sherArt);
     UnloadTexture(watsonArt);
+    for (auto& tex : loadedCardTextures) {
+        UnloadTexture(tex);
+    }
     CloseWindow();
 }
