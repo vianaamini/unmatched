@@ -19,4 +19,8 @@ public:
 
     void takedamage(int amount);
     void useability() override;
+
+    bool executeSchemeCard(card& schemeCard, hero& target);
+    void executeAttackCardEffects(card& attackCard, character& target, int& attackValue, bool& attackerWon, bool& effectsCanceled, const card& defenseCard);
+    void executeDefenseCardEffects(card& defenseCard, const card& attackCard, int& defenseValue, bool& effectsCanceled);
 };

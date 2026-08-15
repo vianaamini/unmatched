@@ -1,5 +1,4 @@
 #include "../include/invisible_man.hpp"
-#include "../include/invisible_man_cards.hpp"
 #include <iostream>
 
 InvisibleMan::InvisibleMan(std::string name, int startNode)
@@ -65,5 +64,60 @@ void InvisibleMan::takedamage(int amount) {
 void InvisibleMan::useability() {
     if (isOnFog()) {
         std::cout << getname() << " is on a fog token (+1 Defense Bonus active)!" << std::endl;
+    }
+}
+
+bool InvisibleMan::executeSchemeCard(card& schemeCard, hero& target) {
+    std::string name = schemeCard.get_name();
+
+    if (name == "Covert Preparation") {
+        drawcard();
+        drawcard();
+        std::cout << getname() << " drew 2 cards." << std::endl;
+        return true;
+    }
+    else if (name == "Lurking in Shadows") {
+        if (isOnFog()) {
+            target.takedamage(1);
+            std::cout << getname() << " dealt 1 shadow damage from fog to " << target.getname() << "!" << std::endl;
+        }
+        return true;
+    }
+    return false;
+}
+
+void InvisibleMan::executeAttackCardEffects(card& attackCard, character& target, int& attackValue, bool& attackerWon, bool& effectsCanceled, const card& defenseCard) {
+    std::string name = attackCard.get_name();
+
+    if (name == "Emerging from Mist") {
+        if (isOnFog()) {
+            attackValue = 5;
+            std::cout << getname() << " strikes from the fog with extra power (ATK: 5)!" << std::endl;
+        }
+    }
+    else if (name == "Fog Vision") {
+        setFogPosition(1, getposition());
+        std::cout << getname() << " repositioned a fog token." << std::endl;
+    }
+    else if (name == "Impossible to Catch" || name == "Slip Away") {
+        if (!fogPositions.empty()) {
+            setposition(fogPositions[0]);
+            std::cout << getname() << " moved to fog space " << fogPositions[0] << std::endl;
+        }
+    }
+}
+
+void InvisibleMan::executeDefenseCardEffects(card& defenseCard, const card& attackCard, int& defenseValue, bool& effectsCanceled) {
+    std::string name = defenseCard.get_name();
+
+    if (name == "Vanish") {
+        heal(1);
+        if (!fogPositions.empty()) {
+            setposition(fogPositions[0]);std::cout << getname() << " recovered 1 HP and vanished to fog space " << fogPositions[0] << std::endl;
+        }
+    }
+    else if (name == "Into Thin Air") {
+        effectsCanceled = true;
+        std::cout << getname() << " cancels opponent card effects with Into Thin Air!" << std::endl;
     }
 }
