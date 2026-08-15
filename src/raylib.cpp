@@ -8,6 +8,7 @@
 #include <unordered_map>
 #include <algorithm>
 #include <cctype>
+#include <cmath>
 
 void DrawGothicHealthBar(float x, float y, float width, int currentHp, int maxHp) {
     float percent = (maxHp > 0) ? (float)currentHp / (float)maxHp : 0.0f;
@@ -18,6 +19,154 @@ void DrawGothicHealthBar(float x, float y, float width, int currentHp, int maxHp
     DrawRectangle((int)x, (int)y, (int)width, 9, GetColor(0x0E0A0DFF));
     DrawRectangle((int)x, (int)y, (int)(width * percent), 9, GetColor(0x7A0010FF));
     DrawText(TextFormat("HP: %d/%d", currentHp, maxHp), (int)x, (int)y + 12, 10, GetColor(0xC2B6B9FF));
+}
+
+struct CharAnimState {
+    float currentX = 0.0f, currentY = 0.0f;  
+    float targetX = 0.0f, targetY = 0.0f;    
+    float scale = 1.0f;                     
+    bool initialized = false;
+    bool moving = false;
+};
+
+static std::unordered_map<character*, CharAnimState> g_charAnims;
+
+static const float CHAR_ANIM_SPEED = 8.0f;     
+static const float CHAR_ANIM_SNAP_DIST = 0.5f;  
+
+void UpdateCharacterAnim(character* c, Board& board, Rectangle mapDest, float dt, float refWidth, float refHeight) {
+    if (!c) return;
+
+    int nodeId = c->getposition();
+    std::string nodeName = "n" + std::to_string(nodeId);
+    auto pos = board.getCoordinates(nodeName);
+    if (pos.first < 0 || pos.second < 0) return; 
+
+    float scaleX = mapDest.width / refWidth;
+    float scaleY = mapDest.height / refHeight;
+
+    float targetX = mapDest.x + (pos.first * scaleX);
+    float targetY = mapDest.y + (pos.second * scaleY);
+
+    CharAnimState& st = g_charAnims[c];
+
+    if (!st.initialized) {
+        st.currentX = targetX;
+        st.currentY = targetY;
+        st.targetX = targetX;
+        st.targetY = targetY;
+        st.scale = 1.0f;
+        st.initialized = true;
+        st.moving = false;
+        return;
+    }
+
+    if (targetX != st.targetX || targetY != st.targetY) {
+        st.targetX = targetX;
+        st.targetY = targetY;
+        st.moving = true;
+    }
+
+    if (st.moving) {
+        float dx = st.targetX - st.currentX;
+        float dy = st.targetY - st.currentY;
+        float dist = sqrtf(dx * dx + dy * dy);
+
+        if (dist < CHAR_ANIM_SNAP_DIST) {
+            st.currentX = st.targetX;
+            st.currentY = st.targetY;
+            st.moving = false;
+            st.scale = 1.25f;   
+        } else {
+            float t = 1.0f - expf(-CHAR_ANIM_SPEED * dt); 
+            st.currentX += dx * t;
+            st.currentY += dy * t;
+            st.scale = 1.1f;   
+        }
+    } else {
+        st.scale += (1.0f - st.scale) * fminf(1.0f, dt * 10.0f); 
+    }
+}
+
+
+void UpdateCharacterAnimFixed(character* c, float relX, float relY, Rectangle mapDest, float dt) {
+    if (!c) return;
+
+    float targetX = mapDest.x + (relX * mapDest.width);
+    float targetY = mapDest.y + (relY * mapDest.height);
+
+    CharAnimState& st = g_charAnims[c];
+
+    if (!st.initialized) {
+        st.currentX = targetX;
+        st.currentY = targetY;
+        st.targetX = targetX;
+        st.targetY = targetY;
+        st.scale = 1.0f;
+        st.initialized = true;
+        st.moving = false;
+        return;
+    }
+
+    if (targetX != st.targetX || targetY != st.targetY) {
+        st.targetX = targetX;
+        st.targetY = targetY;
+        st.moving = true;
+    }
+
+    if (st.moving) {
+        float dx = st.targetX - st.currentX;
+        float dy = st.targetY - st.currentY;
+        float dist = sqrtf(dx * dx + dy * dy);
+
+        if (dist < CHAR_ANIM_SNAP_DIST) {
+            st.currentX = st.targetX;
+            st.currentY = st.targetY;
+            st.moving = false;
+            st.scale = 1.25f;
+        } else {
+            float t = 1.0f - expf(-CHAR_ANIM_SPEED * dt);
+            st.currentX += dx * t;
+            st.currentY += dy * t;
+            st.scale = 1.1f;
+        }
+    } else {
+        st.scale += (1.0f - st.scale) * fminf(1.0f, dt * 10.0f);
+    }
+}
+
+void DrawCharacterOnNode(character* c, Texture2D avatarTex, Color borderColor, float mapWidth, float sizeMultiplier, float refWidth) {
+    if (!c || !c->isalive()) return;
+
+    auto it = g_charAnims.find(c);
+    if (it == g_charAnims.end()) return; 
+
+    CharAnimState& st = it->second;
+
+    float scaleX = mapWidth / refWidth;
+    float renderX = st.currentX;
+    float renderY = st.currentY;
+    float radius = (20.0f * scaleX) * st.scale * sizeMultiplier;
+
+    if (st.moving) {
+        DrawCircle((int)renderX, (int)renderY + 4, radius * 0.9f, Fade(BLACK, 0.35f)); 
+    }
+
+    DrawCircle((int)renderX, (int)renderY, radius + 2.0f, BLACK);
+    DrawCircle((int)renderX, (int)renderY, radius, GetColor(0x1C1C24FF));
+
+    if (avatarTex.id > 0) {
+        Rectangle srcRec = { 0, 0, (float)avatarTex.width, (float)avatarTex.height };
+        Rectangle destRec = { renderX - radius, renderY - radius, radius * 2.0f, radius * 2.0f };
+        DrawTexturePro(avatarTex, srcRec, destRec, Vector2{ 0, 0 }, 0.0f, WHITE);
+    } else {
+        std::string initial = c->getname().substr(0, 1);
+        DrawText(initial.c_str(), (int)renderX - 5, (int)renderY - 7, 14, WHITE);
+    }
+
+    Color ring = st.moving ? GetColor(0xE5C158FF) : borderColor; 
+    DrawCircleLines((int)renderX, (int)renderY, radius, ring);
+    DrawCircleLines((int)renderX, (int)renderY, radius + 1.0f, ring);
 }
 
 Texture2D LoadTextureWithFallbacksForMain(const std::string& category, const std::vector<std::string>& filenames) {
@@ -144,6 +293,26 @@ void RunGameUI(Board& board, character* dracula, character* sis1Obj, character* 
             else showHandP2 = !showHandP2;
         }
 
+        const float CHAR_MAP_SIZE_MULTIPLIER = 2.4f;
+
+        struct MapChar { character* c; Texture2D tex; Color color; float sizeMul; };
+        MapChar mapChars[6] = {
+            { dracula,  dracArt,   RED,     CHAR_MAP_SIZE_MULTIPLIER },
+            { sis1Obj,  sis1,      MAROON,  CHAR_MAP_SIZE_MULTIPLIER },
+            { sis2Obj,  sis2,      MAROON,  CHAR_MAP_SIZE_MULTIPLIER },
+            { sis3Obj,  sis3,      MAROON,  CHAR_MAP_SIZE_MULTIPLIER },
+            { sherlock, sherArt,   BLUE,    CHAR_MAP_SIZE_MULTIPLIER },
+            { watson,   watsonArt, SKYBLUE, CHAR_MAP_SIZE_MULTIPLIER },
+        };
+
+        float dt = GetFrameTime(); 
+
+        for (auto& mc : mapChars) {
+            if (mc.c && mc.c->isalive()) {
+                UpdateCharacterAnim(mc.c, board, mapDest, dt, (float)boardTex.width, (float)boardTex.height);
+            }
+        }
+
         BeginDrawing();
         ClearBackground(GetColor(0x050407FF));
 
@@ -152,6 +321,13 @@ void RunGameUI(Board& board, character* dracula, character* sis1Obj, character* 
         } else {
             DrawRectangleRec(mapDest, GetColor(0x0F0D12FF));
         }
+
+        for (auto& mc : mapChars) {
+            if (mc.c && mc.c->isalive()) {
+                DrawCharacterOnNode(mc.c, mc.tex, mc.color, mapDest.width, mc.sizeMul, (float)boardTex.width);
+            }
+        }
+
         DrawRectangleLinesEx(mapDest, 4, GetColor(0x342936FF));
         DrawRectangleLines((int)mapDest.x - 3, (int)mapDest.y - 3, (int)mapDest.width + 6, (int)mapDest.height + 6, GetColor(0x5A4B53FF));
 
