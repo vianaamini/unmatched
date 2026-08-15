@@ -46,6 +46,7 @@ add_executable(unmatched
     src/age_screen.cpp
     src/hero_selection.cpp
     src/raylib.cpp
+    src/actionbar.cpp
 )
 
 target_include_directories(unmatched PRIVATE include)

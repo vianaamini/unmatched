@@ -2,6 +2,8 @@
 #include "../include/map.hpp"
 #include "../include/character.hpp"
 #include "../include/hero.hpp"
+#include "../include/game_manager.hpp"
+#include "actionbar.hpp"
 #include <vector>
 #include <string>
 #include <iostream>
@@ -23,15 +25,15 @@ void DrawGothicHealthBar(float x, float y, float width, int currentHp, int maxHp
 
 struct CharAnimState {
     float currentX = 0.0f, currentY = 0.0f;  
-    float targetX = 0.0f, targetY = 0.0f;    
-    float scale = 1.0f;                     
+    float targetX = 0.0f, targetY = 0.0f;     
+    float scale = 1.0f;                      
     bool initialized = false;
     bool moving = false;
 };
 
 static std::unordered_map<character*, CharAnimState> g_charAnims;
 
-static const float CHAR_ANIM_SPEED = 8.0f;     
+static const float CHAR_ANIM_SPEED = 8.0f;      
 static const float CHAR_ANIM_SNAP_DIST = 0.5f;  
 
 void UpdateCharacterAnim(character* c, Board& board, Rectangle mapDest, float dt, float refWidth, float refHeight) {
@@ -41,7 +43,6 @@ void UpdateCharacterAnim(character* c, Board& board, Rectangle mapDest, float dt
     std::string nodeName = "n" + std::to_string(nodeId);
     auto pos = board.getCoordinates(nodeName);
     if (pos.first < 0 || pos.second < 0) return; 
-
     float scaleX = mapDest.width / refWidth;
     float scaleY = mapDest.height / refHeight;
 
@@ -81,13 +82,12 @@ void UpdateCharacterAnim(character* c, Board& board, Rectangle mapDest, float dt
             float t = 1.0f - expf(-CHAR_ANIM_SPEED * dt); 
             st.currentX += dx * t;
             st.currentY += dy * t;
-            st.scale = 1.1f;   
+            st.scale = 1.1f;    
         }
     } else {
         st.scale += (1.0f - st.scale) * fminf(1.0f, dt * 10.0f); 
     }
 }
-
 
 void UpdateCharacterAnimFixed(character* c, float relX, float relY, Rectangle mapDest, float dt) {
     if (!c) return;
@@ -241,11 +241,13 @@ static std::string GetCardFilename(const std::string& cardName, const std::strin
     return normalized + ".png";
 }
 
-void RunGameUI(Board& board, character* dracula, character* sis1Obj, character* sis2Obj, character* sis3Obj,
+void RunGameUI(GameManager& gm, character* dracula, character* sis1Obj, character* sis2Obj, character* sis3Obj,
                character* sherlock, character* watson, int firstPlayer, hero* draculaHero, hero* sherlockHero) {
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
     InitWindow(1366, 768, "Unmatched: Gothic Shadows");
     SetTargetFPS(60);
+
+    Board& board = gm.getBoard(); 
 
     Texture2D boardTex = LoadTextureWithFallbacksForMain("", {"board(1).png", "board.jpg", "board.png", "board"});
     Texture2D dracArt  = LoadTextureWithFallbacksForMain("", {"DracArt.png"});
@@ -263,6 +265,8 @@ void RunGameUI(Board& board, character* dracula, character* sis1Obj, character* 
     bool showHandP1 = false;
     bool showHandP2 = false;
 
+    ActionBarState actionBar;
+
     while (!WindowShouldClose()) {
         float sw = (float)GetScreenWidth();
         float sh = (float)GetScreenHeight();
@@ -275,9 +279,12 @@ void RunGameUI(Board& board, character* dracula, character* sis1Obj, character* 
         Rectangle turnOrderBox = { p2Panel.x, endTurnButton.y + endTurnButton.height + 12, p2Panel.width, 78 };
         Rectangle handBox = { p2Panel.x - p2Panel.width - 15, endTurnButton.y, p2Panel.width, endTurnButton.height + 12 + turnOrderBox.height };
 
+        ActionBarLayout actionLayout = ActionBar_ComputeLayout(p1Panel, endTurnButton.height, turnOrderBox.height);
+
         Vector2 mousePos = GetMousePosition();
 
         if ((CheckCollisionPointRec(mousePos, endTurnButton) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) || IsKeyPressed(KEY_ENTER)) {
+            gm.nextTurn();
             if (activePlayerTurn == 1) {
                 activePlayerTurn = 2;
             } else {
@@ -286,12 +293,21 @@ void RunGameUI(Board& board, character* dracula, character* sis1Obj, character* 
             }
             showHandP1 = false;
             showHandP2 = false;
+            ActionBar_ResetOnTurnEnd(actionBar);
         }
 
         if (CheckCollisionPointRec(mousePos, handBox) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
             if (activePlayerTurn == 1) showHandP1 = !showHandP1;
             else showHandP2 = !showHandP2;
         }
+
+        ActionBar_SelectActorClick(actionBar, gm, mousePos, mapDest, boardTex, actionLayout.panel, handBox);
+
+        character* actingChar = ActionBar_GetActingCharacter(actionBar, gm);
+        hero* actingHero = actingChar ? dynamic_cast<hero*>(actingChar) : nullptr;
+        hero* activeHero = (activePlayerTurn == 1) ? draculaHero : sherlockHero;
+
+        ActionBar_Update(actionBar, gm, actionLayout, mousePos, mapDest, boardTex, handBox, actingChar, actingHero, activeHero);
 
         const float CHAR_MAP_SIZE_MULTIPLIER = 2.4f;
 
@@ -321,6 +337,9 @@ void RunGameUI(Board& board, character* dracula, character* sis1Obj, character* 
         } else {
             DrawRectangleRec(mapDest, GetColor(0x0F0D12FF));
         }
+
+        ActionBar_DrawMapHighlights(actionBar, gm, board, mapDest, boardTex, actingChar, actingHero);
+        ActionBar_DrawActorSelection(actionBar, gm, board, mapDest, boardTex);
 
         for (auto& mc : mapChars) {
             if (mc.c && mc.c->isalive()) {
@@ -374,6 +393,8 @@ void RunGameUI(Board& board, character* dracula, character* sis1Obj, character* 
                 }
             }
         }
+
+        ActionBar_DrawPanel(actionBar, actionLayout);
 
         DrawRectangleRec(p2Panel, GetColor(0x0B080CFF));
         DrawRectangleLinesEx(p2Panel, 3, GetColor(0x1C3D66FF));
@@ -437,7 +458,6 @@ void RunGameUI(Board& board, character* dracula, character* sis1Obj, character* 
         DrawRectangleRec(handBox, GetColor(0x0B080CFF));
         DrawRectangleLinesEx(handBox, 3, GetColor(0x342936FF));
 
-        hero* activeHero = (activePlayerTurn == 1) ? draculaHero : sherlockHero;
         std::string handTitle = (activePlayerTurn == 1) ? "DRACULA - HAND" : "SHERLOCK - HAND";
         DrawText(handTitle.c_str(), (int)(handBox.x + (handBox.width - MeasureText(handTitle.c_str(), 10)) / 2), (int)(handBox.y + 10), 10, GetColor(0xE5C158FF));
 
@@ -513,10 +533,15 @@ void RunGameUI(Board& board, character* dracula, character* sis1Obj, character* 
 
                 if (CheckCollisionPointRec(mousePos, cardRect) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
                     std::cout << "Clicked on card: " << cardName << std::endl;
+                    bool* showHandFlag = (activePlayerTurn == 1) ? &showHandP1 : &showHandP2;
+                    ActionBar_HandleCardClick(actionBar, gm, activeHero, hand[i], i, *showHandFlag);
                 }
 
                 if (CheckCollisionPointRec(mousePos, cardRect)) {
                     DrawRectangleLinesEx(cardRect, 2, GREEN);
+                }
+                if (ActionBar_IsCardSelectedForAttack(actionBar, i)) {
+                    DrawRectangleLinesEx(cardRect, 3, GetColor(0xE53935FF));
                 }
 
                 if (tex.id != 0) {
