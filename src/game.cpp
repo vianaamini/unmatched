@@ -1,6 +1,4 @@
 #include "../include/game.hpp"
-#include "../include/dracula_cards.hpp"
-#include "../include/sherlock_card.hpp"
 #include "../include/hero.hpp"
 #include <iostream>
 #include <cstdlib>
@@ -74,7 +72,6 @@ void Game::playCard(hero* player, int index, hero* opponent) {
     card playedCard = player->gethand()[index];
     player->gethand().erase(player->gethand().begin() + index);
     
-    // Let the hero's attack/scheme method handle the resolution
     Board* board = gameManager ? &gameManager->getBoard() : nullptr;
     if (!board) {
         static Board tempBoard;
@@ -82,12 +79,11 @@ void Game::playCard(hero* player, int index, hero* opponent) {
     }
     
     bool success = false;
-    if (playedCard.gettype() == cardtype::attack) {
+    if (playedCard.gettype() == cardtype::attack || playedCard.gettype() == cardtype::multipurpose) {
         success = player->attack(*opponent, playedCard, *board);
     } else if (playedCard.gettype() == cardtype::scheme) {
         success = player->scheme(playedCard, *opponent);
     } else {
-        // Multipurpose or defense - just play it
         success = true;
         std::cout << player->getname() << " played: " << playedCard.get_name() << std::endl;
     }
@@ -96,7 +92,6 @@ void Game::playCard(hero* player, int index, hero* opponent) {
         action--;
         checkWinCondition();
     } else {
-        // Return card to hand if failed
         player->gethand().push_back(playedCard);
     }
 }

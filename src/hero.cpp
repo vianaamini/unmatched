@@ -13,7 +13,7 @@ hero::hero(const string& name, int maxhp, int movement)
     : character(name, maxhp, movement), actions(2), board(nullptr), gameManager(nullptr),
       predictedAttackValue(0), beastformDiscardCount(0), mistformTarget(""),
       raveningTargetFighter(""), raveningTargetSpace(""), eliminateCardIndex(-1),
-      confirmSuspicionGuess(0), dashTargetNode(-1), gameIsAfootTargetNode(-1) {}
+      confirmSuspicionGuess(-1), dashTargetNode(-1), gameIsAfootTargetNode(-1) {}
 
 void hero::setBoard(Board* b) { board = b; }
 Board* hero::getBoard() { return board; }
@@ -44,7 +44,7 @@ void hero::drawhand() {
 }
 
 void hero::discardToLimit(int limit) {
-    while (hand.size() > limit) hand.pop_back();
+    while ((int)hand.size() > limit) hand.pop_back();
 }
 
 bool hero::removeCardFromHand(const string& cardName) {
@@ -73,7 +73,6 @@ bool hero::moveWithRules(int targetNode, int steps, Board& board) {
     int start = getposition();
     if (start == targetNode) return true;
 
-    vector<character*> allChars = gameManager->getAllCharacters();
     vector<character*> allies = gameManager->getAllies(this);
     vector<character*> enemies = gameManager->getEnemies(this);
 
@@ -111,8 +110,8 @@ bool hero::moveWithRules(int targetNode, int steps, Board& board) {
         if (dist >= steps) continue;
 
         vector<int> neighbors = board.getNeighborIds(node);
-        string nodeName = "n" + to_string(node);
-        if (board.isTeleport(nodeName)) {
+        string nodeName = board.getNodeName(node);
+        if (!nodeName.empty() && board.isTeleport(nodeName)) {
             string dest = board.getTeleportDestination(nodeName);
             int destId = board.getNodeId(dest);
             if (destId != node) {
@@ -131,13 +130,24 @@ bool hero::moveWithRules(int targetNode, int steps, Board& board) {
 }
 
 bool hero::maneuver(int targetNode, Board& board, const card* boostCard) {
-    if (actions <= 0) return false;
-
-    drawcard();
+    if (actions <= 0) {
+        cout << "Cannot move: no actions remaining. Try again." << endl;
+        return false;
+    }
 
     int steps = getmovement();
     if (boostCard) {
         steps += boostCard->getboost();
+    }
+
+    bool success = moveWithRules(targetNode, steps, board);
+    if (!success) {
+        cout << "Cannot move to that space. Try again." << endl;
+        return false;
+    }
+
+    drawcard();
+    if (boostCard) {
         for (auto it = hand.begin(); it != hand.end(); ++it) {
             if (it->get_name() == boostCard->get_name() && it->getboost() == boostCard->getboost()) {
                 hand.erase(it);
@@ -146,149 +156,181 @@ bool hero::maneuver(int targetNode, Board& board, const card* boostCard) {
         }
     }
 
-    bool success = moveWithRules(targetNode, steps, board);
-    if (success) {
-        actions--;
-        return true;
-    }
-    return false;
+    actions--;
+    return true;
 }
 
 bool hero::scheme(card& schemeCard, hero& target) {
-    if (actions <= 0) return false;
-    if (schemeCard.gettype() != cardtype::scheme) return false;
+    if (actions <= 0) {
+        cout << "Cannot use this card: no actions remaining. Try again." << endl;
+        return false;
+    }
+    if (schemeCard.gettype() != cardtype::scheme) {
+        cout << "Cannot use this card: not a scheme card. Try again." << endl;
+        return false;
+    }
+    if (!board || !gameManager) {
+        cout << "Cannot use this card: game state unavailable. Try again." << endl;
+        return false;
+    }
 
     string name = schemeCard.get_name();
 
     if (name == "Mistform") {
-        actions++;
-        if (!mistformTarget.empty() && board && board->hasSpace(mistformTarget)) {
-            int id = board->getNodeId(mistformTarget);
-            bool occupied = false;
-            if (gameManager) {
-                for (auto* c : gameManager->getAllCharacters()) {
-                    if (c->isalive() && c->getx() == id && c != this) {
-                        occupied = true;
-                        break;
-                    }
-                }
-            }
-            if (!occupied) {
-                setposition(id);
-                cout << "Mistform: Dracula moved to " << mistformTarget << endl;
-            } else {
-                cout << "Mistform: target occupied!" << endl;
-            }
-        } else {
-            cout << "Mistform: no valid target selected." << endl;
+        if (mistformTarget.empty() || !board->hasSpace(mistformTarget)) {
+            cout << "Cannot use Mistform: no valid target selected. Try again." << endl;
+            mistformTarget = "";
+            return false;
         }
+        int id = board->getNodeId(mistformTarget);
+        bool occupied = false;
+        for (auto* c : gameManager->getAllCharacters()) {
+            if (c->isalive() && c->getx() == id && c != this) { occupied = true; break; }
+        }
+        if (occupied) {
+            cout << "Cannot use Mistform: target space is occupied. Try again." << endl;
+            mistformTarget = "";
+            return false;
+        }
+        setposition(id);
+        actions++;
+        cout << "Mistform: Dracula moved to " << mistformTarget << endl;
         mistformTarget = "";
     }
     else if (name == "Baptism of Blood") {
         heal(2);
-        if (gameManager) {
-            for (auto* c : gameManager->getAllCharacters()) {
-                if (c->getname().find("Sister") != string::npos && !c->isalive()) {
-                    bool revived = gameManager->resurrectSister(c->getname(), getx());
-                    if (revived) {
-                        cout << "Baptism of Blood: " << c->getname() << " revived." << endl;
-                    }
-                    break;
+        for (auto* c : gameManager->getAllCharacters()) {
+            if (c->getname().find("Sister") != string::npos && !c->isalive()) {
+                bool revived = gameManager->resurrectSister(c->getname(), getx());
+                if (revived) {
+                    cout << "Baptism of Blood: " << c->getname() << " revived." << endl;
                 }
+                break;
             }
         }
         cout << "Baptism of Blood: Healed 2." << endl;
     }
     else if (name == "Prey Upon") {
-        if (board && gameManager) {
-            auto enemies = gameManager->getEnemies(this);
-            int damageDealt = 0;
-            for (auto* enemy : enemies) {
-                if (enemy->isalive() && board->isAdjacent(getx(), enemy->getx())) {
-                    enemy->takedamage(1);
-                    damageDealt++;
-                }
+        auto enemies = gameManager->getEnemies(this);
+        int damageDealt = 0;
+        for (auto* enemy : enemies) {
+            if (enemy->isalive() && board->isAdjacent(getx(), enemy->getx())) {
+                enemy->takedamage(1);
+                damageDealt++;
             }
-            heal(damageDealt);
-            cout << "Prey Upon: Dealt " << damageDealt << " damage and healed." << endl;
         }
+        if (damageDealt > 0) heal(damageDealt);
+        cout << "Prey Upon: Dealt " << damageDealt << " damage and healed." << endl;
     }
     else if (name == "Ravening Seduction") {
-        if (!raveningTargetFighter.empty() && !raveningTargetSpace.empty() && board && gameManager) {
-            character* fighter = nullptr;
+        if (raveningTargetFighter.empty() || raveningTargetSpace.empty()) {
+            cout << "Cannot use Ravening Seduction: targets not set. Try again." << endl;
+            raveningTargetFighter = "";
+            raveningTargetSpace = "";
+            return false;
+        }
+        character* fighter = nullptr;
+        for (auto* c : gameManager->getAllCharacters()) {
+            if (c->getname() == raveningTargetFighter && c->isalive()) {
+                fighter = c;
+                break;
+            }
+        }
+        if (!fighter || !board->hasSpace(raveningTargetSpace)) {
+            cout << "Cannot use Ravening Seduction: invalid fighter or space. Try again." << endl;
+            raveningTargetFighter = "";
+            raveningTargetSpace = "";
+            return false;
+        }
+
+        int startNode = fighter->getx();
+        int targetNode = board->getNodeId(raveningTargetSpace);
+
+        auto isOccupied = [&](int node) -> bool {
             for (auto* c : gameManager->getAllCharacters()) {
-                if (c->getname() == raveningTargetFighter && c->isalive()) {
-                    fighter = c;
+                if (c->isalive() && c != fighter && c->getx() == node) return true;
+            }
+            return false;
+        };
+
+        bool reachable = false;
+        if (startNode == targetNode) {
+            reachable = true;
+        } else {
+            queue<pair<int,int>> q;
+            unordered_set<int> visited;
+            q.push({startNode, 0});
+            visited.insert(startNode);
+            while (!q.empty()) {
+                auto [node, dist] = q.front();
+                q.pop();
+                if (node == targetNode) {
+                    if (!isOccupied(targetNode)) reachable = true;
                     break;
                 }
-            }
-            if (fighter && board->hasSpace(raveningTargetSpace)) {
-                int targetNode = board->getNodeId(raveningTargetSpace);
-                bool occupied = false;
-                for (auto* c : gameManager->getAllCharacters()) {
-                    if (c->isalive() && c->getx() == targetNode && c != fighter) {
-                        occupied = true;
-                        break;
-                    }
+                if (dist >= 2) continue;
+                for (int next : board->getNeighborIds(node)) {
+                    if (visited.count(next)) continue;
+                    if (isOccupied(next) && next != targetNode) continue;
+                    visited.insert(next);
+                    q.push({next, dist + 1});
                 }
-                if (!occupied) {
-                    fighter->setposition(targetNode);
-                    cout << "Ravening Seduction: " << fighter->getname() << " moved to " << raveningTargetSpace << endl;
-                    int sisters = 0;
-                    auto allies = gameManager->getAllies(this);
-                    for (auto* ally : allies) {
-                        if (ally->isalive() && ally->getname().find("Sister") != string::npos) {
-                            if (board->isAdjacent(fighter->getx(), ally->getx())) {
-                                sisters++;
-                            }
-                        }
-                    }
-                    if (sisters > 0) {
-                        fighter->takedamage(sisters);
-                        cout << "Ravening Seduction: " << sisters << " damage dealt." << endl;
-                    }
-                } else {
-                    cout << "Ravening Seduction: target occupied." << endl;
-                }
-            } else {
-                cout << "Ravening Seduction: invalid fighter or space." << endl;
             }
-        } else {
-            cout << "Ravening Seduction: targets not set." << endl;
+        }
+
+        if (!reachable) {
+            cout << "Cannot use Ravening Seduction: target unreachable within 2 spaces or occupied. Try again." << endl;
+            raveningTargetFighter = "";
+            raveningTargetSpace = "";
+            return false;
+        }
+
+        fighter->setposition(targetNode);
+        cout << "Ravening Seduction: " << fighter->getname() << " moved to " << raveningTargetSpace << endl;
+        int sisters = 0;
+        for (auto* c : gameManager->getAllCharacters()) {
+            if (c->isalive() && c->getname().find("Sister") != string::npos &&
+                board->isAdjacent(fighter->getx(), c->getx())) {
+                sisters++;
+            }
+        }
+        if (sisters > 0) {
+            fighter->takedamage(sisters);
+            cout << "Ravening Seduction: " << sisters << " damage dealt." << endl;
         }
         raveningTargetFighter = "";
         raveningTargetSpace = "";
     }
     else if (name == "Administer Aid") {
-        heal(1);
         drawcard();
-        if (board && gameManager) {
-            character* watson = nullptr;
-            for (auto* c : gameManager->getAllies(this)) {
-                if (c->getname() == "Watson" && c->isalive()) {
-                    watson = c;
-                    break;
-                }
-            }
-            if (watson) {
-                auto neighbors = board->getNeighborIds(getx());
-                for (int node : neighbors) {
-                    bool occupied = false;
-                    for (auto* c : gameManager->getAllCharacters()) {
-                        if (c->isalive() && c->getx() == node && c != watson) {
-                            occupied = true;
-                            break;
-                        }
-                    }
-                    if (!occupied) {
-                        watson->setposition(node);
-                        cout << "Administer Aid: Watson placed at n" << node << endl;
+        character* holmes = nullptr;
+        character* watson = nullptr;
+        for (auto* c : gameManager->getAllCharacters()) {
+            if (c->getname() == "Sherlock Holmes" && c->isalive()) holmes = c;
+            if (c->getname() == "Watson" && c->isalive()) watson = c;
+        }
+        if (holmes) {
+            holmes->heal(1);
+            cout << "Administer Aid: Holmes healed 1." << endl;
+        }
+        if (watson && holmes) {
+            auto neighbors = board->getNeighborIds(holmes->getx());
+            for (int node : neighbors) {
+                bool occupied = false;
+                for (auto* c : gameManager->getAllCharacters()) {
+                    if (c->isalive() && c->getx() == node && c != watson) {
+                        occupied = true;
                         break;
                     }
                 }
+                if (!occupied) {
+                    watson->setposition(node);
+                    cout << "Administer Aid: Watson placed at n" << node << endl;
+                    break;
+                }
             }
         }
-        cout << "Administer Aid: Holmes healed 1, drew 1 card." << endl;
+        cout << "Administer Aid: drew 1 card." << endl;
     }
     else if (name == "Master of Disguise") {
         int myPos = getposition();
@@ -300,38 +342,47 @@ bool hero::scheme(card& schemeCard, hero& target) {
     }
     else if (name == "Eliminate the Impossible") {
         auto& enemyHand = target.gethand();
-        if (!enemyHand.empty() && eliminateCardIndex >= 0 && eliminateCardIndex < (int)enemyHand.size()) {
+        if (!enemyHand.empty()) {
+            if (eliminateCardIndex < 0 || eliminateCardIndex >= (int)enemyHand.size()) {
+                cout << "Cannot use Eliminate the Impossible: no valid card selected. Try again." << endl;
+                eliminateCardIndex = -1;
+                return false;
+            }
             cout << "Eliminate the Impossible: discarded " << enemyHand[eliminateCardIndex].get_name() << endl;
             enemyHand.erase(enemyHand.begin() + eliminateCardIndex);
         } else {
-            cout << "Eliminate the Impossible: no valid card selected." << endl;
+            cout << "Eliminate the Impossible: opponent's hand is empty, nothing to discard." << endl;
         }
         eliminateCardIndex = -1;
     }
     else if (name == "Confirm Suspicion") {
-        auto& enemyHand = target.gethand();
-        if (!enemyHand.empty()) {
-            bool found = false;
-            int guess = confirmSuspicionGuess;
-            for (size_t i = 0; i < enemyHand.size(); i++) {
-                if (enemyHand[i].getattack() == guess || enemyHand[i].getdefense() == guess) {
-                    target.takedamage(enemyHand[i].getboost());
-                    cout << "Confirm Suspicion: card with value " << guess << " discarded, damage " << enemyHand[i].getboost() << endl;
-                    enemyHand.erase(enemyHand.begin() + i);
-                    found = true;
-                    break;
-                }
-            }
-            if (!found) {
-                cout << "Confirm Suspicion: no card with value " << guess << ". Opponent reveals hand:" << endl;
-                for (const auto& c : enemyHand) {
-                    cout << "  " << c.get_name() << " (ATK:" << c.getattack() << " DEF:" << c.getdefense() << ")" << endl;
-                }
-            }
-        } else {
-            cout << "Confirm Suspicion: opponent's hand is empty." << endl;
+        if (confirmSuspicionGuess < 0) {
+            cout << "Cannot use Confirm Suspicion: no value named. Try again." << endl;
+            return false;
         }
-        confirmSuspicionGuess = 0;
+        auto& enemyHand = target.gethand();
+        bool found = false;
+        int guess = confirmSuspicionGuess;
+        for (size_t i = 0; i < enemyHand.size(); i++) {
+            if (enemyHand[i].getattack() == guess || enemyHand[i].getdefense() == guess) {
+                target.takedamage(enemyHand[i].getboost());
+                cout << "Confirm Suspicion: card with value " << guess << " discarded, damage " << enemyHand[i].getboost() << endl;
+                enemyHand.erase(enemyHand.begin() + i);
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            cout << "Confirm Suspicion: no card with value " << guess << ". Opponent reveals hand:" << endl;
+            for (const auto& c : enemyHand) {
+                cout << "  " << c.get_name() << " (ATK:" << c.getattack() << " DEF:" << c.getdefense() << ")" << endl;
+            }
+        }
+        confirmSuspicionGuess = -1;
+    }
+    else {
+        cout << "Cannot use this card: unrecognized scheme card. Try again." << endl;
+        return false;
     }
 
     actions--;
@@ -345,8 +396,14 @@ bool hero::canAttack(const hero& target, const Board& board, bool ranged) const 
 }
 
 bool hero::attack(hero& target, card& attackCard, Board& board) {
-    if (actions <= 0) return false;
-    if (!canAttack(target, board)) return false;
+    if (actions <= 0) {
+        cout << "Cannot attack: no actions remaining. Try again." << endl;
+        return false;
+    }
+    if (!canAttack(target, board)) {
+        cout << "Cannot attack: target is not in range. Try again." << endl;
+        return false;
+    }
 
     card defenseCard = target.chooseDefense();
 
@@ -355,25 +412,23 @@ bool hero::attack(hero& target, card& attackCard, Board& board) {
     bool attackerWon = false;
     bool effectsCanceled = false;
 
-    bool isProtected = false;
-    if (attackCard.getowner() == cardowner::sherlock || attackCard.getowner() == cardowner::watson ||
-        defenseCard.getowner() == cardowner::sherlock || defenseCard.getowner() == cardowner::watson) {
-        isProtected = true;
-    }
-
-    if (defenseCard.get_name() == "Feint" && !isProtected) {
+    if (defenseCard.get_name() == "Feint") {
         effectsCanceled = true;
     }
-    if (attackCard.get_name() == "Feint" && !isProtected) {
-        effectsCanceled = true;
-    }
-    if (defenseCard.get_name() == "Do My Bidding") {
+    if (attackCard.get_name() == "Feint") {
         effectsCanceled = true;
     }
 
     if (!effectsCanceled) {
         if (defenseCard.get_name() == "Look Into My Eyes") {
             defenseValue += attackCard.getboost();
+        }
+        if (defenseCard.get_name() == "Deduce Strategy") {
+            int newAtk = attackCard.getboost();
+            if (newAtk < attackValue) {
+                attackValue = newAtk;
+                cout << "Deduce Strategy: attack changed to " << attackValue << endl;
+            }
         }
         if (defenseCard.get_name() == "Elementary") {
             if (predictedAttackValue == attackCard.getattack()) {
@@ -387,16 +442,18 @@ bool hero::attack(hero& target, card& attackCard, Board& board) {
         }
 
         if (attackCard.get_name() == "Deduce Strategy") {
-            defenseValue = defenseCard.getboost();
-            cout << "Deduce Strategy: defense changed to " << defenseValue << endl;
+            int newDef = defenseCard.getboost();
+            if (newDef < defenseValue) {
+                defenseValue = newDef;
+                cout << "Deduce Strategy: defense changed to " << defenseValue << endl;
+            }
         }
         if (attackCard.get_name() == "Beastform") {
             int count = beastformDiscardCount;
+            if (count > (int)hand.size()) count = (int)hand.size();
             for (int i = 0; i < count; i++) {
-                if (!hand.empty()) {
-                    hand.pop_back();
-                    attackValue++;
-                }
+                hand.pop_back();
+                attackValue++;
             }
             beastformDiscardCount = 0;
             cout << "Beastform: discarded " << count << " cards, attack now " << attackValue << endl;
@@ -405,15 +462,18 @@ bool hero::attack(hero& target, card& attackCard, Board& board) {
             if (gameManager) {
                 auto allies = gameManager->getAllies(this);
                 int sistersInZone = 0;
+                auto zonesTarget = board.getZonesAt(target.getx(), 0);
                 for (auto* ally : allies) {
                     if (ally->isalive() && ally->getname().find("Sister") != string::npos) {
-                        auto zonesTarget = board.getZonesAt(target.getx(), 0);
                         auto zonesAlly = board.getZonesAt(ally->getx(), 0);
+                        bool sharesZone = false;
                         for (const auto& z1 : zonesTarget) {
                             for (const auto& z2 : zonesAlly) {
-                                if (z1 == z2) { sistersInZone++; break; }
+                                if (z1 == z2) { sharesZone = true; break; }
                             }
+                            if (sharesZone) break;
                         }
+                        if (sharesZone) sistersInZone++;
                     }
                 }
                 attackValue += sistersInZone;
@@ -464,6 +524,27 @@ bool hero::attack(hero& target, card& attackCard, Board& board) {
                 }
             }
         }
+        if (defenseCard.get_name() == "Education Never Ends") {
+            if (!attackerWon) {
+                drawcard();
+                cout << "Education Never Ends: opponent draws 1." << endl;
+            } else {
+                target.drawcard();
+                target.drawcard();
+                cout << "Education Never Ends: you draw 2." << endl;
+            }
+        }
+        if (defenseCard.get_name() == "Counter Punch") {
+            if (board.isAdjacent(target.getposition(), getposition())) {
+                takedamage(2);
+                cout << "Counter Punch: dealt 2 damage." << endl;
+            }
+        }
+        if (defenseCard.get_name() == "Study Methods" && !attackerWon) {
+            for (const auto& c : hand) {
+                cout << "Study Methods: " << c.get_name() << endl;
+            }
+        }
 
         if (attackCard.get_name() == "Exploit") drawcard();
         if (attackCard.get_name() == "Dash") {
@@ -508,21 +589,27 @@ bool hero::attack(hero& target, card& attackCard, Board& board) {
             }
         }
         if (attackCard.get_name() == "Thirst for Sustenance" && attackerWon) {
-            auto neighbors = board.getNeighborIds(target.getx());
-            for (int node : neighbors) {
-                bool occupied = false;
-                if (gameManager) {
-                    for (auto* c : gameManager->getAllCharacters()) {
-                        if (c->isalive() && c->getx() == node && c != this) {
-                            occupied = true;
+            if (gameManager) {
+                character* dracula = nullptr;
+                for (auto* c : gameManager->getAllCharacters()) {
+                    if (c->getname() == "Dracula" && c->isalive()) { dracula = c; break; }
+                }
+                if (dracula) {
+                    auto neighbors = board.getNeighborIds(target.getx());
+                    for (int node : neighbors) {
+                        bool occupied = false;
+                        for (auto* c : gameManager->getAllCharacters()) {
+                            if (c->isalive() && c->getx() == node && c != dracula) {
+                                occupied = true;
+                                break;
+                            }
+                        }
+                        if (!occupied) {
+                            dracula->setposition(node);
+                            cout << "Thirst for Sustenance: Dracula placed adjacent to opponent." << endl;
                             break;
                         }
                     }
-                }
-                if (!occupied) {
-                    setposition(node);
-                    cout << "Thirst for Sustenance: Dracula placed adjacent to opponent." << endl;
-                    break;
                 }
             }
         }
@@ -537,7 +624,9 @@ bool hero::attack(hero& target, card& attackCard, Board& board) {
             }
         }
         if (attackCard.get_name() == "Study Methods" && attackerWon) {
-            cout << "Study Methods: you may look at opponent's hand." << endl;
+            for (const auto& c : target.gethand()) {
+                cout << "Study Methods: " << c.get_name() << endl;
+            }
         }
     }
 
