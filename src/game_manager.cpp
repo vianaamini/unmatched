@@ -1,9 +1,9 @@
 #include "../include/game_manager.hpp"
 #include "../include/hero.hpp"
 #include "../include/dracula.hpp"
+#include "../include/invisible_man.hpp"
 #include <algorithm>
 #include <iostream>
-#include <algorithm>
 #include <cctype>
 
 GameManager::GameManager() : board(), movement(&board) {}
@@ -26,6 +26,12 @@ void GameManager::addCharacter(character *c, int team)
     if (d)
     {
         d->setAllCharacters(&allCharacters);
+    }
+
+    InvisibleMan *inv = dynamic_cast<InvisibleMan *>(c);
+    if (inv)
+    {
+        inv->setAllCharacters(&allCharacters);
     }
 
     if (team == 1)
@@ -293,39 +299,57 @@ character *GameManager::getWinner() const
 {
     return turnManager.getWinner();
 }
-character* GameManager::findCharacterByName(const std::string& name) {
-    if (name.empty()) return nullptr;
+
+character *GameManager::findCharacterByName(const std::string &name)
+{
+    if (name.empty())
+        return nullptr;
 
     std::string lowerName = name;
     std::transform(lowerName.begin(), lowerName.end(), lowerName.begin(), ::tolower);
 
-    for (auto c : allCharacters) {
-        if (!c) continue;
+    for (auto c : allCharacters)
+    {
+        if (!c)
+            continue;
         std::string cName = c->getname();
         std::transform(cName.begin(), cName.end(), cName.begin(), ::tolower);
 
-        if (cName == lowerName) return c;
+        if (cName == lowerName)
+            return c;
 
-        if ((lowerName == "sh" || lowerName == "sherlock") && cName.find("sherlock") != std::string::npos) return c;
-        if ((lowerName == "w" || lowerName == "watson") && cName.find("watson") != std::string::npos) return c;
-        if ((lowerName == "d" || lowerName == "dracula") && cName.find("dracula") != std::string::npos) return c;
-        if ((lowerName == "s1" || lowerName == "sister1" || lowerName == "sister 1") && cName.find("sister") != std::string::npos && cName.find("1") != std::string::npos) return c;
-        if ((lowerName == "s2" || lowerName == "sister2" || lowerName == "sister 2") && cName.find("sister") != std::string::npos && cName.find("2") != std::string::npos) return c;
+        if ((lowerName == "sh" || lowerName == "sherlock") && cName.find("sherlock") != std::string::npos)
+            return c;
+        if ((lowerName == "w" || lowerName == "watson") && cName.find("watson") != std::string::npos)
+            return c;
+        if ((lowerName == "d" || lowerName == "dracula") && cName.find("dracula") != std::string::npos)
+            return c;
+        if ((lowerName == "s1" || lowerName == "sister1" || lowerName == "sister 1") && cName.find("sister") != std::string::npos && cName.find("1") != std::string::npos)
+            return c;
+        if ((lowerName == "s2" || lowerName == "sister2" || lowerName == "sister 2") && cName.find("sister") != std::string::npos && cName.find("2") != std::string::npos)
+            return c;
+        if ((lowerName == "inv" || lowerName == "invisible" || lowerName == "im") && cName.find("invisible") != std::string::npos)
+            return c;
     }
 
     return nullptr;
 }
 
-bool GameManager::handleMove(const std::string& charIdentifier, const std::string& targetNodeStr) {
-    character* actor = nullptr;
+bool GameManager::handleMove(const std::string &charIdentifier, const std::string &targetNodeStr)
+{
+    character *actor = nullptr;
 
-    if (charIdentifier.empty()) {
+    if (charIdentifier.empty())
+    {
         actor = getCurrentCharacter();
-    } else {
+    }
+    else
+    {
         actor = findCharacterByName(charIdentifier);
     }
 
-    if (!actor) {
+    if (!actor)
+    {
         return false;
     }
 
@@ -388,8 +412,7 @@ bool GameManager::handleMove(character* actor, const std::string& targetNodeStr)
         }
     }
 
-    bool isHero = (dynamic_cast<hero*>(actor) != nullptr);
-    int moveSteps = isHero ? 3 : actor->getmovement();
+    int moveSteps = actor->getmovement();
 
     auto allies = getAllies(actor);
     auto enemies = getEnemies(actor);
@@ -419,7 +442,7 @@ bool GameManager::handleMove(character* actor, const std::string& targetNodeStr)
 
     std::cout << actor->getname() << " successfully moved to " << formattedNode << std::endl;
 
-    turnManager.endTurn();   // <-- این خط اضافه بشه
+    turnManager.endTurn();
 
     return true;
 }

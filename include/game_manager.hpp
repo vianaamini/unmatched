@@ -19,13 +19,13 @@ private:
     std::vector<character*> team1;
     std::vector<character*> team2;
 
-    character* findCharacterByName(const std::string& name);
-
 public:
     GameManager();
 
     void addCharacter(character* character, int team = 1);
     void removeCharacter(character* character);
+
+    character* findCharacterByName(const std::string& name);
 
     std::vector<std::string> getValidMoves(character* character);
     bool moveCharacter(character* character, const std::string& targetSpace, const card* boostCard = nullptr);
