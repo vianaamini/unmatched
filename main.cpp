@@ -10,6 +10,7 @@
 #include "sister.hpp"
 #include "watson.hpp"
 #include "raylib.hpp"
+#include "../include/game_manager.hpp"
 #include <iostream>
 #include <vector>
 #include <string>
@@ -86,7 +87,6 @@ int main()
                     p1Hero = heroResult.player1Hero;
                     p2Hero = heroResult.player2Hero;
                     
-                    // تنظیم دقیق نوبت‌دهی بر اساس خروجی
                     firstPlayer = heroResult.firstPlayer; 
 
                     currentState = GameState::Playing;
@@ -100,7 +100,7 @@ int main()
 
             case GameState::Playing:
             {
-                Board board;
+                GameManager gm;
 
                 dracula* draculaPtr = new dracula();
                 sister* sister1Ptr = new sister(1);
@@ -108,18 +108,20 @@ int main()
                 sister* sister3Ptr = new sister(3);
                 sherlock* sherlockPtr = new sherlock();
                 watson* watsonPtr = new watson();
-
-                // موقعیت اولیه‌ی هر کاراکتر روی نقشه (نودهای n1 تا n32 طبق map.cpp)
-                // بدون این خط‌ها هیچ کاراکتری روی نقشه نمایش داده نمی‌شه.
                 draculaPtr->setposition(10);
                 sister1Ptr->setposition(1);
                 sister2Ptr->setposition(2);
                 sister3Ptr->setposition(3);
                 sherlockPtr->setposition(23);
                 watsonPtr->setposition(22);
-
-                // پاس دادن درست متغیر firstPlayer به محیط بازی
-                RunGameUI(board, draculaPtr, sister1Ptr, sister2Ptr, sister3Ptr, sherlockPtr, watsonPtr, firstPlayer, draculaPtr, sherlockPtr);
+                gm.addCharacter(draculaPtr, 1);
+                gm.addCharacter(sister1Ptr, 1);
+                gm.addCharacter(sister2Ptr, 1);
+                gm.addCharacter(sister3Ptr, 1);
+                gm.addCharacter(sherlockPtr, 2);
+                gm.addCharacter(watsonPtr, 2);
+                gm.startGame(firstPlayer);
+                RunGameUI(gm, draculaPtr, sister1Ptr, sister2Ptr, sister3Ptr, sherlockPtr, watsonPtr, firstPlayer, draculaPtr, sherlockPtr);
 
                 delete draculaPtr;
                 delete sister1Ptr;
