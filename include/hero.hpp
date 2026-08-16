@@ -95,6 +95,18 @@ public:
         const card* defenseCard = nullptr
     );
 
+    bool canAttack(
+        const character& target,
+        const Board& board,
+        bool ranged = false
+    ) const;
+
+    bool attack(
+        character& target,
+        card& attackCard,
+        Board& board
+    );
+
     virtual void useability() = 0;
 
 private:

@@ -647,6 +647,53 @@ bool hero::canAttack(
     );
 }
 
+bool hero::canAttack(
+    const character& target,
+    const Board& board,
+    bool ranged
+) const {
+    if (!target.isalive())
+        return false;
+
+    if (ranged)
+        return true;
+
+    return board.isAdjacent(
+        getposition(),
+        target.getposition()
+    );
+}
+
+bool hero::attack(character& target,card& attackCard,Board& board) {
+  
+    hero* heroTarget = dynamic_cast<hero*>(&target);
+    if (heroTarget)
+        return attack(*heroTarget, attackCard, board);
+
+    if (actions <= 0) {
+        cout << "Cannot attack: no actions remaining. Try again." << endl;
+        return false;
+    }
+
+    if (!canAttack(target, board)) {
+        cout << "Cannot attack: target is not in range. Try again." << endl;
+        return false;
+    }
+    int damage = std::max(0, attackCard.getattack());
+
+    if (damage > 0) {
+        target.takedamage(damage);
+
+        cout << getname()
+             << " attacked " << target.getname()
+             << " for " << damage << " damage." << endl;
+    }
+
+    actions--;
+
+    return true;
+}
+
 bool hero::attack(
     hero& target,
     card& attackCard,
@@ -710,9 +757,6 @@ bool hero::attack(
         }
 
         if (defenseCard.get_name() == "Elementary") {
-            // Elementary was played as the DEFENSE card, i.e. by "target"
-            // (the defender) - the prediction being checked has to be the
-            // defender's own guess, not the attacker's leftover field.
             if (target.predictedAttackValue == attackCard.getattack()) {
                 attackValue = 0;
                 effectsCanceled = true;
@@ -834,10 +878,6 @@ bool hero::attack(
             target.drawcard();
 
         if (defenseCard.get_name() == "Dash") {
-            // Dash was played as the DEFENSE card here, i.e. by "target"
-            // (the defender) - it is the defender who moves, using the
-            // node/flag the defender set on their own hero object, not
-            // the attacker's ("this"'s).
             if (target.dashTargetNode >= 0) {
                 if (target.moveWithRules(
                         target.dashTargetNode,

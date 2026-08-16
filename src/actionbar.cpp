@@ -83,15 +83,6 @@ static void ToggleAction(ActionBarState& state, ActionMode mode)
         state.hasPendingBoost = false;
 }
 
-// NEW: single place that "completes" a maneuver/attack/scheme action.
-// hero::maneuver() / hero::scheme() / hero::attack() only ever decrement the
-// hero's OWN action counter - they never touch the TurnManager. It is the
-// UI's job to call TurnManager::endTurn() exactly ONCE per completed action
-// (endTurn() itself decides whether that ends the turn or just moves to the
-// 2nd action). Funnel every "action finished" path through this function so
-// endTurn() can never accidentally be called twice (or zero times) for one
-// action - that double-call was the root cause of the turn ending after a
-// single move.
 static void ActionBar_CompleteAction(ActionBarState& state, GameManager& gm)
 {
     state.currentAction = ActionMode::None;
@@ -101,10 +92,6 @@ static void ActionBar_CompleteAction(ActionBarState& state, GameManager& gm)
     gm.getTurnManager().endTurn();
 }
 
-// NEW: called once an attacker-side combat-card sub-flow (Dash / The Game
-// is Afoot / Beastform) has collected its extra input. Resumes exactly
-// where the old inline code used to jump straight to "awaitingDefense =
-// true" right after the attack card was chosen.
 static void ActionBar_ProceedToDefense(ActionBarState& state)
 {
     state.targetPrompt = TargetPrompt::None;
@@ -197,8 +184,6 @@ void ActionBar_ResolveDefense(
     state.pendingAttackCard = card();
 
     if (resolved) {
-        // attack() already consumed the attacker's own action counter -
-        // this is the single matching TurnManager::endTurn() call for it.
         ActionBar_CompleteAction(state, gm);
     } else {
         state.currentAction = ActionMode::None;
@@ -298,9 +283,6 @@ void ActionBar_Update(
             if (moved) {
                 if (state.hasPendingBoost && activeHero)
                     activeHero->removeCardFromHand(state.pendingBoostCard.get_name());
-
-                // moveCharacter() no longer calls endTurn() itself (see the
-                // game_manager.cpp patch) - this is now the single call.
                 ActionBar_CompleteAction(state, gm);
             }
 
@@ -317,11 +299,7 @@ void ActionBar_Update(
         auto enemies = gm.getEnemies(actingChar);
 
         for (character* enemyChar : enemies) {
-            hero* enemyHero = dynamic_cast<hero*>(enemyChar);
-            if (!enemyHero)
-                continue;
-
-            if (!actingHero->canAttack(*enemyHero, board))
+            if (!actingHero->canAttack(*enemyChar, board))
                 continue;
 
             std::string nodeName = "n" + std::to_string(enemyChar->getx());
@@ -342,6 +320,20 @@ void ActionBar_Update(
                     return;
                 }
 
+                hero* enemyHero = dynamic_cast<hero*>(enemyChar);
+
+                if (!enemyHero) {
+                    actingHero->removeCardFromHand(attackCard.get_name());
+                    ActionBar_RecordPlayedCard(state, actingHero, draculaHero, attackCard);
+
+                    actingHero->attack(*enemyChar, attackCard, board);
+
+                    state.currentAction = ActionMode::None;
+                    state.selectedCardIndex = -1;
+                    ActionBar_CompleteAction(state, gm);
+                    return;
+                }
+
                 actingHero->removeCardFromHand(attackCard.get_name());
                 ActionBar_RecordPlayedCard(state, actingHero, draculaHero, attackCard);
 
@@ -353,13 +345,6 @@ void ActionBar_Update(
 
                 std::string atkName = attackCard.get_name();
 
-                // Dash / The Game is Afoot / Beastform each need one more
-                // piece of input from the ATTACKER (a destination node, or
-                // a discard count) before hero::attack() can apply their
-                // effect - collect it first instead of jumping straight to
-                // the defender's "choose defense" screen. See
-                // ActionBar_UpdateTargeting (DashNode/AfootNode) and
-                // ActionBar_DrawBeastformPicker (BeastformDiscard).
                 if (atkName == "Dash") {
                     state.combatTargetHero = actingHero;
                     state.combatTargetIsDefender = false;
@@ -382,11 +367,6 @@ void ActionBar_Update(
     }
 }
 
-// ---------------------------------------------------------------------
-// NEW: targeting sub-flow for scheme cards that need extra input before
-// hero::scheme() can succeed (Mistform, Ravening Seduction, Confirm
-// Suspicion, Eliminate the Impossible).
-// ---------------------------------------------------------------------
 
 static std::string ActionBar_FindNodeAtPos(
     Board& board,
@@ -426,10 +406,6 @@ static character* ActionBar_FindCharacterAtPos(
     return nullptr;
 }
 
-// Actually invokes hero::scheme() once all required setters have been
-// called, and performs the same cleanup (remove from hand, record played
-// card, end the action) that the "no extra targeting" branch in
-// ActionBar_HandleCardClick already did.
 static void ActionBar_FinishPendingScheme(
     ActionBarState& state,
     GameManager& gm,
@@ -457,8 +433,6 @@ static void ActionBar_FinishPendingScheme(
     state.pendingSchemeTarget = nullptr;
 
     if (!ok) {
-        // hero::scheme() prints why (e.g. "no valid target selected") and
-        // clears its own target fields on failure - nothing else to do.
         return;
     }
 
@@ -487,9 +461,6 @@ void ActionBar_UpdateTargeting(
     if (state.targetPrompt == TargetPrompt::None || !activeHero)
         return;
 
-    // ConfirmSuspicionValue and EliminateCard are resolved by their own
-    // popup draw/click functions (ActionBar_DrawValuePicker /
-    // ActionBar_DrawEliminatePicker), not by map clicks.
     if (state.targetPrompt == TargetPrompt::ConfirmSuspicionValue ||
         state.targetPrompt == TargetPrompt::EliminateCard)
         return;
@@ -543,13 +514,6 @@ void ActionBar_UpdateTargeting(
             return;
 
         int nodeId = board.getNodeId(node);
-
-        // Reject a click on an occupied space - this also protects against
-        // the same mouse-press that just chose the attack TARGET (still
-        // "pressed" for the rest of this frame) being misread as the
-        // Dash/Afoot destination: the target's own space is occupied by
-        // definition, so that click is simply ignored and the prompt keeps
-        // waiting for a real destination click on a later frame.
         for (character* c : gm.getAllCharacters()) {
             if (c && c->isalive() && c->getx() == nodeId)
                 return;
@@ -652,7 +616,7 @@ void ActionBar_DrawValuePicker(
 
     float btnSize = 46.0f;
     float gap = 10.0f;
-    int count = 7; // values 0..6
+    int count = 7; 
     float totalW = count * btnSize + (count - 1) * gap;
     float startX = modalRect.x + (modalW - totalW) / 2.0f;
     float y = modalRect.y + 70.0f;
@@ -709,9 +673,6 @@ void ActionBar_DrawEliminatePicker(
 
     int count = enemyHero->handsize();
     if (count <= 0) {
-        // Nothing to burn - bail out cleanly (this also mirrors
-        // hero::scheme()'s own "opponent's hand is empty" branch, but we
-        // never even reach it without a valid index).
         state.targetPrompt = TargetPrompt::None;
         state.pendingSchemeCard = card();
         state.pendingSchemeCardIndex = -1;
@@ -763,8 +724,7 @@ void ActionBar_DrawBeastformPicker(
 
     hero* attacker = state.combatTargetHero;
     int maxDiscard = attacker->handsize();
-    if (maxDiscard > 8) maxDiscard = 8; // keep the popup on-screen; matches Eliminate's cap style
-
+    if (maxDiscard > 8) maxDiscard = 8; 
     float modalW = 420.0f;
     float modalH = 220.0f;
     Rectangle modalRect = { (sw - modalW) / 2.0f, (sh - modalH) / 2.0f, modalW, modalH };
@@ -776,7 +736,7 @@ void ActionBar_DrawBeastformPicker(
     const char* title = "BEASTFORM - CARDS TO DISCARD";
     DrawText(title, (int)(modalRect.x + (modalW - MeasureText(title, 14)) / 2.0f), (int)(modalRect.y + 16), 14, GetColor(0xE5C158FF));
 
-    int count = maxDiscard + 1; // 0..maxDiscard
+    int count = maxDiscard + 1; 
     float btnSize = 46.0f;
     float gap = 10.0f;
     float totalW = count * btnSize + (count - 1) * gap;
@@ -827,7 +787,7 @@ void ActionBar_DrawElementaryPicker(
     const char* title = "ELEMENTARY - PREDICT THE ATTACK VALUE";
     DrawText(title, (int)(modalRect.x + (modalW - MeasureText(title, 14)) / 2.0f), (int)(modalRect.y + 16), 14, GetColor(0xE5C158FF));
 
-    int count = 7; // values 0..6 - covers every printed attack value in the decks
+    int count = 7; 
     float btnSize = 46.0f;
     float gap = 10.0f;
     float totalW = count * btnSize + (count - 1) * gap;
@@ -908,9 +868,6 @@ bool ActionBar_HandleCardClick(
 
         std::string name = clickedCard.get_name();
 
-        // These four cards need extra input from the player before
-        // hero::scheme() can succeed - defer execution until that input is
-        // collected (see ActionBar_UpdateTargeting / the picker functions).
         if (name == "Mistform") {
             state.pendingSchemeCard = clickedCard;
             state.pendingSchemeCardIndex = cardIndex;
@@ -950,9 +907,6 @@ bool ActionBar_HandleCardClick(
             showHandFlag = false;
             return true;
         }
-
-        // Everything else (Baptism of Blood, Prey Upon, Administer Aid,
-        // Master of Disguise) needs no extra target selection.
         card cardCopy = clickedCard;
         bool ok = activeHero->scheme(cardCopy, *targetHero);
 
@@ -1002,11 +956,7 @@ void ActionBar_DrawMapHighlights(
         state.selectedCardIndex >= 0) {
 
         for (character* enemyChar : gm.getEnemies(actingChar)) {
-            hero* enemyHero = dynamic_cast<hero*>(enemyChar);
-            if (!enemyHero)
-                continue;
-
-            if (!actingHero->canAttack(*enemyHero, board))
+            if (!actingHero->canAttack(*enemyChar, board))
                 continue;
 
             Vector2 pos = ActionBar_NodeScreenPos(
