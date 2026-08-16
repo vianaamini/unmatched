@@ -269,6 +269,30 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\unmatched.dir\build.make CMakeFiles/unmatched.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+src/actionbar.obj: src/actionbar.cpp.obj
+.PHONY : src/actionbar.obj
+
+# target to build an object file
+src/actionbar.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\unmatched.dir\build.make CMakeFiles/unmatched.dir/src/actionbar.cpp.obj
+.PHONY : src/actionbar.cpp.obj
+
+src/actionbar.i: src/actionbar.cpp.i
+.PHONY : src/actionbar.i
+
+# target to preprocess a source file
+src/actionbar.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\unmatched.dir\build.make CMakeFiles/unmatched.dir/src/actionbar.cpp.i
+.PHONY : src/actionbar.cpp.i
+
+src/actionbar.s: src/actionbar.cpp.s
+.PHONY : src/actionbar.s
+
+# target to generate assembly for a file
+src/actionbar.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\unmatched.dir\build.make CMakeFiles/unmatched.dir/src/actionbar.cpp.s
+.PHONY : src/actionbar.cpp.s
+
 src/age_screen.obj: src/age_screen.cpp.obj
 .PHONY : src/age_screen.obj
 
@@ -819,6 +843,9 @@ help:
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
+	@echo ... src/actionbar.obj
+	@echo ... src/actionbar.i
+	@echo ... src/actionbar.s
 	@echo ... src/age_screen.obj
 	@echo ... src/age_screen.i
 	@echo ... src/age_screen.s

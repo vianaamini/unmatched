@@ -39,10 +39,15 @@ public:
     void setPredictedAttackValue(int val) { predictedAttackValue = val; }
     void setBeastformDiscardCount(int val) { beastformDiscardCount = val; }
     void setMistformTarget(const std::string& target) { mistformTarget = target; }
-    void setRaveningTargets(const std::string& fighter, const std::string& space) {
+
+    void setRaveningTargets(
+        const std::string& fighter,
+        const std::string& space
+    ) {
         raveningTargetFighter = fighter;
         raveningTargetSpace = space;
     }
+
     void setEliminateCardIndex(int idx) { eliminateCardIndex = idx; }
     void setConfirmSuspicionGuess(int guess) { confirmSuspicionGuess = guess; }
     void setDashTargetNode(int node) { dashTargetNode = node; }
@@ -69,13 +74,33 @@ public:
 
     virtual card chooseDefense();
 
-    bool maneuver(int targetNode, Board& board, const card* boostCard = nullptr);
+    bool maneuver(
+        int targetNode,
+        Board& board,
+        const card* boostCard = nullptr
+    );
+
     bool scheme(card& schemeCard, hero& target);
-    bool canAttack(const hero& target, const Board& board, bool ranged = false) const;
-    bool attack(hero& target, card& attackCard, Board& board);
+
+    bool canAttack(
+        const hero& target,
+        const Board& board,
+        bool ranged = false
+    ) const;
+
+    bool attack(
+        hero& target,
+        card& attackCard,
+        Board& board,
+        const card* defenseCard = nullptr
+    );
 
     virtual void useability() = 0;
 
 private:
-    bool moveWithRules(int targetNode, int steps, Board& board);
+    bool moveWithRules(
+        int targetNode,
+        int steps,
+        Board& board
+    );
 };

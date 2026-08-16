@@ -195,11 +195,12 @@ bool GameManager::moveCharacter(character *c, const std::string &targetSpace, co
     if (activeHero)
     {
         activeHero->useAction();
+        activeHero->drawcard();           
+        while (activeHero->handsize() > 7)       
+            activeHero->gethand().pop_back();
     }
 
     std::cout << c->getname() << " successfully moved to " << targetSpace << std::endl;
-
-    turnManager.endTurn();
     return true;
 }
 

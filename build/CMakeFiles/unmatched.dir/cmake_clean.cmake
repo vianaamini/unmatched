@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/unmatched.dir/main.cpp.obj"
   "CMakeFiles/unmatched.dir/main.cpp.obj.d"
+  "CMakeFiles/unmatched.dir/src/actionbar.cpp.obj"
+  "CMakeFiles/unmatched.dir/src/actionbar.cpp.obj.d"
   "CMakeFiles/unmatched.dir/src/age_screen.cpp.obj"
   "CMakeFiles/unmatched.dir/src/age_screen.cpp.obj.d"
   "CMakeFiles/unmatched.dir/src/card.cpp.obj"
