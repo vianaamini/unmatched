@@ -50,8 +50,11 @@ bool Movement::canMoveThrough(int from, int to,
     string toName = "n" + to_string(to);
     
     if (board->isConnected(fromName, toName)) return true;
-    if (board->isTeleport(fromName) && board->getTeleportDestination(fromName) == toName) {
-        return true;
+    if (board->isTeleport(fromName)) {
+        auto destinations = board->getTeleportDestinations(fromName);
+        for (const auto& dest : destinations) {
+            if (dest == toName) return true;
+        }
     }
     return false;
 }
@@ -98,13 +101,15 @@ std::vector<std::string> Movement::getPossibleMoves(
             
             string currentName = "n" + to_string(current);
             if (board->isTeleport(currentName)) {
-                string dest = board->getTeleportDestination(currentName);
-                int destId = board->getNodeId(dest);
-                if (destId != current && visited.find(destId) == visited.end()) {
-                    neighbors.push_back(destId);
+                auto destinations = board->getTeleportDestinations(currentName);
+                for (const auto& dest : destinations) {
+                    int destId = board->getNodeId(dest);
+                    if (destId != current && visited.find(destId) == visited.end()) {
+                        neighbors.push_back(destId);
+                    }
                 }
             }
-            
+
             for (int neighbor : neighbors) {
                 if (visited.find(neighbor) != visited.end()) continue;
                 if (canMoveThrough(current, neighbor, alliesList, enemiesList, c)) {
@@ -150,10 +155,12 @@ bool Movement::canReach(const std::string& start,
             
             string currentName = "n" + to_string(current);
             if (board->isTeleport(currentName)) {
-                string dest = board->getTeleportDestination(currentName);
-                int destId = board->getNodeId(dest);
-                if (destId != current && visited.find(destId) == visited.end()) {
-                    neighbors.push_back(destId);
+                auto destinations = board->getTeleportDestinations(currentName);
+                for (const auto& dest : destinations) {
+                    int destId = board->getNodeId(dest);
+                    if (destId != current && visited.find(destId) == visited.end()) {
+                        neighbors.push_back(destId);
+                    }
                 }
             }
             

@@ -160,18 +160,32 @@ bool Board::hasSpace(const string& spaceName) const {
 }
 
 void Board::addTeleport(const string& from, const string& to) {
-    teleportPairs[from] = to;
-    teleportPairs[to] = from;
+    auto& fromDests = teleportPairs[from];
+    if (find(fromDests.begin(), fromDests.end(), to) == fromDests.end()) {
+        fromDests.push_back(to);
+    }
+    auto& toDests = teleportPairs[to];
+    if (find(toDests.begin(), toDests.end(), from) == toDests.end()) {
+        toDests.push_back(from);
+    }
     teleportSpaces.insert(from);
     teleportSpaces.insert(to);
 }
 
 string Board::getTeleportDestination(const string& spaceName) const {
     auto it = teleportPairs.find(spaceName);
+    if (it != teleportPairs.end() && !it->second.empty()) {
+        return it->second.front();
+    }
+    return spaceName;
+}
+
+vector<string> Board::getTeleportDestinations(const string& spaceName) const {
+    auto it = teleportPairs.find(spaceName);
     if (it != teleportPairs.end()) {
         return it->second;
     }
-    return spaceName;
+    return {};
 }
 
 bool Board::isTeleport(const string& spaceName) const {

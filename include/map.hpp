@@ -25,7 +25,7 @@ private:
     unordered_map<string, vector<string>> adjacencyList;
     unordered_map<NodeColor, vector<string>> zoneMap;
     unordered_map<string, pair<int, int>> tuiCoordinates;
-    unordered_map<string, string> teleportPairs;
+    unordered_map<string, vector<string>> teleportPairs;
     unordered_set<string> teleportSpaces;
     unordered_set<string> obstacleSpaces;
     int width, height;
@@ -61,6 +61,8 @@ public:
 
     void addTeleport(const string& from, const string& to);
     string getTeleportDestination(const string& spaceName) const;
+    vector<string> getTeleportDestinations(const string& spaceName) const;
+
     bool isTeleport(const string& spaceName) const;
 
     int getNodeId(const string& nodeName) const;
@@ -70,4 +72,4 @@ public:
     NodeColor getNodeColorByName(const string& nodeName) const;
 };
 
-#endif 
+#endif
