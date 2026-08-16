@@ -357,11 +357,6 @@ void RunGameUI(GameManager& gm, character* dracula, character* sis1Obj, characte
 
     ActionBarState actionBar;
 
-    // --- state گیم‌اوور ---
-    // "dracula" و "sherlock" همیشه شخصیتِ اصلیِ هر تیم‌ان (هر کسی که باشه —
-    // دراکولا، شرلوک، یا بعداً هرکسِ دیگه‌ای مثل مردِ نامرئی)؛ خواهرها/واتسون
-    // فقط همراهن و مرگشون باعثِ پایانِ بازی نمی‌شه. اسمِ برنده/بازنده هم
-    // مستقیم از getname() گرفته می‌شه، نه هاردکد، تا با هر شخصیتی کار کنه.
     bool gameOver = false;
     character* winnerChar = nullptr;
     character* loserChar = nullptr;
@@ -383,7 +378,6 @@ void RunGameUI(GameManager& gm, character* dracula, character* sis1Obj, characte
             lastTeam = activePlayerTurn;
         }
 
-        // --- چک گیم‌اوور: اگه شخصیتِ اصلیِ یه تیم بمیره، بازی همون‌جا تموم می‌شه ---
         if (!gameOver) {
             if (dracula && !dracula->isalive()) {
                 gameOver = true;
@@ -707,7 +701,6 @@ Vector2 mousePos = GetMousePosition();
             ActionBar_DrawEliminatePicker(actionBar, gm, activeHero, draculaHero, mousePos, sw, sh);
         }
 
-        // --- اورلی گیم‌اوور: روی همه‌چیزِ دیگه کشیده می‌شه ---
         if (gameOver) {
             DrawRectangle(0, 0, (int)sw, (int)sh, Fade(BLACK, 0.82f));
 
