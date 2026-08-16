@@ -357,7 +357,17 @@ void RunGameUI(GameManager& gm, character* dracula, character* sis1Obj, characte
 
     ActionBarState actionBar;
 
-    while (!WindowShouldClose()) {
+    // --- state گیم‌اوور ---
+    // "dracula" و "sherlock" همیشه شخصیتِ اصلیِ هر تیم‌ان (هر کسی که باشه —
+    // دراکولا، شرلوک، یا بعداً هرکسِ دیگه‌ای مثل مردِ نامرئی)؛ خواهرها/واتسون
+    // فقط همراهن و مرگشون باعثِ پایانِ بازی نمی‌شه. اسمِ برنده/بازنده هم
+    // مستقیم از getname() گرفته می‌شه، نه هاردکد، تا با هر شخصیتی کار کنه.
+    bool gameOver = false;
+    character* winnerChar = nullptr;
+    character* loserChar = nullptr;
+    bool exitToMenuRequested = false;
+
+    while (!WindowShouldClose() && !exitToMenuRequested) {
         float sw = (float)GetScreenWidth();
         float sh = (float)GetScreenHeight();
 
@@ -371,6 +381,19 @@ void RunGameUI(GameManager& gm, character* dracula, character* sis1Obj, characte
             showHandP1 = false;
             showHandP2 = false;
             lastTeam = activePlayerTurn;
+        }
+
+        // --- چک گیم‌اوور: اگه شخصیتِ اصلیِ یه تیم بمیره، بازی همون‌جا تموم می‌شه ---
+        if (!gameOver) {
+            if (dracula && !dracula->isalive()) {
+                gameOver = true;
+                loserChar = dracula;
+                winnerChar = sherlock;
+            } else if (sherlock && !sherlock->isalive()) {
+                gameOver = true;
+                loserChar = sherlock;
+                winnerChar = dracula;
+            }
         }
 
         float headerH = sh * 0.075f;
@@ -393,7 +416,7 @@ void RunGameUI(GameManager& gm, character* dracula, character* sis1Obj, characte
 
 Vector2 mousePos = GetMousePosition();
 
-        if (!actionBar.awaitingDefense) {
+        if (!gameOver && !actionBar.awaitingDefense) {
             if ((CheckCollisionPointRec(mousePos, endTurnButton) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) || IsKeyPressed(KEY_ENTER)) {
                 while (gm.getActionsRemaining() > 0) {
                     gm.getTurnManager().endTurn();
@@ -412,8 +435,10 @@ Vector2 mousePos = GetMousePosition();
         hero* actingHero = actingChar ? dynamic_cast<hero*>(actingChar) : nullptr;
         hero* activeHero = (activePlayerTurn == 1) ? draculaHero : sherlockHero;
 
-        ActionBar_Update(actionBar, gm, actionLayout, mousePos, mapDest, boardTex, handBox, actingChar, actingHero, activeHero, draculaHero);
-        ActionBar_UpdateTargeting(actionBar, gm, activeHero, draculaHero, board, mapDest, boardTex, mousePos);
+        if (!gameOver) {
+            ActionBar_Update(actionBar, gm, actionLayout, mousePos, mapDest, boardTex, handBox, actingChar, actingHero, activeHero, draculaHero);
+            ActionBar_UpdateTargeting(actionBar, gm, activeHero, draculaHero, board, mapDest, boardTex, mousePos);
+        }
 
         const float CHAR_MAP_SIZE_MULTIPLIER = 2.4f;
 
@@ -681,6 +706,43 @@ Vector2 mousePos = GetMousePosition();
         if (actionBar.targetPrompt == TargetPrompt::EliminateCard) {
             ActionBar_DrawEliminatePicker(actionBar, gm, activeHero, draculaHero, mousePos, sw, sh);
         }
+
+        // --- اورلی گیم‌اوور: روی همه‌چیزِ دیگه کشیده می‌شه ---
+        if (gameOver) {
+            DrawRectangle(0, 0, (int)sw, (int)sh, Fade(BLACK, 0.82f));
+
+            std::string winnerName = winnerChar ? winnerChar->getname() : "Unknown";
+            std::string loserName  = loserChar  ? loserChar->getname()  : "Unknown";
+
+            std::string title = "GAME OVER";
+            std::string winLine = winnerName + " WINS!";
+            std::string loseLine = loserName + " has been defeated.";
+
+            int titleSize = 42;
+            int winSize = 26;
+            int loseSize = 16;
+
+            int tw = MeasureText(title.c_str(), titleSize);
+            int ww = MeasureText(winLine.c_str(), winSize);
+            int lw = MeasureText(loseLine.c_str(), loseSize);
+
+            float centerY = sh * 0.38f;
+            DrawText(title.c_str(), (int)(sw / 2.0f - tw / 2.0f), (int)(centerY), titleSize, GetColor(0xE53935FF));
+            DrawText(winLine.c_str(), (int)(sw / 2.0f - ww / 2.0f), (int)(centerY + 60), winSize, GetColor(0xE5C158FF));
+            DrawText(loseLine.c_str(), (int)(sw / 2.0f - lw / 2.0f), (int)(centerY + 96), loseSize, GetColor(0xC2B6B9FF));
+
+            Rectangle backBtn = { sw / 2.0f - 100.0f, centerY + 140.0f, 200.0f, 46.0f };
+            bool hoverBack = CheckCollisionPointRec(mousePos, backBtn);
+            DrawRectangleRec(backBtn, hoverBack ? GetColor(0x2A1418FF) : GetColor(0x1B0A0DFF));
+            DrawRectangleLinesEx(backBtn, 3, GetColor(0x9E2230FF));
+            int btnTextW = MeasureText("BACK TO MENU", 14);
+            DrawText("BACK TO MENU", (int)(backBtn.x + (backBtn.width - btnTextW) / 2), (int)(backBtn.y + 16), 14, GetColor(0xE5C158FF));
+
+            if (hoverBack && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+                exitToMenuRequested = true;
+            }
+        }
+
                 EndDrawing();
             }
 
