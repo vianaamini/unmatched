@@ -101,6 +101,21 @@ static void ActionBar_CompleteAction(ActionBarState& state, GameManager& gm)
     gm.getTurnManager().endTurn();
 }
 
+// NEW: called once an attacker-side combat-card sub-flow (Dash / The Game
+// is Afoot / Beastform) has collected its extra input. Resumes exactly
+// where the old inline code used to jump straight to "awaitingDefense =
+// true" right after the attack card was chosen.
+static void ActionBar_ProceedToDefense(ActionBarState& state)
+{
+    state.targetPrompt = TargetPrompt::None;
+    state.combatTargetHero = nullptr;
+    state.combatTargetIsDefender = false;
+
+    state.awaitingDefense = true;
+    state.currentAction = ActionMode::None;
+    state.selectedCardIndex = -1;
+}
+
 void ActionBar_RecordPlayedCard(
     ActionBarState& state,
     hero* player,
@@ -333,9 +348,33 @@ void ActionBar_Update(
                 state.pendingAttackCard = attackCard;
                 state.pendingAttacker = actingHero;
                 state.pendingDefender = enemyHero;
-                state.awaitingDefense = true;
                 state.currentAction = ActionMode::None;
                 state.selectedCardIndex = -1;
+
+                std::string atkName = attackCard.get_name();
+
+                // Dash / The Game is Afoot / Beastform each need one more
+                // piece of input from the ATTACKER (a destination node, or
+                // a discard count) before hero::attack() can apply their
+                // effect - collect it first instead of jumping straight to
+                // the defender's "choose defense" screen. See
+                // ActionBar_UpdateTargeting (DashNode/AfootNode) and
+                // ActionBar_DrawBeastformPicker (BeastformDiscard).
+                if (atkName == "Dash") {
+                    state.combatTargetHero = actingHero;
+                    state.combatTargetIsDefender = false;
+                    state.targetPrompt = TargetPrompt::DashNode;
+                } else if (atkName == "The Game is Afoot") {
+                    state.combatTargetHero = actingHero;
+                    state.combatTargetIsDefender = false;
+                    state.targetPrompt = TargetPrompt::AfootNode;
+                } else if (atkName == "Beastform") {
+                    state.combatTargetHero = actingHero;
+                    state.combatTargetIsDefender = false;
+                    state.targetPrompt = TargetPrompt::BeastformDiscard;
+                } else {
+                    state.awaitingDefense = true;
+                }
             }
 
             return;
@@ -492,6 +531,49 @@ void ActionBar_UpdateTargeting(
         ActionBar_FinishPendingScheme(state, gm, activeHero, draculaHero);
         return;
     }
+
+    if (state.targetPrompt == TargetPrompt::DashNode ||
+        state.targetPrompt == TargetPrompt::AfootNode) {
+
+        if (!state.combatTargetHero)
+            return;
+
+        std::string node = ActionBar_FindNodeAtPos(board, mapDest, boardTex, mousePos, clickRadius);
+        if (node.empty())
+            return;
+
+        int nodeId = board.getNodeId(node);
+
+        // Reject a click on an occupied space - this also protects against
+        // the same mouse-press that just chose the attack TARGET (still
+        // "pressed" for the rest of this frame) being misread as the
+        // Dash/Afoot destination: the target's own space is occupied by
+        // definition, so that click is simply ignored and the prompt keeps
+        // waiting for a real destination click on a later frame.
+        for (character* c : gm.getAllCharacters()) {
+            if (c && c->isalive() && c->getx() == nodeId)
+                return;
+        }
+
+        hero* mover = state.combatTargetHero;
+        bool wasDefender = state.combatTargetIsDefender;
+
+        if (state.targetPrompt == TargetPrompt::DashNode)
+            mover->setDashTargetNode(nodeId);
+        else
+            mover->setGameIsAfootTargetNode(nodeId);
+
+        if (wasDefender) {
+            state.targetPrompt = TargetPrompt::None;
+            state.combatTargetHero = nullptr;
+            state.combatTargetIsDefender = false;
+            ActionBar_ResolveDefense(state, gm, board, draculaHero, &state.combatChosenDefenseCard);
+        } else {
+            ActionBar_ProceedToDefense(state);
+        }
+
+        return;
+    }
 }
 
 void ActionBar_DrawTargetingHighlights(
@@ -509,7 +591,9 @@ void ActionBar_DrawTargetingHighlights(
     Color highlight = GetColor(0x9C6ADEFF);
 
     if (state.targetPrompt == TargetPrompt::MistformNode ||
-        state.targetPrompt == TargetPrompt::RaveningNode) {
+        state.targetPrompt == TargetPrompt::RaveningNode ||
+        state.targetPrompt == TargetPrompt::DashNode ||
+        state.targetPrompt == TargetPrompt::AfootNode) {
 
         for (const std::string& nodeName : board.getAllSpaceIds()) {
             int id = board.getNodeId(nodeName);
@@ -662,6 +746,111 @@ void ActionBar_DrawEliminatePicker(
         if (hover && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
             activeHero->setEliminateCardIndex(i);
             ActionBar_FinishPendingScheme(state, gm, activeHero, draculaHero);
+            return;
+        }
+    }
+}
+
+void ActionBar_DrawBeastformPicker(
+    ActionBarState& state,
+    Vector2 mousePos,
+    float sw,
+    float sh
+)
+{
+    if (state.targetPrompt != TargetPrompt::BeastformDiscard || !state.combatTargetHero)
+        return;
+
+    hero* attacker = state.combatTargetHero;
+    int maxDiscard = attacker->handsize();
+    if (maxDiscard > 8) maxDiscard = 8; // keep the popup on-screen; matches Eliminate's cap style
+
+    float modalW = 420.0f;
+    float modalH = 220.0f;
+    Rectangle modalRect = { (sw - modalW) / 2.0f, (sh - modalH) / 2.0f, modalW, modalH };
+
+    DrawRectangle(0, 0, (int)sw, (int)sh, Fade(BLACK, 0.7f));
+    DrawRectangleRec(modalRect, GetColor(0x0B080CFF));
+    DrawRectangleLinesEx(modalRect, 3, GetColor(0x9C6ADEFF));
+
+    const char* title = "BEASTFORM - CARDS TO DISCARD";
+    DrawText(title, (int)(modalRect.x + (modalW - MeasureText(title, 14)) / 2.0f), (int)(modalRect.y + 16), 14, GetColor(0xE5C158FF));
+
+    int count = maxDiscard + 1; // 0..maxDiscard
+    float btnSize = 46.0f;
+    float gap = 10.0f;
+    float totalW = count * btnSize + (count - 1) * gap;
+    float startX = modalRect.x + (modalW - totalW) / 2.0f;
+    float y = modalRect.y + 70.0f;
+
+    for (int v = 0; v <= maxDiscard; v++) {
+        Rectangle btn = { startX + v * (btnSize + gap), y, btnSize, btnSize };
+        bool hover = CheckCollisionPointRec(mousePos, btn);
+
+        DrawRectangleRec(btn, hover ? GetColor(0x9C6ADEFF) : GetColor(0x1B0A0DFF));
+        DrawRectangleLinesEx(btn, 2, GetColor(0x9C6ADEFF));
+
+        std::string label = std::to_string(v);
+        DrawText(label.c_str(), (int)(btn.x + (btnSize - MeasureText(label.c_str(), 18)) / 2.0f), (int)(btn.y + 12), 18, WHITE);
+
+        if (hover && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+            attacker->setBeastformDiscardCount(v);
+            ActionBar_ProceedToDefense(state);
+            return;
+        }
+    }
+}
+
+void ActionBar_DrawElementaryPicker(
+    ActionBarState& state,
+    GameManager& gm,
+    Board& board,
+    hero* draculaHero,
+    Vector2 mousePos,
+    float sw,
+    float sh
+)
+{
+    if (state.targetPrompt != TargetPrompt::ElementaryPredict || !state.combatTargetHero)
+        return;
+
+    hero* defender = state.combatTargetHero;
+
+    float modalW = 460.0f;
+    float modalH = 220.0f;
+    Rectangle modalRect = { (sw - modalW) / 2.0f, (sh - modalH) / 2.0f, modalW, modalH };
+
+    DrawRectangle(0, 0, (int)sw, (int)sh, Fade(BLACK, 0.7f));
+    DrawRectangleRec(modalRect, GetColor(0x0B080CFF));
+    DrawRectangleLinesEx(modalRect, 3, GetColor(0x9C6ADEFF));
+
+    const char* title = "ELEMENTARY - PREDICT THE ATTACK VALUE";
+    DrawText(title, (int)(modalRect.x + (modalW - MeasureText(title, 14)) / 2.0f), (int)(modalRect.y + 16), 14, GetColor(0xE5C158FF));
+
+    int count = 7; // values 0..6 - covers every printed attack value in the decks
+    float btnSize = 46.0f;
+    float gap = 10.0f;
+    float totalW = count * btnSize + (count - 1) * gap;
+    float startX = modalRect.x + (modalW - totalW) / 2.0f;
+    float y = modalRect.y + 70.0f;
+
+    for (int v = 0; v < count; v++) {
+        Rectangle btn = { startX + v * (btnSize + gap), y, btnSize, btnSize };
+        bool hover = CheckCollisionPointRec(mousePos, btn);
+
+        DrawRectangleRec(btn, hover ? GetColor(0x9C6ADEFF) : GetColor(0x1B0A0DFF));
+        DrawRectangleLinesEx(btn, 2, GetColor(0x9C6ADEFF));
+
+        std::string label = std::to_string(v);
+        DrawText(label.c_str(), (int)(btn.x + (btnSize - MeasureText(label.c_str(), 18)) / 2.0f), (int)(btn.y + 12), 18, WHITE);
+
+        if (hover && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+            defender->setPredictedAttackValue(v);
+
+            state.targetPrompt = TargetPrompt::None;
+            state.combatTargetHero = nullptr;
+            state.combatTargetIsDefender = false;
+            ActionBar_ResolveDefense(state, gm, board, draculaHero, &state.combatChosenDefenseCard);
             return;
         }
     }

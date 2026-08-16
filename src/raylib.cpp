@@ -373,10 +373,13 @@ void RunGameUI(GameManager& gm, character* dracula, character* sis1Obj, characte
             lastTeam = activePlayerTurn;
         }
 
-        Rectangle p1Panel = { sw * 0.015f, sh * 0.025f, sw * 0.20f, sh * 0.74f };
-        float mapH = sh * 0.58f;
-        Rectangle mapDest = { sw * 0.23f, sh * 0.025f, sw * 0.54f, mapH };
-        Rectangle p2Panel = { sw * 0.785f, sh * 0.025f, sw * 0.20f, sh * 0.74f };
+        float headerH = sh * 0.075f;
+        float contentTopY = headerH + sh * 0.02f;
+
+        Rectangle p1Panel = { sw * 0.015f, contentTopY, sw * 0.20f, sh * 0.74f - headerH };
+        float mapH = sh * 0.55f - headerH * 0.5f;
+        Rectangle mapDest = { sw * 0.23f, contentTopY, sw * 0.54f, mapH };
+        Rectangle p2Panel = { sw * 0.785f, contentTopY, sw * 0.20f, sh * 0.74f - headerH };
 
         float bottomY = p1Panel.y + p1Panel.height + 12.0f;
         float bottomH = sh - bottomY - 12.0f;
@@ -434,6 +437,15 @@ Vector2 mousePos = GetMousePosition();
 
         BeginDrawing();
         ClearBackground(GetColor(0x050407FF));
+
+        {
+            std::string phaseLabel = "HERO PHASE";
+            std::string turnLabel = "PLAYER " + std::to_string(activePlayerTurn) + " TURN";
+            int phaseSize = MeasureText(phaseLabel.c_str(), 20);
+            int turnSize = MeasureText(turnLabel.c_str(), 14);
+            DrawText(phaseLabel.c_str(), (int)(sw / 2.0f - phaseSize / 2.0f), (int)(headerH * 0.28f), 20, GetColor(0xE5C158FF));
+            DrawText(turnLabel.c_str(), (int)(sw / 2.0f - turnSize / 2.0f), (int)(headerH * 0.62f), 14, GetColor(0xC2B6B9FF));
+        }
 
         if (boardTex.id > 0) {
             DrawTexturePro(boardTex, {0, 0, (float)boardTex.width, (float)boardTex.height}, mapDest, {0, 0}, 0.0f, WHITE);

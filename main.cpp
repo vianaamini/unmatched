@@ -120,8 +120,19 @@ int main()
                 gm.addCharacter(sister3Ptr, 1);
                 gm.addCharacter(sherlockPtr, 2);
                 gm.addCharacter(watsonPtr, 2);
-                gm.startGame(firstPlayer);
-                RunGameUI(gm, draculaPtr, sister1Ptr, sister2Ptr, sister3Ptr, sherlockPtr, watsonPtr, firstPlayer, draculaPtr, sherlockPtr);
+                bool player1HasDracula = (p1Hero == "DRACULA");
+                int firstTeam;
+                if (player1HasDracula)
+                {
+                    firstTeam = (firstPlayer == 1) ? 1 : 2;
+                }
+                else
+                {
+                    firstTeam = (firstPlayer == 1) ? 2 : 1;
+                }
+
+                gm.startGame(firstTeam);
+                RunGameUI(gm, draculaPtr, sister1Ptr, sister2Ptr, sister3Ptr, sherlockPtr, watsonPtr, firstTeam, draculaPtr, sherlockPtr);
 
                 delete draculaPtr;
                 delete sister1Ptr;

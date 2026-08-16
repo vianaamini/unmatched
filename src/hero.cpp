@@ -710,7 +710,10 @@ bool hero::attack(
         }
 
         if (defenseCard.get_name() == "Elementary") {
-            if (predictedAttackValue == attackCard.getattack()) {
+            // Elementary was played as the DEFENSE card, i.e. by "target"
+            // (the defender) - the prediction being checked has to be the
+            // defender's own guess, not the attacker's leftover field.
+            if (target.predictedAttackValue == attackCard.getattack()) {
                 attackValue = 0;
                 effectsCanceled = true;
 
@@ -720,7 +723,7 @@ bool hero::attack(
                 cout << "Elementary: wrong prediction." << endl;
             }
 
-            predictedAttackValue = 0;
+            target.predictedAttackValue = 0;
         }
 
         if (attackCard.get_name() == "Deduce Strategy") {
@@ -831,9 +834,13 @@ bool hero::attack(
             target.drawcard();
 
         if (defenseCard.get_name() == "Dash") {
-            if (dashTargetNode >= 0) {
-                if (moveWithRules(
-                        dashTargetNode,
+            // Dash was played as the DEFENSE card here, i.e. by "target"
+            // (the defender) - it is the defender who moves, using the
+            // node/flag the defender set on their own hero object, not
+            // the attacker's ("this"'s).
+            if (target.dashTargetNode >= 0) {
+                if (target.moveWithRules(
+                        target.dashTargetNode,
                         3,
                         board)) {
 
@@ -843,7 +850,7 @@ bool hero::attack(
                     cout << "Dash: cannot move to target." << endl;
                 }
 
-                dashTargetNode = -1;
+                target.dashTargetNode = -1;
             }
         }
 
@@ -1041,7 +1048,7 @@ bool hero::attack(
             }
         }
 
-        if (attackCard.get_name() == "The Game Is Afoot") {
+        if (attackCard.get_name() == "The Game is Afoot") {
             if (gameIsAfootTargetNode >= 0) {
                 if (moveWithRules(
                         gameIsAfootTargetNode,
