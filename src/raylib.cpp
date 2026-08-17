@@ -3,6 +3,7 @@
 #include "../include/character.hpp"
 #include "../include/hero.hpp"
 #include "../include/game_manager.hpp"
+#include "../include/invisible_man.hpp"
 #include "actionbar.hpp"
 #include "game_fonts.hpp"
 #include <vector>
@@ -212,6 +213,36 @@ void DrawCharacterOnNode(character* c, Texture2D avatarTex, Color borderColor, f
     Color ring = st.moving ? GetColor(0xE5C158FF) : borderColor;
     DrawCircleLines((int)renderX, (int)renderY, radius, ring);
     DrawCircleLines((int)renderX, (int)renderY, radius + 1.0f, ring);
+}
+
+// Fog tokens don't animate/move every frame like fighters do, so they don't
+// need the CharAnimState smoothing that DrawCharacterOnNode relies on --
+// they're just drawn straight at the node's board coordinates, nudged
+// toward the corner of the space so the token stays visible even when a
+// fighter is also standing on that node.
+void DrawFogTokenOnNode(int nodeId, Board& board, Rectangle mapDest, float refWidth, float refHeight, Texture2D tex) {
+    std::string nodeName = "n" + std::to_string(nodeId);
+    auto pos = board.getCoordinates(nodeName);
+    if (pos.first < 0 || pos.second < 0) return;
+
+    float scaleX = mapDest.width / refWidth;
+    float scaleY = mapDest.height / refHeight;
+
+    float centerX = mapDest.x + (pos.first * scaleX);
+    float centerY = mapDest.y + (pos.second * scaleY);
+
+    float radius = 12.0f * scaleX;
+    float renderX = centerX - radius * 0.9f;
+    float renderY = centerY - radius * 0.9f;
+
+    if (tex.id > 0) {
+        Rectangle srcRec = { 0, 0, (float)tex.width, (float)tex.height };
+        Rectangle destRec = { renderX - radius, renderY - radius, radius * 2.0f, radius * 2.0f };
+        DrawTexturePro(tex, srcRec, destRec, Vector2{ 0, 0 }, 0.0f, Fade(WHITE, 0.92f));
+    } else {
+        DrawCircle((int)renderX, (int)renderY, radius, Fade(GetColor(0xB8C4D0FF), 0.75f));
+        DrawCircleLines((int)renderX, (int)renderY, radius, GetColor(0xE5C158FF));
+    }
 }
 
 Texture2D LoadTextureWithFallbacksForMain(const std::string& category, const std::vector<std::string>& filenames) {
@@ -488,11 +519,17 @@ void RunGameUI(GameManager& gm, character* dracula, character* sis1Obj, characte
     Texture2D sherArt  = LoadTextureWithFallbacksForMain("", {"holmsArtTransparent.png", "sherlockTran (1).png"});
     Texture2D watsonArt= LoadTextureWithFallbacksForMain("", {"drwatson.png"});
     Texture2D invArt   = LoadTextureWithFallbacksForMain("", {"InvisibleManArt.png", "invArt.png", "tranInv (1).png"});
+    Texture2D fogTex   = LoadTextureWithFallbacksForMain("", {"fog.png"});
 
     bool team1IsDracula = (dracula && dracula->getname() == "Dracula");
     bool team2IsSherlock = (sherlock && sherlock->getname() == "Sherlock Holmes");
     Texture2D team1PortraitArt = team1IsDracula ? dracArt : invArt;
     Texture2D team2PortraitArt = team2IsSherlock ? sherArt : invArt;
+
+    // Whichever slot didn't go to Dracula/Sherlock Holmes is the Invisible
+    // Man; keep a typed pointer to him so his fog tokens can be drawn.
+    InvisibleMan* invTeam1 = dynamic_cast<InvisibleMan*>(draculaHero);
+    InvisibleMan* invTeam2 = dynamic_cast<InvisibleMan*>(sherlockHero);
 
     std::unordered_map<std::string, Texture2D> cardTextures;
     std::vector<Texture2D> loadedCardTextures;
@@ -609,6 +646,17 @@ Vector2 mousePos = GetMousePosition();
         ActionBar_DrawMapHighlights(actionBar, gm, board, mapDest, boardTex, actingChar, activeHero);
         ActionBar_DrawTargetingHighlights(actionBar, gm, board, mapDest, boardTex);
         ActionBar_DrawActorSelection(actionBar, gm, board, mapDest, boardTex);
+
+        if (invTeam1) {
+            for (int fogNode : invTeam1->getFogPositions()) {
+                DrawFogTokenOnNode(fogNode, board, mapDest, (float)boardTex.width, (float)boardTex.height, fogTex);
+            }
+        }
+        if (invTeam2) {
+            for (int fogNode : invTeam2->getFogPositions()) {
+                DrawFogTokenOnNode(fogNode, board, mapDest, (float)boardTex.width, (float)boardTex.height, fogTex);
+            }
+        }
 
         for (auto& mc : mapChars) {
             if (mc.c && mc.c->isalive()) {
@@ -880,6 +928,7 @@ Vector2 mousePos = GetMousePosition();
     UnloadTexture(sherArt);
     UnloadTexture(watsonArt);
     UnloadTexture(invArt);
+    UnloadTexture(fogTex);
     for (auto& tex : loadedCardTextures) {
         UnloadTexture(tex);
     }

@@ -121,6 +121,10 @@ CMakeFiles/unmatched.dir/src/deployment.cpp.obj: \
  C:/msys64/ucrt64/include/c++/16.1.0/utility \
  C:/msys64/ucrt64/include/c++/16.1.0/bits/stl_relops.h \
  E:/assassins/new/unmatched/include/character.hpp \
+ E:/assassins/new/unmatched/include/invisible_man.hpp \
+ E:/assassins/new/unmatched/include/hero.hpp \
+ E:/assassins/new/unmatched/include/card.hpp \
+ E:/assassins/new/unmatched/include/deck.hpp \
  C:/msys64/ucrt64/include/c++/16.1.0/iostream \
  C:/msys64/ucrt64/include/c++/16.1.0/ostream \
  C:/msys64/ucrt64/include/c++/16.1.0/bits/ostream.h \

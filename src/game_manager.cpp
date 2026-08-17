@@ -127,7 +127,49 @@ std::vector<std::string> GameManager::getValidMoves(character *c)
         return {};
     auto allies = getAllies(c);
     auto enemies = getEnemies(c);
-    return movement.getPossibleMoves(c, c->getmovement(), allies, enemies);
+    auto moves = movement.getPossibleMoves(c, c->getmovement(), allies, enemies);
+
+    // Invisible Man ability: while standing on a fog token, he can jump
+    // directly to any other space that also holds a fog token, as if the
+    // two spaces were adjacent -- independent of his Movement value and
+    // the normal pathfinding. moveCharacter()/handleMove() already allow
+    // this when executing a move, but this list is what drives the move
+    // highlighting and click-to-move target list in the UI, so without
+    // adding the fog destinations here the ability was never actually
+    // reachable by clicking on the board.
+    if (InvisibleMan *inv = dynamic_cast<InvisibleMan *>(c))
+    {
+        auto fogPositions = inv->getFogPositions();
+        bool onFog = std::find(fogPositions.begin(), fogPositions.end(), c->getx()) != fogPositions.end();
+        if (onFog)
+        {
+            for (int fogNode : fogPositions)
+            {
+                if (fogNode == c->getx())
+                    continue;
+
+                bool occupied = false;
+                for (character *other : allCharacters)
+                {
+                    if (other != c && other->isalive() && other->getx() == fogNode)
+                    {
+                        occupied = true;
+                        break;
+                    }
+                }
+                if (occupied)
+                    continue;
+
+                std::string nodeName = "n" + std::to_string(fogNode);
+                if (std::find(moves.begin(), moves.end(), nodeName) == moves.end())
+                {
+                    moves.push_back(nodeName);
+                }
+            }
+        }
+    }
+
+    return moves;
 }
 
 bool GameManager::moveCharacter(character *c, const std::string &targetSpace, const card *boostCard)
@@ -169,17 +211,35 @@ bool GameManager::moveCharacter(character *c, const std::string &targetSpace, co
     }
     int targetNode = board.getNodeId(targetSpace);
 
-    int moveSteps = c->getmovement();
-    if (boostCard)
+    // Invisible Man ability: he can move directly between two spaces that
+    // both hold a fog token, as if they were adjacent.
+    bool reachable = false;
+    if (InvisibleMan* invC = dynamic_cast<InvisibleMan*>(c))
     {
-        moveSteps += boostCard->getboost();
+        auto fogPositions = invC->getFogPositions();
+        bool startOnFog = std::find(fogPositions.begin(), fogPositions.end(), c->getx()) != fogPositions.end();
+        bool targetOnFog = std::find(fogPositions.begin(), fogPositions.end(), targetNode) != fogPositions.end();
+        if (startOnFog && targetOnFog)
+        {
+            reachable = true;
+        }
     }
 
-    auto allies = getAllies(c);
-    auto enemies = getEnemies(c);
-    std::string startSpace = "n" + std::to_string(c->getx());
+    if (!reachable)
+    {
+        int moveSteps = c->getmovement();
+        if (boostCard)
+        {
+            moveSteps += boostCard->getboost();
+        }
 
-    bool reachable = movement.canReach(startSpace, targetSpace, moveSteps, allies, enemies);
+        auto allies = getAllies(c);
+        auto enemies = getEnemies(c);
+        std::string startSpace = "n" + std::to_string(c->getx());
+
+        reachable = movement.canReach(startSpace, targetSpace, moveSteps, allies, enemies);
+    }
+
     if (!reachable)
     {
         std::cout << "Cannot reach " << targetSpace << std::endl;
@@ -416,19 +476,37 @@ bool GameManager::handleMove(character* actor, const std::string& targetNodeStr)
         }
     }
 
-    int moveSteps = actor->getmovement();
+    if (!board.hasSpace(formattedNode)) {
+        std::cout << "Invalid node!" << std::endl;
+        return false;
+    }
+    int targetNode = board.getNodeId(formattedNode);
 
-    auto allies = getAllies(actor);
-    auto enemies = getEnemies(actor);
-    std::string startSpace = "n" + std::to_string(actor->getx());
+    // Invisible Man ability: he can move directly from a space with a fog
+    // token to another space with a fog token, as if the two were adjacent.
+    bool reachable = false;
+    if (InvisibleMan* invActor = dynamic_cast<InvisibleMan*>(actor)) {
+        auto fogPositions = invActor->getFogPositions();
+        bool startOnFog = std::find(fogPositions.begin(), fogPositions.end(), actor->getx()) != fogPositions.end();
+        bool targetOnFog = std::find(fogPositions.begin(), fogPositions.end(), targetNode) != fogPositions.end();
+        if (startOnFog && targetOnFog) {
+            reachable = true;
+        }
+    }
 
-    bool reachable = movement.canReach(startSpace, formattedNode, moveSteps, allies, enemies);
     if (!reachable) {
-        std::cout << "Cannot reach " << formattedNode << " within " << moveSteps << " steps!" << std::endl;
+        int moveSteps = actor->getmovement();
+        auto allies = getAllies(actor);
+        auto enemies = getEnemies(actor);
+        std::string startSpace = "n" + std::to_string(actor->getx());
+        reachable = movement.canReach(startSpace, formattedNode, moveSteps, allies, enemies);
+    }
+
+    if (!reachable) {
+        std::cout << "Cannot reach " << formattedNode << "!" << std::endl;
         return false;
     }
 
-    int targetNode = board.getNodeId(formattedNode);
     for (character *other : allCharacters) {
         if (other != actor && other->isalive() && other->getx() == targetNode) {
             std::cout << "Node " << formattedNode << " is occupied!" << std::endl;

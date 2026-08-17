@@ -39,6 +39,6 @@ public:
     // Invisible Man is attacking) and the defender's card (when this
     // Invisible Man is defending) - mirrors the inline Dracula/Sherlock
     // card checks already living in hero::attack().
-    void executeAttackCardEffects(card& attackCard, character& target, int& attackValue, bool& attackerWon, bool& effectsCanceled, const card& defenseCard);
-    void executeDefenseCardEffects(card& defenseCard, const card& attackCard, int& defenseValue, bool& effectsCanceled);
+    void executeAttackCardEffects(card& attackCard, character& target, int& attackValue, int& defenseValue, bool& attackerWon, bool& effectsCanceled, const card& defenseCard);
+    void executeDefenseCardEffects(card& defenseCard, const card& attackCard, int& defenseValue, int& attackValue, bool& effectsCanceled);
 };

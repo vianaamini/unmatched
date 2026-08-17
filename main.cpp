@@ -135,7 +135,6 @@ int main()
                 {
                     InvisibleMan* invPtr = new InvisibleMan();
                     invPtr->setposition(10);
-                    invPtr->initializeFogTokens(10);
                     team1Hero = invPtr;
                 }
 
@@ -155,7 +154,6 @@ int main()
                 {
                     InvisibleMan* invPtr = new InvisibleMan();
                     invPtr->setposition(23);
-                    invPtr->initializeFogTokens(23);
                     team2Hero = invPtr;
                 }
 
@@ -165,6 +163,18 @@ int main()
                 if (sister3Ptr) gm.addCharacter(sister3Ptr, 1);
                 gm.addCharacter(team2Hero, 2);
                 if (watsonPtr) gm.addCharacter(watsonPtr, 2);
+
+                // Fog tokens must be placed AFTER addCharacter(), because
+                // addCharacter() is what wires up the hero's board pointer
+                // (h->setBoard(&board)). initializeFogTokens() needs a
+                // valid board to find the hero's starting Zone; calling it
+                // any earlier meant getBoard() was still null, so every
+                // fog token silently fell back to sitting on the hero's
+                // own space instead of spreading across his Zone.
+                if (InvisibleMan* invTeam1 = dynamic_cast<InvisibleMan*>(team1Hero))
+                    invTeam1->initializeFogTokens(invTeam1->getposition());
+                if (InvisibleMan* invTeam2 = dynamic_cast<InvisibleMan*>(team2Hero))
+                    invTeam2->initializeFogTokens(invTeam2->getposition());
 
                 // p1Team is whichever team number the fighter p1Hero
                 // picked ended up on above.

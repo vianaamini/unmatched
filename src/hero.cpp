@@ -264,8 +264,17 @@ bool hero::scheme(card& schemeCard, hero& target) {
         return false;
     }
 
-    if (schemeCard.gettype() != cardtype::scheme) {
-        cout << "Cannot use this card: not a scheme card. Try again." << endl;
+    // Multipurpose cards can be played as a scheme card too (the same way
+    // they're already allowed as attack/defense cards elsewhere) -- the
+    // rulebook lets a multipurpose card be used as an attack, a defense,
+    // OR a scheme card, chosen by the player at the moment it's played.
+    // Previously this rejected multipurpose cards outright, which also
+    // silently broke every Invisible Man multipurpose scheme card
+    // (Confound, Covert Preparation, Dreaming of Revenge, Impossible to
+    // See) since executeSchemeCard() below was never even reached for them.
+    if (schemeCard.gettype() != cardtype::scheme &&
+        schemeCard.gettype() != cardtype::multipurpose) {
+        cout << "Cannot use this card: not a scheme or multipurpose card. Try again." << endl;
         return false;
     }
 
@@ -750,10 +759,14 @@ bool hero::attack(
 
     if (!effectsCanceled) {
         if (InvisibleMan* imAtk = dynamic_cast<InvisibleMan*>(this)) {
-            imAtk->executeAttackCardEffects(attackCard, target, attackValue, attackerWon, effectsCanceled, defenseCard);
+            // defenseValue is now passed by reference too, so cards like
+            // "Impossible to See" can zero out the *opponent's* value
+            // instead of the Invisible Man's own attack value.
+            imAtk->executeAttackCardEffects(attackCard, target, attackValue, defenseValue, attackerWon, effectsCanceled, defenseCard);
         }
         if (InvisibleMan* imDef = dynamic_cast<InvisibleMan*>(&target)) {
-            imDef->executeDefenseCardEffects(defenseCard, attackCard, defenseValue, effectsCanceled);
+            // attackValue is now passed by reference too, for the same reason.
+            imDef->executeDefenseCardEffects(defenseCard, attackCard, defenseValue, attackValue, effectsCanceled);
         }
 
         if (defenseCard.get_name() == "Look Into My Eyes") {
