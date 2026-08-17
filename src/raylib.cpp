@@ -13,7 +13,6 @@
 #include <cctype>
 #include <cmath>
 
-// ---- Shared game fonts (same Cinzel family as menu.cpp) ----
 static Font g_titleFont = {0};
 static Font g_semiFont = {0};
 static Font g_regularFont = {0};
@@ -45,10 +44,6 @@ Font GetTitleFont()   { return g_titleFont; }
 Font GetSemiFont()    { return g_semiFont; }
 Font GetRegularFont() { return g_regularFont; }
 
-// Returns a hero's display name in upper case, used both as the on-screen
-// faction label and (for "Feint") to pick the right printed card art.
-// Works for any hero (Dracula, Sherlock Holmes, Invisible Man, ...) instead
-// of assuming only the original two.
 static std::string HeroFactionLabel(hero* h) {
     if (!h) return "";
     std::string upper = h->getname();
@@ -56,7 +51,6 @@ static std::string HeroFactionLabel(hero* h) {
     return upper;
 }
 
-// Centered DrawTextEx helper (same pattern as menu.cpp's CenterText)
 static void DrawTextCentered(Font font, const char* text, float centerX, float y, float size, float spacing, Color color) {
     Vector2 textSize = MeasureTextEx(font, text, size, spacing);
     DrawTextEx(font, text, { centerX - textSize.x / 2.0f, y }, size, spacing, color);
@@ -226,10 +220,6 @@ Texture2D LoadTextureWithFallbacksForMain(const std::string& category, const std
         "../assets/", "../assets/heroes/", "../assets/images/",
         "build/assets/", "build/assets/heroes/"
     };
-
-    // Try the category as given, its pluralized form (e.g. "card" -> "cards",
-    // since that's the more common real folder name), and finally flat
-    // (no subfolder at all) in case images sit directly under assets/.
     std::vector<std::string> categoryVariants;
     if (!category.empty()) {
         categoryVariants.push_back(category + "/");
@@ -264,11 +254,6 @@ static void DrawDiscardModal(hero* activeHero, hero* draculaHero,
     if (!activeHero) return;
 
     auto& hand = activeHero->gethand();
-
-    // House rule: once the hand goes over the 7-card limit, the player must
-    // discard TWO cards (not just one down to 7). So the modal stays open
-    // until the hand is back down to 5 cards below the trigger point (6),
-    // i.e. at least 2 cards get discarded.
     const int DISCARD_STOP_AT = 6;
     if ((int)hand.size() <= 7) return;
 
@@ -365,7 +350,6 @@ static std::string GetCardFilename(const std::string& cardName, const std::strin
         {"thirstforsustenance", "thirst-for-sustenance.png"},
         {"administeraid", "administer-aid.png"},
 
-        // Invisible Man
         {"codednotes", "coded-notes.png"},
         {"confound", "confound.png"},
         {"covertpreparation", "covert-preparation.png"},
@@ -504,8 +488,6 @@ void RunGameUI(GameManager& gm, character* dracula, character* sis1Obj, characte
     Texture2D watsonArt= LoadTextureWithFallbacksForMain("", {"drwatson.png"});
     Texture2D invArt   = LoadTextureWithFallbacksForMain("", {"InvisibleManArt.png", "invArt.png", "tranInv (1).png"});
 
-    // Team 1 slot holds either Dracula or Invisible Man depending on
-    // Hero Selection; same idea for team 2 (Sherlock or Invisible Man).
     bool team1IsDracula = (dracula && dracula->getname() == "Dracula");
     bool team2IsSherlock = (sherlock && sherlock->getname() == "Sherlock Holmes");
     Texture2D team1PortraitArt = team1IsDracula ? dracArt : invArt;
@@ -738,15 +720,24 @@ Vector2 mousePos = GetMousePosition();
         float centerX1 = turnOrderBox.x + 45;
         float centerX2 = turnOrderBox.x + turnOrderBox.width - 45;
 
+        auto TurnLetter = [](hero* h) -> const char* {
+            if (!h) return "?";
+            std::string n = h->getname();
+            for (auto& ch : n) ch = std::tolower(ch);
+            if (n.find("invisible") != std::string::npos) return "I";
+            if (n.find("dracula") != std::string::npos) return "D";
+            return "S";
+        };
+
         DrawCircle((int)centerX1, (int)centerY, avatarRadius, GetColor(0x1A0D10FF));
         DrawCircleLines((int)centerX1, (int)centerY, avatarRadius, activePlayerTurn == 1 ? GetColor(0xE5C158FF) : GetColor(0x5A1A24FF));
-        DrawTextCentered(GetSemiFont(), "D", centerX1, centerY - 8, 14, 0.6f, GetColor(0xE5C158FF));
+        DrawTextCentered(GetSemiFont(), TurnLetter(draculaHero), centerX1, centerY - 8, 14, 0.6f, GetColor(0xE5C158FF));
 
         DrawTextCentered(GetRegularFont(), "-->", (centerX1 + centerX2) / 2.0f, centerY - 7, 14, 0.6f, GetColor(0x5A5055FF));
 
         DrawCircle((int)centerX2, (int)centerY, avatarRadius, GetColor(0x0D121AFF));
         DrawCircleLines((int)centerX2, (int)centerY, avatarRadius, activePlayerTurn == 2 ? GetColor(0xE5C158FF) : GetColor(0x1C3D66FF));
-        DrawTextCentered(GetSemiFont(), "S", centerX2, centerY - 8, 14, 0.6f, GetColor(0xE5C158FF));
+        DrawTextCentered(GetSemiFont(), TurnLetter(sherlockHero), centerX2, centerY - 8, 14, 0.6f, GetColor(0xE5C158FF));
 
         std::string roundStr = "ROUND " + std::to_string(currentRound);
         DrawTextCentered(GetRegularFont(), roundStr.c_str(), turnOrderBox.x + turnOrderBox.width / 2.0f, turnOrderBox.y + 58, 13, 0.4f, GetColor(0xA39BA0FF));
