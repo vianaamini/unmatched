@@ -4,6 +4,7 @@
 #include "../include/hero.hpp"
 #include "../include/game_manager.hpp"
 #include "actionbar.hpp"
+#include "game_fonts.hpp"
 #include <vector>
 #include <string>
 #include <iostream>
@@ -11,6 +12,44 @@
 #include <algorithm>
 #include <cctype>
 #include <cmath>
+
+// ---- Shared game fonts (same Cinzel family as menu.cpp) ----
+static Font g_titleFont = {0};
+static Font g_semiFont = {0};
+static Font g_regularFont = {0};
+static bool g_fontsLoaded = false;
+
+void LoadGameFonts() {
+    if (g_fontsLoaded) return;
+
+    g_titleFont   = LoadFontEx("assets/fonts/Cinzel-Black.ttf", 110, nullptr, 0);
+    g_semiFont    = LoadFontEx("assets/fonts/Cinzel-SemiBold.ttf", 56, nullptr, 0);
+    g_regularFont = LoadFontEx("assets/fonts/Cinzel-Regular.ttf", 56, nullptr, 0);
+
+    if (g_titleFont.texture.id != 0)   SetTextureFilter(g_titleFont.texture, TEXTURE_FILTER_BILINEAR);
+    if (g_semiFont.texture.id != 0)    SetTextureFilter(g_semiFont.texture, TEXTURE_FILTER_BILINEAR);
+    if (g_regularFont.texture.id != 0) SetTextureFilter(g_regularFont.texture, TEXTURE_FILTER_BILINEAR);
+
+    g_fontsLoaded = true;
+}
+
+void UnloadGameFonts() {
+    if (!g_fontsLoaded) return;
+    UnloadFont(g_titleFont);
+    UnloadFont(g_semiFont);
+    UnloadFont(g_regularFont);
+    g_fontsLoaded = false;
+}
+
+Font GetTitleFont()   { return g_titleFont; }
+Font GetSemiFont()    { return g_semiFont; }
+Font GetRegularFont() { return g_regularFont; }
+
+// Centered DrawTextEx helper (same pattern as menu.cpp's CenterText)
+static void DrawTextCentered(Font font, const char* text, float centerX, float y, float size, float spacing, Color color) {
+    Vector2 textSize = MeasureTextEx(font, text, size, spacing);
+    DrawTextEx(font, text, { centerX - textSize.x / 2.0f, y }, size, spacing, color);
+}
 
 void DrawGothicHealthBar(float x, float y, float width, int currentHp, int maxHp) {
     float percent = (maxHp > 0) ? (float)currentHp / (float)maxHp : 0.0f;
@@ -177,19 +216,75 @@ Texture2D LoadTextureWithFallbacksForMain(const std::string& category, const std
         "build/assets/", "build/assets/heroes/"
     };
 
+    // Try the category as given, its pluralized form (e.g. "card" -> "cards",
+    // since that's the more common real folder name), and finally flat
+    // (no subfolder at all) in case images sit directly under assets/.
+    std::vector<std::string> categoryVariants;
+    if (!category.empty()) {
+        categoryVariants.push_back(category + "/");
+        if (category.back() != 's')
+            categoryVariants.push_back(category + "s/");
+    }
+    categoryVariants.push_back("");
+
     for (const auto& filename : filenames) {
         for (const auto& basePath : basePaths) {
-            std::string fullPath = basePath + (category.empty() ? "" : category + "/") + filename;
-            if (FileExists(fullPath.c_str())) {
-                Texture2D tex = LoadTexture(fullPath.c_str());
-                if (tex.id > 0) {
-                    SetTextureFilter(tex, TEXTURE_FILTER_BILINEAR);
-                    return tex;
+            for (const auto& catVariant : categoryVariants) {
+                std::string fullPath = basePath + catVariant + filename;
+                if (FileExists(fullPath.c_str())) {
+                    Texture2D tex = LoadTexture(fullPath.c_str());
+                    if (tex.id > 0) {
+                        SetTextureFilter(tex, TEXTURE_FILTER_BILINEAR);
+                        return tex;
+                    }
                 }
             }
         }
     }
     return Texture2D{ 0 };
+}
+
+static void DrawDiscardModal(hero* activeHero, Vector2 mousePos, float sw, float sh) {
+    if (!activeHero) return;
+
+    auto& hand = activeHero->gethand();
+    int overBy = (int)hand.size() - 7;
+    if (overBy <= 0) return;
+
+    float modalW = sw * 0.75f;
+    float modalH = sh * 0.55f;
+    float modalX = (sw - modalW) / 2.0f;
+    float modalY = (sh - modalH) / 2.0f;
+    Rectangle modalRect = { modalX, modalY, modalW, modalH };
+
+    DrawRectangle(0, 0, (int)sw, (int)sh, Fade(BLACK, 0.8f));
+    DrawRectangleRec(modalRect, GetColor(0x0B080CFF));
+    DrawRectangleLinesEx(modalRect, 4, GetColor(0xE5C158FF));
+
+    std::string title = "HAND LIMIT EXCEEDED - DISCARD " + std::to_string(overBy) + " CARD(S)";
+    DrawTextCentered(GetTitleFont(), title.c_str(), modalX + modalW / 2.0f, modalY + 14, 22, 1.0f, GetColor(0xE53935FF));
+    DrawTextCentered(GetRegularFont(), "Click a card to discard it", modalX + modalW / 2.0f, modalY + 46, 13, 0.7f, GetColor(0xC2B6B9FF));
+
+    float cardW = 85.0f, cardH = 120.0f, gap = 12.0f;
+    int count = (int)hand.size();
+    float totalWidth = count * cardW + (count > 0 ? (count - 1) * gap : 0.0f);
+    float startX = modalX + (modalW - totalWidth) / 2.0f;
+    if (startX < modalX + 10.0f) startX = modalX + 10.0f;
+    float startY = modalY + 80.0f;
+
+    for (int i = 0; i < count; i++) {
+        Rectangle cardRect = { startX + i * (cardW + gap), startY, cardW, cardH };
+        bool hover = CheckCollisionPointRec(mousePos, cardRect);
+
+        DrawRectangleRec(cardRect, GetColor(0xE2D6BCFF));
+        DrawRectangleLinesEx(cardRect, hover ? 3 : 2, hover ? GetColor(0xE53935FF) : GetColor(0x5A1A24FF));
+        DrawTextEx(GetSemiFont(), hand[i].get_name().c_str(), { cardRect.x + 5, cardRect.y + 10 }, 12, 0.6f, BLACK);
+
+        if (hover && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+            hand.erase(hand.begin() + i);
+            return;
+        }
+    }
 }
 
 static std::string GetCardFilename(const std::string& cardName, const std::string& faction) {
@@ -263,15 +358,15 @@ static void DrawDefenseModal(GameManager& gm, Board& board, ActionBarState& acti
     DrawRectangleLinesEx(modalRect, 4, GetColor(0xE53935FF));
 
     std::string title = faction + " - CHOOSE YOUR DEFENSE";
-    DrawText(title.c_str(), (int)(modalX + (modalW - MeasureText(title.c_str(), 18)) / 2), (int)(modalY + 18), 18, GetColor(0xE5C158FF));
+    DrawTextCentered(GetTitleFont(), title.c_str(), modalX + modalW / 2.0f, modalY + 14, 22, 1.0f, GetColor(0xE5C158FF));
 
     std::string atkLine = "Incoming: " + actionBar.pendingAttackCard.get_name();
-    DrawText(atkLine.c_str(), (int)(modalX + (modalW - MeasureText(atkLine.c_str(), 12)) / 2), (int)(modalY + 44), 12, GetColor(0xC2B6B9FF));
+    DrawTextCentered(GetRegularFont(), atkLine.c_str(), modalX + modalW / 2.0f, modalY + 46, 13, 0.7f, GetColor(0xC2B6B9FF));
 
     Rectangle noDefenseBtn = { modalX + modalW - 170.0f, modalY + 12.0f, 150.0f, 30.0f };
     DrawRectangleRec(noDefenseBtn, GetColor(0x1B0A0DFF));
     DrawRectangleLinesEx(noDefenseBtn, 2, GetColor(0x9E2230FF));
-    DrawText("NO DEFENSE", (int)(noDefenseBtn.x + (noDefenseBtn.width - MeasureText("NO DEFENSE", 12)) / 2), (int)(noDefenseBtn.y + 8), 12, GetColor(0xE5C158FF));
+    DrawTextCentered(GetSemiFont(), "NO DEFENSE", noDefenseBtn.x + noDefenseBtn.width / 2.0f, noDefenseBtn.y + 7, 13, 0.7f, GetColor(0xE5C158FF));
 
     if (CheckCollisionPointRec(mousePos, noDefenseBtn) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
         ActionBar_ResolveDefense(actionBar, gm, board, draculaHero, nullptr);
@@ -279,7 +374,7 @@ static void DrawDefenseModal(GameManager& gm, Board& board, ActionBarState& acti
     }
 
     int cardCount = (int)hand.size();
-    if (cardCount > 5) cardCount = 5;
+    if (cardCount > 7) cardCount = 7;
 
     float cardW = 90.0f;
     float cardH = 145.0f;
@@ -320,13 +415,13 @@ static void DrawDefenseModal(GameManager& gm, Board& board, ActionBarState& acti
         } else {
             DrawRectangleRec(cardRect, GetColor(0xE2D6BCFF));
             DrawRectangleLinesEx(cardRect, 2, GetColor(0x5A1A24FF));
-            DrawText(cardName.c_str(), (int)cardRect.x + 5, (int)cardRect.y + 10, 10, BLACK);
+            DrawTextEx(GetSemiFont(), cardName.c_str(), { cardRect.x + 5, cardRect.y + 10 }, 12, 0.6f, BLACK);
         }
     }
 
     if (cardCount == 0) {
         std::string empty = "No cards in hand - click NO DEFENSE";
-        DrawText(empty.c_str(), (int)(modalX + (modalW - MeasureText(empty.c_str(), 12)) / 2), (int)(modalY + modalH / 2), 12, GetColor(0x8A8085FF));
+        DrawTextCentered(GetRegularFont(), empty.c_str(), modalX + modalW / 2.0f, modalY + modalH / 2.0f, 13, 0.7f, GetColor(0x8A8085FF));
     }
 }
 
@@ -335,6 +430,8 @@ void RunGameUI(GameManager& gm, character* dracula, character* sis1Obj, characte
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
     InitWindow(1366, 768, "Unmatched: Gothic Shadows");
     SetTargetFPS(60);
+
+    LoadGameFonts();
 
     Board& board = gm.getBoard();
 
@@ -357,12 +454,7 @@ void RunGameUI(GameManager& gm, character* dracula, character* sis1Obj, characte
 
     ActionBarState actionBar;
 
-    bool gameOver = false;
-    character* winnerChar = nullptr;
-    character* loserChar = nullptr;
-    bool exitToMenuRequested = false;
-
-    while (!WindowShouldClose() && !exitToMenuRequested) {
+    while (!WindowShouldClose()) {
         float sw = (float)GetScreenWidth();
         float sh = (float)GetScreenHeight();
 
@@ -376,18 +468,6 @@ void RunGameUI(GameManager& gm, character* dracula, character* sis1Obj, characte
             showHandP1 = false;
             showHandP2 = false;
             lastTeam = activePlayerTurn;
-        }
-
-        if (!gameOver) {
-            if (dracula && !dracula->isalive()) {
-                gameOver = true;
-                loserChar = dracula;
-                winnerChar = sherlock;
-            } else if (sherlock && !sherlock->isalive()) {
-                gameOver = true;
-                loserChar = sherlock;
-                winnerChar = dracula;
-            }
         }
 
         float headerH = sh * 0.075f;
@@ -410,11 +490,13 @@ void RunGameUI(GameManager& gm, character* dracula, character* sis1Obj, characte
 
 Vector2 mousePos = GetMousePosition();
 
-        if (!gameOver && !actionBar.awaitingDefense) {
-            if ((CheckCollisionPointRec(mousePos, endTurnButton) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) || IsKeyPressed(KEY_ENTER)) {
-                while (gm.getActionsRemaining() > 0) {
-                    gm.getTurnManager().endTurn();
-                }
+        hero* activeHero = (activePlayerTurn == 1) ? draculaHero : sherlockHero;
+        bool mustDiscard = !gm.isGameOver() && activeHero && activeHero->handsize() > 7;
+
+        if (!actionBar.awaitingDefense && !mustDiscard) {
+            if (gm.getActionsRemaining() <= 0 &&
+                ((CheckCollisionPointRec(mousePos, endTurnButton) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) || IsKeyPressed(KEY_ENTER))) {
+                gm.getTurnManager().endTurn();
             }
 
             if (CheckCollisionPointRec(mousePos, handBox) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
@@ -427,9 +509,8 @@ Vector2 mousePos = GetMousePosition();
 
         character* actingChar = ActionBar_GetActingCharacter(actionBar, gm);
         hero* actingHero = actingChar ? dynamic_cast<hero*>(actingChar) : nullptr;
-        hero* activeHero = (activePlayerTurn == 1) ? draculaHero : sherlockHero;
 
-        if (!gameOver) {
+        if (!mustDiscard) {
             ActionBar_Update(actionBar, gm, actionLayout, mousePos, mapDest, boardTex, handBox, actingChar, actingHero, activeHero, draculaHero);
             ActionBar_UpdateTargeting(actionBar, gm, activeHero, draculaHero, board, mapDest, boardTex, mousePos);
         }
@@ -460,10 +541,8 @@ Vector2 mousePos = GetMousePosition();
         {
             std::string phaseLabel = "HERO PHASE";
             std::string turnLabel = "PLAYER " + std::to_string(activePlayerTurn) + " TURN";
-            int phaseSize = MeasureText(phaseLabel.c_str(), 20);
-            int turnSize = MeasureText(turnLabel.c_str(), 14);
-            DrawText(phaseLabel.c_str(), (int)(sw / 2.0f - phaseSize / 2.0f), (int)(headerH * 0.28f), 20, GetColor(0xE5C158FF));
-            DrawText(turnLabel.c_str(), (int)(sw / 2.0f - turnSize / 2.0f), (int)(headerH * 0.62f), 14, GetColor(0xC2B6B9FF));
+            DrawTextCentered(GetTitleFont(), phaseLabel.c_str(), sw / 2.0f, headerH * 0.20f, 26, 1.2f, GetColor(0xE5C158FF));
+            DrawTextCentered(GetRegularFont(), turnLabel.c_str(), sw / 2.0f, headerH * 0.60f, 15, 0.9f, GetColor(0xC2B6B9FF));
         }
 
         if (boardTex.id > 0) {
@@ -472,7 +551,7 @@ Vector2 mousePos = GetMousePosition();
             DrawRectangleRec(mapDest, GetColor(0x0F0D12FF));
         }
 
-        ActionBar_DrawMapHighlights(actionBar, gm, board, mapDest, boardTex, actingChar, actingHero);
+        ActionBar_DrawMapHighlights(actionBar, gm, board, mapDest, boardTex, actingChar, activeHero);
         ActionBar_DrawTargetingHighlights(actionBar, gm, board, mapDest, boardTex);
         ActionBar_DrawActorSelection(actionBar, gm, board, mapDest, boardTex);
 
@@ -565,14 +644,15 @@ Vector2 mousePos = GetMousePosition();
             }
         }
 
+        bool canEndTurn = gm.getActionsRemaining() <= 0;
         DrawRectangleRec(endTurnButton, GetColor(0x1B0A0DFF));
-        DrawRectangleLinesEx(endTurnButton, 3, GetColor(0x9E2230FF));
-        DrawText("END TURN", (int)(endTurnButton.x + (endTurnButton.width - MeasureText("END TURN", 14)) / 2), (int)(endTurnButton.y + 17), 14, GetColor(0xE5C158FF));
+        DrawRectangleLinesEx(endTurnButton, 3, canEndTurn ? GetColor(0x9E2230FF) : Fade(GetColor(0x9E2230FF), 0.35f));
+        DrawTextCentered(GetSemiFont(), "END TURN", endTurnButton.x + endTurnButton.width / 2.0f, endTurnButton.y + 15, 16, 0.9f, canEndTurn ? GetColor(0xE5C158FF) : Fade(GetColor(0xE5C158FF), 0.35f));
 
         DrawRectangleRec(turnOrderBox, GetColor(0x0B080CFF));
         DrawRectangleLinesEx(turnOrderBox, 3, GetColor(0x342936FF));
 
-        DrawText("TURN ORDER", (int)(turnOrderBox.x + (turnOrderBox.width - MeasureText("TURN ORDER", 10)) / 2), (int)(turnOrderBox.y + 8), 10, GetColor(0x8A8085FF));
+        DrawTextCentered(GetSemiFont(), "TURN ORDER", turnOrderBox.x + turnOrderBox.width / 2.0f, turnOrderBox.y + 7, 12, 0.7f, GetColor(0x8A8085FF));
 
         float centerY = turnOrderBox.y + 46;
         float avatarRadius = 14.0f;
@@ -581,35 +661,35 @@ Vector2 mousePos = GetMousePosition();
 
         DrawCircle((int)centerX1, (int)centerY, avatarRadius, GetColor(0x1A0D10FF));
         DrawCircleLines((int)centerX1, (int)centerY, avatarRadius, activePlayerTurn == 1 ? GetColor(0xE5C158FF) : GetColor(0x5A1A24FF));
-        DrawText("D", (int)centerX1 - 4, (int)centerY - 6, 12, GetColor(0xE5C158FF));
+        DrawTextCentered(GetSemiFont(), "D", centerX1, centerY - 8, 14, 0.6f, GetColor(0xE5C158FF));
 
-        DrawText("-->", (int)((centerX1 + centerX2) / 2) - 12, (int)centerY - 6, 12, GetColor(0x5A5055FF));
+        DrawTextCentered(GetRegularFont(), "-->", (centerX1 + centerX2) / 2.0f, centerY - 7, 14, 0.6f, GetColor(0x5A5055FF));
 
         DrawCircle((int)centerX2, (int)centerY, avatarRadius, GetColor(0x0D121AFF));
         DrawCircleLines((int)centerX2, (int)centerY, avatarRadius, activePlayerTurn == 2 ? GetColor(0xE5C158FF) : GetColor(0x1C3D66FF));
-        DrawText("S", (int)centerX2 - 4, (int)centerY - 6, 12, GetColor(0xE5C158FF));
+        DrawTextCentered(GetSemiFont(), "S", centerX2, centerY - 8, 14, 0.6f, GetColor(0xE5C158FF));
 
         std::string roundStr = "ROUND " + std::to_string(currentRound);
-        DrawText(roundStr.c_str(), (int)(turnOrderBox.x + (turnOrderBox.width - MeasureText(roundStr.c_str(), 9)) / 2), (int)(turnOrderBox.y + 62), 9, GetColor(0x8A8085FF));
+        DrawTextCentered(GetRegularFont(), roundStr.c_str(), turnOrderBox.x + turnOrderBox.width / 2.0f, turnOrderBox.y + 60, 11, 0.6f, GetColor(0x8A8085FF));
 
         DrawRectangleRec(handBox, GetColor(0x0B080CFF));
         DrawRectangleLinesEx(handBox, 3, GetColor(0x342936FF));
 
         std::string handTitle = (activePlayerTurn == 1) ? "DRACULA - HAND" : "SHERLOCK - HAND";
-        DrawText(handTitle.c_str(), (int)(handBox.x + (handBox.width - MeasureText(handTitle.c_str(), 10)) / 2), (int)(handBox.y + 10), 10, GetColor(0xE5C158FF));
+        DrawTextCentered(GetSemiFont(), handTitle.c_str(), handBox.x + handBox.width / 2.0f, handBox.y + 8, 12, 0.6f, GetColor(0xE5C158FF));
 
         bool currentShowHand = (activePlayerTurn == 1) ? showHandP1 : showHandP2;
         if (!currentShowHand) {
-            DrawText("CARDS IN HAND", (int)(handBox.x + (handBox.width - MeasureText("CARDS IN HAND", 9)) / 2), (int)(handBox.y + 35), 9, GetColor(0x8A8085FF));
+            DrawTextCentered(GetRegularFont(), "CARDS IN HAND", handBox.x + handBox.width / 2.0f, handBox.y + 33, 11, 0.6f, GetColor(0x8A8085FF));
             for (int i = 0; i < 5; i++) {
                 Rectangle cardBack = { handBox.x + 12.0f + (i * 30.0f), handBox.y + 55.0f, 26.0f, 42.0f };
                 DrawRectangleRec(cardBack, GetColor(0x151218FF));
                 DrawRectangleLinesEx(cardBack, 1, GetColor(0xE5C158FF));
             }
-            DrawText("TAP TO VIEW HAND", (int)(handBox.x + (handBox.width - MeasureText("TAP TO VIEW HAND", 10)) / 2), (int)(handBox.y + 115), 10, GetColor(0xE5C158FF));
+            DrawTextCentered(GetSemiFont(), "TAP TO VIEW HAND", handBox.x + handBox.width / 2.0f, handBox.y + 113, 12, 0.6f, GetColor(0xE5C158FF));
         } else {
-            DrawText("HAND OPENED (MODAL)", (int)(handBox.x + (handBox.width - MeasureText("HAND OPENED (MODAL)", 8)) / 2), (int)(handBox.y + 55), 8, GetColor(0x8A8085FF));
-            DrawText("TAP TO HIDE HAND", (int)(handBox.x + (handBox.width - MeasureText("TAP TO HIDE HAND", 10)) / 2), (int)(handBox.y + 115), 10, GetColor(0x9E2230FF));
+            DrawTextCentered(GetRegularFont(), "HAND OPENED (MODAL)", handBox.x + handBox.width / 2.0f, handBox.y + 53, 10, 0.5f, GetColor(0x8A8085FF));
+            DrawTextCentered(GetSemiFont(), "TAP TO HIDE HAND", handBox.x + handBox.width / 2.0f, handBox.y + 113, 12, 0.6f, GetColor(0x9E2230FF));
         }
 
         if (!actionBar.awaitingDefense && currentShowHand && activeHero) {
@@ -635,14 +715,14 @@ Vector2 mousePos = GetMousePosition();
 
             DrawRectangleRec(closeBtnRect, GetColor(0x9E2230FF));
             DrawRectangleLinesEx(closeBtnRect, 1, GetColor(0xE5C158FF));
-            DrawText("X", (int)closeBtnRect.x + 8, (int)closeBtnRect.y + 5, 14, WHITE);
+            DrawTextCentered(GetSemiFont(), "X", closeBtnRect.x + closeBtnRect.width / 2.0f, closeBtnRect.y + 5, 14, 0.6f, WHITE);
 
             std::string modalTitle = (activePlayerTurn == 1) ? "DRACULA - EXPANDED HAND" : "SHERLOCK - EXPANDED HAND";
-            DrawText(modalTitle.c_str(), (int)(modalX + (modalW - MeasureText(modalTitle.c_str(), 18)) / 2), (int)(modalY + 20), 18, GetColor(0xE5C158FF));
-            DrawText("Click on any card to play/interact", (int)(modalX + (modalW - MeasureText("Click on any card to play/interact", 10)) / 2), (int)(modalY + 45), 10, GetColor(0x8A8085FF));
+            DrawTextCentered(GetTitleFont(), modalTitle.c_str(), modalX + modalW / 2.0f, modalY + 16, 24, 1.0f, GetColor(0xE5C158FF));
+            DrawTextCentered(GetRegularFont(), "Click on any card to play/interact", modalX + modalW / 2.0f, modalY + 46, 11, 0.6f, GetColor(0x8A8085FF));
 
             int cardCount = (int)hand.size();
-            if (cardCount > 5) cardCount = 5;
+            if (cardCount > 7) cardCount = 7;
 
             float cardW = 90.0f;
             float cardH = 145.0f;
@@ -685,12 +765,14 @@ Vector2 mousePos = GetMousePosition();
                 } else {
                     DrawRectangleRec(cardRect, GetColor(0xE2D6BCFF));
                     DrawRectangleLinesEx(cardRect, 2, GetColor(0x5A1A24FF));
-                    DrawText(cardName.c_str(), (int)cardRect.x + 5, (int)cardRect.y + 10, 10, BLACK);
+                    DrawTextEx(GetSemiFont(), cardName.c_str(), { cardRect.x + 5, cardRect.y + 10 }, 12, 0.6f, BLACK);
                 }
             }
         }
 
-        if (actionBar.awaitingDefense) {
+        if (mustDiscard) {
+            DrawDiscardModal(activeHero, mousePos, sw, sh);
+        } else if (actionBar.awaitingDefense) {
             DrawDefenseModal(gm, board, actionBar, draculaHero, cardTextures, loadedCardTextures, mousePos, sw, sh);
         }
 
@@ -700,42 +782,6 @@ Vector2 mousePos = GetMousePosition();
         if (actionBar.targetPrompt == TargetPrompt::EliminateCard) {
             ActionBar_DrawEliminatePicker(actionBar, gm, activeHero, draculaHero, mousePos, sw, sh);
         }
-
-        if (gameOver) {
-            DrawRectangle(0, 0, (int)sw, (int)sh, Fade(BLACK, 0.82f));
-
-            std::string winnerName = winnerChar ? winnerChar->getname() : "Unknown";
-            std::string loserName  = loserChar  ? loserChar->getname()  : "Unknown";
-
-            std::string title = "GAME OVER";
-            std::string winLine = winnerName + " WINS!";
-            std::string loseLine = loserName + " has been defeated.";
-
-            int titleSize = 42;
-            int winSize = 26;
-            int loseSize = 16;
-
-            int tw = MeasureText(title.c_str(), titleSize);
-            int ww = MeasureText(winLine.c_str(), winSize);
-            int lw = MeasureText(loseLine.c_str(), loseSize);
-
-            float centerY = sh * 0.38f;
-            DrawText(title.c_str(), (int)(sw / 2.0f - tw / 2.0f), (int)(centerY), titleSize, GetColor(0xE53935FF));
-            DrawText(winLine.c_str(), (int)(sw / 2.0f - ww / 2.0f), (int)(centerY + 60), winSize, GetColor(0xE5C158FF));
-            DrawText(loseLine.c_str(), (int)(sw / 2.0f - lw / 2.0f), (int)(centerY + 96), loseSize, GetColor(0xC2B6B9FF));
-
-            Rectangle backBtn = { sw / 2.0f - 100.0f, centerY + 140.0f, 200.0f, 46.0f };
-            bool hoverBack = CheckCollisionPointRec(mousePos, backBtn);
-            DrawRectangleRec(backBtn, hoverBack ? GetColor(0x2A1418FF) : GetColor(0x1B0A0DFF));
-            DrawRectangleLinesEx(backBtn, 3, GetColor(0x9E2230FF));
-            int btnTextW = MeasureText("BACK TO MENU", 14);
-            DrawText("BACK TO MENU", (int)(backBtn.x + (backBtn.width - btnTextW) / 2), (int)(backBtn.y + 16), 14, GetColor(0xE5C158FF));
-
-            if (hoverBack && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
-                exitToMenuRequested = true;
-            }
-        }
-
                 EndDrawing();
             }
 
@@ -749,5 +795,6 @@ Vector2 mousePos = GetMousePosition();
     for (auto& tex : loadedCardTextures) {
         UnloadTexture(tex);
     }
+    UnloadGameFonts();
     CloseWindow();
 }

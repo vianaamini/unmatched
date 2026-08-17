@@ -195,9 +195,12 @@ bool GameManager::moveCharacter(character *c, const std::string &targetSpace, co
     if (activeHero)
     {
         activeHero->useAction();
-        activeHero->drawcard();           
-        while (activeHero->handsize() > 7)       
-            activeHero->gethand().pop_back();
+        activeHero->drawcard();
+        // NOTE: do NOT auto-discard down to 7 here. If the hand goes over
+        // 7 cards, the UI (mustDiscard in raylib.cpp) blocks further
+        // actions and forces the player to manually pick which card(s)
+        // to discard via DrawDiscardModal. Silently popping a card here
+        // would delete it before the player ever sees it.
     }
 
     std::cout << c->getname() << " successfully moved to " << targetSpace << std::endl;
