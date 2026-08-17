@@ -254,6 +254,7 @@ static void DrawDiscardModal(hero* activeHero, hero* draculaHero,
     if (!activeHero) return;
 
     auto& hand = activeHero->gethand();
+
     const int DISCARD_STOP_AT = 6;
     if ((int)hand.size() <= 7) return;
 
@@ -543,9 +544,11 @@ void RunGameUI(GameManager& gm, character* dracula, character* sis1Obj, characte
 Vector2 mousePos = GetMousePosition();
 
         hero* activeHero = (activePlayerTurn == 1) ? draculaHero : sherlockHero;
-        bool mustDiscard = !gm.isGameOver() && activeHero && activeHero->handsize() > 7;
+        bool gameOver = gm.isGameOver();
+        character* winner = gameOver ? gm.getWinner() : nullptr;
+        bool mustDiscard = !gameOver && activeHero && activeHero->handsize() > 7;
 
-        if (!actionBar.awaitingDefense && !mustDiscard) {
+        if (!gameOver && !actionBar.awaitingDefense && !mustDiscard) {
             if (gm.getActionsRemaining() <= 0 &&
                 ((CheckCollisionPointRec(mousePos, endTurnButton) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) || IsKeyPressed(KEY_ENTER))) {
                 gm.getTurnManager().endTurn();
@@ -562,7 +565,7 @@ Vector2 mousePos = GetMousePosition();
         character* actingChar = ActionBar_GetActingCharacter(actionBar, gm);
         hero* actingHero = actingChar ? dynamic_cast<hero*>(actingChar) : nullptr;
 
-        if (!mustDiscard) {
+        if (!gameOver && !mustDiscard) {
             ActionBar_Update(actionBar, gm, actionLayout, mousePos, mapDest, boardTex, handBox, actingChar, actingHero, activeHero, draculaHero);
             ActionBar_UpdateTargeting(actionBar, gm, activeHero, draculaHero, board, mapDest, boardTex, mousePos);
         }
@@ -724,9 +727,10 @@ Vector2 mousePos = GetMousePosition();
             if (!h) return "?";
             std::string n = h->getname();
             for (auto& ch : n) ch = std::tolower(ch);
-            if (n.find("invisible") != std::string::npos) return "I";
             if (n.find("dracula") != std::string::npos) return "D";
-            return "S";
+            if (n.find("invisible") != std::string::npos) return "I";
+            if (n.find("sherlock") != std::string::npos) return "S";
+            return "?";
         };
 
         DrawCircle((int)centerX1, (int)centerY, avatarRadius, GetColor(0x1A0D10FF));
@@ -852,8 +856,21 @@ Vector2 mousePos = GetMousePosition();
         if (actionBar.targetPrompt == TargetPrompt::EliminateCard) {
             ActionBar_DrawEliminatePicker(actionBar, gm, activeHero, draculaHero, mousePos, sw, sh);
         }
-                EndDrawing();
-            }
+        if (gameOver) {
+            DrawRectangle(0, 0, (int)sw, (int)sh, Fade(BLACK, 0.75f));
+            std::string winnerName = winner ? winner->getname() : "Nobody";
+            std::string subLine = winnerName + " WINS!";
+            DrawTextCentered(GetTitleFont(), "GAME OVER", sw / 2.0f, sh / 2.0f - 40, 40, 1.5f, GetColor(0xE5C158FF));
+            DrawTextCentered(GetRegularFont(), subLine.c_str(), sw / 2.0f, sh / 2.0f + 10, 22, 1.0f, WHITE);
+            DrawTextCentered(GetRegularFont(), "Press ENTER to return to the menu", sw / 2.0f, sh / 2.0f + 50, 14, 0.6f, GetColor(0xC2B6B9FF));
+        }
+
+        EndDrawing();
+
+        if (gameOver && IsKeyPressed(KEY_ENTER)) {
+            break;
+        }
+    }
 
     UnloadTexture(boardTex);
     UnloadTexture(dracArt);
