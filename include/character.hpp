@@ -24,7 +24,7 @@ public:
 
     void setposition(int node);
 
-    void takedamage(int amount);
+    virtual void takedamage(int amount);
     void heal(int amount);
     void sethealth(int amount);
 

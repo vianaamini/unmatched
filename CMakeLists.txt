@@ -47,6 +47,7 @@ add_executable(unmatched
     src/hero_selection.cpp
     src/raylib.cpp
     src/actionbar.cpp
+    src/invisible_man.cpp
 )
 
 target_include_directories(unmatched PRIVATE include)

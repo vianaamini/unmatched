@@ -618,7 +618,7 @@ void ActionBar_DrawValuePicker(
     DrawRectangleLinesEx(modalRect, 3, GetColor(0x9C6ADEFF));
 
     const char* title = "CONFIRM SUSPICION - NAME A VALUE";
-    DrawTextCenteredAB(GetTitleFont(), title, modalRect.x + modalW / 2.0f, modalRect.y + 12, 16, 0.8f, GetColor(0xE5C158FF));
+    DrawTextCenteredAB(GetTitleFont(), title, modalRect.x + modalW / 2.0f, modalRect.y + 12, 19, 0.6f, GetColor(0xE5C158FF));
 
     float btnSize = 46.0f;
     float gap = 10.0f;
@@ -635,7 +635,7 @@ void ActionBar_DrawValuePicker(
         DrawRectangleLinesEx(btn, 2, GetColor(0x9C6ADEFF));
 
         std::string label = std::to_string(v);
-        DrawTextCenteredAB(GetSemiFont(), label.c_str(), btn.x + btnSize / 2.0f, btn.y + 12, 18, 0.8f, WHITE);
+        DrawTextCenteredAB(GetSemiFont(), label.c_str(), btn.x + btnSize / 2.0f, btn.y + 12, 20, 0.5f, WHITE);
 
         if (hover && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
             activeHero->setConfirmSuspicionGuess(v);
@@ -648,7 +648,7 @@ void ActionBar_DrawValuePicker(
     bool cancelHover = CheckCollisionPointRec(mousePos, cancelBtn);
     DrawRectangleRec(cancelBtn, cancelHover ? GetColor(0x9E2230FF) : GetColor(0x1B0A0DFF));
     DrawRectangleLinesEx(cancelBtn, 2, GetColor(0x9E2230FF));
-    DrawTextCenteredAB(GetSemiFont(), "CANCEL", cancelBtn.x + 70.0f, cancelBtn.y + 8, 13, 0.6f, GetColor(0xE5C158FF));
+    DrawTextCenteredAB(GetSemiFont(), "CANCEL", cancelBtn.x + 70.0f, cancelBtn.y + 7, 15, 0.4f, GetColor(0xE5C158FF));
 
     if (cancelHover && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
         state.targetPrompt = TargetPrompt::None;
@@ -695,7 +695,7 @@ void ActionBar_DrawEliminatePicker(
     DrawRectangleLinesEx(modalRect, 3, GetColor(0x9C6ADEFF));
 
     const char* title = "ELIMINATE THE IMPOSSIBLE - BURN A CARD";
-    DrawTextCenteredAB(GetTitleFont(), title, modalRect.x + modalW / 2.0f, modalRect.y + 12, 16, 0.8f, GetColor(0xE5C158FF));
+    DrawTextCenteredAB(GetTitleFont(), title, modalRect.x + modalW / 2.0f, modalRect.y + 12, 19, 0.6f, GetColor(0xE5C158FF));
 
     float cardW = 70.0f, cardH = 100.0f, gap = 14.0f;
     float totalW = count * cardW + (count - 1) * gap;
@@ -740,7 +740,7 @@ void ActionBar_DrawBeastformPicker(
     DrawRectangleLinesEx(modalRect, 3, GetColor(0x9C6ADEFF));
 
     const char* title = "BEASTFORM - CARDS TO DISCARD";
-    DrawTextCenteredAB(GetTitleFont(), title, modalRect.x + modalW / 2.0f, modalRect.y + 12, 16, 0.8f, GetColor(0xE5C158FF));
+    DrawTextCenteredAB(GetTitleFont(), title, modalRect.x + modalW / 2.0f, modalRect.y + 12, 19, 0.6f, GetColor(0xE5C158FF));
 
     int count = maxDiscard + 1; 
     float btnSize = 46.0f;
@@ -757,7 +757,7 @@ void ActionBar_DrawBeastformPicker(
         DrawRectangleLinesEx(btn, 2, GetColor(0x9C6ADEFF));
 
         std::string label = std::to_string(v);
-        DrawTextCenteredAB(GetSemiFont(), label.c_str(), btn.x + btnSize / 2.0f, btn.y + 12, 18, 0.8f, WHITE);
+        DrawTextCenteredAB(GetSemiFont(), label.c_str(), btn.x + btnSize / 2.0f, btn.y + 12, 20, 0.5f, WHITE);
 
         if (hover && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
             attacker->setBeastformDiscardCount(v);
@@ -791,7 +791,7 @@ void ActionBar_DrawElementaryPicker(
     DrawRectangleLinesEx(modalRect, 3, GetColor(0x9C6ADEFF));
 
     const char* title = "ELEMENTARY - PREDICT THE ATTACK VALUE";
-    DrawTextCenteredAB(GetTitleFont(), title, modalRect.x + modalW / 2.0f, modalRect.y + 12, 16, 0.8f, GetColor(0xE5C158FF));
+    DrawTextCenteredAB(GetTitleFont(), title, modalRect.x + modalW / 2.0f, modalRect.y + 12, 19, 0.6f, GetColor(0xE5C158FF));
 
     int count = 7; 
     float btnSize = 46.0f;
@@ -808,7 +808,7 @@ void ActionBar_DrawElementaryPicker(
         DrawRectangleLinesEx(btn, 2, GetColor(0x9C6ADEFF));
 
         std::string label = std::to_string(v);
-        DrawTextCenteredAB(GetSemiFont(), label.c_str(), btn.x + btnSize / 2.0f, btn.y + 12, 18, 0.8f, WHITE);
+        DrawTextCenteredAB(GetSemiFont(), label.c_str(), btn.x + btnSize / 2.0f, btn.y + 12, 20, 0.5f, WHITE);
 
         if (hover && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
             defender->setPredictedAttackValue(v);
@@ -992,15 +992,15 @@ static void DrawActionButton(
     DrawRectangleRec(rect, fill);
     DrawRectangleLinesEx(rect, active ? 3 : 2, enabled ? baseColor : Fade(baseColor, 0.35f));
 
-    float fontSize = rect.height >= 35 ? 14.0f : 11.0f;
-    Vector2 textSize = MeasureTextEx(GetSemiFont(), label, fontSize, 0.6f);
+    float fontSize = rect.height >= 35 ? 16.0f : 13.0f;
+    Vector2 textSize = MeasureTextEx(GetSemiFont(), label, fontSize, 0.4f);
 
     DrawTextEx(
         GetSemiFont(),
         label,
         { rect.x + (rect.width - textSize.x) / 2.0f, rect.y + (rect.height - fontSize) / 2.0f },
         fontSize,
-        0.6f,
+        0.4f,
         textColor
     );
 }
@@ -1014,15 +1014,15 @@ void ActionBar_DrawPanel(
     DrawRectangleLinesEx(layout.panel, 3, GetColor(0x342936FF));
 
     const char* title = "ACTIONS";
-    float titleSize = 11.0f;
-    Vector2 titleDims = MeasureTextEx(GetSemiFont(), title, titleSize, 0.6f);
+    float titleSize = 13.0f;
+    Vector2 titleDims = MeasureTextEx(GetSemiFont(), title, titleSize, 0.5f);
     DrawTextEx(
         GetSemiFont(),
         title,
-        { layout.panel.x + (layout.panel.width - titleDims.x) / 2.0f, layout.panel.y + 7 },
+        { layout.panel.x + (layout.panel.width - titleDims.x) / 2.0f, layout.panel.y + 6 },
         titleSize,
-        0.6f,
-        GetColor(0x8A8085FF)
+        0.5f,
+        GetColor(0xA39BA0FF)
     );
 
     DrawActionButton(layout.moveBtn, "MOVE", GetColor(0x4CD964FF), state.currentAction == ActionMode::Move, state.canMove);
@@ -1138,14 +1138,14 @@ static void DrawCardEffectsCell(
 {
     DrawRectangleRec(cell, GetColor(0x0B080CFF));
     DrawRectangleLinesEx(cell, 2, accent);
-    DrawTextEx(GetSemiFont(), ownerLabel, { cell.x + 8, cell.y + 5 }, 11, 0.6f, accent);
+    DrawTextEx(GetSemiFont(), ownerLabel, { cell.x + 8, cell.y + 5 }, 13, 0.4f, accent);
 
     if (!hasCard) {
-        DrawTextEx(GetRegularFont(), "No card played yet", { cell.x + 8, cell.y + 24 }, 11, 0.5f, GetColor(0x8A8085FF));
+        DrawTextEx(GetRegularFont(), "No card played yet", { cell.x + 8, cell.y + 26 }, 13, 0.3f, GetColor(0xA39BA0FF));
         return;
     }
 
-    DrawTextEx(GetSemiFont(), c.get_name().c_str(), { cell.x + 8, cell.y + 24 }, 14, 0.6f, GetColor(0xE5C158FF));
+    DrawTextEx(GetSemiFont(), c.get_name().c_str(), { cell.x + 8, cell.y + 26 }, 15, 0.4f, GetColor(0xE5C158FF));
 
     std::string stats;
 
@@ -1159,12 +1159,12 @@ static void DrawCardEffectsCell(
         stats = "BOOST " + std::to_string(c.getboost());
     }
 
-    DrawTextEx(GetRegularFont(), stats.c_str(), { cell.x + 8, cell.y + 44 }, 11, 0.5f, GetColor(0xC2B6B9FF));
+    DrawTextEx(GetRegularFont(), stats.c_str(), { cell.x + 8, cell.y + 47 }, 13, 0.3f, GetColor(0xC2B6B9FF));
 
     std::string effect = c.geteffect();
 
     if (!effect.empty()) {
-        DrawTextEx(GetRegularFont(), effect.c_str(), { cell.x + 8, cell.y + 62 }, 10, 0.4f, GetColor(0x8A8085FF));
+        DrawTextEx(GetRegularFont(), effect.c_str(), { cell.x + 8, cell.y + 65 }, 12, 0.2f, GetColor(0xA39BA0FF));
     }
 }
 
@@ -1177,16 +1177,16 @@ void ActionBar_DrawCardEffectsBox(
     DrawRectangleLinesEx(box, 3, GetColor(0x342936FF));
 
     const char* title = "CARD EFFECTS";
-    float titleSize = 12.0f;
-    Vector2 titleDims = MeasureTextEx(GetSemiFont(), title, titleSize, 0.6f);
+    float titleSize = 14.0f;
+    Vector2 titleDims = MeasureTextEx(GetSemiFont(), title, titleSize, 0.5f);
 
     DrawTextEx(
         GetSemiFont(),
         title,
-        { box.x + (box.width - titleDims.x) / 2.0f, box.y + 7 },
+        { box.x + (box.width - titleDims.x) / 2.0f, box.y + 6 },
         titleSize,
-        0.6f,
-        GetColor(0x8A8085FF)
+        0.5f,
+        GetColor(0xA39BA0FF)
     );
 
     float gap = 8.0f;
@@ -1213,7 +1213,7 @@ void ActionBar_DrawCardEffectsBox(
 
     DrawCardEffectsCell(
         draculaCell,
-        "DRACULA",
+        state.team1Label.c_str(),
         state.draculaHasCard,
         state.draculaLastCard,
         GetColor(0x9E2230FF)
@@ -1221,7 +1221,7 @@ void ActionBar_DrawCardEffectsBox(
 
     DrawCardEffectsCell(
         sherlockCell,
-        "SHERLOCK",
+        state.team2Label.c_str(),
         state.sherlockHasCard,
         state.sherlockLastCard,
         GetColor(0x28558FFF)

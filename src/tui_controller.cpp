@@ -3,6 +3,7 @@
 #include "dracula.hpp"
 #include "watson.hpp"
 #include "sister.hpp"
+#include "invisible_man.hpp"
 #include <ftxui/component/screen_interactive.hpp>
 #include <algorithm>
 #include <iostream>
@@ -35,37 +36,64 @@ TuiController::TuiController()
         std::cout << "Invalid age! Age must be between 12 and 70. Enter age of Player 2 again: ";
         std::cin >> age2;
     }
+
     if (age1 < age2)
     {
-        cout << "Player 1 is younger and chooses first!" << endl;
         firstPlayer = 1;
+        cout << "Player 1 is younger and chooses first!" << endl;
     }
     else if (age2 < age1)
     {
-        cout << "Player 2 is younger and chooses first!" << endl;
         firstPlayer = 2;
+        cout << "Player 2 is younger and chooses first!" << endl;
     }
     else
     {
-        cout << "Both players have the same age. Player 1 chooses first by default." << endl;
         firstPlayer = 1;
+        cout << "Both players have the same age. Player 1 chooses first by default." << endl;
     }
 
     cout << "\nPlayer " << firstPlayer << ", choose your fighter:" << endl;
     cout << "1. Sherlock Holmes" << endl;
     cout << "2. Dracula" << endl;
-    cout << "Enter your choice (1 or 2): ";
-    cin >> choice;
-    while (choice != 1 && choice != 2)
+    cout << "3. Invisible Man" << endl;
+    cout << "Enter your choice (1, 2, or 3): ";
+    int firstChoice;
+    cin >> firstChoice;
+    while (firstChoice < 1 || firstChoice > 3)
     {
-        cout << "Invalid choice. Enter 1 or 2: ";
-        cin >> choice;
+        cout << "Invalid choice. Enter 1, 2, or 3: ";
+        cin >> firstChoice;
     }
 
-    string firstFighterName = (choice == 1) ? "Sherlock Holmes" : "Dracula";
-    string secondFighterName = (choice == 1) ? "Dracula" : "Sherlock Holmes";
-    cout << "\nPlayer " << firstPlayer << " picked " << firstFighterName << "." << endl;
-    cout << "The other player automatically gets " << secondFighterName << "." << endl;
+    cout << "\nPlayer " << (firstPlayer == 1 ? 2 : 1) << ", choose your fighter from remaining options:" << endl;
+    vector<int> remainingChoices;
+    int optIdx = 1;
+
+    for (int i = 1; i <= 3; ++i)
+    {
+        if (i != firstChoice)
+        {
+            remainingChoices.push_back(i);
+            string name = (i == 1) ? "Sherlock Holmes" : (i == 2) ? "Dracula"
+                                                                  : "Invisible Man";
+            cout << optIdx++ << ". " << name << endl;
+        }
+    }
+
+    int secondSelection;
+    cout << "Enter your choice (1 or 2): ";
+    cin >> secondSelection;
+    while (secondSelection != 1 && secondSelection != 2)
+    {
+        cout << "Invalid choice. Enter 1 or 2: ";
+        cin >> secondSelection;
+    }
+
+    int secondChoice = remainingChoices[secondSelection - 1];
+
+    p1Choice = (firstPlayer == 1) ? firstChoice : secondChoice;
+    p2Choice = (firstPlayer == 1) ? secondChoice : firstChoice;
 
     cout << "\nPress Enter to continue to the game screen...";
     cin.ignore();
@@ -77,67 +105,48 @@ TuiController::TuiController()
 
 void TuiController::setupCharacters()
 {
-    sherlock *sherlockChar = new sherlock();
-    watson *watsonChar = new watson();
-    dracula *draculaChar = new dracula();
-    sister *sister1 = new sister(1);
-    sister *sister2 = new sister(2);
-    sister *sister3 = new sister(3);
-
     Deployment deployment(&gamemanager.getBoard());
 
-    vector<character *> sherlockSidekicks;
-    sherlockSidekicks.push_back(watsonChar);
-    auto sherlockResult = deployment.placeHeroWithSidekicks(sherlockChar, sherlockSidekicks, 4);
-
-    vector<character *> draculaSidekicks;
-    draculaSidekicks.push_back(sister1);
-    draculaSidekicks.push_back(sister2);
-    draculaSidekicks.push_back(sister3);
-    auto draculaResult = deployment.placeHeroWithSidekicks(draculaChar, draculaSidekicks, 18);
-
-    if (choice == 1)
+    auto deployHero = [&](int choice, int team, int node)
     {
-        gamemanager.addCharacter(sherlockChar, 1);
-        gamemanager.addCharacter(watsonChar, 1);
-        gamemanager.addCharacter(draculaChar, 2);
-        gamemanager.addCharacter(sister1, 2);
-        gamemanager.addCharacter(sister2, 2);
-        gamemanager.addCharacter(sister3, 2);
-    }
-    else
-    {
-        gamemanager.addCharacter(draculaChar, 1);
-        gamemanager.addCharacter(sister1, 1);
-        gamemanager.addCharacter(sister2, 1);
-        gamemanager.addCharacter(sister3, 1);
-        gamemanager.addCharacter(sherlockChar, 2);
-        gamemanager.addCharacter(watsonChar, 2);
-    }
-    sherlockChar->drawhand();
-    draculaChar->drawhand();
+        if (choice == 1)
+        {
+            sherlock *sherlockChar = new sherlock();
+            watson *watsonChar = new watson();
+            vector<character *> sidekicks = {watsonChar};
+            deployment.placeHeroWithSidekicks(sherlockChar, sidekicks, node);
+            gamemanager.addCharacter(sherlockChar, team);
+            gamemanager.addCharacter(watsonChar, team);
+            sherlockChar->drawhand();
+        }
+        else if (choice == 2)
+        {
+            dracula *draculaChar = new dracula();
+            sister *s1 = new sister(1);
+            sister *s2 = new sister(2);
+            sister *s3 = new sister(3);
+            vector<character *> sidekicks = {s1, s2, s3};
+            deployment.placeHeroWithSidekicks(draculaChar, sidekicks, node);
+            gamemanager.addCharacter(draculaChar, team);
+            gamemanager.addCharacter(s1, team);
+            gamemanager.addCharacter(s2, team);
+            gamemanager.addCharacter(s3, team);
+            draculaChar->drawhand();
+        }
+        else if (choice == 3)
+        {
+            InvisibleMan *invMan = new InvisibleMan("Invisible Man", node);
+            vector<character *> sidekicks = {};
+            deployment.placeHeroWithSidekicks(invMan, sidekicks, node);
+            gamemanager.addCharacter(invMan, team);
+            invMan->drawhand();
+        }
+    };
+
+    deployHero(p1Choice, 1, 4);
+    deployHero(p2Choice, 2, 18);
 
     gamelogs.push_back("Characters deployed successfully.");
-    if (sherlockResult.success)
-    {
-        gamelogs.push_back("Sherlock at n" + to_string(sherlockChar->getposition()) +
-                           ", Watson at n" + to_string(watsonChar->getposition()));
-    }
-    else
-    {
-        gamelogs.push_back("Sherlock team deploy failed: " + sherlockResult.message);
-    }
-    if (draculaResult.success)
-    {
-        gamelogs.push_back("Dracula at n" + to_string(draculaChar->getposition()) +
-                           ", Sisters at n" + to_string(sister1->getposition()) +
-                           ", n" + to_string(sister2->getposition()) +
-                           ", n" + to_string(sister3->getposition()));
-    }
-    else
-    {
-        gamelogs.push_back("Dracula team deploy failed: " + draculaResult.message);
-    }
 }
 
 Element TuiController::createDynamicNode(const string &nodename,

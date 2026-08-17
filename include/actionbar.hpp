@@ -60,6 +60,11 @@ struct ActionBarState {
     card draculaLastCard;
     bool sherlockHasCard = false;
     card sherlockLastCard;
+    // Display labels for the two card-effects columns. Default to the
+    // original two heroes; RunGameUI overwrites these with the actual
+    // hero names in play (e.g. "INVISIBLE MAN") once at setup.
+    std::string team1Label = "DRACULA";
+    std::string team2Label = "SHERLOCK";
 
     // NEW: targeting sub-flow for scheme cards
     TargetPrompt targetPrompt = TargetPrompt::None;

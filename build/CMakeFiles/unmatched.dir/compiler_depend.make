@@ -391,6 +391,7 @@ CMakeFiles/unmatched.dir/src/actionbar.cpp.obj: E:/assassins/new/unmatched/src/a
   E:/assassins/new/unmatched/include/character.hpp \
   E:/assassins/new/unmatched/include/deck.hpp \
   E:/assassins/new/unmatched/include/deployment.hpp \
+  E:/assassins/new/unmatched/include/game_fonts.hpp \
   E:/assassins/new/unmatched/include/game_manager.hpp \
   E:/assassins/new/unmatched/include/hero.hpp \
   E:/assassins/new/unmatched/include/map.hpp \
@@ -2872,6 +2873,7 @@ CMakeFiles/unmatched.dir/src/raylib.cpp.obj: E:/assassins/new/unmatched/src/rayl
   E:/assassins/new/unmatched/include/character.hpp \
   E:/assassins/new/unmatched/include/deck.hpp \
   E:/assassins/new/unmatched/include/deployment.hpp \
+  E:/assassins/new/unmatched/include/game_fonts.hpp \
   E:/assassins/new/unmatched/include/game_manager.hpp \
   E:/assassins/new/unmatched/include/hero.hpp \
   E:/assassins/new/unmatched/include/map.hpp \
@@ -4109,6 +4111,10 @@ C:/msys64/ucrt64/include/c++/16.1.0/x86_64-w64-mingw32/bits/c++allocator.h:
 
 E:/assassins/new/unmatched/include/movement.hpp:
 
+E:/assassins/new/unmatched/src/hero_selection.cpp:
+
+C:/msys64/ucrt64/include/c++/16.1.0/x86_64-w64-mingw32/bits/c++config.h:
+
 C:/msys64/ucrt64/include/pthread_signal.h:
 
 C:/msys64/ucrt64/include/c++/16.1.0/x86_64-w64-mingw32/bits/c++locale.h:
@@ -4241,6 +4247,8 @@ E:/assassins/new/unmatched/include/sidekick.hpp:
 
 E:/assassins/new/unmatched/include/sister.hpp:
 
+E:/assassins/new/unmatched/include/game_fonts.hpp:
+
 E:/assassins/new/unmatched/include/deck-builder.hpp:
 
 C:/msys64/ucrt64/include/c++/16.1.0/algorithm:
@@ -4306,7 +4314,3 @@ E:/assassins/new/unmatched/src/game.cpp:
 E:/assassins/new/unmatched/include/game.hpp:
 
 E:/assassins/new/unmatched/src/hero.cpp:
-
-C:/msys64/ucrt64/include/c++/16.1.0/x86_64-w64-mingw32/bits/c++config.h:
-
-E:/assassins/new/unmatched/src/hero_selection.cpp:

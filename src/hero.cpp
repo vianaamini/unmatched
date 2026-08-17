@@ -1,5 +1,6 @@
 #include "../include/hero.hpp"
 #include "../include/game_manager.hpp"
+#include "../include/invisible_man.hpp"
 #include <queue>
 #include <unordered_set>
 #include <algorithm>
@@ -274,6 +275,13 @@ bool hero::scheme(card& schemeCard, hero& target) {
     }
 
     string name = schemeCard.get_name();
+
+    if (InvisibleMan* imSelf = dynamic_cast<InvisibleMan*>(this)) {
+        if (imSelf->executeSchemeCard(schemeCard, target)) {
+            actions--;
+            return true;
+        }
+    }
 
     if (name == "Mistform") {
         if (mistformTarget.empty() ||
@@ -741,6 +749,13 @@ bool hero::attack(
         effectsCanceled = true;
 
     if (!effectsCanceled) {
+        if (InvisibleMan* imAtk = dynamic_cast<InvisibleMan*>(this)) {
+            imAtk->executeAttackCardEffects(attackCard, target, attackValue, attackerWon, effectsCanceled, defenseCard);
+        }
+        if (InvisibleMan* imDef = dynamic_cast<InvisibleMan*>(&target)) {
+            imDef->executeDefenseCardEffects(defenseCard, attackCard, defenseValue, effectsCanceled);
+        }
+
         if (defenseCard.get_name() == "Look Into My Eyes") {
             defenseValue += attackCard.getboost();
         }

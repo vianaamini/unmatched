@@ -8,6 +8,7 @@
 #include "map.hpp"
 #include "hero.hpp"
 #include "deployment.hpp"
+#include "invisible_man.hpp"
 
 class TuiController {
 private:
@@ -20,6 +21,8 @@ private:
     int age1, age2;
     int firstPlayer;
     int choice;
+    int p1Choice;
+    int p2Choice;
     bool gameStarted = false;
     
     ftxui::Element createDynamicNode(const std::string& nodename, 

@@ -137,3 +137,74 @@ deck draculadeck() {
     
     return d;
 }
+
+deck invisiblemandeck() {
+    deck d;
+
+    for (int i = 0; i < 2; i++) {
+        d.addcard(card("Coded Notes", cardtype::defense, 0, 3, 2, cardowner::any,
+                       "Draw 3 cards, then choose 2 from your hand and place them on top of your deck in any order"));
+    }
+
+    for (int i = 0; i < 2; i++) {
+        d.addcard(card("Confound", cardtype::multipurpose, 3, 3, 2, cardowner::any,
+                       "Opponent may discard 1 card. If they don't, move any fog token to any space"));
+    }
+
+    for (int i = 0; i < 3; i++) {
+        d.addcard(card("Covert Preparation", cardtype::multipurpose, 2, 2, 1, cardowner::any,
+                       "Draw 1 card. Move a fog token up to 2 spaces, then opponent moves to another fog token up to 2 spaces"));
+    }
+
+    for (int i = 0; i < 2; i++) {
+        d.addcard(card("Dreaming of Revenge", cardtype::multipurpose, 3, 3, 1, cardowner::any,
+                       "If Invisible Man is on a fog token, all opponent fighters on fog tokens take 1 damage"));
+    }
+
+    for (int i = 0; i < 2; i++) {
+        d.addcard(card("Emerge from Mist", cardtype::attack, 3, 0, 2, cardowner::any,
+                       "If Invisible Man started this turn on a fog token, this card's value is 5"));
+    }
+
+    for (int i = 0; i < 2; i++) {
+        d.addcard(card("Impossible to See", cardtype::multipurpose, 2, 2, 2, cardowner::any,
+                       "Opponent's attack or defense value is 0 and cannot be changed by card effects"));
+    }
+
+    for (int i = 0; i < 2; i++) {
+        d.addcard(card("Into Thin Air", cardtype::defense, 0, 4, 1, cardowner::any,
+                       "Move Invisible Man 1 space, then move a fog token 3 spaces"));
+    }
+
+    for (int i = 0; i < 2; i++) {
+        d.addcard(card("Lurking", cardtype::defense, 0, 2, 2, cardowner::any,
+                       "Draw 1 card and choose one: move Invisible Man to a fog token, or move a fog token 3 spaces"));
+    }
+
+    for (int i = 0; i < 2; i++) {
+        d.addcard(card("Reign of Terror", cardtype::scheme, 0, 0, 1, cardowner::any,
+                       "If Invisible Man is on a fog token, deal 2 damage to any opponent fighter"));
+    }
+
+    for (int i = 0; i < 2; i++) {
+        d.addcard(card("Rolling Fog", cardtype::scheme, 0, 0, 1, cardowner::any,
+                       "Move a fog token to another space and gain 1 action"));
+    }
+
+    for (int i = 0; i < 3; i++) {
+        d.addcard(card("Slip Away", cardtype::attack, 3, 0, 2, cardowner::any,
+                       "Move a fog token to an unoccupied space, then place Invisible Man there"));
+    }
+
+    for (int i = 0; i < 2; i++) {
+        d.addcard(card("Step Lightly", cardtype::scheme, 0, 0, 1, cardowner::any,
+                       "Deal 1 damage to an adjacent fighter (3 if Invisible Man is on a fog token). Opponent then moves a fog token 2 spaces"));
+    }
+
+    for (int i = 0; i < 2; i++) {
+        d.addcard(card("Vanish", cardtype::scheme, 0, 0, 3, cardowner::any,
+                       "Recover 1 health and remove Invisible Man from the board. At the start of your next turn, place him on any space"));
+    }
+
+    return d;
+}

@@ -581,6 +581,30 @@ src/hero_selection.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\unmatched.dir\build.make CMakeFiles/unmatched.dir/src/hero_selection.cpp.s
 .PHONY : src/hero_selection.cpp.s
 
+src/invisible_man.obj: src/invisible_man.cpp.obj
+.PHONY : src/invisible_man.obj
+
+# target to build an object file
+src/invisible_man.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\unmatched.dir\build.make CMakeFiles/unmatched.dir/src/invisible_man.cpp.obj
+.PHONY : src/invisible_man.cpp.obj
+
+src/invisible_man.i: src/invisible_man.cpp.i
+.PHONY : src/invisible_man.i
+
+# target to preprocess a source file
+src/invisible_man.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\unmatched.dir\build.make CMakeFiles/unmatched.dir/src/invisible_man.cpp.i
+.PHONY : src/invisible_man.cpp.i
+
+src/invisible_man.s: src/invisible_man.cpp.s
+.PHONY : src/invisible_man.s
+
+# target to generate assembly for a file
+src/invisible_man.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\unmatched.dir\build.make CMakeFiles/unmatched.dir/src/invisible_man.cpp.s
+.PHONY : src/invisible_man.cpp.s
+
 src/map.obj: src/map.cpp.obj
 .PHONY : src/map.obj
 
@@ -882,6 +906,9 @@ help:
 	@echo ... src/hero_selection.obj
 	@echo ... src/hero_selection.i
 	@echo ... src/hero_selection.s
+	@echo ... src/invisible_man.obj
+	@echo ... src/invisible_man.i
+	@echo ... src/invisible_man.s
 	@echo ... src/map.obj
 	@echo ... src/map.i
 	@echo ... src/map.s

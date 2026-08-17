@@ -22,6 +22,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "E:/assassins/new/unmatched/src/game_manager.cpp" "CMakeFiles/unmatched.dir/src/game_manager.cpp.obj" "gcc" "CMakeFiles/unmatched.dir/src/game_manager.cpp.obj.d"
   "E:/assassins/new/unmatched/src/hero.cpp" "CMakeFiles/unmatched.dir/src/hero.cpp.obj" "gcc" "CMakeFiles/unmatched.dir/src/hero.cpp.obj.d"
   "E:/assassins/new/unmatched/src/hero_selection.cpp" "CMakeFiles/unmatched.dir/src/hero_selection.cpp.obj" "gcc" "CMakeFiles/unmatched.dir/src/hero_selection.cpp.obj.d"
+  "E:/assassins/new/unmatched/src/invisible_man.cpp" "CMakeFiles/unmatched.dir/src/invisible_man.cpp.obj" "gcc" "CMakeFiles/unmatched.dir/src/invisible_man.cpp.obj.d"
   "E:/assassins/new/unmatched/src/map.cpp" "CMakeFiles/unmatched.dir/src/map.cpp.obj" "gcc" "CMakeFiles/unmatched.dir/src/map.cpp.obj.d"
   "E:/assassins/new/unmatched/src/menu.cpp" "CMakeFiles/unmatched.dir/src/menu.cpp.obj" "gcc" "CMakeFiles/unmatched.dir/src/menu.cpp.obj.d"
   "E:/assassins/new/unmatched/src/movement.cpp" "CMakeFiles/unmatched.dir/src/movement.cpp.obj" "gcc" "CMakeFiles/unmatched.dir/src/movement.cpp.obj.d"

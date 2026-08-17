@@ -27,6 +27,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/unmatched.dir/src/hero.cpp.obj.d"
   "CMakeFiles/unmatched.dir/src/hero_selection.cpp.obj"
   "CMakeFiles/unmatched.dir/src/hero_selection.cpp.obj.d"
+  "CMakeFiles/unmatched.dir/src/invisible_man.cpp.obj"
+  "CMakeFiles/unmatched.dir/src/invisible_man.cpp.obj.d"
   "CMakeFiles/unmatched.dir/src/map.cpp.obj"
   "CMakeFiles/unmatched.dir/src/map.cpp.obj.d"
   "CMakeFiles/unmatched.dir/src/menu.cpp.obj"
