@@ -393,6 +393,8 @@ Element TuiController::createCommandsPanel()
                  text("move <n> - Move active hero"),
                  text("move <who> <n> (e.g. move watson n1)"),
                  text("play <idx> - Play card"),
+                 text("save <1-3> - Save game to slot"),
+                 text("load <1-3> - Load game from slot"),
                  text("end - End turn"),
                  text("hand - Show hand"),
                  text("deck - Show deck size"),
@@ -644,6 +646,59 @@ void TuiController::processCommand(const std::string &cmd)
         catch (...)
         {
             gamelogs.push_back("Syntax Error: Use 'play <card_index>'");
+        }
+    }
+    else if (cmd.rfind("save ", 0) == 0)
+    {
+        try
+        {
+            int slot = stoi(cmd.substr(5));if (slot >= 1 && slot <= 3)
+            {
+                std::string filename = "save_slot_" + to_string(slot) + ".txt";
+                if (gamemanager.saveGame(filename))
+                {
+                    gamelogs.push_back("Game successfully saved to slot " + to_string(slot));
+                }
+                else
+                {
+                    gamelogs.push_back("Error saving game!");
+                }
+            }
+            else
+            {
+                gamelogs.push_back("Invalid slot! Use save 1, 2, or 3");
+            }
+        }
+        catch (...)
+        {
+            gamelogs.push_back("Syntax Error: Use 'save <slot>' (e.g. save 1)");
+        }
+    }
+    else if (cmd.rfind("load ", 0) == 0)
+    {
+        try
+        {
+            int slot = stoi(cmd.substr(5));
+            if (slot >= 1 && slot <= 3)
+            {
+                std::string filename = "save_slot_" + to_string(slot) + ".txt";
+                if (gamemanager.loadGame(filename))
+                {
+                    gamelogs.push_back("Game successfully loaded from slot " + to_string(slot));
+                }
+                else
+                {
+                    gamelogs.push_back("Save file not found or error!");
+                }
+            }
+            else
+            {
+                gamelogs.push_back("Invalid slot! Use load 1, 2, or 3");
+            }
+        }
+        catch (...)
+        {
+            gamelogs.push_back("Syntax Error: Use 'load <slot>' (e.g. load 1)");
         }
     }
     else if (cmd == "end")

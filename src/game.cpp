@@ -135,3 +135,19 @@ bool Game::isGameOver() const {
 hero* Game::getCurrentPlayer() const {
     return (curturn == 0) ? static_cast<hero*>(player1) : static_cast<hero*>(player2);
 }
+
+void Game::saveGameToSlot(int slot) const {
+    if (slot < 1 || slot > 3) return;
+    std::string filename = "save_slot_" + std::to_string(slot) + ".txt";
+    if (gameManager) {
+        gameManager->saveGame(filename);
+    }
+}
+
+void Game::loadGameFromSlot(int slot) {
+    if (slot < 1 || slot > 3) return;
+    std::string filename = "save_slot_" + std::to_string(slot) + ".txt";
+    if (gameManager) {
+        gameManager->loadGame(filename);
+    }
+}

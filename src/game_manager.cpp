@@ -5,6 +5,8 @@
 #include <algorithm>
 #include <iostream>
 #include <cctype>
+#include <fstream>
+#include <iostream>
 
 GameManager::GameManager() : board(), movement(&board) {}
 
@@ -444,5 +446,54 @@ bool GameManager::handleMove(character* actor, const std::string& targetNodeStr)
 
     turnManager.endTurn();
 
+    return true;
+}
+
+bool GameManager::saveGame(const std::string& filename) const {
+    std::ofstream outFile(filename);
+    if (!outFile.is_open()) return false;
+
+    outFile << turnManager.getTurnNumber() << "\n";
+    outFile << turnManager.getCurrentTeam() << "\n";
+    outFile << static_cast<int>(turnManager.getCurrentPhase()) << "\n";
+    outFile << turnManager.getActionsRemaining() << "\n";
+
+    outFile << allCharacters.size() << "\n";
+    for (const auto* c : allCharacters) {
+        if (c) {
+            outFile << c->getname() << " " 
+                    << c->gethealth() << " " 
+                    << c->getMaxHp() << " " 
+                    << c->getposition() << "\n";
+        }
+    }
+
+    outFile.close();
+    return true;
+}
+
+bool GameManager::loadGame(const std::string& filename) {
+    std::ifstream inFile(filename);
+    if (!inFile.is_open()) return false;
+
+    int turnNum, teamNum, phaseVal, actionsRem, charCount;
+    if (!(inFile >> turnNum >> teamNum >> phaseVal >> actionsRem >> charCount)) {
+        inFile.close();
+        return false;
+    }
+
+    for (int i = 0; i < charCount; ++i) {
+        std::string name;
+        int hp, maxHp, pos;
+        if (!(inFile >> name >> hp >> maxHp >> pos)) break;
+
+        character* targetChar = findCharacterByName(name);
+        if (targetChar) {
+            targetChar->sethealth(hp);
+            targetChar->setposition(pos);
+        }
+    }
+
+    inFile.close();
     return true;
 }
