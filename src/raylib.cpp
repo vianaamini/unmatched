@@ -215,11 +215,11 @@ void DrawCharacterOnNode(character* c, Texture2D avatarTex, Color borderColor, f
     DrawCircleLines((int)renderX, (int)renderY, radius + 1.0f, ring);
 }
 
-// Fog tokens don't animate/move every frame like fighters do, so they don't
-// need the CharAnimState smoothing that DrawCharacterOnNode relies on --
-// they're just drawn straight at the node's board coordinates, nudged
-// toward the corner of the space so the token stays visible even when a
-// fighter is also standing on that node.
+
+
+
+
+
 void DrawFogTokenOnNode(int nodeId, Board& board, Rectangle mapDest, float refWidth, float refHeight, Texture2D tex) {
     std::string nodeName = "n" + std::to_string(nodeId);
     auto pos = board.getCoordinates(nodeName);
@@ -423,6 +423,13 @@ static void DrawDefenseModal(GameManager& gm, Board& board, ActionBarState& acti
     std::string faction = HeroFactionLabel(defender);
     auto& hand = defender->gethand();
 
+    std::vector<int> defendable;
+    for (int i = 0; i < (int)hand.size(); i++) {
+        if (hand[i].gettype() == cardtype::defense || hand[i].gettype() == cardtype::multipurpose) {
+            defendable.push_back(i);
+        }
+    }
+
     float modalW = sw * 0.65f;
     float modalH = sh * 0.55f;
     float modalX = (sw - modalW) / 2.0f;
@@ -449,7 +456,7 @@ static void DrawDefenseModal(GameManager& gm, Board& board, ActionBarState& acti
         return;
     }
 
-    int cardCount = (int)hand.size();
+    int cardCount = (int)defendable.size();
     if (cardCount > 7) cardCount = 7;
 
     float cardW = 90.0f;
@@ -460,9 +467,10 @@ static void DrawDefenseModal(GameManager& gm, Board& board, ActionBarState& acti
     float startY = modalY + 80.0f;
 
     for (int i = 0; i < cardCount; i++) {
+        int handIdx = defendable[i];
         Rectangle cardRect = { startX + i * (cardW + spacing), startY, cardW, cardH };
 
-        std::string cardName = hand[i].get_name();
+        std::string cardName = hand[handIdx].get_name();
         std::string filename = GetCardFilename(cardName, faction);
         Texture2D tex = {0};
         auto it = cardTextures.find(filename);
@@ -477,7 +485,7 @@ static void DrawDefenseModal(GameManager& gm, Board& board, ActionBarState& acti
         }
 
         if (CheckCollisionPointRec(mousePos, cardRect) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
-            card chosen = hand[i];
+            card chosen = hand[handIdx];
             ActionBar_ResolveDefense(actionBar, gm, board, draculaHero, &chosen);
             return;
         }
@@ -496,7 +504,7 @@ static void DrawDefenseModal(GameManager& gm, Board& board, ActionBarState& acti
     }
 
     if (cardCount == 0) {
-        std::string empty = "No cards in hand - click NO DEFENSE";
+        std::string empty = "No valid defense card - click NO DEFENSE";
         DrawTextCentered(GetRegularFont(), empty.c_str(), modalX + modalW / 2.0f, modalY + modalH / 2.0f, 15, 0.5f, GetColor(0xA39BA0FF));
     }
 }
@@ -526,8 +534,8 @@ void RunGameUI(GameManager& gm, character* dracula, character* sis1Obj, characte
     Texture2D team1PortraitArt = team1IsDracula ? dracArt : invArt;
     Texture2D team2PortraitArt = team2IsSherlock ? sherArt : invArt;
 
-    // Whichever slot didn't go to Dracula/Sherlock Holmes is the Invisible
-    // Man; keep a typed pointer to him so his fog tokens can be drawn.
+    
+    
     InvisibleMan* invTeam1 = dynamic_cast<InvisibleMan*>(draculaHero);
     InvisibleMan* invTeam2 = dynamic_cast<InvisibleMan*>(sherlockHero);
 

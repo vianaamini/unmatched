@@ -822,6 +822,7 @@ void ActionBar_DrawElementaryPicker(
     }
 }
 
+
 bool ActionBar_HandleCardClick(
     ActionBarState& state,
     GameManager& gm,
@@ -859,11 +860,11 @@ bool ActionBar_HandleCardClick(
     }
 
     if (state.currentAction == ActionMode::PlayCard) {
-        // Multipurpose cards can be played as a scheme card too (the
-        // rulebook lets a multipurpose card be used as an attack, a
-        // defense, OR a scheme card -- the player picks at the moment
-        // it's played). Only rejecting cardtype::defense/attack-only
-        // cards here, not multipurpose ones.
+        
+        
+        
+        
+        
         if (clickedCard.gettype() != cardtype::scheme &&
             clickedCard.gettype() != cardtype::multipurpose)
             return false;

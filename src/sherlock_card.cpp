@@ -169,8 +169,8 @@ void card_game_is_afoot::execute_effect(character& attacker, character& defender
                                          bool attacker_won) {
     hero* h = dynamic_cast<hero*>(&attacker);
     if (h) {
-        Board* board = h->getBoard();   // تغییر از ارجاع به اشاره‌گر
-        if (board) {                    // بررسی نال بودن اشاره‌گر
+        Board* board = h->getBoard();   
+        if (board) {                    
             auto neighbors = board->getNeighborIds(attacker.getx());
             if (neighbors.size() >= 3) {
                 attacker.setposition(neighbors[2]);

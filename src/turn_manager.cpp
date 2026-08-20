@@ -124,7 +124,18 @@ void TurnManager::nextTurn() {
         h->reset_actions();
         h->set_actions(2);
     }
+
     
+    
+    
+    
+    
+    
+    
+    
+    
+    currentCharacter->useability();
+
     std::cout << "\n=== Turn " << turnNumber << " ===" << std::endl;
     std::cout << currentCharacter->getname() << " (Team " << currentTeam << ")" << std::endl;
     std::cout << "Actions remaining: " << actionsRemaining << std::endl;

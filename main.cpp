@@ -103,13 +103,13 @@ int main()
             {
                 GameManager gm;
 
-                // Team 1 slot: Dracula unless nobody picked him, in which
-                // case Invisible Man takes that slot instead.
-                // Team 2 slot: Sherlock Holmes unless nobody picked him,
-                // in which case Invisible Man takes that slot instead.
-                // (Exactly one of the two players picks Invisible Man
-                // when he's in the match at all, so at most one slot
-                // ever falls back to him.)
+                
+                
+                
+                
+                
+                
+                
                 bool team1IsDracula = (p1Hero == "DRACULA" || p2Hero == "DRACULA");
                 bool team2IsSherlock = (p1Hero == "SHERLOCK HOLMES" || p2Hero == "SHERLOCK HOLMES");
 
@@ -164,20 +164,20 @@ int main()
                 gm.addCharacter(team2Hero, 2);
                 if (watsonPtr) gm.addCharacter(watsonPtr, 2);
 
-                // Fog tokens must be placed AFTER addCharacter(), because
-                // addCharacter() is what wires up the hero's board pointer
-                // (h->setBoard(&board)). initializeFogTokens() needs a
-                // valid board to find the hero's starting Zone; calling it
-                // any earlier meant getBoard() was still null, so every
-                // fog token silently fell back to sitting on the hero's
-                // own space instead of spreading across his Zone.
+                
+                
+                
+                
+                
+                
+                
                 if (InvisibleMan* invTeam1 = dynamic_cast<InvisibleMan*>(team1Hero))
                     invTeam1->initializeFogTokens(invTeam1->getposition());
                 if (InvisibleMan* invTeam2 = dynamic_cast<InvisibleMan*>(team2Hero))
                     invTeam2->initializeFogTokens(invTeam2->getposition());
 
-                // p1Team is whichever team number the fighter p1Hero
-                // picked ended up on above.
+                
+                
                 std::string team1PickName = team1IsDracula ? std::string("DRACULA") : std::string("INVISIBLE MAN");
                 int p1Team = (p1Hero == team1PickName) ? 1 : 2;
                 int firstTeam = (firstPlayer == 1) ? p1Team : (p1Team == 1 ? 2 : 1);

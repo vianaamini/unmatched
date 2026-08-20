@@ -16,30 +16,30 @@ enum class ActionMode {
     BoostCard
 };
 
-// NEW: sub-flow used when a scheme card needs the player to pick something
-// (a node, a fighter, a value, or an enemy hand card) before it can be
-// resolved. hero::scheme() already expects these to be set via the setter
-// methods on hero (setMistformTarget, setRaveningTargets, etc.) BEFORE it is
-// called - this state machine is what actually collects that input from the
-// player through the UI.
+
+
+
+
+
+
 enum class TargetPrompt {
     None,
-    MistformNode,           // click any empty node
-    RaveningFighter,        // click any alive fighter (own or enemy)
-    RaveningNode,           // then click a destination node
-    ConfirmSuspicionValue,  // pick a value 0-6 from a small popup
-    EliminateCard,          // pick a face-down card from the enemy's hand
+    MistformNode,           
+    RaveningFighter,        
+    RaveningNode,           
+    ConfirmSuspicionValue,  
+    EliminateCard,          
 
-    // NEW: combat-card sub-flows. These four cards (Dash, The Game is
-    // Afoot, Beastform, Elementary) each need one extra piece of input
-    // from whichever hero played them, collected AFTER the card is
-    // chosen but BEFORE hero::attack() actually resolves - otherwise
-    // their hero-side fields (dashTargetNode, predictedAttackValue, ...)
-    // are left at their default and the effect silently does nothing.
-    DashNode,                // click a destination node (attacker or defender's own Dash)
-    AfootNode,               // click a destination node (attacker's The Game is Afoot)
-    BeastformDiscard,        // pick how many cards to discard, from a popup
-    ElementaryPredict        // defender predicts the attacker's printed attack value
+    
+    
+    
+    
+    
+    
+    DashNode,                
+    AfootNode,               
+    BeastformDiscard,        
+    ElementaryPredict        
 };
 
 struct ActionBarState {
@@ -60,28 +60,28 @@ struct ActionBarState {
     card draculaLastCard;
     bool sherlockHasCard = false;
     card sherlockLastCard;
-    // Display labels for the two card-effects columns. Default to the
-    // original two heroes; RunGameUI overwrites these with the actual
-    // hero names in play (e.g. "INVISIBLE MAN") once at setup.
+    
+    
+    
     std::string team1Label = "DRACULA";
     std::string team2Label = "SHERLOCK";
 
-    // NEW: targeting sub-flow for scheme cards
+    
     TargetPrompt targetPrompt = TargetPrompt::None;
     card pendingSchemeCard;
     int pendingSchemeCardIndex = -1;
     hero* pendingSchemeTarget = nullptr;
     character* raveningFighter = nullptr;
 
-    // NEW: combat-card sub-flow (Dash / Afoot / Beastform / Elementary).
-    // combatTargetHero is whichever hero (attacker or defender) needs to
-    // supply the extra input. combatTargetIsDefender tells us how to
-    // resume once the input is collected: false -> we were mid-way
-    // through the ATTACKER picking their attack card, so resume by
-    // opening the defender's "choose defense" screen; true -> we were
-    // mid-way through the DEFENDER picking their defense card
-    // (combatChosenDefenseCard holds it), so resume by finishing
-    // ActionBar_ResolveDefense with that card.
+    
+    
+    
+    
+    
+    
+    
+    
+    
     hero* combatTargetHero = nullptr;
     bool combatTargetIsDefender = false;
     card combatChosenDefenseCard;
@@ -209,7 +209,7 @@ void ActionBar_DrawCardEffectsBox(
     Rectangle box
 );
 
-// ---- NEW: targeting sub-flow ----
+
 
 bool ActionBar_IsTargeting(const ActionBarState& state);
 
@@ -252,10 +252,10 @@ void ActionBar_DrawEliminatePicker(
     float sh
 );
 
-// NEW: popups for the two combat-card sub-flows that aren't resolved by
-// clicking a node on the map (BeastformDiscard / ElementaryPredict -
-// DashNode / AfootNode are handled by ActionBar_UpdateTargeting instead,
-// the same way Mistform's node-click already is).
+
+
+
+
 
 void ActionBar_DrawBeastformPicker(
     ActionBarState& state,
