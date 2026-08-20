@@ -2,6 +2,7 @@
 #include "game_fonts.hpp"
 #include <string>
 #include <iostream>
+#include <algorithm>
 
 Vector2 ActionBar_NodeScreenPos(Board& board, const std::string& nodeName, Rectangle mapDest, Texture2D boardTex)
 {
@@ -174,19 +175,44 @@ void ActionBar_ResolveDefense(
     if (chosenDefense)
         defender->removeCardFromHand(defenseCard.get_name());
 
-    bool resolved = attacker->attack(
-        *defender,
-        attackCard,
-        board,
-        &defenseCard
-    );
+    character* damageTarget = state.pendingDefenderTarget;
+    bool resolved;
 
-    if (resolved && chosenDefense)
-        ActionBar_RecordPlayedCard(state, defender, draculaHero, defenseCard);
+    if (damageTarget && damageTarget != static_cast<character*>(defender)) {
+        
+        bool effectsCanceled =
+            (attackCard.get_name() == "Feint") ||
+            (defenseCard.get_name() == "Feint");
+
+        int atk = std::max(0, attackCard.getattack());
+        int def = effectsCanceled ? 0 : std::max(0, defenseCard.getdefense());
+        int damage = std::max(0, atk - def);
+
+        if (damage > 0) {
+            damageTarget->takedamage(damage);
+        }
+
+        attacker->useAction();
+        resolved = true;
+
+        if (resolved && chosenDefense)
+            ActionBar_RecordPlayedCard(state, defender, draculaHero, defenseCard);
+    } else {
+        resolved = attacker->attack(
+            *defender,
+            attackCard,
+            board,
+            &defenseCard
+        );
+
+        if (resolved && chosenDefense)
+            ActionBar_RecordPlayedCard(state, defender, draculaHero, defenseCard);
+    }
 
     state.awaitingDefense = false;
     state.pendingAttacker = nullptr;
     state.pendingDefender = nullptr;
+    state.pendingDefenderTarget = nullptr;
     state.pendingAttackCard = card();
 
     if (resolved) {
@@ -329,14 +355,32 @@ void ActionBar_Update(
                 hero* enemyHero = dynamic_cast<hero*>(enemyChar);
 
                 if (!enemyHero) {
+
+                    hero* controllingHero = nullptr;
+                    for (character* ally : gm.getAllies(enemyChar)) {
+                        controllingHero = dynamic_cast<hero*>(ally);
+                        if (controllingHero) break;
+                    }
+
                     actingHero->removeCardFromHand(attackCard.get_name());
                     ActionBar_RecordPlayedCard(state, actingHero, draculaHero, attackCard);
 
-                    actingHero->attack(*enemyChar, attackCard, board);
+                    if (!controllingHero) {
 
+                        actingHero->attack(*enemyChar, attackCard, board);
+                        state.currentAction = ActionMode::None;
+                        state.selectedCardIndex = -1;
+                        ActionBar_CompleteAction(state, gm);
+                        return;
+                    }
+
+                    state.pendingAttackCard = attackCard;
+                    state.pendingAttacker = actingHero;
+                    state.pendingDefender = controllingHero;
+                    state.pendingDefenderTarget = enemyChar;
                     state.currentAction = ActionMode::None;
                     state.selectedCardIndex = -1;
-                    ActionBar_CompleteAction(state, gm);
+                    state.awaitingDefense = true;
                     return;
                 }
 
@@ -822,7 +866,6 @@ void ActionBar_DrawElementaryPicker(
     }
 }
 
-
 bool ActionBar_HandleCardClick(
     ActionBarState& state,
     GameManager& gm,
@@ -860,11 +903,7 @@ bool ActionBar_HandleCardClick(
     }
 
     if (state.currentAction == ActionMode::PlayCard) {
-        
-        
-        
-        
-        
+
         if (clickedCard.gettype() != cardtype::scheme &&
             clickedCard.gettype() != cardtype::multipurpose)
             return false;

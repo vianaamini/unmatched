@@ -215,11 +215,6 @@ void DrawCharacterOnNode(character* c, Texture2D avatarTex, Color borderColor, f
     DrawCircleLines((int)renderX, (int)renderY, radius + 1.0f, ring);
 }
 
-
-
-
-
-
 void DrawFogTokenOnNode(int nodeId, Board& board, Rectangle mapDest, float refWidth, float refHeight, Texture2D tex) {
     std::string nodeName = "n" + std::to_string(nodeId);
     auto pos = board.getCoordinates(nodeName);
@@ -308,7 +303,7 @@ static void DrawDiscardModal(hero* activeHero, hero* draculaHero,
     DrawTextCentered(GetTitleFont(), title.c_str(), modalX + modalW / 2.0f, modalY + 14, 22, 1.0f, GetColor(0xE53935FF));
     DrawTextCentered(GetRegularFont(), "Click a card to discard it", modalX + modalW / 2.0f, modalY + 46, 14, 0.5f, GetColor(0xC2B6B9FF));
 
-    float cardW = 100.0f, cardH = 140.0f, gap = 14.0f;
+    float cardW = 115.0f, cardH = 165.0f, gap = 16.0f;
     int count = (int)hand.size();
     float totalWidth = count * cardW + (count > 0 ? (count - 1) * gap : 0.0f);
     float startX = modalX + (modalW - totalWidth) / 2.0f;
@@ -337,7 +332,12 @@ static void DrawDiscardModal(hero* activeHero, hero* draculaHero,
             DrawTexturePro(tex, {0, 0, (float)tex.width, (float)tex.height}, cardRect, {0, 0}, 0.0f, WHITE);
         } else {
             DrawRectangleRec(cardRect, GetColor(0xE2D6BCFF));
-            DrawTextEx(GetSemiFont(), cardName.c_str(), { cardRect.x + 5, cardRect.y + 10 }, 13, 0.5f, BLACK);
+            Vector2 nameSize = MeasureTextEx(GetSemiFont(), cardName.c_str(), 19, 0.5f);
+            if (nameSize.x > cardRect.width - 10.0f) {
+                DrawTextEx(GetSemiFont(), cardName.c_str(), { cardRect.x + 5, cardRect.y + 12 }, 15, 0.4f, BLACK);
+            } else {
+                DrawTextEx(GetSemiFont(), cardName.c_str(), { cardRect.x + 5, cardRect.y + 12 }, 19, 0.5f, BLACK);
+            }
         }
 
         DrawRectangleLinesEx(cardRect, hover ? 3 : 2, hover ? GetColor(0xE53935FF) : GetColor(0x5A1A24FF));
@@ -423,13 +423,6 @@ static void DrawDefenseModal(GameManager& gm, Board& board, ActionBarState& acti
     std::string faction = HeroFactionLabel(defender);
     auto& hand = defender->gethand();
 
-    std::vector<int> defendable;
-    for (int i = 0; i < (int)hand.size(); i++) {
-        if (hand[i].gettype() == cardtype::defense || hand[i].gettype() == cardtype::multipurpose) {
-            defendable.push_back(i);
-        }
-    }
-
     float modalW = sw * 0.65f;
     float modalH = sh * 0.55f;
     float modalX = (sw - modalW) / 2.0f;
@@ -444,6 +437,9 @@ static void DrawDefenseModal(GameManager& gm, Board& board, ActionBarState& acti
     DrawTextCentered(GetTitleFont(), title.c_str(), modalX + modalW / 2.0f, modalY + 14, 22, 1.0f, GetColor(0xE5C158FF));
 
     std::string atkLine = "Incoming: " + actionBar.pendingAttackCard.get_name();
+    if (actionBar.pendingDefenderTarget && actionBar.pendingDefenderTarget != static_cast<character*>(defender)) {
+        atkLine += "  (defending " + actionBar.pendingDefenderTarget->getname() + ")";
+    }
     DrawTextCentered(GetRegularFont(), atkLine.c_str(), modalX + modalW / 2.0f, modalY + 46, 15, 0.5f, GetColor(0xC2B6B9FF));
 
     Rectangle noDefenseBtn = { modalX + modalW - 170.0f, modalY + 12.0f, 150.0f, 30.0f };
@@ -456,21 +452,20 @@ static void DrawDefenseModal(GameManager& gm, Board& board, ActionBarState& acti
         return;
     }
 
-    int cardCount = (int)defendable.size();
+    int cardCount = (int)hand.size();
     if (cardCount > 7) cardCount = 7;
 
-    float cardW = 90.0f;
-    float cardH = 145.0f;
-    float spacing = 20.0f;
+    float cardW = 108.0f;
+    float cardH = 172.0f;
+    float spacing = 18.0f;
     float totalWidth = (cardCount * cardW) + ((cardCount > 0 ? cardCount - 1 : 0) * spacing);
     float startX = modalX + (modalW - totalWidth) / 2.0f;
     float startY = modalY + 80.0f;
 
     for (int i = 0; i < cardCount; i++) {
-        int handIdx = defendable[i];
         Rectangle cardRect = { startX + i * (cardW + spacing), startY, cardW, cardH };
 
-        std::string cardName = hand[handIdx].get_name();
+        std::string cardName = hand[i].get_name();
         std::string filename = GetCardFilename(cardName, faction);
         Texture2D tex = {0};
         auto it = cardTextures.find(filename);
@@ -485,7 +480,7 @@ static void DrawDefenseModal(GameManager& gm, Board& board, ActionBarState& acti
         }
 
         if (CheckCollisionPointRec(mousePos, cardRect) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
-            card chosen = hand[handIdx];
+            card chosen = hand[i];
             ActionBar_ResolveDefense(actionBar, gm, board, draculaHero, &chosen);
             return;
         }
@@ -499,12 +494,20 @@ static void DrawDefenseModal(GameManager& gm, Board& board, ActionBarState& acti
         } else {
             DrawRectangleRec(cardRect, GetColor(0xE2D6BCFF));
             DrawRectangleLinesEx(cardRect, 2, GetColor(0x5A1A24FF));
-            DrawTextEx(GetSemiFont(), cardName.c_str(), { cardRect.x + 5, cardRect.y + 10 }, 14, 0.4f, BLACK);
+            Vector2 nameSize = MeasureTextEx(GetSemiFont(), cardName.c_str(), 20, 0.5f);
+            if (nameSize.x > cardRect.width - 10.0f) {
+                DrawTextEx(GetSemiFont(), cardName.c_str(), { cardRect.x + 5, cardRect.y + 12 }, 16, 0.4f, BLACK);
+            } else {
+                DrawTextEx(GetSemiFont(), cardName.c_str(), { cardRect.x + 5, cardRect.y + 12 }, 20, 0.5f, BLACK);
+            }
+            std::string defLine = "DEF " + std::to_string(hand[i].getdefense()) +
+                                   "  BST " + std::to_string(hand[i].getboost());
+            DrawTextEx(GetRegularFont(), defLine.c_str(), { cardRect.x + 5, cardRect.y + cardRect.height - 26 }, 14, 0.3f, GetColor(0x3A1A1AFF));
         }
     }
 
     if (cardCount == 0) {
-        std::string empty = "No valid defense card - click NO DEFENSE";
+        std::string empty = "No cards in hand - click NO DEFENSE";
         DrawTextCentered(GetRegularFont(), empty.c_str(), modalX + modalW / 2.0f, modalY + modalH / 2.0f, 15, 0.5f, GetColor(0xA39BA0FF));
     }
 }
@@ -534,8 +537,8 @@ void RunGameUI(GameManager& gm, character* dracula, character* sis1Obj, characte
     Texture2D team1PortraitArt = team1IsDracula ? dracArt : invArt;
     Texture2D team2PortraitArt = team2IsSherlock ? sherArt : invArt;
 
-    
-    
+    // Whichever slot didn't go to Dracula/Sherlock Holmes is the Invisible
+    // Man; keep a typed pointer to him so his fog tokens can be drawn.
     InvisibleMan* invTeam1 = dynamic_cast<InvisibleMan*>(draculaHero);
     InvisibleMan* invTeam2 = dynamic_cast<InvisibleMan*>(sherlockHero);
 
@@ -854,9 +857,9 @@ Vector2 mousePos = GetMousePosition();
             int cardCount = (int)hand.size();
             if (cardCount > 7) cardCount = 7;
 
-            float cardW = 90.0f;
-            float cardH = 145.0f;
-            float spacing = 20.0f;
+            float cardW = 108.0f;
+            float cardH = 172.0f;
+            float spacing = 18.0f;
             float totalWidth = (cardCount * cardW) + ((cardCount > 0 ? cardCount - 1 : 0) * spacing);
             float startX = modalX + (modalW - totalWidth) / 2.0f;
             float startY = modalY + 75.0f;
@@ -895,7 +898,20 @@ Vector2 mousePos = GetMousePosition();
                 } else {
                     DrawRectangleRec(cardRect, GetColor(0xE2D6BCFF));
                     DrawRectangleLinesEx(cardRect, 2, GetColor(0x5A1A24FF));
-                    DrawTextEx(GetSemiFont(), cardName.c_str(), { cardRect.x + 5, cardRect.y + 10 }, 14, 0.4f, BLACK);
+                    // Bigger, wrapped fallback text (used whenever the real
+                    // card art can't be found) so the card name is actually
+                    // legible instead of a tiny 14px sliver.
+                    Vector2 nameSize = MeasureTextEx(GetSemiFont(), cardName.c_str(), 20, 0.5f);
+                    if (nameSize.x > cardRect.width - 10.0f) {
+                        DrawTextEx(GetSemiFont(), cardName.c_str(), { cardRect.x + 5, cardRect.y + 12 }, 16, 0.4f, BLACK);
+                    } else {
+                        DrawTextEx(GetSemiFont(), cardName.c_str(), { cardRect.x + 5, cardRect.y + 12 }, 20, 0.5f, BLACK);
+                    }
+
+                    std::string atkDefLine = "ATK " + std::to_string(hand[i].getattack()) +
+                                              "  DEF " + std::to_string(hand[i].getdefense()) +
+                                              "  BST " + std::to_string(hand[i].getboost());
+                    DrawTextEx(GetRegularFont(), atkDefLine.c_str(), { cardRect.x + 5, cardRect.y + cardRect.height - 26 }, 14, 0.3f, GetColor(0x3A1A1AFF));
                 }
             }
         }

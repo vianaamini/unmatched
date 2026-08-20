@@ -16,30 +16,18 @@ enum class ActionMode {
     BoostCard
 };
 
-
-
-
-
-
-
 enum class TargetPrompt {
     None,
-    MistformNode,           
-    RaveningFighter,        
-    RaveningNode,           
-    ConfirmSuspicionValue,  
-    EliminateCard,          
+    MistformNode,
+    RaveningFighter,
+    RaveningNode,
+    ConfirmSuspicionValue,
+    EliminateCard,
 
-    
-    
-    
-    
-    
-    
-    DashNode,                
-    AfootNode,               
-    BeastformDiscard,        
-    ElementaryPredict        
+    DashNode,
+    AfootNode,
+    BeastformDiscard,
+    ElementaryPredict
 };
 
 struct ActionBarState {
@@ -55,33 +43,21 @@ struct ActionBarState {
     bool awaitingDefense = false;
     hero* pendingAttacker = nullptr;
     hero* pendingDefender = nullptr;
+    character* pendingDefenderTarget = nullptr;
     card pendingAttackCard;
     bool draculaHasCard = false;
     card draculaLastCard;
     bool sherlockHasCard = false;
     card sherlockLastCard;
-    
-    
-    
     std::string team1Label = "DRACULA";
     std::string team2Label = "SHERLOCK";
 
-    
     TargetPrompt targetPrompt = TargetPrompt::None;
     card pendingSchemeCard;
     int pendingSchemeCardIndex = -1;
     hero* pendingSchemeTarget = nullptr;
     character* raveningFighter = nullptr;
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
     hero* combatTargetHero = nullptr;
     bool combatTargetIsDefender = false;
     card combatChosenDefenseCard;
@@ -209,8 +185,6 @@ void ActionBar_DrawCardEffectsBox(
     Rectangle box
 );
 
-
-
 bool ActionBar_IsTargeting(const ActionBarState& state);
 
 void ActionBar_UpdateTargeting(
@@ -251,11 +225,6 @@ void ActionBar_DrawEliminatePicker(
     float sw,
     float sh
 );
-
-
-
-
-
 
 void ActionBar_DrawBeastformPicker(
     ActionBarState& state,
