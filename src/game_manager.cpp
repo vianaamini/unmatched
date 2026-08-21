@@ -358,47 +358,60 @@ bool GameManager::handleMove(const std::string &charIdentifier, const std::strin
     return handleMove(actor, targetNodeStr);
 }
 
-bool GameManager::handleMove(character* actor, const std::string& targetNodeStr) {
-    if (!actor || !actor->isalive()) {
+bool GameManager::handleMove(character *actor, const std::string &targetNodeStr)
+{
+    if (!actor || !actor->isalive())
+    {
         return false;
     }
 
     int activeTeam = getCurrentTeam();
-    const auto& currentTeamChars = (activeTeam == 1) ? team1 : team2;
-    
+    const auto &currentTeamChars = (activeTeam == 1) ? team1 : team2;
+
     bool belongsToCurrentTeam = false;
-    for (auto c : currentTeamChars) {
-        if (c == actor) {
+    for (auto c : currentTeamChars)
+    {
+        if (c == actor)
+        {
             belongsToCurrentTeam = true;
             break;
         }
     }
 
-    if (!belongsToCurrentTeam) {
+    if (!belongsToCurrentTeam)
+    {
         return false;
     }
 
-    if (getActionsRemaining() <= 0) {
+    if (getActionsRemaining() <= 0)
+    {
         return false;
     }
 
-    hero* activeHero = nullptr;
-    for (auto c : currentTeamChars) {
-        hero* h = dynamic_cast<hero*>(c);
-        if (h && h->isalive()) {
+    hero *activeHero = nullptr;
+    for (auto c : currentTeamChars)
+    {
+        hero *h = dynamic_cast<hero *>(c);
+        if (h && h->isalive())
+        {
             activeHero = h;
             break;
         }
     }
 
-    if (activeHero) {
-        if (activeHero->getdeck().getsize() > 0) {
+    if (activeHero)
+    {
+        if (activeHero->getdeck().getsize() > 0)
+        {
             activeHero->drawcard();
             std::cout << activeHero->getname() << " drew a card." << std::endl;
-        } else {
+        }
+        else
+        {
             std::cout << activeHero->getname() << "'s deck is empty! Taking 2 exhaustion damage." << std::endl;
             activeHero->sethealth(activeHero->gethealth() - 2);
-            if (activeHero->gethealth() <= 0) {
+            if (activeHero->gethealth() <= 0)
+            {
                 activeHero->sethealth(0);
                 removeCharacter(activeHero);
             }
@@ -406,10 +419,14 @@ bool GameManager::handleMove(character* actor, const std::string& targetNodeStr)
     }
 
     std::string formattedNode = targetNodeStr;
-    if (!formattedNode.empty()) {
-        if (formattedNode[0] == 'N' || formattedNode[0] == 'n') {
+    if (!formattedNode.empty())
+    {
+        if (formattedNode[0] == 'N' || formattedNode[0] == 'n')
+        {
             formattedNode[0] = 'n';
-        } else {
+        }
+        else
+        {
             formattedNode = "n" + formattedNode;
         }
     }
@@ -421,14 +438,17 @@ bool GameManager::handleMove(character* actor, const std::string& targetNodeStr)
     std::string startSpace = "n" + std::to_string(actor->getx());
 
     bool reachable = movement.canReach(startSpace, formattedNode, moveSteps, allies, enemies);
-    if (!reachable) {
+    if (!reachable)
+    {
         std::cout << "Cannot reach " << formattedNode << " within " << moveSteps << " steps!" << std::endl;
         return false;
     }
 
     int targetNode = board.getNodeId(formattedNode);
-    for (character *other : allCharacters) {
-        if (other != actor && other->isalive() && other->getx() == targetNode) {
+    for (character *other : allCharacters)
+    {
+        if (other != actor && other->isalive() && other->getx() == targetNode)
+        {
             std::cout << "Node " << formattedNode << " is occupied!" << std::endl;
             return false;
         }
@@ -436,9 +456,10 @@ bool GameManager::handleMove(character* actor, const std::string& targetNodeStr)
 
     actor->setposition(targetNode);
 
-    character* currentTurnChar = turnManager.getCurrentCharacter();
-    hero* turnHero = dynamic_cast<hero*>(currentTurnChar);
-    if (turnHero) {
+    character *currentTurnChar = turnManager.getCurrentCharacter();
+    hero *turnHero = dynamic_cast<hero *>(currentTurnChar);
+    if (turnHero)
+    {
         turnHero->useAction();
     }
 
@@ -449,9 +470,11 @@ bool GameManager::handleMove(character* actor, const std::string& targetNodeStr)
     return true;
 }
 
-bool GameManager::saveGame(const std::string& filename) const {
+bool GameManager::saveGame(const std::string &filename) const
+{
     std::ofstream outFile(filename);
-    if (!outFile.is_open()) return false;
+    if (!outFile.is_open())
+        return false;
 
     outFile << turnManager.getTurnNumber() << "\n";
     outFile << turnManager.getCurrentTeam() << "\n";
@@ -459,12 +482,23 @@ bool GameManager::saveGame(const std::string& filename) const {
     outFile << turnManager.getActionsRemaining() << "\n";
 
     outFile << allCharacters.size() << "\n";
-    for (const auto* c : allCharacters) {
-        if (c) {
-            outFile << c->getname() << " " 
-                    << c->gethealth() << " " 
-                    << c->getMaxHp() << " " 
-                    << c->getposition() << "\n";
+    for (const auto *c : allCharacters)
+    {
+        if (c)
+        {
+            outFile << c->getname() << " "
+                    << c->gethealth() << " "
+                    << c->getMaxHp() << " "
+                    << c->getposition();
+
+            const InvisibleMan *inv = dynamic_cast<const InvisibleMan *>(c);
+            if (inv)
+            {
+                auto fog = inv->getFogPositions();
+                for (int pos : fog)
+                    outFile << " " << pos;
+            }
+            outFile << "\n";
         }
     }
 
@@ -472,25 +506,43 @@ bool GameManager::saveGame(const std::string& filename) const {
     return true;
 }
 
-bool GameManager::loadGame(const std::string& filename) {
+bool GameManager::loadGame(const std::string &filename)
+{
     std::ifstream inFile(filename);
-    if (!inFile.is_open()) return false;
+    if (!inFile.is_open())
+        return false;
 
     int turnNum, teamNum, phaseVal, actionsRem, charCount;
-    if (!(inFile >> turnNum >> teamNum >> phaseVal >> actionsRem >> charCount)) {
+    if (!(inFile >> turnNum >> teamNum >> phaseVal >> actionsRem >> charCount))
+    {
         inFile.close();
         return false;
     }
 
-    for (int i = 0; i < charCount; ++i) {
+    for (int i = 0; i < charCount; ++i)
+    {
         std::string name;
         int hp, maxHp, pos;
-        if (!(inFile >> name >> hp >> maxHp >> pos)) break;
+        if (!(inFile >> name >> hp >> maxHp >> pos))
+            break;
 
-        character* targetChar = findCharacterByName(name);
-        if (targetChar) {
+        character *targetChar = findCharacterByName(name);
+        if (targetChar)
+        {
             targetChar->sethealth(hp);
             targetChar->setposition(pos);
+
+            InvisibleMan *inv = dynamic_cast<InvisibleMan *>(targetChar);
+            if (inv)
+            {
+                int f1, f2, f3;
+                if (inFile >> f1 >> f2 >> f3)
+                {
+                    inv->setFogPosition(0, f1);
+                    inv->setFogPosition(1, f2);
+                    inv->setFogPosition(2, f3);
+                }
+            }
         }
     }
 
