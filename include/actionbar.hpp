@@ -23,7 +23,6 @@ enum class TargetPrompt {
     RaveningNode,
     ConfirmSuspicionValue,
     EliminateCard,
-
     DashNode,
     AfootNode,
     BeastformDiscard,
@@ -41,6 +40,7 @@ struct ActionBarState {
     bool canScheme = false;
     character* selectedActor = nullptr;
     bool awaitingDefense = false;
+    bool defenseJustOpened = false;
     hero* pendingAttacker = nullptr;
     hero* pendingDefender = nullptr;
     character* pendingDefenderTarget = nullptr;

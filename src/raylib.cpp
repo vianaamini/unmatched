@@ -420,8 +420,18 @@ static void DrawDefenseModal(GameManager& gm, Board& board, ActionBarState& acti
     hero* defender = actionBar.pendingDefender;
     if (!defender) return;
 
+    bool suppressClicks = actionBar.defenseJustOpened;
+    actionBar.defenseJustOpened = false;
+
     std::string faction = HeroFactionLabel(defender);
     auto& hand = defender->gethand();
+
+    std::vector<int> defendable;
+    for (int i = 0; i < (int)hand.size(); i++) {
+        if (hand[i].gettype() == cardtype::defense || hand[i].gettype() == cardtype::multipurpose) {
+            defendable.push_back(i);
+        }
+    }
 
     float modalW = sw * 0.65f;
     float modalH = sh * 0.55f;
@@ -447,12 +457,12 @@ static void DrawDefenseModal(GameManager& gm, Board& board, ActionBarState& acti
     DrawRectangleLinesEx(noDefenseBtn, 2, GetColor(0x9E2230FF));
     DrawTextCentered(GetSemiFont(), "NO DEFENSE", noDefenseBtn.x + noDefenseBtn.width / 2.0f, noDefenseBtn.y + 7, 13, 0.7f, GetColor(0xE5C158FF));
 
-    if (CheckCollisionPointRec(mousePos, noDefenseBtn) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+    if (!suppressClicks && CheckCollisionPointRec(mousePos, noDefenseBtn) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
         ActionBar_ResolveDefense(actionBar, gm, board, draculaHero, nullptr);
         return;
     }
 
-    int cardCount = (int)hand.size();
+    int cardCount = (int)defendable.size();
     if (cardCount > 7) cardCount = 7;
 
     float cardW = 108.0f;
@@ -463,9 +473,10 @@ static void DrawDefenseModal(GameManager& gm, Board& board, ActionBarState& acti
     float startY = modalY + 80.0f;
 
     for (int i = 0; i < cardCount; i++) {
+        int handIdx = defendable[i];
         Rectangle cardRect = { startX + i * (cardW + spacing), startY, cardW, cardH };
 
-        std::string cardName = hand[i].get_name();
+        std::string cardName = hand[handIdx].get_name();
         std::string filename = GetCardFilename(cardName, faction);
         Texture2D tex = {0};
         auto it = cardTextures.find(filename);
@@ -479,8 +490,27 @@ static void DrawDefenseModal(GameManager& gm, Board& board, ActionBarState& acti
             }
         }
 
-        if (CheckCollisionPointRec(mousePos, cardRect) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
-            card chosen = hand[i];
+        if (!suppressClicks && CheckCollisionPointRec(mousePos, cardRect) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+            card chosen = hand[handIdx];
+            std::string chosenName = chosen.get_name();
+
+            if (chosenName == "Dash") {
+                actionBar.combatChosenDefenseCard = chosen;
+                actionBar.combatTargetHero = actionBar.pendingDefender;
+                actionBar.combatTargetIsDefender = true;
+                actionBar.awaitingDefense = false;
+                actionBar.targetPrompt = TargetPrompt::DashNode;
+                return;
+            }
+            if (chosenName == "Elementary") {
+                actionBar.combatChosenDefenseCard = chosen;
+                actionBar.combatTargetHero = actionBar.pendingDefender;
+                actionBar.combatTargetIsDefender = true;
+                actionBar.awaitingDefense = false;
+                actionBar.targetPrompt = TargetPrompt::ElementaryPredict;
+                return;
+            }
+
             ActionBar_ResolveDefense(actionBar, gm, board, draculaHero, &chosen);
             return;
         }
@@ -500,14 +530,14 @@ static void DrawDefenseModal(GameManager& gm, Board& board, ActionBarState& acti
             } else {
                 DrawTextEx(GetSemiFont(), cardName.c_str(), { cardRect.x + 5, cardRect.y + 12 }, 20, 0.5f, BLACK);
             }
-            std::string defLine = "DEF " + std::to_string(hand[i].getdefense()) +
-                                   "  BST " + std::to_string(hand[i].getboost());
+            std::string defLine = "DEF " + std::to_string(hand[handIdx].getdefense()) +
+                                   "  BST " + std::to_string(hand[handIdx].getboost());
             DrawTextEx(GetRegularFont(), defLine.c_str(), { cardRect.x + 5, cardRect.y + cardRect.height - 26 }, 14, 0.3f, GetColor(0x3A1A1AFF));
         }
     }
 
     if (cardCount == 0) {
-        std::string empty = "No cards in hand - click NO DEFENSE";
+        std::string empty = "No valid defense card - click NO DEFENSE";
         DrawTextCentered(GetRegularFont(), empty.c_str(), modalX + modalW / 2.0f, modalY + modalH / 2.0f, 15, 0.5f, GetColor(0xA39BA0FF));
     }
 }
@@ -928,6 +958,13 @@ Vector2 mousePos = GetMousePosition();
         if (actionBar.targetPrompt == TargetPrompt::EliminateCard) {
             ActionBar_DrawEliminatePicker(actionBar, gm, activeHero, draculaHero, mousePos, sw, sh);
         }
+        if (actionBar.targetPrompt == TargetPrompt::BeastformDiscard) {
+            ActionBar_DrawBeastformPicker(actionBar, mousePos, sw, sh);
+        }
+        if (actionBar.targetPrompt == TargetPrompt::ElementaryPredict) {
+            ActionBar_DrawElementaryPicker(actionBar, gm, board, draculaHero, mousePos, sw, sh);
+        }
+        
         if (gameOver) {
             DrawRectangle(0, 0, (int)sw, (int)sh, Fade(BLACK, 0.75f));
             std::string winnerName = winner ? winner->getname() : "Nobody";

@@ -214,64 +214,6 @@ bool InvisibleMan::executeSchemeCard(card& schemeCard, hero& target) {
         return true;
     }
 
-    if (name == "Confound") {
-        if (!fogPositions.empty() && b) {
-            int idx = 0;
-            int dest = pickFogMoveDestination(b, allCharacters, fogPositions[idx], 1, false);
-            if (dest >= 0) {
-                setFogPosition(idx, dest);
-                std::cout << getname() << " moved a fog token to n" << dest << " (Confound)." << std::endl;
-            }
-        }
-        return true;
-    }
-
-    if (name == "Covert Preparation") {
-        drawcard();
-
-        if (!fogPositions.empty() && b) {
-            int idx = 0;
-            int dest = pickFogMoveDestination(b, allCharacters, fogPositions[idx], 2, false);
-            if (dest >= 0) {
-                setFogPosition(idx, dest);
-            }
-        }
-
-        if (b) {
-            for (int fogPos : fogPositions) {
-                if (isWithinSteps(b, target.getx(), fogPos, 2)) {
-                    target.setposition(fogPos);
-                    std::cout << target.getname() << " was pulled toward the fog to n" << fogPos << "." << std::endl;
-                    break;
-                }
-            }
-        }
-
-        std::cout << getname() << " drew a card and shifted the fog." << std::endl;
-        return true;
-    }
-
-    if (name == "Dreaming of Revenge") {
-        if (isOnFog() && allCharacters) {
-            for (character* c : *allCharacters) {
-                if (!c || c == this || !c->isalive()) continue;
-                for (int fogPos : fogPositions) {
-                    if (c->getx() == fogPos) {
-                        c->takedamage(1);
-                        std::cout << c->getname() << " took 1 damage (Dreaming of Revenge)." << std::endl;
-                        break;
-                    }
-                }
-            }
-        }
-        return true;
-    }
-
-    if (name == "Impossible to See") {
-        std::cout << getname() << " renders the opponent's card meaningless!" << std::endl;
-        return true;
-    }
-
     return false;
 }
 
@@ -316,6 +258,40 @@ void InvisibleMan::executeAttackCardEffects(card& attackCard, character& target,
             if (dest >= 0) {
                 setFogPosition(idx, dest);
                 std::cout << getname() << " moved a fog token to n" << dest << " (Confound)." << std::endl;
+            }
+        }
+    }
+    else if (name == "Covert Preparation") {
+        drawcard();
+        if (!fogPositions.empty() && b) {
+            int idx = 0;
+            int dest = pickFogMoveDestination(b, allCharacters, fogPositions[idx], 2, false);
+            if (dest >= 0) {
+                setFogPosition(idx, dest);
+            }
+        }
+        if (b) {
+            for (int fogPos : fogPositions) {
+                if (isWithinSteps(b, target.getx(), fogPos, 2)) {
+                    target.setposition(fogPos);
+                    std::cout << target.getname() << " was pulled toward the fog to n" << fogPos << "." << std::endl;
+                    break;
+                }
+            }
+        }
+        std::cout << getname() << " drew a card and shifted the fog." << std::endl;
+    }
+    else if (name == "Dreaming of Revenge") {
+        if (isOnFog() && allCharacters) {
+            for (character* c : *allCharacters) {
+                if (!c || c == this || !c->isalive()) continue;
+                for (int fogPos : fogPositions) {
+                    if (c->getx() == fogPos) {
+                        c->takedamage(1);
+                        std::cout << c->getname() << " took 1 damage (Dreaming of Revenge)." << std::endl;
+                        break;
+                    }
+                }
             }
         }
     }
@@ -390,6 +366,41 @@ void InvisibleMan::executeDefenseCardEffects(card& defenseCard, const card& atta
             if (dest >= 0) {
                 setFogPosition(idx, dest);
                 std::cout << getname() << " drew a card and shifted the fog." << std::endl;
+            }
+        }
+    }
+    else if (name == "Confound") {
+        if (!fogPositions.empty() && b) {
+            int idx = 0;
+            int dest = pickFogMoveDestination(b, allCharacters, fogPositions[idx], 1, false);
+            if (dest >= 0) {
+                setFogPosition(idx, dest);
+                std::cout << getname() << " moved a fog token to n" << dest << " (Confound)." << std::endl;
+            }
+        }
+    }
+    else if (name == "Covert Preparation") {
+        drawcard();
+        if (!fogPositions.empty() && b) {
+            int idx = 0;
+            int dest = pickFogMoveDestination(b, allCharacters, fogPositions[idx], 2, false);
+            if (dest >= 0) {
+                setFogPosition(idx, dest);
+            }
+        }
+        std::cout << getname() << " drew a card and shifted the fog." << std::endl;
+    }
+    else if (name == "Dreaming of Revenge") {
+        if (isOnFog() && allCharacters) {
+            for (character* c : *allCharacters) {
+                if (!c || c == this || !c->isalive()) continue;
+                for (int fogPos : fogPositions) {
+                    if (c->getx() == fogPos) {
+                        c->takedamage(1);
+                        std::cout << c->getname() << " took 1 damage (Dreaming of Revenge)." << std::endl;
+                        break;
+                    }
+                }
             }
         }
     }

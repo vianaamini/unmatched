@@ -211,8 +211,25 @@ bool GameManager::moveCharacter(character *c, const std::string &targetSpace, co
     }
     int targetNode = board.getNodeId(targetSpace);
 
-    
-    
+    hero *activeHero = dynamic_cast<hero *>(activeChar);
+    if (activeHero)
+    {
+        if (activeHero->getdeck().getsize() > 0)
+        {
+            activeHero->drawcard();
+        }
+        else
+        {
+            activeHero->sethealth(activeHero->gethealth() - 2);
+            if (activeHero->gethealth() <= 0)
+            {
+                activeHero->sethealth(0);
+                removeCharacter(activeHero);
+                return true;
+            }
+        }
+    }
+
     bool reachable = false;
     if (InvisibleMan* invC = dynamic_cast<InvisibleMan*>(c))
     {
@@ -243,7 +260,8 @@ bool GameManager::moveCharacter(character *c, const std::string &targetSpace, co
     if (!reachable)
     {
         std::cout << "Cannot reach " << targetSpace << std::endl;
-        return false;
+        activeHero->useAction();
+        return true;
     }
 
     for (character *other : allCharacters)
@@ -251,18 +269,17 @@ bool GameManager::moveCharacter(character *c, const std::string &targetSpace, co
         if (other != c && other->isalive() && other->getx() == targetNode)
         {
             std::cout << "Node " << targetSpace << " is occupied!" << std::endl;
-            return false;
+            activeHero->useAction();
+            return true;
         }
     }
 
     c->setposition(targetNode);
 
-    hero *activeHero = dynamic_cast<hero *>(activeChar);
     if (activeHero)
     {
         activeHero->useAction();
-        activeHero->drawcard();
- }
+    }
 
     std::cout << c->getname() << " successfully moved to " << targetSpace << std::endl;
     return true;

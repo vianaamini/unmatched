@@ -74,6 +74,28 @@ static void DrawTextCenteredAB(Font font, const char* text, float centerX, float
     DrawTextEx(font, text, { centerX - textSize.x / 2.0f, y }, size, spacing, color);
 }
 
+static bool IsCardOwnerAvailable(const card& c, GameManager& gm) {
+    auto isAlive = [&](const std::string& namePart) -> bool {
+        bool exists = false;
+        for (character* ch : gm.getAllCharacters()) {
+            if (ch->getname().find(namePart) != std::string::npos) {
+                exists = true;
+                if (ch->isalive()) return true;
+            }
+        }
+        return !exists;
+    };
+
+    switch (c.getowner()) {
+        case cardowner::dracula:  return isAlive("Dracula");
+        case cardowner::sherlock: return isAlive("Sherlock");
+        case cardowner::watson:   return isAlive("Watson");
+        case cardowner::sister:   return isAlive("Sister");
+        case cardowner::any:
+        default: return true;
+    }
+}
+
 static void ToggleAction(ActionBarState& state, ActionMode mode)
 {
     if (state.currentAction == mode) {
@@ -106,6 +128,7 @@ static void ActionBar_ProceedToDefense(ActionBarState& state)
     state.combatTargetIsDefender = false;
 
     state.awaitingDefense = true;
+    state.defenseJustOpened = true;
     state.currentAction = ActionMode::None;
     state.selectedCardIndex = -1;
 }
@@ -141,8 +164,10 @@ void ActionBar_ResetOnTurnEnd(ActionBarState& state)
     state.selectedCardIndex = -1;
     state.hasPendingBoost = false;
     state.awaitingDefense = false;
+    state.defenseJustOpened = false;
     state.pendingAttacker = nullptr;
     state.pendingDefender = nullptr;
+    state.pendingDefenderTarget = nullptr;
     state.pendingAttackCard = card();
     state.selectedActor = nullptr;
     state.validMoveTargets.clear();
@@ -179,7 +204,6 @@ void ActionBar_ResolveDefense(
     bool resolved;
 
     if (damageTarget && damageTarget != static_cast<character*>(defender)) {
-        
         bool effectsCanceled =
             (attackCard.get_name() == "Feint") ||
             (defenseCard.get_name() == "Feint");
@@ -210,6 +234,7 @@ void ActionBar_ResolveDefense(
     }
 
     state.awaitingDefense = false;
+    state.defenseJustOpened = false;
     state.pendingAttacker = nullptr;
     state.pendingDefender = nullptr;
     state.pendingDefenderTarget = nullptr;
@@ -355,7 +380,6 @@ void ActionBar_Update(
                 hero* enemyHero = dynamic_cast<hero*>(enemyChar);
 
                 if (!enemyHero) {
-
                     hero* controllingHero = nullptr;
                     for (character* ally : gm.getAllies(enemyChar)) {
                         controllingHero = dynamic_cast<hero*>(ally);
@@ -366,7 +390,6 @@ void ActionBar_Update(
                     ActionBar_RecordPlayedCard(state, actingHero, draculaHero, attackCard);
 
                     if (!controllingHero) {
-
                         actingHero->attack(*enemyChar, attackCard, board);
                         state.currentAction = ActionMode::None;
                         state.selectedCardIndex = -1;
@@ -381,6 +404,7 @@ void ActionBar_Update(
                     state.currentAction = ActionMode::None;
                     state.selectedCardIndex = -1;
                     state.awaitingDefense = true;
+                    state.defenseJustOpened = true;
                     return;
                 }
 
@@ -409,6 +433,7 @@ void ActionBar_Update(
                     state.targetPrompt = TargetPrompt::BeastformDiscard;
                 } else {
                     state.awaitingDefense = true;
+                    state.defenseJustOpened = true;
                 }
             }
 
@@ -416,7 +441,6 @@ void ActionBar_Update(
         }
     }
 }
-
 
 static std::string ActionBar_FindNodeAtPos(
     Board& board,
@@ -512,7 +536,9 @@ void ActionBar_UpdateTargeting(
         return;
 
     if (state.targetPrompt == TargetPrompt::ConfirmSuspicionValue ||
-        state.targetPrompt == TargetPrompt::EliminateCard)
+        state.targetPrompt == TargetPrompt::EliminateCard ||
+        state.targetPrompt == TargetPrompt::BeastformDiscard ||
+        state.targetPrompt == TargetPrompt::ElementaryPredict)
         return;
 
     if (!IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
@@ -581,6 +607,8 @@ void ActionBar_UpdateTargeting(
             state.targetPrompt = TargetPrompt::None;
             state.combatTargetHero = nullptr;
             state.combatTargetIsDefender = false;
+            state.awaitingDefense = true;
+            state.defenseJustOpened = false;
             ActionBar_ResolveDefense(state, gm, board, draculaHero, &state.combatChosenDefenseCard);
         } else {
             ActionBar_ProceedToDefense(state);
@@ -666,7 +694,7 @@ void ActionBar_DrawValuePicker(
 
     float btnSize = 46.0f;
     float gap = 10.0f;
-    int count = 7; 
+    int count = 7;
     float totalW = count * btnSize + (count - 1) * gap;
     float startX = modalRect.x + (modalW - totalW) / 2.0f;
     float y = modalRect.y + 70.0f;
@@ -774,7 +802,7 @@ void ActionBar_DrawBeastformPicker(
 
     hero* attacker = state.combatTargetHero;
     int maxDiscard = attacker->handsize();
-    if (maxDiscard > 8) maxDiscard = 8; 
+    if (maxDiscard > 8) maxDiscard = 8;
     float modalW = 420.0f;
     float modalH = 220.0f;
     Rectangle modalRect = { (sw - modalW) / 2.0f, (sh - modalH) / 2.0f, modalW, modalH };
@@ -786,7 +814,7 @@ void ActionBar_DrawBeastformPicker(
     const char* title = "BEASTFORM - CARDS TO DISCARD";
     DrawTextCenteredAB(GetTitleFont(), title, modalRect.x + modalW / 2.0f, modalRect.y + 12, 19, 0.6f, GetColor(0xE5C158FF));
 
-    int count = maxDiscard + 1; 
+    int count = maxDiscard + 1;
     float btnSize = 46.0f;
     float gap = 10.0f;
     float totalW = count * btnSize + (count - 1) * gap;
@@ -837,7 +865,7 @@ void ActionBar_DrawElementaryPicker(
     const char* title = "ELEMENTARY - PREDICT THE ATTACK VALUE";
     DrawTextCenteredAB(GetTitleFont(), title, modalRect.x + modalW / 2.0f, modalRect.y + 12, 19, 0.6f, GetColor(0xE5C158FF));
 
-    int count = 7; 
+    int count = 7;
     float btnSize = 46.0f;
     float gap = 10.0f;
     float totalW = count * btnSize + (count - 1) * gap;
@@ -860,6 +888,8 @@ void ActionBar_DrawElementaryPicker(
             state.targetPrompt = TargetPrompt::None;
             state.combatTargetHero = nullptr;
             state.combatTargetIsDefender = false;
+            state.awaitingDefense = true;
+            state.defenseJustOpened = false;
             ActionBar_ResolveDefense(state, gm, board, draculaHero, &state.combatChosenDefenseCard);
             return;
         }
@@ -878,6 +908,10 @@ bool ActionBar_HandleCardClick(
 )
 {
     if (state.awaitingDefense || state.targetPrompt != TargetPrompt::None || !activeHero)
+        return false;
+
+    if ((state.currentAction == ActionMode::Attack || state.currentAction == ActionMode::PlayCard) &&
+        !IsCardOwnerAvailable(clickedCard, gm))
         return false;
 
     if (state.currentAction == ActionMode::Attack) {
@@ -903,9 +937,7 @@ bool ActionBar_HandleCardClick(
     }
 
     if (state.currentAction == ActionMode::PlayCard) {
-
-        if (clickedCard.gettype() != cardtype::scheme &&
-            clickedCard.gettype() != cardtype::multipurpose)
+        if (clickedCard.gettype() != cardtype::scheme)
             return false;
 
         hero* targetHero = nullptr;

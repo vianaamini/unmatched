@@ -224,6 +224,8 @@ bool hero::maneuver(
         return false;
     }
 
+    drawcard();
+
     int steps = getmovement();
 
     if (boostCard)
@@ -234,13 +236,6 @@ bool hero::maneuver(
         steps,
         board
     );
-
-    if (!success) {
-        cout << "Cannot move to that space. Try again." << endl;
-        return false;
-    }
-
-    drawcard();
 
     if (boostCard) {
         for (auto it = hand.begin(); it != hand.end(); ++it) {
@@ -255,6 +250,10 @@ bool hero::maneuver(
 
     actions--;
 
+    if (!success) {
+        cout << "Cannot move to that space." << endl;
+    }
+
     return true;
 }
 
@@ -264,17 +263,8 @@ bool hero::scheme(card& schemeCard, hero& target) {
         return false;
     }
 
-    
-    
-    
-    
-    
-    
-    
-    
-    if (schemeCard.gettype() != cardtype::scheme &&
-        schemeCard.gettype() != cardtype::multipurpose) {
-        cout << "Cannot use this card: not a scheme or multipurpose card. Try again." << endl;
+    if (schemeCard.gettype() != cardtype::scheme) {
+        cout << "Cannot use this card: not a scheme card. Try again." << endl;
         return false;
     }
 
@@ -680,7 +670,7 @@ bool hero::canAttack(const character& target, const Board& board, bool ranged) c
 }
 
 bool hero::attack(character& target,card& attackCard,Board& board) {
-  
+
     hero* heroTarget = dynamic_cast<hero*>(&target);
     if (heroTarget)
         return attack(*heroTarget, attackCard, board);
@@ -756,22 +746,10 @@ bool hero::attack(
         effectsCanceled = true;
 
     if (!effectsCanceled) {
-        
-        
-        
-        
-        
-        
-        
         if (InvisibleMan* imDef = dynamic_cast<InvisibleMan*>(&target)) {
-            
-            
             imDef->executeDefenseCardEffects(defenseCard, attackCard, defenseValue, attackValue, effectsCanceled);
         }
         if (InvisibleMan* imAtk = dynamic_cast<InvisibleMan*>(this)) {
-            
-            
-            
             imAtk->executeAttackCardEffects(attackCard, target, attackValue, defenseValue, attackerWon, effectsCanceled, defenseCard);
         }
 
