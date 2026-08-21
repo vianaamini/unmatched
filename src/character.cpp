@@ -1,7 +1,7 @@
 #include "../include/character.hpp"
 
 character::character(string name, int maxhp, int movement)
-    : name(name), health(maxhp), maxhp(maxhp), movement(movement), nodeId(0) {}
+    : name(name), health(maxhp), maxhp(maxhp), movement(movement), baseMovement(movement), nodeId(0) {}
 
 string character::getname() const { return name; }
 int character::gethealth() const { return health; }
@@ -33,7 +33,8 @@ void character::sethealth(int amount) {
 bool character::isalive() const { return health > 0; }
 
 void character::setnewmovement(int newmovement) { movement = newmovement; }
-void character::resetmovement() { movement = 2; }
+
+void character::resetmovement() { movement = baseMovement; }
 
 std::string character::getPositionString() const {
     return "n" + std::to_string(nodeId);

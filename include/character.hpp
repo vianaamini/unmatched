@@ -9,6 +9,7 @@ private:
     int health;
     int maxhp;
     int movement;
+    int baseMovement; 
     int nodeId;
 
 public:

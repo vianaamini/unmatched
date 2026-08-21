@@ -2,7 +2,73 @@
 #include "game_fonts.hpp"
 #include <string>
 #include <iostream>
-#include <algorithm>
+#include <queue>
+#include <unordered_set>
+static std::vector<std::string> ActionBar_ComputeReachableNodes(
+    GameManager& gm,
+    character* c,
+    int steps
+) {
+    std::vector<std::string> result;
+    if (!c || steps <= 0) return result;
+
+    Board& board = gm.getBoard();
+    int startNode = c->getx();
+    if (!board.hasSpace("n" + std::to_string(startNode))) return result;
+
+    auto allies = gm.getAllies(c);
+    auto enemies = gm.getEnemies(c);
+
+    auto isEnemyAt = [&](int node) -> bool {
+        for (character* e : enemies)
+            if (e && e->isalive() && e->getx() == node) return true;
+        return false;
+    };
+    auto isAllyAt = [&](int node) -> bool {
+        for (character* a : allies)
+            if (a && a != c && a->isalive() && a->getx() == node) return true;
+        return false;
+    };
+
+    std::queue<int> q;
+    std::unordered_set<int> visited;
+    q.push(startNode);
+    visited.insert(startNode);
+
+    for (int step = 0; step < steps; ++step) {
+        int levelSize = (int)q.size();
+        for (int i = 0; i < levelSize; ++i) {
+            int current = q.front();
+            q.pop();
+
+            auto neighbors = board.getNeighborIds(current);
+
+            std::string currentName = "n" + std::to_string(current);
+            if (board.isTeleport(currentName)) {
+                for (const auto& dest : board.getTeleportDestinations(currentName)) {
+                    int destId = board.getNodeId(dest);
+                    if (destId != current && visited.find(destId) == visited.end())
+                        neighbors.push_back(destId);
+                }
+            }
+
+            for (int neighbor : neighbors) {
+                if (visited.count(neighbor)) continue;
+                if (!board.hasSpace("n" + std::to_string(neighbor))) continue;
+                if (isEnemyAt(neighbor)) continue; 
+
+                if (!isAllyAt(neighbor)) { 
+                    result.push_back("n" + std::to_string(neighbor));
+                }
+
+                q.push(neighbor);
+                visited.insert(neighbor);
+            }
+        }
+    }
+
+    return result;
+}
 
 Vector2 ActionBar_NodeScreenPos(Board& board, const std::string& nodeName, Rectangle mapDest, Texture2D boardTex)
 {
@@ -74,28 +140,6 @@ static void DrawTextCenteredAB(Font font, const char* text, float centerX, float
     DrawTextEx(font, text, { centerX - textSize.x / 2.0f, y }, size, spacing, color);
 }
 
-static bool IsCardOwnerAvailable(const card& c, GameManager& gm) {
-    auto isAlive = [&](const std::string& namePart) -> bool {
-        bool exists = false;
-        for (character* ch : gm.getAllCharacters()) {
-            if (ch->getname().find(namePart) != std::string::npos) {
-                exists = true;
-                if (ch->isalive()) return true;
-            }
-        }
-        return !exists;
-    };
-
-    switch (c.getowner()) {
-        case cardowner::dracula:  return isAlive("Dracula");
-        case cardowner::sherlock: return isAlive("Sherlock");
-        case cardowner::watson:   return isAlive("Watson");
-        case cardowner::sister:   return isAlive("Sister");
-        case cardowner::any:
-        default: return true;
-    }
-}
-
 static void ToggleAction(ActionBarState& state, ActionMode mode)
 {
     if (state.currentAction == mode) {
@@ -128,7 +172,6 @@ static void ActionBar_ProceedToDefense(ActionBarState& state)
     state.combatTargetIsDefender = false;
 
     state.awaitingDefense = true;
-    state.defenseJustOpened = true;
     state.currentAction = ActionMode::None;
     state.selectedCardIndex = -1;
 }
@@ -164,10 +207,8 @@ void ActionBar_ResetOnTurnEnd(ActionBarState& state)
     state.selectedCardIndex = -1;
     state.hasPendingBoost = false;
     state.awaitingDefense = false;
-    state.defenseJustOpened = false;
     state.pendingAttacker = nullptr;
     state.pendingDefender = nullptr;
-    state.pendingDefenderTarget = nullptr;
     state.pendingAttackCard = card();
     state.selectedActor = nullptr;
     state.validMoveTargets.clear();
@@ -200,44 +241,19 @@ void ActionBar_ResolveDefense(
     if (chosenDefense)
         defender->removeCardFromHand(defenseCard.get_name());
 
-    character* damageTarget = state.pendingDefenderTarget;
-    bool resolved;
+    bool resolved = attacker->attack(
+        *defender,
+        attackCard,
+        board,
+        &defenseCard
+    );
 
-    if (damageTarget && damageTarget != static_cast<character*>(defender)) {
-        bool effectsCanceled =
-            (attackCard.get_name() == "Feint") ||
-            (defenseCard.get_name() == "Feint");
-
-        int atk = std::max(0, attackCard.getattack());
-        int def = effectsCanceled ? 0 : std::max(0, defenseCard.getdefense());
-        int damage = std::max(0, atk - def);
-
-        if (damage > 0) {
-            damageTarget->takedamage(damage);
-        }
-
-        attacker->useAction();
-        resolved = true;
-
-        if (resolved && chosenDefense)
-            ActionBar_RecordPlayedCard(state, defender, draculaHero, defenseCard);
-    } else {
-        resolved = attacker->attack(
-            *defender,
-            attackCard,
-            board,
-            &defenseCard
-        );
-
-        if (resolved && chosenDefense)
-            ActionBar_RecordPlayedCard(state, defender, draculaHero, defenseCard);
-    }
+    if (resolved && chosenDefense)
+        ActionBar_RecordPlayedCard(state, defender, draculaHero, defenseCard);
 
     state.awaitingDefense = false;
-    state.defenseJustOpened = false;
     state.pendingAttacker = nullptr;
     state.pendingDefender = nullptr;
-    state.pendingDefenderTarget = nullptr;
     state.pendingAttackCard = card();
 
     if (resolved) {
@@ -297,15 +313,21 @@ void ActionBar_Update(
     state.validMoveTargets.clear();
 
     if (state.currentAction == ActionMode::Move && actingChar) {
-        int originalMovement = actingChar->getmovement();
-
+        int steps = actingChar->getmovement();
         if (state.hasPendingBoost)
-            actingChar->setnewmovement(originalMovement + state.pendingBoostCard.getboost());
+            steps += state.pendingBoostCard.getboost();
 
-        state.validMoveTargets = gm.getValidMoves(actingChar);
+        static int lastPrintedSteps = -999;
+        if (steps != lastPrintedSteps) {
+            std::cout << "[DEBUG] actingChar=" << actingChar->getname()
+                       << " getmovement()=" << actingChar->getmovement()
+                       << " hasPendingBoost=" << state.hasPendingBoost
+                       << " boostValue=" << (state.hasPendingBoost ? state.pendingBoostCard.getboost() : -1)
+                       << " => steps=" << steps << std::endl;
+            lastPrintedSteps = steps;
+        }
 
-        if (state.hasPendingBoost)
-            actingChar->resetmovement();
+        state.validMoveTargets = ActionBar_ComputeReachableNodes(gm, actingChar, steps);
     }
 
     Board& board = gm.getBoard();
@@ -326,16 +348,11 @@ void ActionBar_Update(
             if (!CheckCollisionPointCircle(mousePos, pos, clickRadius))
                 continue;
 
-            bool moved = false;
-
-            if (state.hasPendingBoost) {
-                int originalMovement = actingChar->getmovement();
-                actingChar->setnewmovement(originalMovement + state.pendingBoostCard.getboost());
-                moved = gm.moveCharacter(actingChar, nodeName);
-                actingChar->resetmovement();
-            } else {
-                moved = gm.moveCharacter(actingChar, nodeName);
-            }
+            bool moved = gm.moveCharacter(
+                actingChar,
+                nodeName,
+                state.hasPendingBoost ? &state.pendingBoostCard : nullptr
+            );
 
             if (moved) {
                 if (state.hasPendingBoost && activeHero)
@@ -380,31 +397,14 @@ void ActionBar_Update(
                 hero* enemyHero = dynamic_cast<hero*>(enemyChar);
 
                 if (!enemyHero) {
-                    hero* controllingHero = nullptr;
-                    for (character* ally : gm.getAllies(enemyChar)) {
-                        controllingHero = dynamic_cast<hero*>(ally);
-                        if (controllingHero) break;
-                    }
-
                     actingHero->removeCardFromHand(attackCard.get_name());
                     ActionBar_RecordPlayedCard(state, actingHero, draculaHero, attackCard);
 
-                    if (!controllingHero) {
-                        actingHero->attack(*enemyChar, attackCard, board);
-                        state.currentAction = ActionMode::None;
-                        state.selectedCardIndex = -1;
-                        ActionBar_CompleteAction(state, gm);
-                        return;
-                    }
+                    actingHero->attack(*enemyChar, attackCard, board);
 
-                    state.pendingAttackCard = attackCard;
-                    state.pendingAttacker = actingHero;
-                    state.pendingDefender = controllingHero;
-                    state.pendingDefenderTarget = enemyChar;
                     state.currentAction = ActionMode::None;
                     state.selectedCardIndex = -1;
-                    state.awaitingDefense = true;
-                    state.defenseJustOpened = true;
+                    ActionBar_CompleteAction(state, gm);
                     return;
                 }
 
@@ -433,7 +433,6 @@ void ActionBar_Update(
                     state.targetPrompt = TargetPrompt::BeastformDiscard;
                 } else {
                     state.awaitingDefense = true;
-                    state.defenseJustOpened = true;
                 }
             }
 
@@ -441,6 +440,7 @@ void ActionBar_Update(
         }
     }
 }
+
 
 static std::string ActionBar_FindNodeAtPos(
     Board& board,
@@ -536,9 +536,7 @@ void ActionBar_UpdateTargeting(
         return;
 
     if (state.targetPrompt == TargetPrompt::ConfirmSuspicionValue ||
-        state.targetPrompt == TargetPrompt::EliminateCard ||
-        state.targetPrompt == TargetPrompt::BeastformDiscard ||
-        state.targetPrompt == TargetPrompt::ElementaryPredict)
+        state.targetPrompt == TargetPrompt::EliminateCard)
         return;
 
     if (!IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
@@ -607,8 +605,6 @@ void ActionBar_UpdateTargeting(
             state.targetPrompt = TargetPrompt::None;
             state.combatTargetHero = nullptr;
             state.combatTargetIsDefender = false;
-            state.awaitingDefense = true;
-            state.defenseJustOpened = false;
             ActionBar_ResolveDefense(state, gm, board, draculaHero, &state.combatChosenDefenseCard);
         } else {
             ActionBar_ProceedToDefense(state);
@@ -694,7 +690,7 @@ void ActionBar_DrawValuePicker(
 
     float btnSize = 46.0f;
     float gap = 10.0f;
-    int count = 7;
+    int count = 7; 
     float totalW = count * btnSize + (count - 1) * gap;
     float startX = modalRect.x + (modalW - totalW) / 2.0f;
     float y = modalRect.y + 70.0f;
@@ -802,7 +798,7 @@ void ActionBar_DrawBeastformPicker(
 
     hero* attacker = state.combatTargetHero;
     int maxDiscard = attacker->handsize();
-    if (maxDiscard > 8) maxDiscard = 8;
+    if (maxDiscard > 8) maxDiscard = 8; 
     float modalW = 420.0f;
     float modalH = 220.0f;
     Rectangle modalRect = { (sw - modalW) / 2.0f, (sh - modalH) / 2.0f, modalW, modalH };
@@ -814,7 +810,7 @@ void ActionBar_DrawBeastformPicker(
     const char* title = "BEASTFORM - CARDS TO DISCARD";
     DrawTextCenteredAB(GetTitleFont(), title, modalRect.x + modalW / 2.0f, modalRect.y + 12, 19, 0.6f, GetColor(0xE5C158FF));
 
-    int count = maxDiscard + 1;
+    int count = maxDiscard + 1; 
     float btnSize = 46.0f;
     float gap = 10.0f;
     float totalW = count * btnSize + (count - 1) * gap;
@@ -865,7 +861,7 @@ void ActionBar_DrawElementaryPicker(
     const char* title = "ELEMENTARY - PREDICT THE ATTACK VALUE";
     DrawTextCenteredAB(GetTitleFont(), title, modalRect.x + modalW / 2.0f, modalRect.y + 12, 19, 0.6f, GetColor(0xE5C158FF));
 
-    int count = 7;
+    int count = 7; 
     float btnSize = 46.0f;
     float gap = 10.0f;
     float totalW = count * btnSize + (count - 1) * gap;
@@ -888,8 +884,6 @@ void ActionBar_DrawElementaryPicker(
             state.targetPrompt = TargetPrompt::None;
             state.combatTargetHero = nullptr;
             state.combatTargetIsDefender = false;
-            state.awaitingDefense = true;
-            state.defenseJustOpened = false;
             ActionBar_ResolveDefense(state, gm, board, draculaHero, &state.combatChosenDefenseCard);
             return;
         }
@@ -908,10 +902,6 @@ bool ActionBar_HandleCardClick(
 )
 {
     if (state.awaitingDefense || state.targetPrompt != TargetPrompt::None || !activeHero)
-        return false;
-
-    if ((state.currentAction == ActionMode::Attack || state.currentAction == ActionMode::PlayCard) &&
-        !IsCardOwnerAvailable(clickedCard, gm))
         return false;
 
     if (state.currentAction == ActionMode::Attack) {
@@ -937,7 +927,8 @@ bool ActionBar_HandleCardClick(
     }
 
     if (state.currentAction == ActionMode::PlayCard) {
-        if (clickedCard.gettype() != cardtype::scheme)
+        if (clickedCard.gettype() != cardtype::scheme &&
+            clickedCard.gettype() != cardtype::multipurpose)
             return false;
 
         hero* targetHero = nullptr;
