@@ -125,7 +125,7 @@ AgeScreenResult AgeScreen::show()
 
         DrawLine((int)(card.x + 80), (int)(card.y + 125), (int)(card.x + card.width - 80), (int)(card.y + 125), { 212, 175, 55, 80 });
 
-        
+        // Player 1 Box
         DrawTextEx(semiFont, "LIFE CYCLE OF PLAYER 1:", { box1.x, box1.y - 32 }, 14, 0.8f, GOLD_C);
         DrawRectangleRounded(box1, 0.18f, 12, INPUT_C);
         DrawRectangleRoundedLines(box1, 0.18f, 12, 1.3f, activeField == 1 ? GOLD_C : Color{ 40, 45, 58, 255 });
@@ -134,7 +134,7 @@ AgeScreenResult AgeScreen::show()
         CenterText(normalFont, age1.c_str(), box1.x + box1.width / 2 - 10, box1.y + 17, 19, 0.5f, player1Age == 0 ? Color{ 75, 80, 92, 255 } : TEXT_C);
         VerticalArrows(box1.x + box1.width - 32, box1.y + 15, activeField == 1 ? GOLD_C : Color{ 80, 85, 100, 255 });
 
-        
+        // Player 2 Box
         DrawTextEx(semiFont, "LIFE CYCLE OF PLAYER 2:", { box2.x, box2.y - 32 }, 14, 0.8f, GOLD_C);
         DrawRectangleRounded(box2, 0.18f, 12, INPUT_C);
         DrawRectangleRoundedLines(box2, 0.18f, 12, 1.3f, activeField == 2 ? GOLD_C : Color{ 40, 45, 58, 255 });
@@ -143,11 +143,11 @@ AgeScreenResult AgeScreen::show()
         CenterText(normalFont, age2.c_str(), box2.x + box2.width / 2 - 10, box2.y + 17, 19, 0.5f, player2Age == 0 ? Color{ 75, 80, 92, 255 } : TEXT_C);
         VerticalArrows(box2.x + box2.width - 32, box2.y + 15, activeField == 2 ? GOLD_C : Color{ 80, 85, 100, 255 });
 
-        
+        // OK Button
         DrawRectangleRounded(okButton, 0.18f, 12, okHover ? GOLD_LIGHT_C : GOLD_C);
         CenterText(semiFont, "OK", okButton.x + okButton.width / 2, okButton.y + 15, 17, 0.8f, { 15, 15, 20, 255 });
 
-        
+        // Retreat Button
         DrawRectangleRounded(retreatButton, 0.18f, 12, retreatHover ? Color{ 35, 39, 52, 255 } : Color{ 18, 21, 30, 255 });
         DrawRectangleRoundedLines(retreatButton, 0.18f, 12, 1, { 55, 60, 75, 255 });
         CenterText(semiFont, "RETREAT", retreatButton.x + retreatButton.width / 2, retreatButton.y + 15, 17, 0.8f, retreatHover ? GOLD_C : DIM_C);

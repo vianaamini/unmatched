@@ -224,8 +224,6 @@ bool hero::maneuver(
         return false;
     }
 
-    drawcard();
-
     int steps = getmovement();
 
     if (boostCard)
@@ -236,6 +234,13 @@ bool hero::maneuver(
         steps,
         board
     );
+
+    if (!success) {
+        cout << "Cannot move to that space. Try again." << endl;
+        return false;
+    }
+
+    drawcard();
 
     if (boostCard) {
         for (auto it = hand.begin(); it != hand.end(); ++it) {
@@ -250,10 +255,6 @@ bool hero::maneuver(
 
     actions--;
 
-    if (!success) {
-        cout << "Cannot move to that space." << endl;
-    }
-
     return true;
 }
 
@@ -263,8 +264,17 @@ bool hero::scheme(card& schemeCard, hero& target) {
         return false;
     }
 
-    if (schemeCard.gettype() != cardtype::scheme) {
-        cout << "Cannot use this card: not a scheme card. Try again." << endl;
+    // Multipurpose cards can be played as a scheme card too (the same way
+    // they're already allowed as attack/defense cards elsewhere) -- the
+    // rulebook lets a multipurpose card be used as an attack, a defense,
+    // OR a scheme card, chosen by the player at the moment it's played.
+    // Previously this rejected multipurpose cards outright, which also
+    // silently broke every Invisible Man multipurpose scheme card
+    // (Confound, Covert Preparation, Dreaming of Revenge, Impossible to
+    // See) since executeSchemeCard() below was never even reached for them.
+    if (schemeCard.gettype() != cardtype::scheme &&
+        schemeCard.gettype() != cardtype::multipurpose) {
+        cout << "Cannot use this card: not a scheme or multipurpose card. Try again." << endl;
         return false;
     }
 
@@ -637,40 +647,42 @@ bool hero::scheme(card& schemeCard, hero& target) {
     return true;
 }
 
-bool hero::canAttack(const hero& target, const Board& board, bool ranged) const {
-    if (!target.isalive()) return false;
+bool hero::canAttack(
+    const hero& target,
+    const Board& board,
+    bool ranged
+) const {
+    if (!target.isalive())
+        return false;
 
-    if (board.isAdjacent(getposition(), target.getposition()))
+    if (ranged)
         return true;
 
-    if (ranged) {
-        auto myZones = board.getZonesAt(getposition(), 0);
-        auto targetZones = board.getZonesAt(target.getposition(), 0);
-        for (const auto& z1 : myZones)
-            for (const auto& z2 : targetZones)
-                if (z1 == z2) return true;
-    }
-    return false;
+    return board.isAdjacent(
+        getposition(),
+        target.getposition()
+    );
 }
 
-bool hero::canAttack(const character& target, const Board& board, bool ranged) const {
-    if (!target.isalive()) return false;
+bool hero::canAttack(
+    const character& target,
+    const Board& board,
+    bool ranged
+) const {
+    if (!target.isalive())
+        return false;
 
-    if (board.isAdjacent(getposition(), target.getposition()))
+    if (ranged)
         return true;
 
-    if (ranged) {
-        auto myZones = board.getZonesAt(getposition(), 0);
-        auto targetZones = board.getZonesAt(target.getposition(), 0);
-        for (const auto& z1 : myZones)
-            for (const auto& z2 : targetZones)
-                if (z1 == z2) return true;
-    }
-    return false;
+    return board.isAdjacent(
+        getposition(),
+        target.getposition()
+    );
 }
 
 bool hero::attack(character& target,card& attackCard,Board& board) {
-
+  
     hero* heroTarget = dynamic_cast<hero*>(&target);
     if (heroTarget)
         return attack(*heroTarget, attackCard, board);
@@ -746,10 +758,22 @@ bool hero::attack(
         effectsCanceled = true;
 
     if (!effectsCanceled) {
+        // Rulebook: "if two effects activate at the same time, the
+        // defender's effect resolves first." The Invisible Man hooks below
+        // used to run attacker-first, which is backwards for any turn
+        // where both fighters are Invisible Man-controlled or where the
+        // ordering matters (e.g. the defender's fog bonus / Impossible to
+        // See should lock in before the attacker's own effects read the
+        // values). Defender's hook now runs first.
         if (InvisibleMan* imDef = dynamic_cast<InvisibleMan*>(&target)) {
+            // attackValue is passed by reference too, for cards like
+            // "Impossible to See" that zero out the attacker's value.
             imDef->executeDefenseCardEffects(defenseCard, attackCard, defenseValue, attackValue, effectsCanceled);
         }
         if (InvisibleMan* imAtk = dynamic_cast<InvisibleMan*>(this)) {
+            // defenseValue is passed by reference too, so cards like
+            // "Impossible to See" can zero out the *opponent's* value
+            // instead of the Invisible Man's own attack value.
             imAtk->executeAttackCardEffects(attackCard, target, attackValue, defenseValue, attackerWon, effectsCanceled, defenseCard);
         }
 

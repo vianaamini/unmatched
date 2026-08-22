@@ -106,7 +106,7 @@ MenuResult Menu::show()
                    76, 1.0f,
                    gold);
 
-        
+        // ================= START =================
         DrawRectangleRounded(startBtn, 0.22f, 20,
                              hoverStart ? redHover : redBtn);
 
@@ -124,7 +124,7 @@ MenuResult Menu::show()
                    22, 1.0f,
                    WHITE);
 
-        
+        // ================= LOAD GAME =================
         DrawRectangleRounded(loadBtn, 0.22f, 20,
                              hoverLoad ? glassHover : glass);
 
@@ -150,7 +150,7 @@ MenuResult Menu::show()
                    19, 0.8f,
                    { 230, 230, 235, 255 });
 
-        
+        // ================= EXIT =================
         DrawRectangleRounded(exitBtn, 0.22f, 20,
                              hoverExit ? glassHover : glass);
 

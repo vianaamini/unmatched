@@ -23,6 +23,7 @@ enum class TargetPrompt {
     RaveningNode,
     ConfirmSuspicionValue,
     EliminateCard,
+
     DashNode,
     AfootNode,
     BeastformDiscard,
@@ -40,9 +41,16 @@ struct ActionBarState {
     bool canScheme = false;
     character* selectedActor = nullptr;
     bool awaitingDefense = false;
-    bool defenseJustOpened = false;
     hero* pendingAttacker = nullptr;
     hero* pendingDefender = nullptr;
+    // NEW: when the physical attacker is a sidekick (Sister/Watson) rather
+    // than a hero, pendingAttacker still holds the CONTROLLING hero (whose
+    // hand/actions the attack card is drawn from), while this holds the
+    // character whose board position/adjacency actually determines range.
+    // nullptr means "same as pendingAttacker" (normal hero attacking).
+    character* pendingAttackerPosition = nullptr;
+    // Same idea for the defending side: pendingDefender is the CONTROLLING
+    // hero, pendingDefenderTarget is who actually takes the damage.
     character* pendingDefenderTarget = nullptr;
     card pendingAttackCard;
     bool draculaHasCard = false;

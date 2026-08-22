@@ -28,12 +28,18 @@ void dcards::resolve_scheme(const card& played_card, hero& dracula, hero& oppone
     
     if (name == "Mistform") {
         dracula.set_actions(dracula.get_actions() + 1);
-        cout << "Enter target node (n1 to n21): ";
-        string node; 
-        cin >> node;
+        // NOTE: this whole file (dcards::resolve_scheme /
+        // resolve_combat_effects) is dead code -- nothing in the real game
+        // (GameManager/raylib/actionbar path) ever calls it or even
+        // includes dracula_cards.hpp; the actual Mistform/Ravening
+        // Seduction/Beastform logic used in real games lives in hero.cpp.
+        // This cin was removed anyway as a defensive cleanup, since a
+        // blocking console read here would freeze the whole raylib window
+        // if this code path were ever wired in by mistake in the future.
+        string node = "n1";
         if (board.hasSpace(node)) {
             int id = board.getNodeId(node);
-            
+            // Check if occupied
             bool occupied = false;
             if (gm) {
                 for (auto* c : gm->getAllCharacters()) {
@@ -109,7 +115,7 @@ void dcards::resolve_scheme(const card& played_card, hero& dracula, hero& oppone
     else if (name == "Ravening Seduction") {
         int adjacent_sisters = 0;
         
-        
+        // Get opponent's neighbors and let player choose
         auto oppNeighbors = board.getNeighborIds(opponent.getx());
         if (!oppNeighbors.empty()) {
             cout << "Ravening Seduction: Choose a node to move opponent to:" << endl;
@@ -127,8 +133,7 @@ void dcards::resolve_scheme(const card& played_card, hero& dracula, hero& oppone
                     cout << "  [" << i << "] n" << oppNeighbors[i] << endl;
                 }
             }
-            int choice;
-            cin >> choice;
+            int choice = 0; // defensive cleanup: was a blocking cin >>, see note near Mistform above
             if (choice >= 0 && choice < (int)oppNeighbors.size()) {
                 bool occupied = false;
                 if (gm) {
@@ -146,7 +151,7 @@ void dcards::resolve_scheme(const card& played_card, hero& dracula, hero& oppone
             }
         }
         
-        
+        // Move sisters
         for (auto &sister : all_sisters) {
             if (sister->isalive()) {
                 auto sisNeighbors = board.getNeighborIds(sister->getx());
@@ -193,7 +198,7 @@ void dcards::resolve_combat_effects(const card& attacker_card, hero& attacker,
     int final_defense = defender_card.getdefense();
     bool attacker_won = false;
     
-    
+    // Feint - cancel all effects
     if (atkname == "Feint" || defname == "Feint") {
         cout << "Feint: All card effects are canceled!" << endl;
         int base_damage = final_attack - final_defense;
@@ -207,7 +212,7 @@ void dcards::resolve_combat_effects(const card& attacker_card, hero& attacker,
         return;
     }
     
-    
+    // Attacker effects
     if (atkname == "Feeding Frenzy") {
         int sisternearenemy = 0;
         for (auto &s : all_sisters) {
@@ -233,13 +238,11 @@ void dcards::resolve_combat_effects(const card& attacker_card, hero& attacker,
         auto &attacker_hand = attacker.gethand();
         size_t cards_in_hand = attacker_hand.size();
         if (cards_in_hand > 0) {
-            int discardcards = 0;
-            cout << "How many cards to discard? (Max: " << cards_in_hand << "): ";
-            cin >> discardcards;
+            int discardcards = 0; // defensive cleanup: was a blocking cin >>, see note near Mistform above
             if (discardcards > static_cast<int>(cards_in_hand)) discardcards = cards_in_hand;
             if (discardcards < 0) discardcards = 0;
             
-            
+            // Erase from end to beginning to avoid index issues
             for (int i = discardcards - 1; i >= 0; i--) {
                 attacker_hand.erase(attacker_hand.begin() + i);
                 final_attack += 1;
@@ -248,14 +251,14 @@ void dcards::resolve_combat_effects(const card& attacker_card, hero& attacker,
         }
     }
     
-    
+    // Defender effects
     if (defname == "Look Into My Eyes") {
         final_defense += attacker_card.getboost();
         cout << "Look Into My Eyes: Defense boosted by " << attacker_card.getboost() 
              << " (Total: " << final_defense << ")" << endl;
     }
     
-    
+    // Calculate damage
     int damage = final_attack - final_defense;
     if (damage > 0) {
         attacker_won = true;
@@ -265,7 +268,7 @@ void dcards::resolve_combat_effects(const card& attacker_card, hero& attacker,
         cout << defender.getname() << " defended successfully" << endl;
     }
     
-    
+    // After combat effects
     if (atkname == "Exploit") {
         attacker.drawcard();
         cout << "Exploit: Drew 1 card" << endl;
@@ -298,11 +301,11 @@ void dcards::resolve_combat_effects(const card& attacker_card, hero& attacker,
         if (attacker_won) {
             auto defNeighbors = board.getNeighborIds(defender.getx());
             if (!defNeighbors.empty()) {
-                
+                // Find empty neighbor
                 for (int node : defNeighbors) {
                     bool occupied = false;
-                    
-                    
+                    // Check if occupied by any character
+                    // This is simplified - should check all characters
                     attacker.setposition(node);
                     cout << "Thirst for Sustenance: Dracula placed adjacent to opponent at n" 
                          << node << endl;

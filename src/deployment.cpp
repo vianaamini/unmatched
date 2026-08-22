@@ -72,13 +72,13 @@ Deployment::PlacementResult Deployment::placeHero(character* hero, int node) {
     hero->setposition(node);
     markOccupied(node);
 
-    
-    
-    
-    
-    
+    // The Invisible Man has no Sidekick figure. Instead, at deployment he
+    // places his three fog tokens on separate spaces within his own
+    // starting Zone -- this is the one place every hero gets placed, so
+    // it's the right spot to set that up automatically instead of relying
+    // on every call site to remember to do it.
     if (InvisibleMan* invMan = dynamic_cast<InvisibleMan*>(hero)) {
-        invMan->setBoard(board); 
+        invMan->setBoard(board); // make sure the board is wired even if setBoard() wasn't called yet
         invMan->initializeFogTokens(node);
     }
 

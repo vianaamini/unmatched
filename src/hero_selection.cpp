@@ -108,7 +108,7 @@ HeroSelectionResult HeroSelection::show(int firstPlayer)
         bool enterHover = CheckCollisionPointRec(mouse, enterButton);
         bool retreatHover = CheckCollisionPointRec(mouse, retreatButton);
 
-        
+        // تایید نهایی و ورود به بازی
         if (secondSelected && enterHover && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
         {
             std::string player1Hero = (firstPlayer == 1) ? fighters[selectedFirst].name : fighters[selectedSecond].name;

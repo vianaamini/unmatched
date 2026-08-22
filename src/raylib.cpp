@@ -215,6 +215,11 @@ void DrawCharacterOnNode(character* c, Texture2D avatarTex, Color borderColor, f
     DrawCircleLines((int)renderX, (int)renderY, radius + 1.0f, ring);
 }
 
+// Fog tokens don't animate/move every frame like fighters do, so they don't
+// need the CharAnimState smoothing that DrawCharacterOnNode relies on --
+// they're just drawn straight at the node's board coordinates, nudged
+// toward the corner of the space so the token stays visible even when a
+// fighter is also standing on that node.
 void DrawFogTokenOnNode(int nodeId, Board& board, Rectangle mapDest, float refWidth, float refHeight, Texture2D tex) {
     std::string nodeName = "n" + std::to_string(nodeId);
     auto pos = board.getCoordinates(nodeName);
@@ -420,12 +425,14 @@ static void DrawDefenseModal(GameManager& gm, Board& board, ActionBarState& acti
     hero* defender = actionBar.pendingDefender;
     if (!defender) return;
 
-    bool suppressClicks = actionBar.defenseJustOpened;
-    actionBar.defenseJustOpened = false;
-
     std::string faction = HeroFactionLabel(defender);
     auto& hand = defender->gethand();
 
+    // Only defense/multipurpose cards are legal as a defense play -- an
+    // attack-only card was previously clickable here too, which let a
+    // pure "attack" card get used to defend (its .getdefense() value,
+    // usually 0, silently went into the damage math instead of being
+    // rejected outright).
     std::vector<int> defendable;
     for (int i = 0; i < (int)hand.size(); i++) {
         if (hand[i].gettype() == cardtype::defense || hand[i].gettype() == cardtype::multipurpose) {
@@ -457,12 +464,12 @@ static void DrawDefenseModal(GameManager& gm, Board& board, ActionBarState& acti
     DrawRectangleLinesEx(noDefenseBtn, 2, GetColor(0x9E2230FF));
     DrawTextCentered(GetSemiFont(), "NO DEFENSE", noDefenseBtn.x + noDefenseBtn.width / 2.0f, noDefenseBtn.y + 7, 13, 0.7f, GetColor(0xE5C158FF));
 
-    if (!suppressClicks && CheckCollisionPointRec(mousePos, noDefenseBtn) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+    if (CheckCollisionPointRec(mousePos, noDefenseBtn) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
         ActionBar_ResolveDefense(actionBar, gm, board, draculaHero, nullptr);
         return;
     }
 
-    int cardCount = (int)defendable.size();
+    int cardCount = (int)hand.size();
     if (cardCount > 7) cardCount = 7;
 
     float cardW = 108.0f;
@@ -473,10 +480,9 @@ static void DrawDefenseModal(GameManager& gm, Board& board, ActionBarState& acti
     float startY = modalY + 80.0f;
 
     for (int i = 0; i < cardCount; i++) {
-        int handIdx = defendable[i];
         Rectangle cardRect = { startX + i * (cardW + spacing), startY, cardW, cardH };
 
-        std::string cardName = hand[handIdx].get_name();
+        std::string cardName = hand[i].get_name();
         std::string filename = GetCardFilename(cardName, faction);
         Texture2D tex = {0};
         auto it = cardTextures.find(filename);
@@ -490,27 +496,8 @@ static void DrawDefenseModal(GameManager& gm, Board& board, ActionBarState& acti
             }
         }
 
-        if (!suppressClicks && CheckCollisionPointRec(mousePos, cardRect) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
-            card chosen = hand[handIdx];
-            std::string chosenName = chosen.get_name();
-
-            if (chosenName == "Dash") {
-                actionBar.combatChosenDefenseCard = chosen;
-                actionBar.combatTargetHero = actionBar.pendingDefender;
-                actionBar.combatTargetIsDefender = true;
-                actionBar.awaitingDefense = false;
-                actionBar.targetPrompt = TargetPrompt::DashNode;
-                return;
-            }
-            if (chosenName == "Elementary") {
-                actionBar.combatChosenDefenseCard = chosen;
-                actionBar.combatTargetHero = actionBar.pendingDefender;
-                actionBar.combatTargetIsDefender = true;
-                actionBar.awaitingDefense = false;
-                actionBar.targetPrompt = TargetPrompt::ElementaryPredict;
-                return;
-            }
-
+        if (CheckCollisionPointRec(mousePos, cardRect) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+            card chosen = hand[i];
             ActionBar_ResolveDefense(actionBar, gm, board, draculaHero, &chosen);
             return;
         }
@@ -530,14 +517,14 @@ static void DrawDefenseModal(GameManager& gm, Board& board, ActionBarState& acti
             } else {
                 DrawTextEx(GetSemiFont(), cardName.c_str(), { cardRect.x + 5, cardRect.y + 12 }, 20, 0.5f, BLACK);
             }
-            std::string defLine = "DEF " + std::to_string(hand[handIdx].getdefense()) +
-                                   "  BST " + std::to_string(hand[handIdx].getboost());
+            std::string defLine = "DEF " + std::to_string(hand[i].getdefense()) +
+                                   "  BST " + std::to_string(hand[i].getboost());
             DrawTextEx(GetRegularFont(), defLine.c_str(), { cardRect.x + 5, cardRect.y + cardRect.height - 26 }, 14, 0.3f, GetColor(0x3A1A1AFF));
         }
     }
 
     if (cardCount == 0) {
-        std::string empty = "No valid defense card - click NO DEFENSE";
+        std::string empty = "No cards in hand - click NO DEFENSE";
         DrawTextCentered(GetRegularFont(), empty.c_str(), modalX + modalW / 2.0f, modalY + modalH / 2.0f, 15, 0.5f, GetColor(0xA39BA0FF));
     }
 }
@@ -958,13 +945,6 @@ Vector2 mousePos = GetMousePosition();
         if (actionBar.targetPrompt == TargetPrompt::EliminateCard) {
             ActionBar_DrawEliminatePicker(actionBar, gm, activeHero, draculaHero, mousePos, sw, sh);
         }
-        if (actionBar.targetPrompt == TargetPrompt::BeastformDiscard) {
-            ActionBar_DrawBeastformPicker(actionBar, mousePos, sw, sh);
-        }
-        if (actionBar.targetPrompt == TargetPrompt::ElementaryPredict) {
-            ActionBar_DrawElementaryPicker(actionBar, gm, board, draculaHero, mousePos, sw, sh);
-        }
-        
         if (gameOver) {
             DrawRectangle(0, 0, (int)sw, (int)sh, Fade(BLACK, 0.75f));
             std::string winnerName = winner ? winner->getname() : "Nobody";

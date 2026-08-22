@@ -38,7 +38,7 @@ deck sherlockdeck() {
                        "Look at opponent's hand and burn 1 card"));
     }
     
-    
+    // Feint - consistent boost value = 1 (as per Sherlock deck)
     for (int i = 0; i < 3; i++) {
         d.addcard(card("Feint", cardtype::multipurpose, 2, 2, 1, cardowner::any,
                        "Cancel all effects on opponent's card"));
@@ -131,11 +131,7 @@ deck draculadeck() {
     }
 
     for (int i = 0; i < 3; i++) {
-        
-        
-        
-        
-        d.addcard(card("Feint", cardtype::multipurpose, 2, 2, 2, cardowner::any,
+        d.addcard(card("Feint", cardtype::multipurpose, 2, 2, 1, cardowner::any,
                        "Cancel all effects on opponent's card"));
     }
     
