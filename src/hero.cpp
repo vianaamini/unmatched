@@ -751,10 +751,29 @@ bool hero::attack(
     bool attackerWon = false;
     bool effectsCanceled = false;
 
-    if (defenseCard.get_name() == "Feint")
+    // Sherlock's passive: "cards belonging to Watson or Sherlock are not
+    // disabled by other cards' events" -- this is always on whenever
+    // Sherlock Holmes is on either side of the fight, not something that
+    // needs to be turned on. Feint says "cancel all effects on your
+    // OPPONENT's card" -- so if the attacker played Feint, it's the
+    // defender's card that would normally get canceled (and vice versa);
+    // this only skips the cancellation when that specific card belongs to
+    // Sherlock or Watson.
+    bool sherlockInFight =
+        getname() == "Sherlock Holmes" || target.getname() == "Sherlock Holmes";
+
+    bool defenseCardProtected =
+        sherlockInFight &&
+        (defenseCard.getowner() == cardowner::sherlock || defenseCard.getowner() == cardowner::watson);
+
+    bool attackCardProtected =
+        sherlockInFight &&
+        (attackCard.getowner() == cardowner::sherlock || attackCard.getowner() == cardowner::watson);
+
+    if (attackCard.get_name() == "Feint" && !defenseCardProtected)
         effectsCanceled = true;
 
-    if (attackCard.get_name() == "Feint")
+    if (defenseCard.get_name() == "Feint" && !attackCardProtected)
         effectsCanceled = true;
 
     if (!effectsCanceled) {

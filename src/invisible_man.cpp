@@ -6,6 +6,25 @@
 #include <queue>
 #include <unordered_set>
 
+// ---------------------------------------------------------------------------
+// Small local helpers. Kept file-local so no header changes are required.
+//
+// isWithinSteps: BFS reachability check used to validate "move a fog token
+// up to N spaces" style effects (Covert Preparation, Into Thin Air, ...).
+//
+// pickFogMoveDestination: none of the fog/positioning cards below have a
+// real player-facing target picker yet (there's no TargetPrompt wired up
+// for them, unlike Mistform/Ravening Seduction). The previous
+// implementation used blocking std::cin >> calls to ask for a choice on
+// the console -- but this is a raylib GUI app with no visible console
+// input for the player, so every one of those calls froze the whole
+// window the instant the card was played. This BFS helper picks a
+// deterministic destination (the farthest reachable, optionally
+// unoccupied, space within maxSteps) instead, so these cards always
+// resolve immediately without ever blocking. It's a simplification --
+// ideally each of these gets a proper click-to-target flow like Mistform
+// has -- but it keeps the game playable and non-blocking in the meantime.
+// ---------------------------------------------------------------------------
 static bool isWithinSteps(const Board* b, int from, int to, int steps) {
     if (!b) return false;
     if (from == to) return true;

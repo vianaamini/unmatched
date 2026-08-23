@@ -23,10 +23,19 @@ enum class TargetPrompt {
     RaveningNode,
     ConfirmSuspicionValue,
     EliminateCard,
+
     DashNode,
     AfootNode,
     BeastformDiscard,
-    ElementaryPredict
+    ElementaryPredict,
+
+    // NEW: the two per-hero "Special Ability" button flows (see the new
+    // ability button drawn under each portrait). Dracula's Blood Drain
+    // needs the player to click which adjacent fighter takes the damage;
+    // the Invisible Man's fog-to-fog teleport needs the player to click
+    // which of his other fog tokens to step onto.
+    DraculaAbilityTarget,
+    FogTeleportTarget
 };
 
 struct ActionBarState {
@@ -36,14 +45,36 @@ struct ActionBarState {
     card pendingBoostCard;
     std::vector<std::string> validMoveTargets;
     bool canMove = false;
+    // Dracula's Blood Drain is a free, once-per-turn ability (not one of
+    // his 2 actions) -- this tracks whether he's already used it this
+    // turn. Reset whenever a new turn begins.
+    bool draculaAbilityUsed = false;
+    // Sherlock's ability is a passive that's simply always on (see
+    // hero::attack()) -- this only tracks whether the small "what does
+    // this do" info popup under his portrait is open.
+    bool showSherlockAbilityInfo = false;
     bool canAttack = false;
     bool canScheme = false;
     character* selectedActor = nullptr;
     bool awaitingDefense = false;
+    // Guards against the SAME mouse click that opened the defense modal
+    // (by clicking an enemy on the map to attack) also being read as a
+    // click INSIDE the modal that same frame -- IsMouseButtonPressed()
+    // stays true for the whole frame it was pressed in, so without this,
+    // if the attacked character's board position happened to fall under
+    // where the modal draws its cards, the defense would resolve itself
+    // instantly instead of waiting for a real, separate click.
     bool defenseJustOpened = false;
     hero* pendingAttacker = nullptr;
-    character* pendingAttackerPosition = nullptr;
     hero* pendingDefender = nullptr;
+    // NEW: when the physical attacker is a sidekick (Sister/Watson) rather
+    // than a hero, pendingAttacker still holds the CONTROLLING hero (whose
+    // hand/actions the attack card is drawn from), while this holds the
+    // character whose board position/adjacency actually determines range.
+    // nullptr means "same as pendingAttacker" (normal hero attacking).
+    character* pendingAttackerPosition = nullptr;
+    // Same idea for the defending side: pendingDefender is the CONTROLLING
+    // hero, pendingDefenderTarget is who actually takes the damage.
     character* pendingDefenderTarget = nullptr;
     card pendingAttackCard;
     bool draculaHasCard = false;
@@ -104,6 +135,8 @@ void ActionBar_Update(
     hero* draculaHero
 );
 
+bool CardOwnerMatchesCharacter(const card& c, character* actor);
+
 bool ActionBar_HandleCardClick(
     ActionBarState& state,
     GameManager& gm,
@@ -112,7 +145,8 @@ bool ActionBar_HandleCardClick(
     int cardIndex,
     bool& showHandFlag,
     Board& board,
-    hero* draculaHero
+    hero* draculaHero,
+    character* actingChar
 );
 
 bool ActionBar_IsCardSelectedForAttack(
@@ -188,6 +222,26 @@ void ActionBar_DrawCardEffectsBox(
 
 bool ActionBar_IsTargeting(const ActionBarState& state);
 
+// NEW: Special Ability button (drawn under each hero's portrait).
+// actingChar is whichever character the player currently has selected
+// (matters for the Invisible Man, since the fog-teleport is about HIS
+// position specifically). Returns true if the button press started a
+// targeting flow or resolved immediately (Dracula's case still needs a
+// target click after this returns).
+bool ActionBar_CanUseSpecialAbility(
+    const ActionBarState& state,
+    GameManager& gm,
+    hero* activeHero,
+    character* actingChar
+);
+
+void ActionBar_ActivateSpecialAbility(
+    ActionBarState& state,
+    GameManager& gm,
+    hero* activeHero,
+    character* actingChar
+);
+
 void ActionBar_UpdateTargeting(
     ActionBarState& state,
     GameManager& gm,
@@ -196,7 +250,8 @@ void ActionBar_UpdateTargeting(
     Board& board,
     Rectangle mapDest,
     Texture2D boardTex,
-    Vector2 mousePos
+    Vector2 mousePos,
+    character* actingChar = nullptr
 );
 
 void ActionBar_DrawTargetingHighlights(

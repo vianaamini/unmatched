@@ -16,4 +16,6 @@ public:
     void setAllCharacters(std::vector<character*>* chars);
 
     virtual void useability() override;
+
+    bool useAbilityOn(character* target);
 };
