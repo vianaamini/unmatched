@@ -99,15 +99,6 @@ static void ActionBar_CompleteAction(ActionBarState& state, GameManager& gm)
     gm.getTurnManager().endTurn();
 }
 
-// Mistform and Rolling Fog both say "...and gain 1 action" -- but the
-// hero's own internal `actions` counter (incremented inside
-// hero::scheme()/InvisibleMan::executeSchemeCard()) is NOT what actually
-// drives the turn (TurnManager::actionsRemaining is, via endTurn() above),
-// and TurnManager has no public way to grant a bonus action from outside.
-// Simply not calling endTurn() for these two cards has the identical net
-// effect as "pay 1 action to play this, then get 1 action back" -- the
-// action slot this card would have consumed is just never spent -- without
-// needing to touch TurnManager's internals at all.
 static bool CardGrantsBonusAction(const std::string& name)
 {
     return name == "Mistform" || name == "Rolling Fog";
@@ -127,6 +118,7 @@ static void ActionBar_ProceedToDefense(ActionBarState& state)
     state.combatTargetIsDefender = false;
 
     state.awaitingDefense = true;
+    state.defenseJustOpened = true;
     state.currentAction = ActionMode::None;
     state.selectedCardIndex = -1;
 }
@@ -162,6 +154,7 @@ void ActionBar_ResetOnTurnEnd(ActionBarState& state)
     state.selectedCardIndex = -1;
     state.hasPendingBoost = false;
     state.awaitingDefense = false;
+    state.defenseJustOpened = false;
     state.pendingAttacker = nullptr;
     state.pendingAttackerPosition = nullptr;
     state.pendingDefender = nullptr;
@@ -206,17 +199,6 @@ void ActionBar_ResolveDefense(
     bool resolved;
 
     if (sidekickInvolved) {
-        // A Sister or Watson is attacking and/or defending: not a full
-        // hero::attack(hero&,...) call (that needs hero& on both sides, and
-        // sidekicks don't have their own hand/deck -- they use their
-        // controlling hero's), so this applies the same core combat math --
-        // Feint cancels effects, otherwise damage = max(0, attack -
-        // defense) -- directly. This intentionally doesn't replicate every
-        // hero-specific card combo (Feeding Frenzy, Look Into My Eyes,
-        // etc.) when a sidekick is on either side, but it means Sisters and
-        // Watson can actually fight, and the defending player always gets a
-        // genuine card choice and mitigation instead of guaranteed flat
-        // damage.
         character* realTarget = damageTarget ? damageTarget : static_cast<character*>(defender);
 
         bool effectsCanceled =
@@ -249,6 +231,7 @@ void ActionBar_ResolveDefense(
     }
 
     state.awaitingDefense = false;
+    state.defenseJustOpened = false;
     state.pendingAttacker = nullptr;
     state.pendingAttackerPosition = nullptr;
     state.pendingDefender = nullptr;
@@ -284,11 +267,6 @@ void ActionBar_Update(
     bool hasActions = gm.getActionsRemaining() > 0;
 
     state.canMove = hasActions && actingChar != nullptr;
-    // Sisters and Watson can attack too -- they use their controlling
-    // hero's hand/deck, but attack from their own board position. So the
-    // requirement here is "there's an acting character AND a hero to draw
-    // the attack card from" (activeHero is always the current team's
-    // hero), not "the acting character IS specifically a hero".
     state.canAttack = hasActions && actingChar != nullptr && activeHero != nullptr;
     state.canScheme = hasActions && activeHero != nullptr;
 
@@ -377,11 +355,6 @@ void ActionBar_Update(
         auto enemies = gm.getEnemies(actingChar);
 
         for (character* enemyChar : enemies) {
-            // Range is based on the ACTING CHARACTER's own position, not
-            // necessarily the hero's -- this is what lets a Sister or
-            // Watson (who share their hero's hand/deck but stand on their
-            // own space) attack an adjacent enemy even while their hero is
-            // elsewhere on the board.
             if (!board.isAdjacent(actingChar->getx(), enemyChar->getx()))
                 continue;
 
@@ -391,11 +364,6 @@ void ActionBar_Update(
             if (!CheckCollisionPointCircle(mousePos, pos, clickRadius))
                 continue;
 
-            // The attack card always comes from activeHero's hand -- in
-            // this game the deck/hand belongs to the player's hero and is
-            // shared by their sidekicks (matches the rulebook's "Sidekick"
-            // card-ownership rule: sidekicks play from that same shared
-            // hand), not something each fighter carries individually.
             auto& hand = activeHero->gethand();
 
             if (state.selectedCardIndex >= 0 &&
@@ -424,15 +392,6 @@ void ActionBar_Update(
                     state.pendingDefender = enemyHero;
                     state.pendingDefenderTarget = nullptr;
                 } else {
-                    // BUGFIX: attacking a sidekick (Sister/Watson) used to
-                    // resolve immediately via hero::attack(character&,...),
-                    // which does flat unmitigated damage with NO defense
-                    // step at all -- the defending player never got to
-                    // choose (or even play) a defense card. This now finds
-                    // that sidekick's controlling hero and opens the exact
-                    // same "CHOOSE YOUR DEFENSE" flow used for hero-vs-hero
-                    // combat, just with the damage ultimately applied to
-                    // the sidekick instead of the hero.
                     hero* controllingHero = nullptr;
                     for (character* ally : gm.getAllies(enemyChar)) {
                         controllingHero = dynamic_cast<hero*>(ally);
@@ -440,9 +399,6 @@ void ActionBar_Update(
                     }
 
                     if (!controllingHero) {
-                        // No hero found on that side at all (shouldn't
-                        // normally happen) -- flat-damage fallback rather
-                        // than getting stuck with no way to proceed.
                         int dmg = std::max(0, attackCard.getattack());
                         if (dmg > 0) enemyChar->takedamage(dmg);
                         activeHero->useAction();
@@ -458,12 +414,6 @@ void ActionBar_Update(
 
                 std::string atkName = attackCard.get_name();
 
-                // Dash / The Game is Afoot / Beastform each need one extra
-                // hero-side field (dashTargetNode, etc.) set through
-                // hero::attack()'s rich pipeline -- that pipeline only runs
-                // for genuine hero-vs-hero combat, so a sidekick on either
-                // side skips straight to the simplified defense flow
-                // instead of these sub-prompts.
                 if (!attackerIsSidekick && enemyHero && atkName == "Dash") {
                     state.combatTargetHero = actingHero;
                     state.combatTargetIsDefender = false;
@@ -478,6 +428,7 @@ void ActionBar_Update(
                     state.targetPrompt = TargetPrompt::BeastformDiscard;
                 } else {
                     state.awaitingDefense = true;
+                    state.defenseJustOpened = true;
                 }
             }
 
@@ -485,7 +436,6 @@ void ActionBar_Update(
         }
     }
 }
-
 
 static std::string ActionBar_FindNodeAtPos(
     Board& board,
@@ -584,7 +534,9 @@ void ActionBar_UpdateTargeting(
         return;
 
     if (state.targetPrompt == TargetPrompt::ConfirmSuspicionValue ||
-        state.targetPrompt == TargetPrompt::EliminateCard)
+        state.targetPrompt == TargetPrompt::EliminateCard ||
+        state.targetPrompt == TargetPrompt::BeastformDiscard ||
+        state.targetPrompt == TargetPrompt::ElementaryPredict)
         return;
 
     if (!IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
@@ -653,6 +605,8 @@ void ActionBar_UpdateTargeting(
             state.targetPrompt = TargetPrompt::None;
             state.combatTargetHero = nullptr;
             state.combatTargetIsDefender = false;
+            state.awaitingDefense = true;
+            state.defenseJustOpened = false;
             ActionBar_ResolveDefense(state, gm, board, draculaHero, &state.combatChosenDefenseCard);
         } else {
             ActionBar_ProceedToDefense(state);
@@ -738,7 +692,7 @@ void ActionBar_DrawValuePicker(
 
     float btnSize = 46.0f;
     float gap = 10.0f;
-    int count = 7; 
+    int count = 7;
     float totalW = count * btnSize + (count - 1) * gap;
     float startX = modalRect.x + (modalW - totalW) / 2.0f;
     float y = modalRect.y + 70.0f;
@@ -846,7 +800,7 @@ void ActionBar_DrawBeastformPicker(
 
     hero* attacker = state.combatTargetHero;
     int maxDiscard = attacker->handsize();
-    if (maxDiscard > 8) maxDiscard = 8; 
+    if (maxDiscard > 8) maxDiscard = 8;
     float modalW = 420.0f;
     float modalH = 220.0f;
     Rectangle modalRect = { (sw - modalW) / 2.0f, (sh - modalH) / 2.0f, modalW, modalH };
@@ -858,7 +812,7 @@ void ActionBar_DrawBeastformPicker(
     const char* title = "BEASTFORM - CARDS TO DISCARD";
     DrawTextCenteredAB(GetTitleFont(), title, modalRect.x + modalW / 2.0f, modalRect.y + 12, 19, 0.6f, GetColor(0xE5C158FF));
 
-    int count = maxDiscard + 1; 
+    int count = maxDiscard + 1;
     float btnSize = 46.0f;
     float gap = 10.0f;
     float totalW = count * btnSize + (count - 1) * gap;
@@ -909,7 +863,7 @@ void ActionBar_DrawElementaryPicker(
     const char* title = "ELEMENTARY - PREDICT THE ATTACK VALUE";
     DrawTextCenteredAB(GetTitleFont(), title, modalRect.x + modalW / 2.0f, modalRect.y + 12, 19, 0.6f, GetColor(0xE5C158FF));
 
-    int count = 7; 
+    int count = 7;
     float btnSize = 46.0f;
     float gap = 10.0f;
     float totalW = count * btnSize + (count - 1) * gap;
@@ -932,6 +886,8 @@ void ActionBar_DrawElementaryPicker(
             state.targetPrompt = TargetPrompt::None;
             state.combatTargetHero = nullptr;
             state.combatTargetIsDefender = false;
+            state.awaitingDefense = true;
+            state.defenseJustOpened = false;
             ActionBar_ResolveDefense(state, gm, board, draculaHero, &state.combatChosenDefenseCard);
             return;
         }
@@ -939,10 +895,6 @@ void ActionBar_DrawElementaryPicker(
 }
 
 static bool IsCardOwnerAvailable(const card& c, GameManager& gm) {
-    // Rulebook: "if a character has been defeated, you can no longer play
-    // cards belonging to them for an action -- but you can still burn them
-    // for a Boost." Applies to Attack and PlayCard selections; BoostCard
-    // deliberately does NOT call this.
     auto isAlive = [&](const std::string& namePart) -> bool {
         bool exists = false;
         for (character* ch : gm.getAllCharacters()) {
@@ -951,7 +903,7 @@ static bool IsCardOwnerAvailable(const card& c, GameManager& gm) {
                 if (ch->isalive()) return true;
             }
         }
-        return !exists; // that role isn't even in this matchup -- don't block on it
+        return !exists;
     };
 
     switch (c.getowner()) {
@@ -1005,11 +957,6 @@ bool ActionBar_HandleCardClick(
     }
 
     if (state.currentAction == ActionMode::PlayCard) {
-        // Multipurpose cards can be played as a scheme card too (the
-        // rulebook lets a multipurpose card be used as an attack, a
-        // defense, OR a scheme card -- the player picks at the moment
-        // it's played). Only rejecting cardtype::defense/attack-only
-        // cards here, not multipurpose ones.
         if (clickedCard.gettype() != cardtype::scheme &&
             clickedCard.gettype() != cardtype::multipurpose)
             return false;
