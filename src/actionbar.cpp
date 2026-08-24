@@ -5,6 +5,7 @@
 #include <string>
 #include <iostream>
 #include <algorithm>
+#include <vector>
 
 Vector2 ActionBar_NodeScreenPos(Board& board, const std::string& nodeName, Rectangle mapDest, Texture2D boardTex)
 {
@@ -1533,24 +1534,77 @@ void ActionBar_DrawActorSelection(
     }
 }
 
+static float g_cardEffectsScroll[2] = { 0.0f, 0.0f };
+
+// Breaks text into lines that each fit within maxWidth at the given font
+// size, breaking on spaces (word-wrap). Used so card names/effect text
+// never get drawn past the edge of their box.
+static std::vector<std::string> WrapTextToWidth(Font font, const std::string& text, float maxWidth, float fontSize, float spacing)
+{
+    std::vector<std::string> lines;
+    if (text.empty())
+        return lines;
+
+    std::string word;
+    std::string currentLine;
+
+    for (size_t i = 0; i <= text.size(); ++i) {
+        bool atEnd = (i == text.size());
+        char ch = atEnd ? ' ' : text[i];
+
+        if (ch == ' ') {
+            if (!word.empty()) {
+                std::string candidate = currentLine.empty() ? word : (currentLine + " " + word);
+                Vector2 sz = MeasureTextEx(font, candidate.c_str(), fontSize, spacing);
+                if (sz.x > maxWidth && !currentLine.empty()) {
+                    lines.push_back(currentLine);
+                    currentLine = word;
+                } else {
+                    currentLine = candidate;
+                }
+                word.clear();
+            }
+        } else {
+            word += ch;
+        }
+    }
+
+    if (!currentLine.empty())
+        lines.push_back(currentLine);
+
+    return lines;
+}
+
 static void DrawCardEffectsCell(
     Rectangle cell,
     const char* ownerLabel,
     bool hasCard,
     const card& c,
-    Color accent
+    Color accent,
+    int scrollIndex
 )
 {
     DrawRectangleRec(cell, GetColor(0x0B080CFF));
     DrawRectangleLinesEx(cell, 2, accent);
-    DrawTextEx(GetSemiFont(), ownerLabel, { cell.x + 8, cell.y + 5 }, 13, 0.4f, accent);
+    DrawTextEx(GetSemiFont(), ownerLabel, { cell.x + 8, cell.y + 5 }, 14, 0.4f, accent);
 
     if (!hasCard) {
-        DrawTextEx(GetRegularFont(), "No card played yet", { cell.x + 8, cell.y + 26 }, 13, 0.3f, GetColor(0xA39BA0FF));
+        DrawTextEx(GetRegularFont(), "No card played yet", { cell.x + 8, cell.y + 27 }, 14, 0.3f, GetColor(0xA39BA0FF));
+        g_cardEffectsScroll[scrollIndex] = 0.0f;
         return;
     }
 
-    DrawTextEx(GetSemiFont(), c.get_name().c_str(), { cell.x + 8, cell.y + 26 }, 15, 0.4f, GetColor(0xE5C158FF));
+    float pad = 8.0f;
+    float contentW = cell.width - pad * 2.0f;
+
+    // Card name -- wrapped too, so a long name never pushes past the
+    // cell's right edge.
+    auto nameLines = WrapTextToWidth(GetSemiFont(), c.get_name(), contentW, 16, 0.4f);
+    float y = cell.y + 27;
+    for (const auto& ln : nameLines) {
+        DrawTextEx(GetSemiFont(), ln.c_str(), { cell.x + pad, y }, 16, 0.4f, GetColor(0xE5C158FF));
+        y += 19.0f;
+    }
 
     std::string stats;
 
@@ -1564,12 +1618,70 @@ static void DrawCardEffectsCell(
         stats = "BOOST " + std::to_string(c.getboost());
     }
 
-    DrawTextEx(GetRegularFont(), stats.c_str(), { cell.x + 8, cell.y + 47 }, 13, 0.3f, GetColor(0xC2B6B9FF));
+    DrawTextEx(GetRegularFont(), stats.c_str(), { cell.x + pad, y + 2 }, 14, 0.3f, GetColor(0xC2B6B9FF));
+    y += 23.0f;
+
+    // Divider between the fixed header (name/stats) and the scrollable
+    // effect text below it.
+    DrawLine((int)(cell.x + pad), (int)y, (int)(cell.x + cell.width - pad), (int)y, Fade(accent, 0.4f));
+    y += 7.0f;
 
     std::string effect = c.geteffect();
+    if (effect.empty())
+        return;
 
-    if (!effect.empty()) {
-        DrawTextEx(GetRegularFont(), effect.c_str(), { cell.x + 8, cell.y + 65 }, 12, 0.2f, GetColor(0xA39BA0FF));
+    Rectangle scrollArea = { cell.x + pad, y, contentW, (cell.y + cell.height) - y - pad };
+    if (scrollArea.height < 10.0f)
+        return;
+
+    const float effectFontSize = 13.0f;
+    const float effectSpacing = 0.25f;
+    const float lineHeight = 17.0f;
+    const float scrollbarW = 5.0f;
+
+    auto effectLines = WrapTextToWidth(GetRegularFont(), effect, scrollArea.width - scrollbarW - 4.0f, effectFontSize, effectSpacing);
+
+    float totalTextHeight = effectLines.size() * lineHeight;
+    float maxScroll = totalTextHeight - scrollArea.height;
+    if (maxScroll < 0.0f)
+        maxScroll = 0.0f;
+
+    // Scroll with the mouse wheel while hovering this cell.
+    Vector2 mouse = GetMousePosition();
+    if (CheckCollisionPointRec(mouse, scrollArea)) {
+        float wheel = GetMouseWheelMove();
+        if (wheel != 0.0f) {
+            g_cardEffectsScroll[scrollIndex] -= wheel * 20.0f;
+        }
+    }
+    if (g_cardEffectsScroll[scrollIndex] < 0.0f)
+        g_cardEffectsScroll[scrollIndex] = 0.0f;
+    if (g_cardEffectsScroll[scrollIndex] > maxScroll)
+        g_cardEffectsScroll[scrollIndex] = maxScroll;
+
+    BeginScissorMode((int)scrollArea.x, (int)scrollArea.y, (int)scrollArea.width, (int)scrollArea.height);
+    float ty = scrollArea.y - g_cardEffectsScroll[scrollIndex];
+    for (const auto& ln : effectLines) {
+        if (ty + lineHeight >= scrollArea.y && ty <= scrollArea.y + scrollArea.height) {
+            DrawTextEx(GetRegularFont(), ln.c_str(), { scrollArea.x, ty }, effectFontSize, effectSpacing, GetColor(0xC2B6B9FF));
+        }
+        ty += lineHeight;
+    }
+    EndScissorMode();
+
+    // Thin scrollbar, only shown when the text is taller than the box.
+    if (maxScroll > 0.0f) {
+        float trackX = scrollArea.x + scrollArea.width - scrollbarW;
+        DrawRectangle((int)trackX, (int)scrollArea.y, (int)scrollbarW, (int)scrollArea.height, Fade(GetColor(0x5A5055FF), 0.4f));
+
+        float thumbH = scrollArea.height * (scrollArea.height / totalTextHeight);
+        if (thumbH < 14.0f)
+            thumbH = 14.0f;
+        if (thumbH > scrollArea.height)
+            thumbH = scrollArea.height;
+
+        float thumbY = scrollArea.y + (scrollArea.height - thumbH) * (g_cardEffectsScroll[scrollIndex] / maxScroll);
+        DrawRectangle((int)trackX, (int)thumbY, (int)scrollbarW, (int)thumbH, accent);
     }
 }
 
@@ -1582,7 +1694,7 @@ void ActionBar_DrawCardEffectsBox(
     DrawRectangleLinesEx(box, 3, GetColor(0x342936FF));
 
     const char* title = "CARD EFFECTS";
-    float titleSize = 14.0f;
+    float titleSize = 15.0f;
     Vector2 titleDims = MeasureTextEx(GetSemiFont(), title, titleSize, 0.5f);
 
     DrawTextEx(
@@ -1621,7 +1733,8 @@ void ActionBar_DrawCardEffectsBox(
         state.team1Label.c_str(),
         state.draculaHasCard,
         state.draculaLastCard,
-        GetColor(0x9E2230FF)
+        GetColor(0x9E2230FF),
+        0
     );
 
     DrawCardEffectsCell(
@@ -1629,6 +1742,7 @@ void ActionBar_DrawCardEffectsBox(
         state.team2Label.c_str(),
         state.sherlockHasCard,
         state.sherlockLastCard,
-        GetColor(0x28558FFF)
+        GetColor(0x28558FFF),
+        1
     );
 }

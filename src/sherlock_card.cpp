@@ -17,12 +17,21 @@ void card_confirm_suspicion::execute_effect(character& attacker, character& defe
                                              const card& enemy_card, 
                                              bool is_adjacent, 
                                              bool attacker_won) {
-    std::cout << "Confirm Suspicion: Choose a value (1-6): ";
-    int value;
-    std::cin >> value;
-    
+    // BUGFIX: this used a blocking std::cin >> for the guessed value. This
+    // is a raylib GUI app with no visible console the player can type
+    // into, so this line froze the whole window solid the instant this
+    // card was played -- identical to the freeze bug already found and
+    // fixed in invisible_man.cpp. Removed the blocking read; the real fix
+    // is to collect the value through a UI picker (see
+    // ActionBar_DrawValuePicker / hero::confirmSuspicionGuess in hero.cpp,
+    // which already implements exactly this for Sherlock's other card of
+    // the same name -- this class-based version and hero.cpp's inline
+    // version appear to be two separate, duplicate implementations of the
+    // same card; see the note sent alongside this fix about that).
+    int value = -1;
+
     hero* defHero = dynamic_cast<hero*>(&defender);
-    if (defHero) {
+    if (defHero && value >= 0) {
         bool found = false;
         auto& hand = defHero->gethand();
         for (size_t i = 0; i < hand.size(); i++) {
@@ -98,9 +107,8 @@ void card_elementary::execute_effect(character& attacker, character& defender,
                                       const card& enemy_card, 
                                       bool is_adjacent, 
                                       bool attacker_won) {
-    std::cout << "Elementary: Predict opponent's attack value (1-6): ";
-    int predicted;
-    std::cin >> predicted;
+    // BUGFIX: same blocking-cin freeze as Confirm Suspicion above -- removed.
+    int predicted = -1;
     
     int actualAttack = enemy_card.getattack();
     if (predicted == actualAttack) {
@@ -122,9 +130,10 @@ void card_eliminate_impossible::execute_effect(character& attacker, character& d
         for (size_t i = 0; i < hand.size(); i++) {
             std::cout << "  [" << i << "] " << hand[i].get_name() << std::endl;
         }
-        std::cout << "Choose a card to burn (index): ";
-        int idx;
-        std::cin >> idx;
+        // BUGFIX: same blocking-cin freeze as above -- removed. Needs a
+        // real UI picker (hero.cpp's inline version of this same card
+        // already has one: ActionBar_DrawEliminatePicker).
+        int idx = -1;
         if (idx >= 0 && idx < (int)hand.size()) {
             std::cout << "Burned: " << hand[idx].get_name() << std::endl;
             hand.erase(hand.begin() + idx);

@@ -15,6 +15,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <filesystem>
 
 enum class GameState {
     MainMenu,
@@ -24,12 +25,40 @@ enum class GameState {
     Exit
 };
 
+// Looks at save_slot_1.txt / save_slot_2.txt / save_slot_3.txt and returns
+// the path of whichever one was written most recently, or "" if none of
+// the three slots exist yet.
+static std::string findMostRecentSaveSlot()
+{
+    std::string best;
+    std::filesystem::file_time_type bestTime{};
+    bool found = false;
+
+    for (int slot = 1; slot <= 3; ++slot)
+    {
+        std::string path = "save_slot_" + std::to_string(slot) + ".txt";
+        if (!std::filesystem::exists(path))
+            continue;
+
+        auto t = std::filesystem::last_write_time(path);
+        if (!found || t > bestTime)
+        {
+            best = path;
+            bestTime = t;
+            found = true;
+        }
+    }
+
+    return best;
+}
+
 int main()
 {
     GameState currentState = GameState::MainMenu;
     int firstPlayer = 1;
     std::string p1Hero = "";
     std::string p2Hero = "";
+    bool wantLoad = false;
 
     while (currentState != GameState::Exit)
     {
@@ -42,11 +71,13 @@ int main()
 
                 if (menuResult == MenuResult::Start)
                 {
+                    wantLoad = false;
                     currentState = GameState::AgeSelection;
                 }
                 else if (menuResult == MenuResult::Load)
                 {
-                    currentState = GameState::Playing; 
+                    wantLoad = true;
+                    currentState = GameState::Playing;
                 }
                 else
                 {
@@ -87,12 +118,12 @@ int main()
                 {
                     p1Hero = heroResult.player1Hero;
                     p2Hero = heroResult.player2Hero;
-                    
-                    firstPlayer = heroResult.firstPlayer; 
+
+                    firstPlayer = heroResult.firstPlayer;
 
                     currentState = GameState::Playing;
                 }
-                else 
+                else
                 {
                     currentState = GameState::AgeSelection;
                 }
@@ -103,15 +134,45 @@ int main()
             {
                 GameManager gm;
 
-                // Team 1 slot: Dracula unless nobody picked him, in which
-                // case Invisible Man takes that slot instead.
-                // Team 2 slot: Sherlock Holmes unless nobody picked him,
-                // in which case Invisible Man takes that slot instead.
-                // (Exactly one of the two players picks Invisible Man
-                // when he's in the match at all, so at most one slot
-                // ever falls back to him.)
-                bool team1IsDracula = (p1Hero == "DRACULA" || p2Hero == "DRACULA");
-                bool team2IsSherlock = (p1Hero == "SHERLOCK HOLMES" || p2Hero == "SHERLOCK HOLMES");
+                std::string loadFile;
+                bool team1IsDracula = false;
+                bool team2IsSherlock = false;
+
+                if (wantLoad)
+                {
+                    loadFile = findMostRecentSaveSlot();
+                    if (loadFile.empty())
+                    {
+                        std::cout << "No saved game found in slots 1-3." << std::endl;
+                        wantLoad = false;
+                        currentState = GameState::MainMenu;
+                        break;
+                    }
+
+                    std::string team1Type, team2Type;
+                    if (!gm.peekHeroTypes(loadFile, team1Type, team2Type))
+                    {
+                        std::cout << "Save file is corrupted: " << loadFile << std::endl;
+                        wantLoad = false;
+                        currentState = GameState::MainMenu;
+                        break;
+                    }
+
+                    team1IsDracula = (team1Type == "DRACULA");
+                    team2IsSherlock = (team2Type == "SHERLOCK");
+                }
+                else
+                {
+                    // Team 1 slot: Dracula unless nobody picked him, in which
+                    // case Invisible Man takes that slot instead.
+                    // Team 2 slot: Sherlock Holmes unless nobody picked him,
+                    // in which case Invisible Man takes that slot instead.
+                    // (Exactly one of the two players picks Invisible Man
+                    // when he's in the match at all, so at most one slot
+                    // ever falls back to him.)
+                    team1IsDracula = (p1Hero == "DRACULA" || p2Hero == "DRACULA");
+                    team2IsSherlock = (p1Hero == "SHERLOCK HOLMES" || p2Hero == "SHERLOCK HOLMES");
+                }
 
                 hero* team1Hero = nullptr;
                 sister* sister1Ptr = nullptr;
@@ -171,18 +232,50 @@ int main()
                 // any earlier meant getBoard() was still null, so every
                 // fog token silently fell back to sitting on the hero's
                 // own space instead of spreading across his Zone.
+                // When loading a save, loadGame() below will immediately
+                // overwrite these with the saved fog positions, but the
+                // hero still needs valid fog tokens to exist first.
                 if (InvisibleMan* invTeam1 = dynamic_cast<InvisibleMan*>(team1Hero))
                     invTeam1->initializeFogTokens(invTeam1->getposition());
                 if (InvisibleMan* invTeam2 = dynamic_cast<InvisibleMan*>(team2Hero))
                     invTeam2->initializeFogTokens(invTeam2->getposition());
 
-                // p1Team is whichever team number the fighter p1Hero
-                // picked ended up on above.
-                std::string team1PickName = team1IsDracula ? std::string("DRACULA") : std::string("INVISIBLE MAN");
-                int p1Team = (p1Hero == team1PickName) ? 1 : 2;
-                int firstTeam = (firstPlayer == 1) ? p1Team : (p1Team == 1 ? 2 : 1);
+                int firstTeam;
 
-                gm.startGame(firstTeam);
+                if (wantLoad)
+                {
+                    if (!gm.loadGame(loadFile))
+                    {
+                        std::cout << "Failed to load save file: " << loadFile << std::endl;
+                        delete team1Hero;
+                        delete sister1Ptr;
+                        delete sister2Ptr;
+                        delete sister3Ptr;
+                        delete team2Hero;
+                        delete watsonPtr;
+                        wantLoad = false;
+                        currentState = GameState::MainMenu;
+                        break;
+                    }
+
+                    // Turn number, whose turn it is, actions remaining, HP,
+                    // positions, hands and decks all come back from the
+                    // save file above -- gm.startGame() must NOT be called
+                    // here, since that would reset the turn counter back
+                    // to the beginning.
+                    firstTeam = gm.getCurrentTeam();
+                }
+                else
+                {
+                    // p1Team is whichever team number the fighter p1Hero
+                    // picked ended up on above.
+                    std::string team1PickName = team1IsDracula ? std::string("DRACULA") : std::string("INVISIBLE MAN");
+                    int p1Team = (p1Hero == team1PickName) ? 1 : 2;
+                    firstTeam = (firstPlayer == 1) ? p1Team : (p1Team == 1 ? 2 : 1);
+
+                    gm.startGame(firstTeam);
+                }
+
                 RunGameUI(gm, team1Hero, sister1Ptr, sister2Ptr, sister3Ptr, team2Hero, watsonPtr, firstTeam, team1Hero, team2Hero);
 
                 delete team1Hero;
@@ -192,10 +285,11 @@ int main()
                 delete team2Hero;
                 delete watsonPtr;
 
-                currentState = GameState::MainMenu; 
+                wantLoad = false;
+                currentState = GameState::MainMenu;
                 break;
             }
-            
+
             case GameState::Exit:
                 break;
         }

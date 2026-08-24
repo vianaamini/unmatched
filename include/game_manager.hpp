@@ -58,6 +58,7 @@ public:
     bool resurrectSister(const std::string &sisterName, int heroNode);
     bool saveGame(const std::string &filename) const;
     bool loadGame(const std::string &filename);
+    bool peekHeroTypes(const std::string &filename, std::string &team1Type, std::string &team2Type) const;
 };
 
 #endif

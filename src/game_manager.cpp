@@ -256,6 +256,11 @@ bool GameManager::moveCharacter(character *c, const std::string &targetSpace, co
     {
         activeHero->useAction();
         activeHero->drawcard();
+        // NOTE: do NOT auto-discard down to 7 here. If the hand goes over
+        // 7 cards, the UI (mustDiscard in raylib.cpp) blocks further
+        // actions and forces the player to manually pick which card(s)
+        // to discard via DrawDiscardModal. Silently popping a card here
+        // would delete it before the player ever sees it.
     }
 
     std::cout << c->getname() << " successfully moved to " << targetSpace << std::endl;
@@ -439,30 +444,23 @@ bool GameManager::handleMove(character *actor, const std::string &targetNodeStr)
         return false;
     }
 
-    hero *activeHero = nullptr;
-    for (auto c : currentTeamChars)
-    {
-        hero *h = dynamic_cast<hero *>(c);
-        if (h && h->isalive())
-        {
+    hero* activeHero = nullptr;
+    for (auto c : currentTeamChars) {
+        hero* h = dynamic_cast<hero*>(c);
+        if (h && h->isalive()) {
             activeHero = h;
             break;
         }
     }
 
-    if (activeHero)
-    {
-        if (activeHero->getdeck().getsize() > 0)
-        {
+    if (activeHero) {
+        if (activeHero->getdeck().getsize() > 0) {
             activeHero->drawcard();
             std::cout << activeHero->getname() << " drew a card." << std::endl;
-        }
-        else
-        {
+        } else {
             std::cout << activeHero->getname() << "'s deck is empty! Taking 2 exhaustion damage." << std::endl;
             activeHero->sethealth(activeHero->gethealth() - 2);
-            if (activeHero->gethealth() <= 0)
-            {
+            if (activeHero->gethealth() <= 0) {
                 activeHero->sethealth(0);
                 removeCharacter(activeHero);
             }
@@ -536,8 +534,6 @@ bool GameManager::handleMove(character *actor, const std::string &targetNodeStr)
 
     std::cout << actor->getname() << " successfully moved to " << formattedNode << std::endl;
 
-    turnManager.endTurn();
-
     return true;
 }
 
@@ -566,6 +562,31 @@ bool GameManager::saveGame(const std::string &filename) const
     std::ofstream outFile(filename);
     if (!outFile.is_open())
         return false;
+
+    // Header line: which hero classes are on each team, so that on load
+    // (before any character objects exist yet) the caller knows whether to
+    // construct a Dracula or an Invisible Man for team 1, and a Sherlock
+    // or an Invisible Man for team 2.
+    std::string team1Type = "INVISIBLE_MAN";
+    std::string team2Type = "INVISIBLE_MAN";
+    for (auto c : team1)
+    {
+        if (dynamic_cast<dracula *>(c))
+        {
+            team1Type = "DRACULA";
+            break;
+        }
+    }
+    for (auto c : team2)
+    {
+        hero *h = dynamic_cast<hero *>(c);
+        if (h && !dynamic_cast<InvisibleMan *>(c))
+        {
+            team2Type = "SHERLOCK";
+            break;
+        }
+    }
+    outFile << team1Type << "|" << team2Type << "\n";
 
     outFile << turnManager.getTurnNumber() << "\n";
     outFile << turnManager.getCurrentTeam() << "\n";
@@ -635,10 +656,67 @@ bool GameManager::saveGame(const std::string &filename) const
             outFile << "0";
         }
 
+        // Persist the hero's remaining draw pile too -- without this the
+        // deck gets rebuilt fresh (and reshuffled) by the hero constructor
+        // every time the app restarts, which silently undoes everything
+        // that happened to that deck during the saved game (cards drawn,
+        // discarded, or removed never stay removed on load).
+        if (h)
+        {
+            const auto &deckCards = h->getdeck().getCards();
+            outFile << "|" << deckCards.size();
+            for (const auto &cd : deckCards)
+            {
+                std::string effect = cd.geteffect();
+                for (auto &ch : effect)
+                {
+                    if (ch == '|' || ch == ';' || ch == '\n' || ch == '\r')
+                        ch = ' ';
+                }
+                std::string cardName = cd.get_name();
+                for (auto &ch : cardName)
+                {
+                    if (ch == '|' || ch == ';' || ch == '\n' || ch == '\r')
+                        ch = ' ';
+                }
+
+                outFile << "|" << cardName << ";"
+                        << static_cast<int>(cd.gettype()) << ";"
+                        << cd.getattack() << ";"
+                        << cd.getdefense() << ";"
+                        << cd.getboost() << ";"
+                        << static_cast<int>(cd.getowner()) << ";"
+                        << effect;
+            }
+        }
+        else
+        {
+            outFile << "|0";
+        }
+
         outFile << "\n";
     }
 
     outFile.close();
+    return true;
+}
+
+bool GameManager::peekHeroTypes(const std::string &filename, std::string &team1Type, std::string &team2Type) const
+{
+    std::ifstream inFile(filename);
+    if (!inFile.is_open())
+        return false;
+
+    std::string line;
+    if (!std::getline(inFile, line))
+        return false;
+
+    std::vector<std::string> fields = SplitFields(line, '|');
+    if (fields.size() < 2)
+        return false;
+
+    team1Type = fields[0];
+    team2Type = fields[1];
     return true;
 }
 
@@ -649,6 +727,13 @@ bool GameManager::loadGame(const std::string &filename)
         return false;
 
     std::string line;
+
+    // First line is the "team1Type|team2Type" header written by saveGame;
+    // the caller is expected to have already used peekHeroTypes() to build
+    // the matching character objects before calling loadGame(), so we just
+    // skip over it here.
+    if (!std::getline(inFile, line))
+        return false;
 
     if (!std::getline(inFile, line))
         return false;
@@ -828,6 +913,52 @@ bool GameManager::loadGame(const std::string &filename)
 
                 hand.push_back(card(cardName, cType, atk, def, boost, cOwner, effect));
             }
+
+            // Deck field comes right after the hand cards in the line.
+            int deckCount = 0;
+            if (nextIdx < (int)fields.size())
+            {
+                try
+                {
+                    deckCount = std::stoi(fields[nextIdx]);
+                }
+                catch (...)
+                {
+                    deckCount = 0;
+                }
+                ++nextIdx;
+            }
+
+            std::vector<card> restoredDeck;
+            for (int k = 0; k < deckCount && nextIdx < (int)fields.size(); ++k, ++nextIdx)
+            {
+                std::vector<std::string> cardParts = SplitFields(fields[nextIdx], ';');
+                if (cardParts.size() < 7)
+                    continue;
+
+                std::string cardName = cardParts[0];
+                int catk = 0, cdef = 0, cboost = 0, ctypeVal = 0, cownerVal = 0;
+                try
+                {
+                    ctypeVal = std::stoi(cardParts[1]);
+                    catk = std::stoi(cardParts[2]);
+                    cdef = std::stoi(cardParts[3]);
+                    cboost = std::stoi(cardParts[4]);
+                    cownerVal = std::stoi(cardParts[5]);
+                }
+                catch (...)
+                {
+                    continue;
+                }
+                std::string ceffect = cardParts[6];
+
+                restoredDeck.push_back(card(cardName,
+                                             static_cast<cardtype>(ctypeVal),
+                                             catk, cdef, cboost,
+                                             static_cast<cardowner>(cownerVal),
+                                             ceffect));
+            }
+            h->getdeck().setCards(restoredDeck);
         }
     }
 

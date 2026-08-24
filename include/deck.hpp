@@ -18,4 +18,7 @@ public:
 
     void shuffle();
     void reset();
+
+    const vector<card>& getCards() const;
+    void setCards(const vector<card>& newCards);
 };

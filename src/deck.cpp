@@ -35,3 +35,11 @@ void deck::shuffle() {
 void deck::reset() {
     cards.clear();
 }
+
+const std::vector<card>& deck::getCards() const {
+    return cards;
+}
+
+void deck::setCards(const std::vector<card>& newCards) {
+    cards = newCards;
+}
