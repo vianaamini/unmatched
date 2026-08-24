@@ -211,8 +211,6 @@ bool GameManager::moveCharacter(character *c, const std::string &targetSpace, co
     }
     int targetNode = board.getNodeId(targetSpace);
 
-    // Invisible Man ability: he can move directly between two spaces that
-    // both hold a fog token, as if they were adjacent.
     bool reachable = false;
     if (InvisibleMan* invC = dynamic_cast<InvisibleMan*>(c))
     {
@@ -261,12 +259,6 @@ bool GameManager::moveCharacter(character *c, const std::string &targetSpace, co
     if (activeHero)
     {
         activeHero->useAction();
-        activeHero->drawcard();
-        // NOTE: do NOT auto-discard down to 7 here. If the hand goes over
-        // 7 cards, the UI (mustDiscard in raylib.cpp) blocks further
-        // actions and forces the player to manually pick which card(s)
-        // to discard via DrawDiscardModal. Silently popping a card here
-        // would delete it before the player ever sees it.
     }
 
     std::cout << c->getname() << " successfully moved to " << targetSpace << std::endl;
@@ -444,29 +436,6 @@ bool GameManager::handleMove(character* actor, const std::string& targetNodeStr)
         return false;
     }
 
-    hero* activeHero = nullptr;
-    for (auto c : currentTeamChars) {
-        hero* h = dynamic_cast<hero*>(c);
-        if (h && h->isalive()) {
-            activeHero = h;
-            break;
-        }
-    }
-
-    if (activeHero) {
-        if (activeHero->getdeck().getsize() > 0) {
-            activeHero->drawcard();
-            std::cout << activeHero->getname() << " drew a card." << std::endl;
-        } else {
-            std::cout << activeHero->getname() << "'s deck is empty! Taking 2 exhaustion damage." << std::endl;
-            activeHero->sethealth(activeHero->gethealth() - 2);
-            if (activeHero->gethealth() <= 0) {
-                activeHero->sethealth(0);
-                removeCharacter(activeHero);
-            }
-        }
-    }
-
     std::string formattedNode = targetNodeStr;
     if (!formattedNode.empty()) {
         if (formattedNode[0] == 'N' || formattedNode[0] == 'n') {
@@ -482,8 +451,6 @@ bool GameManager::handleMove(character* actor, const std::string& targetNodeStr)
     }
     int targetNode = board.getNodeId(formattedNode);
 
-    // Invisible Man ability: he can move directly from a space with a fog
-    // token to another space with a fog token, as if the two were adjacent.
     bool reachable = false;
     if (InvisibleMan* invActor = dynamic_cast<InvisibleMan*>(actor)) {
         auto fogPositions = invActor->getFogPositions();
@@ -523,8 +490,6 @@ bool GameManager::handleMove(character* actor, const std::string& targetNodeStr)
     }
 
     std::cout << actor->getname() << " successfully moved to " << formattedNode << std::endl;
-
-    turnManager.endTurn();
 
     return true;
 }

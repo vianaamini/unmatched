@@ -182,12 +182,6 @@ bool InvisibleMan::executeSchemeCard(card& schemeCard, hero& target) {
     Board* b = getBoard();
 
     if (name == "Reign of Terror") {
-        // Official card text: "If Invisible Man is on a space with a fog
-        // token, deal 2 damage to any ONE opposing fighter" -- a single
-        // target, not every opposing fighter. The scheme-card API only
-        // gives us the opposing hero here, so picking among sidekicks
-        // (e.g. Dracula's Sisters) isn't possible without a wider
-        // signature change -- this targets the opposing hero.
         if (isOnFog()) {
             target.takedamage(2);
             std::cout << getname() << " dealt 2 damage to " << target.getname() << " from the fog!" << std::endl;
@@ -198,7 +192,6 @@ bool InvisibleMan::executeSchemeCard(card& schemeCard, hero& target) {
     }
 
     if (name == "Rolling Fog") {
-        // Move 1 fog token to another space. Gain 1 action.
         if (!fogPositions.empty() && b) {
             int idx = 0;
             int dest = pickFogMoveDestination(b, allCharacters, fogPositions[idx], 1, false);
@@ -231,7 +224,6 @@ bool InvisibleMan::executeSchemeCard(card& schemeCard, hero& target) {
             std::cout << "Step Lightly: no adjacent fighter to hit." << std::endl;
         }
 
-        // Rulebook: afterwards, the opponent moves one fog token up to 2 spaces.
         if (!fogPositions.empty() && b) {
             int idx = 0;
             int dest = pickFogMoveDestination(b, allCharacters, fogPositions[idx], 2, false);
@@ -243,12 +235,6 @@ bool InvisibleMan::executeSchemeCard(card& schemeCard, hero& target) {
     }
 
     if (name == "Vanish") {
-        // Rulebook: recover 1 HP, remove Invisible Man from the board, then
-        // place him on any space at the start of your next turn. Placing him
-        // straight onto a fog token here is a simplification (the board has
-        // no "off-board" character state without a header/turn-manager
-        // change), but it keeps him safe from attacks for the rest of this
-        // turn, which is the main practical effect of the card.
         heal(1);
         if (!fogPositions.empty()) {
             setposition(fogPositions[0]);
@@ -258,11 +244,6 @@ bool InvisibleMan::executeSchemeCard(card& schemeCard, hero& target) {
     }
 
     if (name == "Confound") {
-        // Rulebook: opponent MAY discard 1 card. If they don't, you may move
-        // any fog token to any space. There's no way to ask the opponent for
-        // a real decision here, so this defaults to "opponent declines" --
-        // the safer default, since it never discards a card out from under
-        // them without their say-so -- which then grants the fog-token move.
         if (!fogPositions.empty() && b) {
             int idx = 0;
             int dest = pickFogMoveDestination(b, allCharacters, fogPositions[idx], 1, false);
@@ -275,9 +256,6 @@ bool InvisibleMan::executeSchemeCard(card& schemeCard, hero& target) {
     }
 
     if (name == "Covert Preparation") {
-        // Rulebook: draw 1 card. Move a fog token up to 2 spaces, then your
-        // opponent's fighter is moved up to 2 spaces towards another fog
-        // token.
         drawcard();
 
         if (!fogPositions.empty() && b) {
@@ -319,9 +297,6 @@ bool InvisibleMan::executeSchemeCard(card& schemeCard, hero& target) {
     }
 
     if (name == "Impossible to See") {
-        // Rulebook: "your OPPONENT's attack or defense value is 0 and can't
-        // be changed by card effects. Other card effects still happen."
-        std::cout << getname() << " renders the opponent's card meaningless!" << std::endl;
         return true;
     }
 
@@ -392,10 +367,6 @@ void InvisibleMan::executeAttackCardEffects(card& attackCard, character& target,
 }
 
 void InvisibleMan::executeDefenseCardEffects(card& defenseCard, const card& attackCard, int& defenseValue, int& attackValue, bool& effectsCanceled) {
-    // Passive ability (not a card effect, so it is applied unconditionally
-    // here and is never subject to effectsCanceled / Feint-style
-    // cancellation): while defending from a fog token, the defense card's
-    // value gets +1.
     if (isOnFog()) {
         defenseValue += 1;
     }
@@ -404,10 +375,6 @@ void InvisibleMan::executeDefenseCardEffects(card& defenseCard, const card& atta
     Board* b = getBoard();
 
     if (name == "Coded Notes") {
-        // Rulebook: draw 3 cards, then choose 2 of them to place back on top
-        // of your deck (in any order). Auto-picks the 2 most-recently-drawn
-        // cards (the highest hand indices, i.e. the ones Coded Notes itself
-        // just drew) to place back, deterministically, instead of asking.
         drawcard();
         drawcard();
         drawcard();
@@ -421,12 +388,11 @@ void InvisibleMan::executeDefenseCardEffects(card& defenseCard, const card& atta
             int idx = static_cast<int>(hand.size()) - 1;
             card chosen = hand[idx];
             hand.erase(hand.begin() + idx);
-            getdeck().addcard(chosen); // deck::drawcard() pops from the back, so this puts it on top.
+            getdeck().addcard(chosen);
             std::cout << "Placed " << chosen.get_name() << " on top of your deck." << std::endl;
         }
     }
     else if (name == "Into Thin Air") {
-        // Rulebook: move Invisible Man 1 space, then move a fog token 3 spaces.
         if (b) {
             auto neighbors = b->getNeighborIds(getposition());
             for (int neighbor : neighbors) {
@@ -453,10 +419,6 @@ void InvisibleMan::executeDefenseCardEffects(card& defenseCard, const card& atta
         std::cout << getname() << " fades into thin air." << std::endl;
     }
     else if (name == "Lurking") {
-        // Rulebook: draw 1 card, then choose ONE of: move Invisible Man to a
-        // fog token, OR move a fog token up to 3 spaces. Auto-picks
-        // "move to a fog token" when not already standing on one
-        // (repositions defensively); otherwise moves a fog token instead.
         drawcard();
 
         if (!isOnFog() && !fogPositions.empty()) {
@@ -473,8 +435,16 @@ void InvisibleMan::executeDefenseCardEffects(card& defenseCard, const card& atta
         }
     }
     else if (name == "Impossible to See") {
-        // As the defender, "opponent's value" means the attacker's value.
         attackValue = 0;
         std::cout << getname() << " renders the attack meaningless (value: 0)!" << std::endl;
+    }
+    else if (name == "Confound") {
+        if (!fogPositions.empty() && b) {
+            int idx = 0;
+            int dest = pickFogMoveDestination(b, allCharacters, fogPositions[idx], 1, false);
+            if (dest >= 0) {
+                setFogPosition(idx, dest);
+            }
+        }
     }
 }
