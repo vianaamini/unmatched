@@ -2,9 +2,13 @@
 #include "../include/hero.hpp"
 #include "../include/dracula.hpp"
 #include "../include/invisible_man.hpp"
+#include "../include/card.hpp"
 #include <algorithm>
 #include <iostream>
 #include <cctype>
+#include <fstream>
+#include <string>
+#include <vector>
 
 GameManager::GameManager() : board(), movement(&board) {}
 
@@ -129,14 +133,6 @@ std::vector<std::string> GameManager::getValidMoves(character *c)
     auto enemies = getEnemies(c);
     auto moves = movement.getPossibleMoves(c, c->getmovement(), allies, enemies);
 
-    // Invisible Man ability: while standing on a fog token, he can jump
-    // directly to any other space that also holds a fog token, as if the
-    // two spaces were adjacent -- independent of his Movement value and
-    // the normal pathfinding. moveCharacter()/handleMove() already allow
-    // this when executing a move, but this list is what drives the move
-    // highlighting and click-to-move target list in the UI, so without
-    // adding the fog destinations here the ability was never actually
-    // reachable by clicking on the board.
     if (InvisibleMan *inv = dynamic_cast<InvisibleMan *>(c))
     {
         auto fogPositions = inv->getFogPositions();
@@ -211,8 +207,6 @@ bool GameManager::moveCharacter(character *c, const std::string &targetSpace, co
     }
     int targetNode = board.getNodeId(targetSpace);
 
-    // Invisible Man ability: he can move directly between two spaces that
-    // both hold a fog token, as if they were adjacent.
     bool reachable = false;
     if (InvisibleMan* invC = dynamic_cast<InvisibleMan*>(c))
     {
@@ -262,11 +256,6 @@ bool GameManager::moveCharacter(character *c, const std::string &targetSpace, co
     {
         activeHero->useAction();
         activeHero->drawcard();
-        // NOTE: do NOT auto-discard down to 7 here. If the hand goes over
-        // 7 cards, the UI (mustDiscard in raylib.cpp) blocks further
-        // actions and forces the player to manually pick which card(s)
-        // to discard via DrawDiscardModal. Silently popping a card here
-        // would delete it before the player ever sees it.
     }
 
     std::cout << c->getname() << " successfully moved to " << targetSpace << std::endl;
@@ -420,47 +409,60 @@ bool GameManager::handleMove(const std::string &charIdentifier, const std::strin
     return handleMove(actor, targetNodeStr);
 }
 
-bool GameManager::handleMove(character* actor, const std::string& targetNodeStr) {
-    if (!actor || !actor->isalive()) {
+bool GameManager::handleMove(character *actor, const std::string &targetNodeStr)
+{
+    if (!actor || !actor->isalive())
+    {
         return false;
     }
 
     int activeTeam = getCurrentTeam();
-    const auto& currentTeamChars = (activeTeam == 1) ? team1 : team2;
-    
+    const auto &currentTeamChars = (activeTeam == 1) ? team1 : team2;
+
     bool belongsToCurrentTeam = false;
-    for (auto c : currentTeamChars) {
-        if (c == actor) {
+    for (auto c : currentTeamChars)
+    {
+        if (c == actor)
+        {
             belongsToCurrentTeam = true;
             break;
         }
     }
 
-    if (!belongsToCurrentTeam) {
+    if (!belongsToCurrentTeam)
+    {
         return false;
     }
 
-    if (getActionsRemaining() <= 0) {
+    if (getActionsRemaining() <= 0)
+    {
         return false;
     }
 
-    hero* activeHero = nullptr;
-    for (auto c : currentTeamChars) {
-        hero* h = dynamic_cast<hero*>(c);
-        if (h && h->isalive()) {
+    hero *activeHero = nullptr;
+    for (auto c : currentTeamChars)
+    {
+        hero *h = dynamic_cast<hero *>(c);
+        if (h && h->isalive())
+        {
             activeHero = h;
             break;
         }
     }
 
-    if (activeHero) {
-        if (activeHero->getdeck().getsize() > 0) {
+    if (activeHero)
+    {
+        if (activeHero->getdeck().getsize() > 0)
+        {
             activeHero->drawcard();
             std::cout << activeHero->getname() << " drew a card." << std::endl;
-        } else {
+        }
+        else
+        {
             std::cout << activeHero->getname() << "'s deck is empty! Taking 2 exhaustion damage." << std::endl;
             activeHero->sethealth(activeHero->gethealth() - 2);
-            if (activeHero->gethealth() <= 0) {
+            if (activeHero->gethealth() <= 0)
+            {
                 activeHero->sethealth(0);
                 removeCharacter(activeHero);
             }
@@ -468,33 +470,39 @@ bool GameManager::handleMove(character* actor, const std::string& targetNodeStr)
     }
 
     std::string formattedNode = targetNodeStr;
-    if (!formattedNode.empty()) {
-        if (formattedNode[0] == 'N' || formattedNode[0] == 'n') {
+    if (!formattedNode.empty())
+    {
+        if (formattedNode[0] == 'N' || formattedNode[0] == 'n')
+        {
             formattedNode[0] = 'n';
-        } else {
+        }
+        else
+        {
             formattedNode = "n" + formattedNode;
         }
     }
 
-    if (!board.hasSpace(formattedNode)) {
+    if (!board.hasSpace(formattedNode))
+    {
         std::cout << "Invalid node!" << std::endl;
         return false;
     }
     int targetNode = board.getNodeId(formattedNode);
 
-    // Invisible Man ability: he can move directly from a space with a fog
-    // token to another space with a fog token, as if the two were adjacent.
     bool reachable = false;
-    if (InvisibleMan* invActor = dynamic_cast<InvisibleMan*>(actor)) {
+    if (InvisibleMan* invActor = dynamic_cast<InvisibleMan*>(actor))
+    {
         auto fogPositions = invActor->getFogPositions();
         bool startOnFog = std::find(fogPositions.begin(), fogPositions.end(), actor->getx()) != fogPositions.end();
         bool targetOnFog = std::find(fogPositions.begin(), fogPositions.end(), targetNode) != fogPositions.end();
-        if (startOnFog && targetOnFog) {
+        if (startOnFog && targetOnFog)
+        {
             reachable = true;
         }
     }
 
-    if (!reachable) {
+    if (!reachable)
+    {
         int moveSteps = actor->getmovement();
         auto allies = getAllies(actor);
         auto enemies = getEnemies(actor);
@@ -502,13 +510,16 @@ bool GameManager::handleMove(character* actor, const std::string& targetNodeStr)
         reachable = movement.canReach(startSpace, formattedNode, moveSteps, allies, enemies);
     }
 
-    if (!reachable) {
-        std::cout << "Cannot reach " << formattedNode << "!" << std::endl;
+    if (!reachable)
+    {
+        std::cout << "Cannot reach " << formattedNode << std::endl;
         return false;
     }
 
-    for (character *other : allCharacters) {
-        if (other != actor && other->isalive() && other->getx() == targetNode) {
+    for (character *other : allCharacters)
+    {
+        if (other != actor && other->isalive() && other->getx() == targetNode)
+        {
             std::cout << "Node " << formattedNode << " is occupied!" << std::endl;
             return false;
         }
@@ -516,9 +527,10 @@ bool GameManager::handleMove(character* actor, const std::string& targetNodeStr)
 
     actor->setposition(targetNode);
 
-    character* currentTurnChar = turnManager.getCurrentCharacter();
-    hero* turnHero = dynamic_cast<hero*>(currentTurnChar);
-    if (turnHero) {
+    character *currentTurnChar = turnManager.getCurrentCharacter();
+    hero *turnHero = dynamic_cast<hero *>(currentTurnChar);
+    if (turnHero)
+    {
         turnHero->useAction();
     }
 
@@ -526,5 +538,302 @@ bool GameManager::handleMove(character* actor, const std::string& targetNodeStr)
 
     turnManager.endTurn();
 
+    return true;
+}
+
+static std::vector<std::string> SplitFields(const std::string &line, char delim)
+{
+    std::vector<std::string> fields;
+    std::string field;
+    for (char ch : line)
+    {
+        if (ch == delim)
+        {
+            fields.push_back(field);
+            field.clear();
+        }
+        else
+        {
+            field += ch;
+        }
+    }
+    fields.push_back(field);
+    return fields;
+}
+
+bool GameManager::saveGame(const std::string &filename) const
+{
+    std::ofstream outFile(filename);
+    if (!outFile.is_open())
+        return false;
+
+    outFile << turnManager.getTurnNumber() << "\n";
+    outFile << turnManager.getCurrentTeam() << "\n";
+    outFile << static_cast<int>(turnManager.getCurrentPhase()) << "\n";
+    outFile << turnManager.getActionsRemaining() << "\n";
+
+    character *curChar = turnManager.getCurrentCharacter();
+    outFile << (curChar ? curChar->getname() : std::string("")) << "\n";
+
+    outFile << allCharacters.size() << "\n";
+
+    for (auto c : allCharacters)
+    {
+        if (!c)
+            continue;
+
+        outFile << c->getname() << "|"
+                << c->gethealth() << "|"
+                << c->getMaxHp() << "|"
+                << c->getposition() << "|";
+
+        InvisibleMan *inv = dynamic_cast<InvisibleMan *>(c);
+        if (inv)
+        {
+            auto fog = inv->getFogPositions();
+            outFile << "1|" << fog.size();
+            for (int pos : fog)
+                outFile << "," << pos;
+            outFile << "|";
+        }
+        else
+        {
+            outFile << "0||";
+        }
+
+        hero *h = dynamic_cast<hero *>(c);
+        if (h)
+        {
+            auto hand = h->gethand();
+            outFile << hand.size();
+            for (const auto &cd : hand)
+            {
+                std::string effect = cd.geteffect();
+                for (auto &ch : effect)
+                {
+                    if (ch == '|' || ch == ';' || ch == '\n' || ch == '\r')
+                        ch = ' ';
+                }
+                std::string cardName = cd.get_name();
+                for (auto &ch : cardName)
+                {
+                    if (ch == '|' || ch == ';' || ch == '\n' || ch == '\r')
+                        ch = ' ';
+                }
+
+                outFile << "|" << cardName << ";"
+                        << static_cast<int>(cd.gettype()) << ";"
+                        << cd.getattack() << ";"
+                        << cd.getdefense() << ";"
+                        << cd.getboost() << ";"
+                        << static_cast<int>(cd.getowner()) << ";"
+                        << effect;
+            }
+        }
+        else
+        {
+            outFile << "0";
+        }
+
+        outFile << "\n";
+    }
+
+    outFile.close();
+    return true;
+}
+
+bool GameManager::loadGame(const std::string &filename)
+{
+    std::ifstream inFile(filename);
+    if (!inFile.is_open())
+        return false;
+
+    std::string line;
+
+    if (!std::getline(inFile, line))
+        return false;
+    int turnNum = 0;
+    try
+    {
+        turnNum = std::stoi(line);
+    }
+    catch (...)
+    {
+        inFile.close();
+        return false;
+    }
+
+    if (!std::getline(inFile, line))
+        return false;
+    int teamNum = 0;
+    try
+    {
+        teamNum = std::stoi(line);
+    }
+    catch (...)
+    {
+        inFile.close();
+        return false;
+    }
+
+    if (!std::getline(inFile, line))
+        return false;
+    int phaseVal = 0;
+    try
+    {
+        phaseVal = std::stoi(line);
+    }
+    catch (...)
+    {
+        inFile.close();
+        return false;
+    }
+
+    if (!std::getline(inFile, line))
+        return false;
+    int actionsRem = 0;
+    try
+    {
+        actionsRem = std::stoi(line);
+    }
+    catch (...)
+    {
+        inFile.close();
+        return false;
+    }
+
+    if (!std::getline(inFile, line))
+        return false;
+    std::string currentCharName = line;
+
+    if (!std::getline(inFile, line))
+        return false;
+    int charCount = 0;
+    try
+    {
+        charCount = std::stoi(line);
+    }
+    catch (...)
+    {
+        inFile.close();
+        return false;
+    }
+
+    for (int i = 0; i < charCount; ++i)
+    {
+        if (!std::getline(inFile, line))
+            break;
+
+        std::vector<std::string> fields = SplitFields(line, '|');
+        if (fields.size() < 6)
+            continue;
+
+        std::string name = fields[0];
+        int hp = 0, maxHp = 0, pos = 0, isInv = 0;
+        try
+        {
+            hp = std::stoi(fields[1]);
+            maxHp = std::stoi(fields[2]);
+            pos = std::stoi(fields[3]);
+            isInv = std::stoi(fields[4]);
+        }
+        catch (...)
+        {
+            continue;
+        }
+
+        std::string fogField = fields[5];
+        std::string handField = fields.size() > 6 ? fields[6] : "0";
+        int nextIdx = 7;
+
+        character *targetChar = findCharacterByName(name);
+        if (!targetChar)
+            continue;
+
+        targetChar->sethealth(hp);
+        targetChar->setposition(pos);
+
+        if (isInv)
+        {
+            InvisibleMan *inv = dynamic_cast<InvisibleMan *>(targetChar);
+            if (inv && !fogField.empty())
+            {
+                std::vector<int> fogVals;
+                std::string num;
+                for (char ch : fogField)
+                {
+                    if (ch == ',')
+                    {
+                        if (!num.empty())
+                        {
+                            fogVals.push_back(std::stoi(num));
+                            num.clear();
+                        }
+                    }
+                    else
+                    {
+                        num += ch;
+                    }
+                }
+                if (!num.empty())
+                    fogVals.push_back(std::stoi(num));
+
+                for (size_t k = 1; k < fogVals.size() && k <= 3; ++k)
+                {
+                    inv->setFogPosition((int)k - 1, fogVals[k]);
+                }
+            }
+        }
+
+        hero *h = dynamic_cast<hero *>(targetChar);
+        if (h)
+        {
+            int handCount = 0;
+            try
+            {
+                handCount = std::stoi(handField);
+            }
+            catch (...)
+            {
+                handCount = 0;
+            }
+
+            auto &hand = h->gethand();
+            hand.clear();
+
+            for (int k = 0; k < handCount && nextIdx < (int)fields.size(); ++k, ++nextIdx)
+            {
+                std::vector<std::string> cardParts = SplitFields(fields[nextIdx], ';');
+                if (cardParts.size() < 7)
+                    continue;
+
+                std::string cardName = cardParts[0];
+                int atk = 0, def = 0, boost = 0, typeVal = 0, ownerVal = 0;
+                try
+                {
+                    typeVal = std::stoi(cardParts[1]);
+                    atk = std::stoi(cardParts[2]);
+                    def = std::stoi(cardParts[3]);
+                    boost = std::stoi(cardParts[4]);
+                    ownerVal = std::stoi(cardParts[5]);
+                }
+                catch (...)
+                {
+                    continue;
+                }
+                std::string effect = cardParts[6];
+
+                cardtype cType = static_cast<cardtype>(typeVal);
+                cardowner cOwner = static_cast<cardowner>(ownerVal);
+
+                hand.push_back(card(cardName, cType, atk, def, boost, cOwner, effect));
+            }
+        }
+    }
+
+    character *restoredCurrent = currentCharName.empty() ? nullptr : findCharacterByName(currentCharName);
+    turnManager.restoreState(turnNum, teamNum, static_cast<TurnPhase>(phaseVal), actionsRem, restoredCurrent);
+
+    inFile.close();
     return true;
 }

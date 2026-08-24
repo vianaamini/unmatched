@@ -43,6 +43,8 @@ public:
     void nextTurn();
     void nextPhase();
     void endTurn();
+
+    void restoreState(int turnNum, int team, TurnPhase phase, int actionsRem, character* currentChar);
     
     character* getCurrentCharacter() const;
     TurnPhase getCurrentPhase() const;

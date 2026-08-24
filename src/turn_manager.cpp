@@ -176,6 +176,77 @@ void TurnManager::endTurn() {
     }
 }
 
+void TurnManager::restoreState(int turnNum, int team, TurnPhase phase, int actionsRem, character* currentChar) {
+    turnNumber = turnNum;
+    currentTeam = team;
+    currentPhase = phase;
+    actionsRemaining = actionsRem;
+
+    switch (currentPhase) {
+        case TurnPhase::MANEUVER:
+            currentAction = ActionType::MANEUVER;
+            break;
+        case TurnPhase::SCHEME:
+            currentAction = ActionType::SCHEME;
+            break;
+        case TurnPhase::ATTACK:
+            currentAction = ActionType::ATTACK;
+            break;
+        default:
+            currentAction = ActionType::NONE;
+            break;
+    }
+
+    updateTurnOrder();
+
+    currentCharacter = nullptr;
+
+    if (currentChar && isCharacterAlive(currentChar)) {
+        size_t qsize = turnOrder.size();
+        bool found = false;
+
+        for (size_t i = 0; i < qsize; ++i) {
+            character* front = turnOrder.front();
+            turnOrder.pop();
+
+            if (!found && front == currentChar) {
+                found = true;
+                currentCharacter = front;
+            } else {
+                turnOrder.push(front);
+            }
+        }
+
+        if (found) {
+            turnOrder.push(currentCharacter);
+        }
+    }
+
+    if (!currentCharacter && !turnOrder.empty()) {
+        currentCharacter = turnOrder.front();
+        turnOrder.pop();
+        turnOrder.push(currentCharacter);
+
+        if (std::find(team1.begin(), team1.end(), currentCharacter) != team1.end()) {
+            currentTeam = 1;
+        } else {
+            currentTeam = 2;
+        }
+    }
+
+    hero* h = dynamic_cast<hero*>(currentCharacter);
+    if (h) {
+        h->reset_actions();
+        h->set_actions(actionsRemaining);
+    }
+
+    std::cout << "\n=== Restored Turn " << turnNumber << " ===" << std::endl;
+    if (currentCharacter) {
+        std::cout << currentCharacter->getname() << " (Team " << currentTeam << ")" << std::endl;
+    }
+    std::cout << "Actions remaining: " << actionsRemaining << std::endl;
+}
+
 bool TurnManager::canPerformManeuver() const {
     return currentPhase == TurnPhase::MANEUVER && 
            actionsRemaining > 0 &&

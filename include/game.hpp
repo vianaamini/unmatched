@@ -6,29 +6,32 @@
 #include "game_manager.hpp"
 #include <vector>
 
-class Game {
+class Game
+{
 private:
-    sherlock* player1;
-    dracula* player2;
-    watson* watsonChar;
-    sister* sisters[3];
+    sherlock *player1;
+    dracula *player2;
+    watson *watsonChar;
+    sister *sisters[3];
 
     int curturn;
     int action;
     bool gameover;
-    std::vector<character*> enemy;
-    GameManager* gameManager;
+    std::vector<character *> enemy;
+    GameManager *gameManager;
 
 public:
-    Game(GameManager* gm = nullptr);
+    Game(GameManager *gm = nullptr);
     ~Game();
 
     void startGame();
     void nextTurn();
-    void playCard(hero* player, int index, hero* opponent);
-    void resolve(hero& attacker, card& atkcard, hero& defender, card& defendcard);
+    void playCard(hero *player, int index, hero *opponent);
+    void resolve(hero &attacker, card &atkcard, hero &defender, card &defendcard);
     void checkWinCondition();
     void printGameState() const;
     bool isGameOver() const;
-    hero* getCurrentPlayer() const;
+    hero *getCurrentPlayer() const;
+    void saveGameToSlot(int slot) const;
+    void loadGameFromSlot(int slot);
 };

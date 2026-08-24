@@ -6,15 +6,15 @@
 
 Game::Game(GameManager* gm) : curturn(0), action(2), gameover(false), gameManager(gm) {
     srand(time(nullptr));
-    
+
     player1 = new sherlock();
     player2 = new dracula();
     watsonChar = new watson();
-    
+
     for (int i = 0; i < 3; i++) {
         sisters[i] = new sister(i + 1);
     }
-    
+
     enemy.push_back(player2);
     for (int i = 0; i < 3; i++) {
         enemy.push_back(sisters[i]);
@@ -32,29 +32,29 @@ Game::~Game() {
 
 void Game::startGame() {
     std::cout << "=== Game Started ===" << std::endl;
-    
+
     for (int i = 0; i < 5; i++) {
         player1->drawcard();
         player2->drawcard();
     }
-    
+
     printGameState();
 }
 
 void Game::nextTurn() {
     if (gameover) return;
-    
+
     action = 2;
     curturn = (curturn == 0) ? 1 : 0;
-    
+
     std::cout << "\n=== Turn " << curturn + 1 << " ===" << std::endl;
-    
+
     if (curturn == 0) {
         player1->useability();
     } else {
         player2->useability();
     }
-    
+
     printGameState();
 }
 
@@ -68,16 +68,16 @@ void Game::playCard(hero* player, int index, hero* opponent) {
         std::cout << "Invalid card index" << std::endl;
         return;
     }
-    
+
     card playedCard = player->gethand()[index];
     player->gethand().erase(player->gethand().begin() + index);
-    
+
     Board* board = gameManager ? &gameManager->getBoard() : nullptr;
     if (!board) {
         static Board tempBoard;
         board = &tempBoard;
     }
-    
+
     bool success = false;
     if (playedCard.gettype() == cardtype::attack || playedCard.gettype() == cardtype::multipurpose) {
         success = player->attack(*opponent, playedCard, *board);
@@ -87,7 +87,7 @@ void Game::playCard(hero* player, int index, hero* opponent) {
         success = true;
         std::cout << player->getname() << " played: " << playedCard.get_name() << std::endl;
     }
-    
+
     if (success) {
         action--;
         checkWinCondition();
@@ -109,11 +109,11 @@ void Game::checkWinCondition() {
 
 void Game::printGameState() const {
     std::cout << "\n=== Game State ===" << std::endl;
-    std::cout << "Sherlock: HP " << player1->gethealth() 
+    std::cout << "Sherlock: HP " << player1->gethealth()
               << " at n" << player1->getx() << std::endl;
-    std::cout << "Watson: HP " << watsonChar->gethealth() 
+    std::cout << "Watson: HP " << watsonChar->gethealth()
               << " at n" << watsonChar->getx() << std::endl;
-    std::cout << "Dracula: HP " << player2->gethealth() 
+    std::cout << "Dracula: HP " << player2->gethealth()
               << " at n" << player2->getx() << std::endl;
     for (int i = 0; i < 3; i++) {
         std::cout << "Sister " << i+1 << ": HP " << sisters[i]->gethealth()
@@ -129,4 +129,20 @@ bool Game::isGameOver() const {
 
 hero* Game::getCurrentPlayer() const {
     return (curturn == 0) ? static_cast<hero*>(player1) : static_cast<hero*>(player2);
+}
+
+void Game::saveGameToSlot(int slot) const {
+    if (slot < 1 || slot > 3) return;
+    std::string filename = "save_slot_" + std::to_string(slot) + ".txt";
+    if (gameManager) {
+        gameManager->saveGame(filename);
+    }
+}
+
+void Game::loadGameFromSlot(int slot) {
+    if (slot < 1 || slot > 3) return;
+    std::string filename = "save_slot_" + std::to_string(slot) + ".txt";
+    if (gameManager) {
+        gameManager->loadGame(filename);
+    }
 }
