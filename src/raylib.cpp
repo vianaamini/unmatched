@@ -706,10 +706,17 @@ void RunGameUI(GameManager& gm, character* dracula, character* sis1Obj, characte
         float bottomY = p1Panel.y + p1Panel.height + 12.0f;
         float bottomH = sh - bottomY - 12.0f;
 
+        // CARD EFFECTS and HAND sit under the map, not under the (taller)
+        // portrait columns -- so their top edge is pulled up to the map's
+        // bottom edge instead, closing the empty gap you circled and
+        // giving both boxes a lot more usable height.
+        float mapBottomY = mapDest.y + mapDest.height + 12.0f;
+        float mapBottomH = sh - mapBottomY - 12.0f;
+
         Rectangle endTurnButton = { p2Panel.x, bottomY, p2Panel.width, 48 };
         Rectangle turnOrderBox = { p2Panel.x, bottomY + 60.0f, p2Panel.width, bottomH - 60.0f };
-        Rectangle handBox = { sw * 0.59f, bottomY, sw * 0.18f, bottomH };
-        Rectangle cardEffectsBox = { sw * 0.23f, bottomY, sw * 0.34f, bottomH };
+        Rectangle handBox = { sw * 0.59f, mapBottomY, sw * 0.18f, mapBottomH };
+        Rectangle cardEffectsBox = { sw * 0.23f, mapBottomY, sw * 0.34f, mapBottomH };
 
         ActionBarLayout actionLayout = ActionBar_ComputeLayout(p1Panel, endTurnButton.height, turnOrderBox.height);
 
@@ -792,9 +799,9 @@ Vector2 mousePos = GetMousePosition();
             DrawTextCentered(GetRegularFont(), turnLabel.c_str(), sw / 2.0f, headerH * 0.60f, 15, 0.9f, GetColor(0xC2B6B9FF));
         }
 
-        // Single save button lives entirely inside the header strip, well
-        // above mapDest/p1Panel/p2Panel -- it never overlaps or resizes
-        // any other UI element on this screen.
+        // Save button lives entirely inside the header strip, well above
+        // mapDest/p1Panel/p2Panel -- it never overlaps or resizes any
+        // other UI element on this screen.
         DrawRectangleRec(saveBtn, hoverSave ? GetColor(0x2A2130FF) : GetColor(0x151218FF));
         DrawRectangleLinesEx(saveBtn, 2, GetColor(0xE5C158FF));
         DrawTextCentered(GetSemiFont(), "SAVE", saveBtn.x + saveBtn.width / 2.0f, saveBtn.y + 8, 15, 0.6f, GetColor(0xE5C158FF));
@@ -803,6 +810,7 @@ Vector2 mousePos = GetMousePosition();
             float alpha = (saveMessageTimer > 1.0f) ? 1.0f : saveMessageTimer;
             DrawTextCentered(GetSemiFont(), saveMessageText.c_str(), sw / 2.0f, headerH + 8, 16, 0.6f, Fade(GetColor(0x6FCF97FF), alpha));
         }
+
 
         if (boardTex.id > 0) {
             DrawTexturePro(boardTex, {0, 0, (float)boardTex.width, (float)boardTex.height}, mapDest, {0, 0}, 0.0f, WHITE);
