@@ -1586,10 +1586,10 @@ static void DrawCardEffectsCell(
 {
     DrawRectangleRec(cell, GetColor(0x0B080CFF));
     DrawRectangleLinesEx(cell, 2, accent);
-    DrawTextEx(GetSemiFont(), ownerLabel, { cell.x + 8, cell.y + 5 }, 14, 0.4f, accent);
+    DrawTextEx(GetSemiFont(), ownerLabel, { cell.x + 8, cell.y + 6 }, 17, 0.5f, accent);
 
     if (!hasCard) {
-        DrawTextEx(GetRegularFont(), "No card played yet", { cell.x + 8, cell.y + 27 }, 14, 0.3f, GetColor(0xA39BA0FF));
+        DrawTextEx(GetRegularFont(), "No card played yet", { cell.x + 8, cell.y + 32 }, 17, 0.35f, GetColor(0xA39BA0FF));
         g_cardEffectsScroll[scrollIndex] = 0.0f;
         return;
     }
@@ -1599,11 +1599,11 @@ static void DrawCardEffectsCell(
 
     // Card name -- wrapped too, so a long name never pushes past the
     // cell's right edge.
-    auto nameLines = WrapTextToWidth(GetSemiFont(), c.get_name(), contentW, 16, 0.4f);
-    float y = cell.y + 27;
+    auto nameLines = WrapTextToWidth(GetSemiFont(), c.get_name(), contentW, 21, 0.5f);
+    float y = cell.y + 32;
     for (const auto& ln : nameLines) {
-        DrawTextEx(GetSemiFont(), ln.c_str(), { cell.x + pad, y }, 16, 0.4f, GetColor(0xE5C158FF));
-        y += 19.0f;
+        DrawTextEx(GetSemiFont(), ln.c_str(), { cell.x + pad, y }, 21, 0.5f, GetColor(0xE5C158FF));
+        y += 25.0f;
     }
 
     std::string stats;
@@ -1618,13 +1618,13 @@ static void DrawCardEffectsCell(
         stats = "BOOST " + std::to_string(c.getboost());
     }
 
-    DrawTextEx(GetRegularFont(), stats.c_str(), { cell.x + pad, y + 2 }, 14, 0.3f, GetColor(0xC2B6B9FF));
-    y += 23.0f;
+    DrawTextEx(GetRegularFont(), stats.c_str(), { cell.x + pad, y + 3 }, 18, 0.35f, GetColor(0xC2B6B9FF));
+    y += 30.0f;
 
     // Divider between the fixed header (name/stats) and the scrollable
     // effect text below it.
     DrawLine((int)(cell.x + pad), (int)y, (int)(cell.x + cell.width - pad), (int)y, Fade(accent, 0.4f));
-    y += 7.0f;
+    y += 8.0f;
 
     std::string effect = c.geteffect();
     if (effect.empty())
@@ -1634,10 +1634,10 @@ static void DrawCardEffectsCell(
     if (scrollArea.height < 10.0f)
         return;
 
-    const float effectFontSize = 13.0f;
-    const float effectSpacing = 0.25f;
-    const float lineHeight = 17.0f;
-    const float scrollbarW = 5.0f;
+    const float effectFontSize = 18.0f;
+    const float effectSpacing = 0.3f;
+    const float lineHeight = 22.0f;
+    const float scrollbarW = 6.0f;
 
     auto effectLines = WrapTextToWidth(GetRegularFont(), effect, scrollArea.width - scrollbarW - 4.0f, effectFontSize, effectSpacing);
 
@@ -1694,7 +1694,7 @@ void ActionBar_DrawCardEffectsBox(
     DrawRectangleLinesEx(box, 3, GetColor(0x342936FF));
 
     const char* title = "CARD EFFECTS";
-    float titleSize = 15.0f;
+    float titleSize = 18.0f;
     Vector2 titleDims = MeasureTextEx(GetSemiFont(), title, titleSize, 0.5f);
 
     DrawTextEx(

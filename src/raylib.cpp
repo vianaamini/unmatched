@@ -715,25 +715,20 @@ void RunGameUI(GameManager& gm, character* dracula, character* sis1Obj, characte
 
 Vector2 mousePos = GetMousePosition();
 
-        Rectangle saveBtn1 = { mapDest.x + 8, mapDest.y + 8, 90, 30 };
-        Rectangle saveBtn2 = { mapDest.x + 106, mapDest.y + 8, 90, 30 };
-        Rectangle saveBtn3 = { mapDest.x + 204, mapDest.y + 8, 90, 30 };
+        // Single Save button, sitting in the header strip -- above and
+        // outside mapDest/p1Panel/p2Panel entirely, so it never overlaps
+        // or shifts any other on-screen element. Saves rotate quietly
+        // through 3 backup slots on disk (so a stale save is never the
+        // only copy) but the player only ever sees one button.
+        static int saveSlotCursor = 1;
+        Rectangle saveBtn = { sw - 12.0f - 110.0f, headerH * 0.5f - 16.0f, 110.0f, 32.0f };
+        bool hoverSave = CheckCollisionPointRec(mousePos, saveBtn);
 
-        bool hoverSave1 = CheckCollisionPointRec(mousePos, saveBtn1);
-        bool hoverSave2 = CheckCollisionPointRec(mousePos, saveBtn2);
-        bool hoverSave3 = CheckCollisionPointRec(mousePos, saveBtn3);
-
-        if (hoverSave1 && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
-            saveMessageText = gm.saveGame("save_slot_1.txt") ? "Game saved to Slot 1" : "Save failed (Slot 1)";
+        if (hoverSave && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+            std::string slotFile = "save_slot_" + std::to_string(saveSlotCursor) + ".txt";
+            saveMessageText = gm.saveGame(slotFile) ? "Game Saved" : "Save Failed";
             saveMessageTimer = 2.0f;
-        }
-        if (hoverSave2 && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
-            saveMessageText = gm.saveGame("save_slot_2.txt") ? "Game saved to Slot 2" : "Save failed (Slot 2)";
-            saveMessageTimer = 2.0f;
-        }
-        if (hoverSave3 && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
-            saveMessageText = gm.saveGame("save_slot_3.txt") ? "Game saved to Slot 3" : "Save failed (Slot 3)";
-            saveMessageTimer = 2.0f;
+            saveSlotCursor = (saveSlotCursor % 3) + 1;
         }
 
         hero* activeHero = (activePlayerTurn == 1) ? draculaHero : sherlockHero;
@@ -797,6 +792,13 @@ Vector2 mousePos = GetMousePosition();
             DrawTextCentered(GetRegularFont(), turnLabel.c_str(), sw / 2.0f, headerH * 0.60f, 15, 0.9f, GetColor(0xC2B6B9FF));
         }
 
+        // Single save button lives entirely inside the header strip, well
+        // above mapDest/p1Panel/p2Panel -- it never overlaps or resizes
+        // any other UI element on this screen.
+        DrawRectangleRec(saveBtn, hoverSave ? GetColor(0x2A2130FF) : GetColor(0x151218FF));
+        DrawRectangleLinesEx(saveBtn, 2, GetColor(0xE5C158FF));
+        DrawTextCentered(GetSemiFont(), "SAVE", saveBtn.x + saveBtn.width / 2.0f, saveBtn.y + 8, 15, 0.6f, GetColor(0xE5C158FF));
+
         if (saveMessageTimer > 0.0f) {
             float alpha = (saveMessageTimer > 1.0f) ? 1.0f : saveMessageTimer;
             DrawTextCentered(GetSemiFont(), saveMessageText.c_str(), sw / 2.0f, headerH + 8, 16, 0.6f, Fade(GetColor(0x6FCF97FF), alpha));
@@ -831,20 +833,6 @@ Vector2 mousePos = GetMousePosition();
 
         DrawRectangleLinesEx(mapDest, 4, GetColor(0x342936FF));
         DrawRectangleLines((int)mapDest.x - 3, (int)mapDest.y - 3, (int)mapDest.width + 6, (int)mapDest.height + 6, GetColor(0x5A4B53FF));
-
-        // Drawn after the board texture (and its border) so they sit on
-        // top of the map instead of being painted over by it.
-        DrawRectangleRec(saveBtn1, hoverSave1 ? GetColor(0x2A2130FF) : GetColor(0x151218FF));
-        DrawRectangleLinesEx(saveBtn1, 2, GetColor(0xE5C158FF));
-        DrawTextCentered(GetSemiFont(), "SAVE 1", saveBtn1.x + saveBtn1.width / 2.0f, saveBtn1.y + 8, 13, 0.5f, GetColor(0xE5C158FF));
-
-        DrawRectangleRec(saveBtn2, hoverSave2 ? GetColor(0x2A2130FF) : GetColor(0x151218FF));
-        DrawRectangleLinesEx(saveBtn2, 2, GetColor(0xE5C158FF));
-        DrawTextCentered(GetSemiFont(), "SAVE 2", saveBtn2.x + saveBtn2.width / 2.0f, saveBtn2.y + 8, 13, 0.5f, GetColor(0xE5C158FF));
-
-        DrawRectangleRec(saveBtn3, hoverSave3 ? GetColor(0x2A2130FF) : GetColor(0x151218FF));
-        DrawRectangleLinesEx(saveBtn3, 2, GetColor(0xE5C158FF));
-        DrawTextCentered(GetSemiFont(), "SAVE 3", saveBtn3.x + saveBtn3.width / 2.0f, saveBtn3.y + 8, 13, 0.5f, GetColor(0xE5C158FF));
 
         ActionBar_DrawCardEffectsBox(actionBar, cardEffectsBox);
 
