@@ -93,6 +93,19 @@ struct ActionBarState {
     hero* combatTargetHero = nullptr;
     bool combatTargetIsDefender = false;
     card combatChosenDefenseCard;
+
+    // Dash / The Game is Afoot / Beastform, for the case where a Sister or
+    // Watson is the one physically fighting. These cards' extra choice
+    // (which space to move to, how many cards to discard) can't be stored
+    // on the hero object in that case -- Dash might need to move the
+    // SIDEKICK, not the hero, and hero::attack()'s rich pipeline (which
+    // reads dashTargetNode etc. off itself) never even runs for a sidekick
+    // fight. So these three mirror that same choice here instead, and
+    // ActionBar_ResolveDefense's sidekick-involved branch applies them
+    // directly. -1 / -1 / 0 means "not chosen (yet)".
+    int pendingDashTargetNode = -1;
+    int pendingAfootTargetNode = -1;
+    int pendingBeastformDiscardCount = 0;
 };
 
 struct ActionBarLayout {

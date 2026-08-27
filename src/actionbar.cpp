@@ -99,6 +99,17 @@ static void ActionBar_CompleteAction(ActionBarState& state, GameManager& gm)
     state.selectedCardIndex = -1;
     state.hasPendingBoost = false;
 
+    // Each of the 2 actions in a turn is a fresh choice of WHICH of your
+    // fighters (hero or a sidekick) performs it -- Dracula's team in
+    // particular can act with Dracula himself or any living Sister on
+    // either action. selectedActor used to persist silently from action 1
+    // into action 2, so the game kept reusing whichever fighter acted
+    // first instead of letting the player choose again. Clearing it here
+    // makes the acting-character choice default back to the turn's hero
+    // and forces (allows) a fresh pick before every action, not just the
+    // first one.
+    state.selectedActor = nullptr;
+
     gm.getTurnManager().endTurn();
 }
 
@@ -121,6 +132,11 @@ static void ActionBar_CompleteFreeAction(ActionBarState& state)
     state.currentAction = ActionMode::None;
     state.selectedCardIndex = -1;
     state.hasPendingBoost = false;
+
+    // Same reasoning as ActionBar_CompleteAction above: the bonus action
+    // this card grants is still a new action, so the acting-character
+    // choice should reset for it too.
+    state.selectedActor = nullptr;
 }
 
 static void ActionBar_ProceedToDefense(ActionBarState& state)
@@ -180,6 +196,9 @@ void ActionBar_ResetOnTurnEnd(ActionBarState& state)
     state.pendingSchemeCardIndex = -1;
     state.pendingSchemeTarget = nullptr;
     state.raveningFighter = nullptr;
+    state.pendingDashTargetNode = -1;
+    state.pendingAfootTargetNode = -1;
+    state.pendingBeastformDiscardCount = 0;
 
     // Dracula's Blood Drain is once-per-turn -- must reset when a new turn
     // begins, or he'd only ever get to use it on turn 1 of the whole game.
@@ -218,22 +237,21 @@ void ActionBar_ResolveDefense(
         // A Sister or Watson is attacking and/or defending: not a full
         // hero::attack(hero&,...) call (that needs hero& on both sides, and
         // sidekicks don't have their own hand/deck -- they use their
-        // controlling hero's), so this applies the same core combat math --
-        // Feint cancels effects, otherwise damage = max(0, attack -
-        // defense) -- directly. This intentionally doesn't replicate every
-        // hero-specific card combo (Feeding Frenzy, Look Into My Eyes,
-        // etc.) when a sidekick is on either side, but it means Sisters and
-        // Watson can actually fight, and the defending player always gets a
-        // genuine card choice and mitigation instead of guaranteed flat
-        // damage.
+        // controlling hero's). This replicates the same before/during/
+        // after-combat card effects hero::attack() applies for a
+        // hero-vs-hero fight, redirecting the final damage (and, for
+        // Dash/The Game is Afoot, the movement) to the sidekick instead of
+        // the hero. Dash/Afoot/Beastform read their player-chosen value
+        // from state.pendingDashTargetNode/pendingAfootTargetNode/
+        // pendingBeastformDiscardCount instead of the hero's own private
+        // fields, since those are set through hero::attack()'s pipeline,
+        // which never runs for a sidekick fight.
         character* realTarget = damageTarget ? damageTarget : static_cast<character*>(defender);
 
-        // Same Sherlock passive-shield rule as hero::attack(): a
-        // Sherlock/Watson-owned card doesn't get canceled by the
-        // opponent's Feint as long as Sherlock is on that card's side of
-        // this fight. Watson's own combats resolve through this block
-        // (not hero::attack()), so without this check here his cards had
-        // no shield at all.
+        int attackValue = std::max(0, attackCard.getattack());
+        int defenseValue = std::max(0, defenseCard.getdefense());
+        bool attackerWon = false;
+
         bool sherlockInFight =
             attacker->getname() == "Sherlock Holmes" || defender->getname() == "Sherlock Holmes";
 
@@ -251,12 +269,99 @@ void ActionBar_ResolveDefense(
         if (defenseCard.get_name() == "Feint" && !attackCardProtected)
             effectsCanceled = true;
 
-        int atk = std::max(0, attackCard.getattack());
-        int def = effectsCanceled ? 0 : std::max(0, defenseCard.getdefense());
-        int damage = std::max(0, atk - def);
+        if (!effectsCanceled) {
+            // ---- Before-damage (during-combat) card effects ----
+            if (defenseCard.get_name() == "Look Into My Eyes") {
+                defenseValue += attackCard.getboost();
+            }
+
+            if (attackCard.get_name() == "Feeding Frenzy") {
+                int sistersInZone = 0;
+                auto zonesTarget = board.getZonesAt(realTarget->getx(), 0);
+
+                for (character* ally : gm.getAllies(attacker)) {
+                    if (ally && ally->isalive() && ally->getname().find("Sister") != std::string::npos) {
+                        auto zonesAlly = board.getZonesAt(ally->getx(), 0);
+                        for (const auto& z1 : zonesTarget) {
+                            for (const auto& z2 : zonesAlly) {
+                                if (z1 == z2) { sistersInZone++; goto sisterCounted; }
+                            }
+                        }
+                        sisterCounted:;
+                    }
+                }
+                attackValue += sistersInZone;
+            }
+
+            if (attackCard.get_name() == "Ambush") {
+                auto& enemyHand = defender->gethand();
+                if (!enemyHand.empty()) {
+                    int idx = rand() % static_cast<int>(enemyHand.size());
+                    attackValue += enemyHand[idx].getboost();
+                    enemyHand.erase(enemyHand.begin() + idx);
+                }
+            }
+
+            if (attackCard.get_name() == "Beastform") {
+                auto& atkHand = attacker->gethand();
+                int count = state.pendingBeastformDiscardCount;
+                if (count > static_cast<int>(atkHand.size()))
+                    count = static_cast<int>(atkHand.size());
+                if (count < 0)
+                    count = 0;
+                for (int i = 0; i < count; i++)
+                    atkHand.pop_back();
+                attackValue += count;
+            }
+        }
+
+        int damage = std::max(0, attackValue - defenseValue);
 
         if (damage > 0) {
             realTarget->takedamage(damage);
+            attackerWon = true;
+        }
+
+        if (!effectsCanceled) {
+            // ---- After-combat card effects ----
+            if (defenseCard.get_name() == "Exploit")
+                defender->drawcard();
+
+            if (attackCard.get_name() == "Exploit")
+                attacker->drawcard();
+
+            if (attackCard.get_name() == "Thirst for Sustenance" && attackerWon) {
+                auto neighbors = board.getNeighborIds(realTarget->getx());
+                for (int node : neighbors) {
+                    bool occupied = false;
+                    for (character* c : gm.getAllCharacters()) {
+                        if (c && c->isalive() && c->getx() == node && c != attacker) {
+                            occupied = true;
+                            break;
+                        }
+                    }
+                    if (!occupied) {
+                        attacker->setposition(node);
+                        break;
+                    }
+                }
+            }
+
+            // Dash / The Game is Afoot move whichever fighter actually
+            // played the card -- the physically attacking character
+            // (attackerPos), which may be a Sister rather than the hero
+            // whose hand the card came from. The target node was already
+            // confirmed unoccupied when the player clicked it (see the
+            // DashNode/AfootNode click handler in ActionBar_UpdateTargeting).
+            if (attackCard.get_name() == "Dash" && state.pendingDashTargetNode >= 0) {
+                character* mover = attackerPos ? attackerPos : static_cast<character*>(attacker);
+                mover->setposition(state.pendingDashTargetNode);
+            }
+
+            if (attackCard.get_name() == "The Game is Afoot" && state.pendingAfootTargetNode >= 0) {
+                character* mover = attackerPos ? attackerPos : static_cast<character*>(attacker);
+                mover->setposition(state.pendingAfootTargetNode);
+            }
         }
 
         attacker->useAction();
@@ -283,6 +388,9 @@ void ActionBar_ResolveDefense(
     state.pendingDefender = nullptr;
     state.pendingDefenderTarget = nullptr;
     state.pendingAttackCard = card();
+    state.pendingDashTargetNode = -1;
+    state.pendingAfootTargetNode = -1;
+    state.pendingBeastformDiscardCount = 0;
 
     if (resolved) {
         ActionBar_CompleteAction(state, gm);
@@ -487,22 +595,25 @@ void ActionBar_Update(
 
                 std::string atkName = attackCard.get_name();
 
-                // Dash / The Game is Afoot / Beastform each need one extra
-                // hero-side field (dashTargetNode, etc.) set through
-                // hero::attack()'s rich pipeline -- that pipeline only runs
-                // for genuine hero-vs-hero combat, so a sidekick on either
-                // side skips straight to the simplified defense flow
-                // instead of these sub-prompts.
-                if (!attackerIsSidekick && enemyHero && atkName == "Dash") {
-                    state.combatTargetHero = actingHero;
+                // Dash / The Game is Afoot / Beastform now get their
+                // sub-prompt (pick a destination space, or how many cards
+                // to discard) regardless of whether a Sister/Watson is
+                // involved. combatTargetHero is always activeHero (the
+                // card's owner, who has a real hand to discard from);
+                // ActionBar_ResolveDefense below figures out from
+                // pendingAttackerPosition/pendingDefenderTarget whether the
+                // *mover* for Dash/Afoot should be the hero itself or the
+                // sidekick who's physically fighting.
+                if (atkName == "Dash") {
+                    state.combatTargetHero = activeHero;
                     state.combatTargetIsDefender = false;
                     state.targetPrompt = TargetPrompt::DashNode;
-                } else if (!attackerIsSidekick && enemyHero && atkName == "The Game is Afoot") {
-                    state.combatTargetHero = actingHero;
+                } else if (atkName == "The Game is Afoot") {
+                    state.combatTargetHero = activeHero;
                     state.combatTargetIsDefender = false;
                     state.targetPrompt = TargetPrompt::AfootNode;
-                } else if (!attackerIsSidekick && enemyHero && atkName == "Beastform") {
-                    state.combatTargetHero = actingHero;
+                } else if (atkName == "Beastform") {
+                    state.combatTargetHero = activeHero;
                     state.combatTargetIsDefender = false;
                     state.targetPrompt = TargetPrompt::BeastformDiscard;
                 } else {
@@ -821,10 +932,26 @@ void ActionBar_UpdateTargeting(
         hero* mover = state.combatTargetHero;
         bool wasDefender = state.combatTargetIsDefender;
 
-        if (state.targetPrompt == TargetPrompt::DashNode)
-            mover->setDashTargetNode(nodeId);
-        else
-            mover->setGameIsAfootTargetNode(nodeId);
+        // If a Sister/Watson is involved in this fight, hero::attack()'s
+        // rich pipeline (which reads dashTargetNode etc. off the hero
+        // itself) never runs -- ActionBar_ResolveDefense's sidekick branch
+        // reads the choice from these state fields instead. Otherwise this
+        // is genuine hero-vs-hero combat, so it's stored on the hero as
+        // before.
+        bool sidekickInvolved = (state.pendingAttackerPosition != nullptr) ||
+                                 (state.pendingDefenderTarget != nullptr);
+
+        if (sidekickInvolved) {
+            if (state.targetPrompt == TargetPrompt::DashNode)
+                state.pendingDashTargetNode = nodeId;
+            else
+                state.pendingAfootTargetNode = nodeId;
+        } else {
+            if (state.targetPrompt == TargetPrompt::DashNode)
+                mover->setDashTargetNode(nodeId);
+            else
+                mover->setGameIsAfootTargetNode(nodeId);
+        }
 
         if (wasDefender) {
             state.targetPrompt = TargetPrompt::None;
@@ -1093,7 +1220,13 @@ void ActionBar_DrawBeastformPicker(
         DrawTextCenteredAB(GetSemiFont(), label.c_str(), btn.x + btnSize / 2.0f, btn.y + 12, 20, 0.5f, WHITE);
 
         if (hover && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
-            attacker->setBeastformDiscardCount(v);
+            bool sidekickInvolved = (state.pendingAttackerPosition != nullptr) ||
+                                     (state.pendingDefenderTarget != nullptr);
+            if (sidekickInvolved) {
+                state.pendingBeastformDiscardCount = v;
+            } else {
+                attacker->setBeastformDiscardCount(v);
+            }
             ActionBar_ProceedToDefense(state);
             return;
         }

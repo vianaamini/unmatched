@@ -12,12 +12,15 @@
 #include "raylib.hpp"
 #include "../include/game_manager.hpp"
 #include "../include/invisible_man.hpp"
+
 #include <iostream>
 #include <vector>
 #include <string>
 #include <filesystem>
+#include <random>
 
-enum class GameState {
+enum class GameState
+{
     MainMenu,
     AgeSelection,
     HeroSelection,
@@ -25,9 +28,6 @@ enum class GameState {
     Exit
 };
 
-// Looks at save_slot_1.txt / save_slot_2.txt / save_slot_3.txt and returns
-// the path of whichever one was written most recently, or "" if none of
-// the three slots exist yet.
 static std::string findMostRecentSaveSlot()
 {
     std::string best;
@@ -36,11 +36,17 @@ static std::string findMostRecentSaveSlot()
 
     for (int slot = 1; slot <= 3; ++slot)
     {
-        std::string path = "save_slot_" + std::to_string(slot) + ".txt";
+        std::string path =
+            "save_slot_" +
+            std::to_string(slot) +
+            ".txt";
+
         if (!std::filesystem::exists(path))
             continue;
 
-        auto t = std::filesystem::last_write_time(path);
+        auto t =
+            std::filesystem::last_write_time(path);
+
         if (!found || t > bestTime)
         {
             best = path;
@@ -52,12 +58,26 @@ static std::string findMostRecentSaveSlot()
     return best;
 }
 
+static int randomFirstPlayer()
+{
+    static std::random_device rd;
+    static std::mt19937 generator(rd());
+
+    std::uniform_int_distribution<int> distribution(1, 2);
+
+    return distribution(generator);
+}
+
 int main()
 {
-    GameState currentState = GameState::MainMenu;
+    GameState currentState =
+        GameState::MainMenu;
+
     int firstPlayer = 1;
+
     std::string p1Hero = "";
     std::string p2Hero = "";
+
     bool wantLoad = false;
 
     while (currentState != GameState::Exit)
@@ -67,66 +87,114 @@ int main()
             case GameState::MainMenu:
             {
                 Menu menu;
-                MenuResult menuResult = menu.show();
+
+                MenuResult menuResult =
+                    menu.show();
 
                 if (menuResult == MenuResult::Start)
                 {
                     wantLoad = false;
-                    currentState = GameState::AgeSelection;
+
+                    currentState =
+                        GameState::AgeSelection;
                 }
-                else if (menuResult == MenuResult::Load)
+                else if (
+                    menuResult == MenuResult::Load
+                )
                 {
                     wantLoad = true;
-                    currentState = GameState::Playing;
+
+                    currentState =
+                        GameState::Playing;
                 }
                 else
                 {
-                    currentState = GameState::Exit;
+                    currentState =
+                        GameState::Exit;
                 }
+
                 break;
             }
 
             case GameState::AgeSelection:
             {
                 AgeScreen ageScreen;
-                AgeScreenResult ageResult = ageScreen.show();
 
-                if (ageResult == AgeScreenResult::EqualAge)
+                AgeScreenResult ageResult =
+                    ageScreen.show();
+
+                if (
+                    ageResult ==
+                    AgeScreenResult::EqualAge
+                )
+                {
+                    firstPlayer =
+                        randomFirstPlayer();
+
+                    std::cout
+                        << "Both players have the same age. "
+                        << "Player "
+                        << firstPlayer
+                        << " chooses first."
+                        << std::endl;
+
+                    currentState =
+                        GameState::HeroSelection;
+                }
+                else if (
+                    ageResult ==
+                    AgeScreenResult::Player1First
+                )
                 {
                     firstPlayer = 1;
-                    currentState = GameState::HeroSelection;
+
+                    currentState =
+                        GameState::HeroSelection;
                 }
-                else if (ageResult == AgeScreenResult::Player1First)
-                {
-                    firstPlayer = 1;
-                    currentState = GameState::HeroSelection;
-                }
-                else if (ageResult == AgeScreenResult::Player2First)
+                else if (
+                    ageResult ==
+                    AgeScreenResult::Player2First
+                )
                 {
                     firstPlayer = 2;
-                    currentState = GameState::HeroSelection;
+
+                    currentState =
+                        GameState::HeroSelection;
                 }
+
                 break;
             }
 
             case GameState::HeroSelection:
             {
                 HeroSelection heroSelection;
-                HeroSelectionResult heroResult = heroSelection.show(firstPlayer);
 
-                if (heroResult.type == HeroSelectionResultType::EnterGame)
+                HeroSelectionResult heroResult =
+                    heroSelection.show(firstPlayer);
+
+                if (
+                    heroResult.type ==
+                    HeroSelectionResultType::EnterGame
+                )
                 {
-                    p1Hero = heroResult.player1Hero;
-                    p2Hero = heroResult.player2Hero;
+                    p1Hero =
+                        heroResult.player1Hero;
 
-                    firstPlayer = heroResult.firstPlayer;
+                    p2Hero =
+                        heroResult.player2Hero;
 
-                    currentState = GameState::Playing;
+                    firstPlayer =
+                        heroResult.firstPlayer;
+
+                    currentState =
+                        GameState::Playing;
                 }
                 else
                 {
-                    currentState = GameState::AgeSelection;
+                    currentState =
+                        GameState::AgeSelection;
                 }
+
                 break;
             }
 
@@ -135,110 +203,201 @@ int main()
                 GameManager gm;
 
                 std::string loadFile;
+
                 bool team1IsDracula = false;
                 bool team2IsSherlock = false;
 
                 if (wantLoad)
                 {
-                    loadFile = findMostRecentSaveSlot();
+                    loadFile =
+                        findMostRecentSaveSlot();
+
                     if (loadFile.empty())
                     {
-                        std::cout << "No saved game found in slots 1-3." << std::endl;
+                        std::cout
+                            << "No saved game found in slots 1-3."
+                            << std::endl;
+
                         wantLoad = false;
-                        currentState = GameState::MainMenu;
+
+                        currentState =
+                            GameState::MainMenu;
+
                         break;
                     }
 
-                    std::string team1Type, team2Type;
-                    if (!gm.peekHeroTypes(loadFile, team1Type, team2Type))
+                    std::string team1Type;
+                    std::string team2Type;
+
+                    if (
+                        !gm.peekHeroTypes(
+                            loadFile,
+                            team1Type,
+                            team2Type
+                        )
+                    )
                     {
-                        std::cout << "Save file is corrupted: " << loadFile << std::endl;
+                        std::cout
+                            << "Save file is corrupted: "
+                            << loadFile
+                            << std::endl;
+
                         wantLoad = false;
-                        currentState = GameState::MainMenu;
+
+                        currentState =
+                            GameState::MainMenu;
+
                         break;
                     }
 
-                    team1IsDracula = (team1Type == "DRACULA");
-                    team2IsSherlock = (team2Type == "SHERLOCK");
+                    team1IsDracula =
+                        (team1Type == "DRACULA");
+
+                    team2IsSherlock =
+                        (team2Type == "SHERLOCK");
                 }
                 else
                 {
-                    // Team 1 slot: Dracula unless nobody picked him, in which
-                    // case Invisible Man takes that slot instead.
-                    // Team 2 slot: Sherlock Holmes unless nobody picked him,
-                    // in which case Invisible Man takes that slot instead.
-                    // (Exactly one of the two players picks Invisible Man
-                    // when he's in the match at all, so at most one slot
-                    // ever falls back to him.)
-                    team1IsDracula = (p1Hero == "DRACULA" || p2Hero == "DRACULA");
-                    team2IsSherlock = (p1Hero == "SHERLOCK HOLMES" || p2Hero == "SHERLOCK HOLMES");
+                    team1IsDracula =
+                        (
+                            p1Hero == "DRACULA" ||
+                            p2Hero == "DRACULA"
+                        );
+
+                    team2IsSherlock =
+                        (
+                            p1Hero == "SHERLOCK HOLMES" ||
+                            p2Hero == "SHERLOCK HOLMES"
+                        );
                 }
 
                 hero* team1Hero = nullptr;
+
                 sister* sister1Ptr = nullptr;
                 sister* sister2Ptr = nullptr;
                 sister* sister3Ptr = nullptr;
 
                 if (team1IsDracula)
                 {
-                    dracula* draculaPtr = new dracula();
-                    draculaPtr->setposition(10);
-                    team1Hero = draculaPtr;
+                    dracula* draculaPtr =
+                        new dracula();
 
-                    sister1Ptr = new sister(1);
-                    sister2Ptr = new sister(2);
-                    sister3Ptr = new sister(3);
+                    draculaPtr->setposition(10);
+
+                    team1Hero =
+                        draculaPtr;
+
+                    sister1Ptr =
+                        new sister(1);
+
+                    sister2Ptr =
+                        new sister(2);
+
+                    sister3Ptr =
+                        new sister(3);
+
                     sister1Ptr->setposition(1);
                     sister2Ptr->setposition(2);
                     sister3Ptr->setposition(3);
                 }
                 else
                 {
-                    InvisibleMan* invPtr = new InvisibleMan();
+                    InvisibleMan* invPtr =
+                        new InvisibleMan();
+
                     invPtr->setposition(10);
-                    team1Hero = invPtr;
+
+                    team1Hero =
+                        invPtr;
                 }
 
                 hero* team2Hero = nullptr;
+
                 watson* watsonPtr = nullptr;
 
                 if (team2IsSherlock)
                 {
-                    sherlock* sherlockPtr = new sherlock();
-                    sherlockPtr->setposition(23);
-                    team2Hero = sherlockPtr;
+                    sherlock* sherlockPtr =
+                        new sherlock();
 
-                    watsonPtr = new watson();
+                    sherlockPtr->setposition(23);
+
+                    team2Hero =
+                        sherlockPtr;
+
+                    watsonPtr =
+                        new watson();
+
                     watsonPtr->setposition(22);
                 }
                 else
                 {
-                    InvisibleMan* invPtr = new InvisibleMan();
+                    InvisibleMan* invPtr =
+                        new InvisibleMan();
+
                     invPtr->setposition(23);
-                    team2Hero = invPtr;
+
+                    team2Hero =
+                        invPtr;
                 }
 
-                gm.addCharacter(team1Hero, 1);
-                if (sister1Ptr) gm.addCharacter(sister1Ptr, 1);
-                if (sister2Ptr) gm.addCharacter(sister2Ptr, 1);
-                if (sister3Ptr) gm.addCharacter(sister3Ptr, 1);
-                gm.addCharacter(team2Hero, 2);
-                if (watsonPtr) gm.addCharacter(watsonPtr, 2);
+                gm.addCharacter(
+                    team1Hero,
+                    1
+                );
 
-                // Fog tokens must be placed AFTER addCharacter(), because
-                // addCharacter() is what wires up the hero's board pointer
-                // (h->setBoard(&board)). initializeFogTokens() needs a
-                // valid board to find the hero's starting Zone; calling it
-                // any earlier meant getBoard() was still null, so every
-                // fog token silently fell back to sitting on the hero's
-                // own space instead of spreading across his Zone.
-                // When loading a save, loadGame() below will immediately
-                // overwrite these with the saved fog positions, but the
-                // hero still needs valid fog tokens to exist first.
-                if (InvisibleMan* invTeam1 = dynamic_cast<InvisibleMan*>(team1Hero))
-                    invTeam1->initializeFogTokens(invTeam1->getposition());
-                if (InvisibleMan* invTeam2 = dynamic_cast<InvisibleMan*>(team2Hero))
-                    invTeam2->initializeFogTokens(invTeam2->getposition());
+                if (sister1Ptr)
+                    gm.addCharacter(
+                        sister1Ptr,
+                        1
+                    );
+
+                if (sister2Ptr)
+                    gm.addCharacter(
+                        sister2Ptr,
+                        1
+                    );
+
+                if (sister3Ptr)
+                    gm.addCharacter(
+                        sister3Ptr,
+                        1
+                    );
+
+                gm.addCharacter(
+                    team2Hero,
+                    2
+                );
+
+                if (watsonPtr)
+                    gm.addCharacter(
+                        watsonPtr,
+                        2
+                    );
+
+                if (
+                    InvisibleMan* invTeam1 =
+                        dynamic_cast<InvisibleMan*>(
+                            team1Hero
+                        )
+                )
+                {
+                    invTeam1->initializeFogTokens(
+                        invTeam1->getposition()
+                    );
+                }
+
+                if (
+                    InvisibleMan* invTeam2 =
+                        dynamic_cast<InvisibleMan*>(
+                            team2Hero
+                        )
+                )
+                {
+                    invTeam2->initializeFogTokens(
+                        invTeam2->getposition()
+                    );
+                }
 
                 int firstTeam;
 
@@ -246,37 +405,65 @@ int main()
                 {
                     if (!gm.loadGame(loadFile))
                     {
-                        std::cout << "Failed to load save file: " << loadFile << std::endl;
+                        std::cout
+                            << "Failed to load save file: "
+                            << loadFile
+                            << std::endl;
+
                         delete team1Hero;
                         delete sister1Ptr;
                         delete sister2Ptr;
                         delete sister3Ptr;
                         delete team2Hero;
                         delete watsonPtr;
+
                         wantLoad = false;
-                        currentState = GameState::MainMenu;
+
+                        currentState =
+                            GameState::MainMenu;
+
                         break;
                     }
 
-                    // Turn number, whose turn it is, actions remaining, HP,
-                    // positions, hands and decks all come back from the
-                    // save file above -- gm.startGame() must NOT be called
-                    // here, since that would reset the turn counter back
-                    // to the beginning.
-                    firstTeam = gm.getCurrentTeam();
+                    firstTeam =
+                        gm.getCurrentTeam();
                 }
                 else
                 {
-                    // p1Team is whichever team number the fighter p1Hero
-                    // picked ended up on above.
-                    std::string team1PickName = team1IsDracula ? std::string("DRACULA") : std::string("INVISIBLE MAN");
-                    int p1Team = (p1Hero == team1PickName) ? 1 : 2;
-                    firstTeam = (firstPlayer == 1) ? p1Team : (p1Team == 1 ? 2 : 1);
+                    std::string team1PickName =
+                        team1IsDracula
+                            ? "DRACULA"
+                            : "INVISIBLE MAN";
+
+                    int p1Team =
+                        (p1Hero == team1PickName)
+                            ? 1
+                            : 2;
+
+                    firstTeam =
+                        (firstPlayer == 1)
+                            ? p1Team
+                            : (
+                                p1Team == 1
+                                    ? 2
+                                    : 1
+                              );
 
                     gm.startGame(firstTeam);
                 }
 
-                RunGameUI(gm, team1Hero, sister1Ptr, sister2Ptr, sister3Ptr, team2Hero, watsonPtr, firstTeam, team1Hero, team2Hero);
+                RunGameUI(
+                    gm,
+                    team1Hero,
+                    sister1Ptr,
+                    sister2Ptr,
+                    sister3Ptr,
+                    team2Hero,
+                    watsonPtr,
+                    firstTeam,
+                    team1Hero,
+                    team2Hero
+                );
 
                 delete team1Hero;
                 delete sister1Ptr;
@@ -286,7 +473,10 @@ int main()
                 delete watsonPtr;
 
                 wantLoad = false;
-                currentState = GameState::MainMenu;
+
+                currentState =
+                    GameState::MainMenu;
+
                 break;
             }
 
