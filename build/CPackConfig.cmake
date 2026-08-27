@@ -13,7 +13,7 @@
 set(CPACK_ARCHIVE_GID "-1")
 set(CPACK_ARCHIVE_UID "-1")
 set(CPACK_BUILD_SOURCE_DIRS "E:/assassins/new/unmatched;E:/assassins/new/unmatched/build")
-set(CPACK_CMAKE_GENERATOR "MinGW Makefiles")
+set(CPACK_CMAKE_GENERATOR "Unix Makefiles")
 set(CPACK_COMPONENT_UNSPECIFIED_HIDDEN "TRUE")
 set(CPACK_COMPONENT_UNSPECIFIED_REQUIRED "TRUE")
 set(CPACK_DEBIAN_PACKAGE_DEPENDS "libatomic1, libc6, libglfw3, libglu1-mesa | libglu1, libglx0, libopengl0")

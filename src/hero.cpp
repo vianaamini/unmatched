@@ -787,13 +787,13 @@ bool hero::attack(
         if (InvisibleMan* imDef = dynamic_cast<InvisibleMan*>(&target)) {
             // attackValue is passed by reference too, for cards like
             // "Impossible to See" that zero out the attacker's value.
-            imDef->executeDefenseCardEffects(defenseCard, attackCard, defenseValue, attackValue, effectsCanceled);
+            imDef->executeDefenseCardEffects(defenseCard, attackCard, defenseValue, attackValue, effectsCanceled, attackCardProtected);
         }
         if (InvisibleMan* imAtk = dynamic_cast<InvisibleMan*>(this)) {
             // defenseValue is passed by reference too, so cards like
             // "Impossible to See" can zero out the *opponent's* value
             // instead of the Invisible Man's own attack value.
-            imAtk->executeAttackCardEffects(attackCard, target, attackValue, defenseValue, attackerWon, effectsCanceled, defenseCard);
+            imAtk->executeAttackCardEffects(attackCard, target, attackValue, defenseValue, attackerWon, effectsCanceled, defenseCard, defenseCardProtected);
         }
 
         if (defenseCard.get_name() == "Look Into My Eyes") {
@@ -825,7 +825,7 @@ bool hero::attack(
             target.predictedAttackValue = 0;
         }
 
-        if (attackCard.get_name() == "Deduce Strategy") {
+        if (!effectsCanceled && attackCard.get_name() == "Deduce Strategy") {
             int newDef = defenseCard.getboost();
 
             if (newDef < defenseValue) {
@@ -836,7 +836,7 @@ bool hero::attack(
             }
         }
 
-        if (attackCard.get_name() == "Beastform") {
+        if (!effectsCanceled && attackCard.get_name() == "Beastform") {
             int count = beastformDiscardCount;
 
             if (count > static_cast<int>(hand.size()))
@@ -856,7 +856,7 @@ bool hero::attack(
                  << endl;
         }
 
-        if (attackCard.get_name() == "Feeding Frenzy") {
+        if (!effectsCanceled && attackCard.get_name() == "Feeding Frenzy") {
             if (gameManager) {
                 auto allies = gameManager->getAllies(this);
                 int sistersInZone = 0;
@@ -898,7 +898,7 @@ bool hero::attack(
             }
         }
 
-        if (attackCard.get_name() == "Ambush") {
+        if (!effectsCanceled && attackCard.get_name() == "Ambush") {
             auto& enemyHand = target.gethand();
 
             if (!enemyHand.empty()) {

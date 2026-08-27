@@ -37,6 +37,7 @@ public:
     void setGameManager(GameManager* gm) { gameManager = gm; }
 
     void setPredictedAttackValue(int val) { predictedAttackValue = val; }
+    int getPredictedAttackValue() const { return predictedAttackValue; }
     void setBeastformDiscardCount(int val) { beastformDiscardCount = val; }
     void setMistformTarget(const std::string& target) { mistformTarget = target; }
 

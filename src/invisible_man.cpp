@@ -303,7 +303,7 @@ bool InvisibleMan::executeSchemeCard(card& schemeCard, hero& target) {
     return false;
 }
 
-void InvisibleMan::executeAttackCardEffects(card& attackCard, character& target, int& attackValue, int& defenseValue, bool& attackerWon, bool& effectsCanceled, const card& defenseCard) {
+void InvisibleMan::executeAttackCardEffects(card& attackCard, character& target, int& attackValue, int& defenseValue, bool& attackerWon, bool& effectsCanceled, const card& defenseCard, bool defenseCardProtected) {
     std::string name = attackCard.get_name();
     Board* b = getBoard();
 
@@ -360,13 +360,19 @@ void InvisibleMan::executeAttackCardEffects(card& attackCard, character& target,
         // Rulebook: "your OPPONENT's attack or defense value is 0 and can't
         // be changed by card effects. Other card effects still happen."
         // As the attacker, that means the opponent's *defense* value is
-        // zeroed -- not our own attack value.
-        defenseValue = 0;
-        std::cout << getname() << " renders the opponent's defense meaningless (value: 0)!" << std::endl;
+        // zeroed -- not our own attack value. Skipped entirely if that
+        // defense card belongs to Sherlock or Watson (Sherlock's passive
+        // immunity), in which case the defense value is left untouched.
+        if (!defenseCardProtected) {
+            defenseValue = 0;
+            std::cout << getname() << " renders the opponent's defense meaningless (value: 0)!" << std::endl;
+        } else {
+            std::cout << "Impossible to See has no effect: " << defenseCard.get_name() << " belongs to Sherlock/Watson and can't be disabled." << std::endl;
+        }
     }
 }
 
-void InvisibleMan::executeDefenseCardEffects(card& defenseCard, const card& attackCard, int& defenseValue, int& attackValue, bool& effectsCanceled) {
+void InvisibleMan::executeDefenseCardEffects(card& defenseCard, const card& attackCard, int& defenseValue, int& attackValue, bool& effectsCanceled, bool attackCardProtected) {
     if (isOnFog()) {
         defenseValue += 1;
     }
@@ -435,8 +441,15 @@ void InvisibleMan::executeDefenseCardEffects(card& defenseCard, const card& atta
         }
     }
     else if (name == "Impossible to See") {
-        attackValue = 0;
-        std::cout << getname() << " renders the attack meaningless (value: 0)!" << std::endl;
+        // As the defender, this zeroes the attacker's attack value --
+        // skipped entirely if that attack card belongs to Sherlock or
+        // Watson (Sherlock's passive immunity).
+        if (!attackCardProtected) {
+            attackValue = 0;
+            std::cout << getname() << " renders the attack meaningless (value: 0)!" << std::endl;
+        } else {
+            std::cout << "Impossible to See has no effect: " << attackCard.get_name() << " belongs to Sherlock/Watson and can't be disabled." << std::endl;
+        }
     }
     else if (name == "Confound") {
         if (!fogPositions.empty() && b) {

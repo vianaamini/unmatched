@@ -115,19 +115,19 @@ HeroSelectionResult HeroSelection::show(int firstPlayer)
         {
             "DRACULA",
             "THE LORD OF BLOODS",
-            "assets/heroes/dracula (1).png",
+            "assets/heroes/dracula.png",
             {}
         },
         {
             "INVISIBLE MAN",
             "THE GHOST",
-            "assets/heroes/tranInv (1).png",
+            "assets/heroes/tranInv.png",
             {}
         },
         {
             "SHERLOCK HOLMES",
             "THE GRAND DETECTIVE",
-            "assets/heroes/sherlockTran (1).png",
+            "assets/heroes/sherlockTran.png",
             {}
         }
     };

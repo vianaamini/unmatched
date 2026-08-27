@@ -271,11 +271,58 @@ void ActionBar_ResolveDefense(
 
         if (!effectsCanceled) {
             // ---- Before-damage (during-combat) card effects ----
+
+            // Invisible Man's own attack/defense card hooks (Impossible to
+            // See, Emerge from Mist, Coded Notes, Into Thin Air, Lurking,
+            // Confound, Slip Away) never ran in this sidekick-involved
+            // branch at all -- hero::attack()'s pipeline that calls them is
+            // skipped whenever a Sister/Watson is physically fighting.
+            // Rulebook: "if two effects activate at the same time, the
+            // defender's effect resolves first," so the defender's hook
+            // runs before the attacker's, matching hero::attack().
+            if (InvisibleMan* imDef = dynamic_cast<InvisibleMan*>(defender)) {
+                imDef->executeDefenseCardEffects(defenseCard, attackCard, defenseValue, attackValue, effectsCanceled, attackCardProtected);
+            }
+            if (InvisibleMan* imAtk = dynamic_cast<InvisibleMan*>(attacker)) {
+                imAtk->executeAttackCardEffects(attackCard, *defender, attackValue, defenseValue, attackerWon, effectsCanceled, defenseCard, defenseCardProtected);
+            }
+
             if (defenseCard.get_name() == "Look Into My Eyes") {
                 defenseValue += attackCard.getboost();
             }
 
-            if (attackCard.get_name() == "Feeding Frenzy") {
+            // Deduce Strategy (defense side): replace the attacker's
+            // printed attack value with the attacker's own boost value (0
+            // if it has none), only if that's actually lower -- "you may
+            // change", never forced to raise the value.
+            if (defenseCard.get_name() == "Deduce Strategy") {
+                int newAtk = attackCard.getboost();
+                if (newAtk < attackValue)
+                    attackValue = newAtk;
+            }
+
+            // Elementary (defense side): if the defender correctly
+            // predicted the attacker's printed attack value, the attack is
+            // ignored and every other effect on the attacker's card
+            // (including a Deduce Strategy check below) is canceled too.
+            if (defenseCard.get_name() == "Elementary") {
+                if (defender->getPredictedAttackValue() == attackCard.getattack()) {
+                    attackValue = 0;
+                    effectsCanceled = true;
+                }
+                defender->setPredictedAttackValue(0);
+            }
+
+            // Deduce Strategy (attack side): same idea, applied to the
+            // defender's card -- replace its printed defense value with the
+            // defender's own boost value, only if lower.
+            if (!effectsCanceled && attackCard.get_name() == "Deduce Strategy") {
+                int newDef = defenseCard.getboost();
+                if (newDef < defenseValue)
+                    defenseValue = newDef;
+            }
+
+            if (!effectsCanceled && attackCard.get_name() == "Feeding Frenzy") {
                 int sistersInZone = 0;
                 auto zonesTarget = board.getZonesAt(realTarget->getx(), 0);
 
@@ -293,7 +340,7 @@ void ActionBar_ResolveDefense(
                 attackValue += sistersInZone;
             }
 
-            if (attackCard.get_name() == "Ambush") {
+            if (!effectsCanceled && attackCard.get_name() == "Ambush") {
                 auto& enemyHand = defender->gethand();
                 if (!enemyHand.empty()) {
                     int idx = rand() % static_cast<int>(enemyHand.size());
@@ -302,7 +349,7 @@ void ActionBar_ResolveDefense(
                 }
             }
 
-            if (attackCard.get_name() == "Beastform") {
+            if (!effectsCanceled && attackCard.get_name() == "Beastform") {
                 auto& atkHand = attacker->gethand();
                 int count = state.pendingBeastformDiscardCount;
                 if (count > static_cast<int>(atkHand.size()))
@@ -322,13 +369,90 @@ void ActionBar_ResolveDefense(
             attackerWon = true;
         }
 
+        // Whichever fighter physically attacked/defended -- used by cards
+        // (like Counter Punch) whose effect targets "the opponent's
+        // fighter" rather than the hero whose hand the card came from.
+        character* attackerFighter = attackerPos ? attackerPos : static_cast<character*>(attacker);
+
         if (!effectsCanceled) {
             // ---- After-combat card effects ----
             if (defenseCard.get_name() == "Exploit")
                 defender->drawcard();
 
+            // Fixed Point in a Changing Age: heals Watson AND Holmes by 1
+            // if they're adjacent to each other -- doesn't depend on which
+            // side played it, so it's checked once per side that has it.
+            if (defenseCard.get_name() == "Fixed Point" || attackCard.get_name() == "Fixed Point") {
+                character* watson = nullptr;
+                character* holmes = nullptr;
+                for (character* c : gm.getAllCharacters()) {
+                    if (c && c->isalive() && c->getname() == "Watson")
+                        watson = c;
+                    if (c && c->isalive() && c->getname() == "Sherlock Holmes")
+                        holmes = c;
+                }
+                if (watson && holmes && board.isAdjacent(watson->getx(), holmes->getx())) {
+                    watson->heal(1);
+                    holmes->heal(1);
+                }
+            }
+
+            // Education Never Ends (defense side): if the defender (who
+            // played it) won -- i.e. the attacker did NOT win -- the
+            // attacker draws 1 card; otherwise the defender draws 2.
+            if (defenseCard.get_name() == "Education Never Ends") {
+                if (!attackerWon) {
+                    attacker->drawcard();
+                } else {
+                    defender->drawcard();
+                    defender->drawcard();
+                }
+            }
+
+            // Counter Punch (defense side): if Holmes (the defender who
+            // played it) is adjacent to the opponent's actual fighter,
+            // deal 2 damage to that fighter.
+            if (defenseCard.get_name() == "Counter Punch") {
+                if (board.isAdjacent(defender->getx(), attackerFighter->getx()))
+                    attackerFighter->takedamage(2);
+            }
+
+            // Study Methods (defense side): the defender may look at the
+            // attacker's hand, but only if the defender won the exchange
+            // (i.e. the attacker did NOT win).
+            if (defenseCard.get_name() == "Study Methods" && !attackerWon) {
+                // Hand reveal is a UI concern (see the equivalent hero.cpp
+                // branch) -- no state change needed here.
+            }
+
             if (attackCard.get_name() == "Exploit")
                 attacker->drawcard();
+
+            // Education Never Ends (attack side): if the attacker (who
+            // played it) won, the defender draws 1 card; otherwise the
+            // attacker draws 2.
+            if (attackCard.get_name() == "Education Never Ends") {
+                if (attackerWon) {
+                    defender->drawcard();
+                } else {
+                    attacker->drawcard();
+                    attacker->drawcard();
+                }
+            }
+
+            // Counter Punch (attack side): if Holmes (the attacker who
+            // played it) is adjacent to the opponent's actual fighter,
+            // deal 2 damage to that fighter.
+            if (attackCard.get_name() == "Counter Punch") {
+                if (board.isAdjacent(attacker->getx(), realTarget->getx()))
+                    realTarget->takedamage(2);
+            }
+
+            // Study Methods (attack side): only a hand-reveal to the
+            // player if the attacker won.
+            if (attackCard.get_name() == "Study Methods" && attackerWon) {
+                // Hand reveal is a UI concern -- no state change needed here.
+            }
 
             if (attackCard.get_name() == "Thirst for Sustenance" && attackerWon) {
                 auto neighbors = board.getNeighborIds(realTarget->getx());
@@ -348,11 +472,18 @@ void ActionBar_ResolveDefense(
             }
 
             // Dash / The Game is Afoot move whichever fighter actually
-            // played the card -- the physically attacking character
-            // (attackerPos), which may be a Sister rather than the hero
-            // whose hand the card came from. The target node was already
-            // confirmed unoccupied when the player clicked it (see the
-            // DashNode/AfootNode click handler in ActionBar_UpdateTargeting).
+            // played the card -- the physically attacking/defending
+            // character (attackerPos/damageTarget), which may be a Sister
+            // rather than the hero whose hand the card came from. The
+            // target node was already confirmed unoccupied when the player
+            // clicked it (see the DashNode/AfootNode click handler in
+            // ActionBar_UpdateTargeting). Dash is multipurpose, so it can
+            // be played on either side -- the defender's own fighter
+            // (realTarget) moves when they played it as their defense.
+            if (defenseCard.get_name() == "Dash" && state.pendingDashTargetNode >= 0) {
+                realTarget->setposition(state.pendingDashTargetNode);
+            }
+
             if (attackCard.get_name() == "Dash" && state.pendingDashTargetNode >= 0) {
                 character* mover = attackerPos ? attackerPos : static_cast<character*>(attacker);
                 mover->setposition(state.pendingDashTargetNode);
@@ -1362,7 +1493,20 @@ bool ActionBar_HandleCardClick(
         !CardOwnerMatchesCharacter(clickedCard, actingChar ? actingChar : static_cast<character*>(activeHero)))
         return false;
 
+    // Scheme/PlayCard cards are always played as the hero's own action --
+    // even a "Sister"-owned scheme card (e.g. Ravening Seduction) or a
+    // Watson-owned scheme card (e.g. Administer Aid) is triggered by the
+    // hero, not physically played by the Sister/Watson themselves. Actor
+    // matching only applies to owners that name an actual actor for this
+    // mode; Sister/Watson availability is already enforced above by
+    // IsCardOwnerAvailable (requires a living Sister/Watson on the team).
+    // Without excluding cardowner::watson here, CardOwnerMatchesCharacter
+    // would require activeHero->getname() == "Watson", which is never
+    // true since Watson is a sidekick and never the acting hero -- so
+    // every Watson-owned scheme card would be permanently unplayable.
     if (state.currentAction == ActionMode::PlayCard &&
+        clickedCard.getowner() != cardowner::sister &&
+        clickedCard.getowner() != cardowner::watson &&
         !CardOwnerMatchesCharacter(clickedCard, activeHero))
         return false;
 

@@ -1,3 +1,0 @@
-C:\msys64\ucrt64\bin\cmake.exe -E rm -f CMakeFiles\ftxui_example_focus.dir/objects.a
-C:\msys64\ucrt64\bin\ar.exe qc CMakeFiles\ftxui_example_focus.dir/objects.a @CMakeFiles\ftxui_example_focus.dir\objects1.rsp
-C:\msys64\ucrt64\bin\g++.exe -g -Wl,--whole-archive CMakeFiles\ftxui_example_focus.dir/objects.a -Wl,--no-whole-archive -o ftxui_example_focus.exe -Wl,--out-implib,libftxui_example_focus.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\ftxui_example_focus.dir\linkLibs.rsp

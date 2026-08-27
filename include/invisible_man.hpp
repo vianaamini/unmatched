@@ -3,11 +3,6 @@
 #include <vector>
 #include <string>
 
-
-
-
-
-
 class InvisibleMan : public hero {
 private:
     std::vector<int> fogPositions;
@@ -35,10 +30,7 @@ public:
     
     bool executeSchemeCard(card& schemeCard, hero& target);
 
-    
-    
-    
-    
-    void executeAttackCardEffects(card& attackCard, character& target, int& attackValue, int& defenseValue, bool& attackerWon, bool& effectsCanceled, const card& defenseCard);
-    void executeDefenseCardEffects(card& defenseCard, const card& attackCard, int& defenseValue, int& attackValue, bool& effectsCanceled);
+ 
+    void executeAttackCardEffects(card& attackCard, character& target, int& attackValue, int& defenseValue, bool& attackerWon, bool& effectsCanceled, const card& defenseCard, bool defenseCardProtected);
+    void executeDefenseCardEffects(card& defenseCard, const card& attackCard, int& defenseValue, int& attackValue, bool& effectsCanceled, bool attackCardProtected);
 };
