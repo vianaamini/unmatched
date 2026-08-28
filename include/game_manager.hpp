@@ -3,12 +3,20 @@
 
 #include <vector>
 #include <string>
+#include <fstream>
 #include "map.hpp"
 #include "movement.hpp"
 #include "turn_manager.hpp"
 #include "deployment.hpp"
 #include "character.hpp"
 #include "invisible_man.hpp"
+
+struct SaveSlotInfo {
+    int slotNumber;
+    std::string filename;
+    bool exists;
+    std::string details;
+};
 
 class GameManager
 {
@@ -59,6 +67,8 @@ public:
     bool saveGame(const std::string &filename) const;
     bool loadGame(const std::string &filename);
     bool peekHeroTypes(const std::string &filename, std::string &team1Type, std::string &team2Type) const;
+
+    std::vector<SaveSlotInfo> getRecentSaveSlots() const;
 };
 
 #endif

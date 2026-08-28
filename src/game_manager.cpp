@@ -968,3 +968,28 @@ bool GameManager::loadGame(const std::string &filename)
     inFile.close();
     return true;
 }
+
+std::vector<SaveSlotInfo> GameManager::getRecentSaveSlots() const {
+    std::vector<SaveSlotInfo> slots;
+    for (int i = 1; i <= 3; ++i) {
+        std::string fname = "save_slot_" + std::to_string(i) + ".txt";
+        std::ifstream inFile(fname);
+        SaveSlotInfo info;
+        info.slotNumber = i;
+        info.filename = fname;
+        
+        if (inFile.is_open()) {
+            info.exists = true;
+            std::string teamHeader, turnLine;
+            std::getline(inFile, teamHeader);
+            std::getline(inFile, turnLine);
+            info.details = "Slot " + std::to_string(i) + " - " + (turnLine.empty() ? "Saved Game" : turnLine);
+            inFile.close();
+        } else {
+            info.exists = false;
+            info.details = "Empty Slot " + std::to_string(i);
+        }
+        slots.push_back(info);
+    }
+    return slots;
+}
