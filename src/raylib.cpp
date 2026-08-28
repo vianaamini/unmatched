@@ -127,10 +127,36 @@ void DrawGothicHealthBar(float x, float y, float width, int currentHp, int maxHp
     if (percent < 0.0f) percent = 0.0f;
     if (percent > 1.0f) percent = 1.0f;
 
-    DrawRectangleLines((int)x - 1, (int)y - 1, (int)width + 2, 11, GetColor(0x3A2B32FF));
-    DrawRectangle((int)x, (int)y, (int)width, 9, GetColor(0x0E0A0DFF));
-    DrawRectangle((int)x, (int)y, (int)(width * percent), 9, GetColor(0x7A0010FF));
-    DrawText(TextFormat("HP: %d/%d", currentHp, maxHp), (int)x, (int)y + 12, 10, GetColor(0xC2B6B9FF));
+    float heartR = 5.0f;
+    float heartCX = x + heartR + 1.0f;
+    float heartCY = y + 5.0f;
+
+    // Small filled heart icon (two circles + a triangle) so the bar reads
+    // as "health" at a glance instead of just a bare number.
+    DrawCircle((int)(heartCX - heartR * 0.55f), (int)(heartCY - heartR * 0.35f), heartR * 0.62f, GetColor(0xC23B4AFF));
+    DrawCircle((int)(heartCX + heartR * 0.55f), (int)(heartCY - heartR * 0.35f), heartR * 0.62f, GetColor(0xC23B4AFF));
+    DrawTriangle(
+        { heartCX - heartR * 1.1f, heartCY - heartR * 0.05f },
+        { heartCX + heartR * 1.1f, heartCY - heartR * 0.05f },
+        { heartCX, heartCY + heartR * 1.1f },
+        GetColor(0xC23B4AFF)
+    );
+
+    float barX = heartCX + heartR + 6.0f;
+    float barW = width - (barX - x);
+    if (barW < 4.0f) barW = 4.0f;
+
+    Rectangle barBg = { barX, y - 1.0f, barW, 11.0f };
+    DrawRectangleRounded(barBg, 0.6f, 8, GetColor(0x1A1215FF));
+    DrawRectangleRoundedLines(barBg, 0.6f, 8, 1.0f, GetColor(0x3A2B32FF));
+
+    if (percent > 0.0f) {
+        Rectangle barFill = { barX, y - 1.0f, barW * percent, 11.0f };
+        Color fillColor = percent > 0.5f ? GetColor(0x8A1420FF) : (percent > 0.2f ? GetColor(0xB5551FFF) : GetColor(0xD6222BFF));
+        DrawRectangleRounded(barFill, 0.6f, 8, fillColor);
+    }
+
+    DrawTextEx(GetSemiFont(), TextFormat("%d/%d", currentHp, maxHp), { x, y + 13 }, 12, 0.4f, GetColor(0xE0D8D2FF));
 }
 
 struct CharAnimState {
@@ -598,6 +624,14 @@ static void DrawDefenseModal(GameManager& gm, Board& board, ActionBarState& acti
                 actionBar.targetPrompt = TargetPrompt::ElementaryPredict;
                 return;
             }
+            if (chosenName == "Confound") {
+                actionBar.combatChosenDefenseCard = chosen;
+                actionBar.combatTargetHero = actionBar.pendingDefender;
+                actionBar.combatTargetIsDefender = true;
+                actionBar.awaitingDefense = false;
+                actionBar.targetPrompt = TargetPrompt::ConfoundNode;
+                return;
+            }
 
             ActionBar_ResolveDefense(actionBar, gm, board, draculaHero, &chosen);
             return;
@@ -666,6 +700,7 @@ void RunGameUI(GameManager& gm, character* dracula, character* sis1Obj, characte
     int currentRound = 1;
     int activePlayerTurn = gm.getCurrentTeam();
     int lastTeam = activePlayerTurn;
+
     bool showHandP1 = false;
     bool showHandP2 = false;
 
@@ -678,6 +713,27 @@ void RunGameUI(GameManager& gm, character* dracula, character* sis1Obj, characte
     ActionBarState actionBar;
     if (draculaHero) actionBar.team1Label = HeroFactionLabel(draculaHero);
     if (sherlockHero) actionBar.team2Label = HeroFactionLabel(sherlockHero);
+
+    // If Invisible Man::onTurnStart() leaves him still vanished, the
+    // rulebook's "place him on any space you choose" needs a real click --
+    // open TargetPrompt::VanishNode and point it at whichever Invisible Man
+    // it was, so ActionBar_UpdateTargeting's VanishNode handler knows who
+    // to call resolveVanish() on.
+    auto OpenVanishPromptIfNeeded = [&](InvisibleMan* im) {
+        if (im && im->isVanished()) {
+            actionBar.targetPrompt = TargetPrompt::VanishNode;
+            actionBar.combatTargetHero = im;
+        }
+    };
+
+    // The turn-change block below only fires when activePlayerTurn changes,
+    // so the very first turn of the game needs this same Invisible Man
+    // turn-start hook fired once up front (see the matching call inside the
+    // while loop for why). A fresh game can never start turn 1 already
+    // vanished, but a loaded save could, so the VanishNode check runs here
+    // too, not just in the loop.
+    if (activePlayerTurn == 1 && invTeam1) { invTeam1->onTurnStart(); OpenVanishPromptIfNeeded(invTeam1); }
+    if (activePlayerTurn == 2 && invTeam2) { invTeam2->onTurnStart(); OpenVanishPromptIfNeeded(invTeam2); }
 
     while (!WindowShouldClose()) {
         float sw = (float)GetScreenWidth();
@@ -693,6 +749,15 @@ void RunGameUI(GameManager& gm, character* dracula, character* sis1Obj, characte
             showHandP1 = false;
             showHandP2 = false;
             lastTeam = activePlayerTurn;
+
+            // Invisible Man turn-start hook: opens the Vanish placement
+            // click (if he's still vanished) and records whether he started
+            // this turn on a fog token (Emerge from Mist). Team 1 =
+            // draculaHero slot, team 2 = sherlockHero slot, matching the
+            // activePlayerTurn convention used everywhere else in this
+            // function.
+            if (activePlayerTurn == 1 && invTeam1) { invTeam1->onTurnStart(); OpenVanishPromptIfNeeded(invTeam1); }
+            if (activePlayerTurn == 2 && invTeam2) { invTeam2->onTurnStart(); OpenVanishPromptIfNeeded(invTeam2); }
         }
 
         float headerH = sh * 0.075f;
@@ -848,7 +913,9 @@ Vector2 mousePos = GetMousePosition();
         DrawRectangleLinesEx(p1Panel, 3, GetColor(0x7A1A24FF));
         DrawRectangleLines((int)p1Panel.x - 3, (int)p1Panel.y - 3, (int)p1Panel.width + 6, (int)p1Panel.height + 6, GetColor(0x361C22FF));
 
-        Rectangle dracRect = { p1Panel.x + 14, p1Panel.y + 18, p1Panel.width - 28, p1Panel.height * 0.40f };
+        DrawTextCentered(GetSemiFont(), "PLAYER 1", p1Panel.x + p1Panel.width / 2.0f, p1Panel.y + 8, 16, 0.8f, GetColor(0xE0525FFF));
+
+        Rectangle dracRect = { p1Panel.x + 14, p1Panel.y + 34, p1Panel.width - 28, p1Panel.height * 0.36f };
         if (team1PortraitArt.id > 0) {
             DrawTexturePro(team1PortraitArt, {0, 0, (float)team1PortraitArt.width, (float)team1PortraitArt.height}, dracRect, {0, 0}, 0.0f, WHITE);
         } else {
@@ -856,15 +923,25 @@ Vector2 mousePos = GetMousePosition();
         }
         DrawRectangleLinesEx(dracRect, 3, GetColor(0x9E2230FF));
 
+        if (draculaHero) {
+            std::string dracName = draculaHero->getname();
+            std::transform(dracName.begin(), dracName.end(), dracName.begin(), ::toupper);
+            float nameY = dracRect.y + dracRect.height + 6;
+            Vector2 nameSz = MeasureTextEx(GetSemiFont(), dracName.c_str(), 16, 0.6f);
+            float crownX = p1Panel.x + p1Panel.width / 2.0f - nameSz.x / 2.0f - 14.0f;
+            DrawTriangle({ crownX - 5, nameY + 10 }, { crownX + 5, nameY + 10 }, { crownX, nameY }, GetColor(0xE5C158FF));
+            DrawTextCentered(GetSemiFont(), dracName.c_str(), p1Panel.x + p1Panel.width / 2.0f + 6.0f, nameY, 16, 0.6f, GetColor(0xE5C158FF));
+        }
+
         if (dracula) {
             if (!dracula->isalive()) {
-                DrawText("[ DEAD ]", (int)dracRect.x + (int)(dracRect.width / 2) - 30, (int)(dracRect.y + dracRect.height + 8), 10, RED);
+                DrawText("[ DEAD ]", (int)dracRect.x + (int)(dracRect.width / 2) - 30, (int)(dracRect.y + dracRect.height + 30), 10, RED);
             } else {
-                DrawGothicHealthBar(dracRect.x, dracRect.y + dracRect.height + 8, dracRect.width, dracula->gethealth(), dracula->getMaxHp());
+                DrawGothicHealthBar(dracRect.x, dracRect.y + dracRect.height + 30, dracRect.width, dracula->gethealth(), dracula->getMaxHp());
             }
         }
 
-        float sisStartY = dracRect.y + dracRect.height + 40;
+        float sisStartY = dracRect.y + dracRect.height + 58;
 
         if (!team1IsDracula) {
             DrawTextCentered(GetRegularFont(), "SOLO FIGHTER - NO SIDEKICKS", p1Panel.x + p1Panel.width / 2.0f, sisStartY + 10, 12, 0.4f, GetColor(0xA39BA0FF));
@@ -901,24 +978,37 @@ Vector2 mousePos = GetMousePosition();
         DrawRectangleLinesEx(p2Panel, 3, GetColor(0x1C3D66FF));
         DrawRectangleLines((int)p2Panel.x - 3, (int)p2Panel.y - 3, (int)p2Panel.width + 6, (int)p2Panel.height + 6, GetColor(0x162A45FF));
 
-        Rectangle sherRect = { p2Panel.x + 14, p2Panel.y + 18, p2Panel.width - 28, p2Panel.height * 0.40f };
+        DrawTextCentered(GetSemiFont(), "PLAYER 2", p2Panel.x + p2Panel.width / 2.0f, p2Panel.y + 8, 16, 0.8f, GetColor(0x5B9BD5FF));
+
+        Rectangle sherRect = { p2Panel.x + 14, p2Panel.y + 34, p2Panel.width - 28, p2Panel.height * 0.36f };
         if (team2PortraitArt.id > 0) {
             DrawTexturePro(team2PortraitArt, {0, 0, (float)team2PortraitArt.width, (float)team2PortraitArt.height}, sherRect, {0, 0}, 0.0f, WHITE);
         }
         DrawRectangleLinesEx(sherRect, 3, GetColor(0x28558FFF));
 
+        if (sherlockHero) {
+            std::string sherName = sherlockHero->getname();
+            std::transform(sherName.begin(), sherName.end(), sherName.begin(), ::toupper);
+            float nameY = sherRect.y + sherRect.height + 6;
+            Vector2 nameSz = MeasureTextEx(GetSemiFont(), sherName.c_str(), 16, 0.6f);
+            float crownX = p2Panel.x + p2Panel.width / 2.0f - nameSz.x / 2.0f - 14.0f;
+            DrawTriangle({ crownX - 5, nameY + 10 }, { crownX + 5, nameY + 10 }, { crownX, nameY }, GetColor(0xE5C158FF));
+            DrawTextCentered(GetSemiFont(), sherName.c_str(), p2Panel.x + p2Panel.width / 2.0f + 6.0f, nameY, 16, 0.6f, GetColor(0xE5C158FF));
+        }
+
         if (sherlock) {
             if (!sherlock->isalive()) {
-                DrawText("[ DEAD ]", (int)sherRect.x + (int)(sherRect.width / 2) - 30, (int)(sherRect.y + sherRect.height + 8), 10, RED);
+                DrawText("[ DEAD ]", (int)sherRect.x + (int)(sherRect.width / 2) - 30, (int)(sherRect.y + sherRect.height + 30), 10, RED);
             } else {
-                DrawGothicHealthBar(sherRect.x, sherRect.y + sherRect.height + 8, sherRect.width, sherlock->gethealth(), sherlock->getMaxHp());
+                DrawGothicHealthBar(sherRect.x, sherRect.y + sherRect.height + 30, sherRect.width, sherlock->gethealth(), sherlock->getMaxHp());
             }
         }
 
-        Rectangle watsonRect = { p2Panel.x + (p2Panel.width - (p2Panel.width * 0.55f)) / 2.0f, sherRect.y + sherRect.height + 40, p2Panel.width * 0.55f, p2Panel.height * 0.23f };
+        Rectangle watsonRect = { p2Panel.x + (p2Panel.width - (p2Panel.width * 0.55f)) / 2.0f, sherRect.y + sherRect.height + 58, p2Panel.width * 0.55f, p2Panel.height * 0.20f };
         if (!team2IsSherlock) {
             DrawTextCentered(GetRegularFont(), "SOLO FIGHTER - NO SIDEKICKS", p2Panel.x + p2Panel.width / 2.0f, watsonRect.y + 10, 12, 0.4f, GetColor(0xA39BA0FF));
         } else {
+        DrawTextCentered(GetRegularFont(), "COMPANION", p2Panel.x + p2Panel.width / 2.0f, watsonRect.y - 20, 12, 0.6f, GetColor(0x8FA9C2FF));
         if (watsonArt.id > 0) {
              DrawTexturePro(watsonArt, {0, 0, (float)watsonArt.width, (float)watsonArt.height}, watsonRect, {0, 0}, 0.0f, WHITE);
         }

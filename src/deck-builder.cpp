@@ -147,7 +147,7 @@ deck invisiblemandeck() {
     }
 
     for (int i = 0; i < 2; i++) {
-        d.addcard(card("Confound", cardtype::scheme, 3, 3, 2, cardowner::any,
+        d.addcard(card("Confound", cardtype::multipurpose, 3, 3, 2, cardowner::any,
                        "Opponent may discard 1 card. If they don't, move any fog token to any space"));
     }
 

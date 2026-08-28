@@ -399,6 +399,43 @@ int main()
                     );
                 }
 
+                // Every InvisibleMan card that needs to look at other
+                // fighters on the board (Reign of Terror, Step Lightly,
+                // Dreaming of Revenge, Slip Away, Into Thin Air, ...) reads
+                // them through allCharacters, which is only ever populated
+                // by setAllCharacters(). Nothing was calling it, so those
+                // cards were silently seeing an empty board. allChars must
+                // stay alive for the whole RunGameUI() call below, so it's
+                // declared here rather than in some shorter-lived scope.
+                std::vector<character*> allChars = {
+                    team1Hero,
+                    sister1Ptr,
+                    sister2Ptr,
+                    sister3Ptr,
+                    team2Hero,
+                    watsonPtr
+                };
+
+                if (
+                    InvisibleMan* invTeam1 =
+                        dynamic_cast<InvisibleMan*>(
+                            team1Hero
+                        )
+                )
+                {
+                    invTeam1->setAllCharacters(&allChars);
+                }
+
+                if (
+                    InvisibleMan* invTeam2 =
+                        dynamic_cast<InvisibleMan*>(
+                            team2Hero
+                        )
+                )
+                {
+                    invTeam2->setAllCharacters(&allChars);
+                }
+
                 int firstTeam;
 
                 if (wantLoad)

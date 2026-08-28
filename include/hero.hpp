@@ -26,6 +26,12 @@ private:
     int confirmSuspicionGuess;
     int dashTargetNode;
     int gameIsAfootTargetNode;
+    // The Invisible Man's Confound scheme effect ("move any fog token to
+    // any other space") -- a node name like "n12", or empty for "not
+    // chosen yet / let the card fall back to its default behavior". Lives
+    // here (not on InvisibleMan itself) because hero::scheme() is what
+    // needs to read it, mirroring how mistformTarget already works.
+    std::string confoundFogTarget;
 
 public:
     hero(const std::string& name, int maxhp, int movement);
@@ -37,7 +43,6 @@ public:
     void setGameManager(GameManager* gm) { gameManager = gm; }
 
     void setPredictedAttackValue(int val) { predictedAttackValue = val; }
-    int getPredictedAttackValue() const { return predictedAttackValue; }
     void setBeastformDiscardCount(int val) { beastformDiscardCount = val; }
     void setMistformTarget(const std::string& target) { mistformTarget = target; }
 
@@ -53,6 +58,8 @@ public:
     void setConfirmSuspicionGuess(int guess) { confirmSuspicionGuess = guess; }
     void setDashTargetNode(int node) { dashTargetNode = node; }
     void setGameIsAfootTargetNode(int node) { gameIsAfootTargetNode = node; }
+    void setConfoundFogTarget(const std::string& target) { confoundFogTarget = target; }
+    const std::string& getConfoundFogTarget() const { return confoundFogTarget; }
 
     void set_actions(int new_actions);
     void reset_actions();

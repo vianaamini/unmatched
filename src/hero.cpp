@@ -776,6 +776,17 @@ bool hero::attack(
     if (defenseCard.get_name() == "Feint" && !attackCardProtected)
         effectsCanceled = true;
 
+    // Invisible Man's fog defense bonus ("+1 to a defense card's value
+    // while standing on a fog token") is explicitly NOT a card effect --
+    // the rulebook says it can't be canceled by Feint or anything like it.
+    // So this runs unconditionally, before the effectsCanceled gate below
+    // (which skips the rest of executeDefenseCardEffects on a Feint).
+    if (InvisibleMan* imFog = dynamic_cast<InvisibleMan*>(&target)) {
+        if (imFog->isOnFog()) {
+            defenseValue += 1;
+        }
+    }
+
     if (!effectsCanceled) {
         // Rulebook: "if two effects activate at the same time, the
         // defender's effect resolves first." The Invisible Man hooks below
@@ -787,12 +798,17 @@ bool hero::attack(
         if (InvisibleMan* imDef = dynamic_cast<InvisibleMan*>(&target)) {
             // attackValue is passed by reference too, for cards like
             // "Impossible to See" that zero out the attacker's value.
+            // attackCardProtected tells it whether that's even allowed --
+            // Sherlock's passive makes his and Watson's cards immune to
+            // being zeroed/disabled by an opponent's card effect.
             imDef->executeDefenseCardEffects(defenseCard, attackCard, defenseValue, attackValue, effectsCanceled, attackCardProtected);
         }
         if (InvisibleMan* imAtk = dynamic_cast<InvisibleMan*>(this)) {
             // defenseValue is passed by reference too, so cards like
             // "Impossible to See" can zero out the *opponent's* value
             // instead of the Invisible Man's own attack value.
+            // defenseCardProtected is the same immunity check, for the
+            // defender's card.
             imAtk->executeAttackCardEffects(attackCard, target, attackValue, defenseValue, attackerWon, effectsCanceled, defenseCard, defenseCardProtected);
         }
 
@@ -825,7 +841,7 @@ bool hero::attack(
             target.predictedAttackValue = 0;
         }
 
-        if (!effectsCanceled && attackCard.get_name() == "Deduce Strategy") {
+        if (attackCard.get_name() == "Deduce Strategy") {
             int newDef = defenseCard.getboost();
 
             if (newDef < defenseValue) {
@@ -836,7 +852,7 @@ bool hero::attack(
             }
         }
 
-        if (!effectsCanceled && attackCard.get_name() == "Beastform") {
+        if (attackCard.get_name() == "Beastform") {
             int count = beastformDiscardCount;
 
             if (count > static_cast<int>(hand.size()))
@@ -856,7 +872,7 @@ bool hero::attack(
                  << endl;
         }
 
-        if (!effectsCanceled && attackCard.get_name() == "Feeding Frenzy") {
+        if (attackCard.get_name() == "Feeding Frenzy") {
             if (gameManager) {
                 auto allies = gameManager->getAllies(this);
                 int sistersInZone = 0;
@@ -898,7 +914,7 @@ bool hero::attack(
             }
         }
 
-        if (!effectsCanceled && attackCard.get_name() == "Ambush") {
+        if (attackCard.get_name() == "Ambush") {
             auto& enemyHand = target.gethand();
 
             if (!enemyHand.empty()) {

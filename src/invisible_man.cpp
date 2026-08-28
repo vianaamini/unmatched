@@ -12,6 +12,11 @@
 // isWithinSteps: BFS reachability check used to validate "move a fog token
 // up to N spaces" style effects (Covert Preparation, Into Thin Air, ...).
 //
+// otherFogNodes: every fog card that moves ONE token must never drop it onto
+// a space already held by one of the OTHER two fog tokens -- the rulebook is
+// explicit that "at any moment, only one fog token can be on a space." This
+// returns the positions to avoid when moving the token at excludeIdx.
+//
 // pickFogMoveDestination: none of the fog/positioning cards below have a
 // real player-facing target picker yet (there's no TargetPrompt wired up
 // for them, unlike Mistform/Ravening Seduction). The previous
@@ -24,6 +29,12 @@
 // resolve immediately without ever blocking. It's a simplification --
 // ideally each of these gets a proper click-to-target flow like Mistform
 // has -- but it keeps the game playable and non-blocking in the meantime.
+//
+// pickAnyOtherSpace: a handful of cards (Rolling Fog, and the auto-pick
+// fallback for Confound) move a fog token "to another space" / "to any
+// other space" with NO distance limit at all -- unlike the "up to N
+// spaces" cards above, which do use step-limited BFS movement. This picks
+// any legal space on the board other than the token's current one.
 // ---------------------------------------------------------------------------
 static bool isWithinSteps(const Board* b, int from, int to, int steps) {
     if (!b) return false;
@@ -52,8 +63,17 @@ static bool isWithinSteps(const Board* b, int from, int to, int steps) {
     return false;
 }
 
+static std::vector<int> otherFogNodes(const std::vector<int>& fogPositions, int excludeIdx) {
+    std::vector<int> out;
+    for (size_t i = 0; i < fogPositions.size(); ++i) {
+        if (static_cast<int>(i) != excludeIdx) out.push_back(fogPositions[i]);
+    }
+    return out;
+}
+
 static int pickFogMoveDestination(const Board* b, const std::vector<character*>* allChars,
-                                   int fromNode, int maxSteps, bool requireUnoccupied) {
+                                   int fromNode, int maxSteps, bool requireUnoccupied,
+                                   const std::vector<int>* avoidNodes = nullptr) {
     if (!b) return -1;
 
     std::queue<int> q;
@@ -83,13 +103,45 @@ static int pickFogMoveDestination(const Board* b, const std::vector<character*>*
                         if (c && c->isalive() && c->getx() == neighbor) { occupied = true; break; }
                     }
                 }
-                if (!occupied) {
+
+                // Rulebook: only one fog token may occupy a space at a time,
+                // so a space already held by a *different* fog token is
+                // never a legal final destination. It can still be passed
+                // through during the BFS above -- that's why this only
+                // disqualifies `neighbor` from becoming `best`, it doesn't
+                // stop traversal through it.
+                bool blockedByOtherFog = false;
+                if (avoidNodes) {
+                    for (int avoid : *avoidNodes) {
+                        if (avoid == neighbor) { blockedByOtherFog = true; break; }
+                    }
+                }
+
+                if (!occupied && !blockedByOtherFog) {
                     best = neighbor; // keeps overwriting -> ends up as the farthest valid pick found
                 }
             }
         }
     }
     return best;
+}
+
+static int pickAnyOtherSpace(Board* b, int excludeNode, const std::vector<int>* avoidNodes = nullptr) {
+    if (!b) return -1;
+
+    for (const std::string& spaceId : b->getAllSpaceIds()) {
+        int node = b->getNodeId(spaceId);
+        if (node == excludeNode) continue;
+
+        bool blocked = false;
+        if (avoidNodes) {
+            for (int avoid : *avoidNodes) {
+                if (avoid == node) { blocked = true; break; }
+            }
+        }
+        if (!blocked) return node;
+    }
+    return -1;
 }
 
 InvisibleMan::InvisibleMan()
@@ -145,12 +197,36 @@ void InvisibleMan::setAllCharacters(std::vector<character*>* chars) {
 
 bool InvisibleMan::isOnFog() const {
     int currentPos = getposition();
+    if (currentPos < 0) return false; // off the board (Vanish) -- can't be "on" anything
     for (int fogPos : fogPositions) {
         if (currentPos == fogPos) {
             return true;
         }
     }
     return false;
+}
+
+void InvisibleMan::onTurnStart() {
+    if (vanished) {
+        // Rulebook: place Invisible Man on ANY space you choose. That now
+        // happens for real via TargetPrompt::VanishNode -- raylib.cpp opens
+        // that prompt right after this call returns (checking
+        // isVanished()), and resolveVanish() below is what actually
+        // finishes the job once the player clicks a space. Position stays
+        // off-board (-1) and startedTurnOnFog is intentionally NOT touched
+        // here; both are settled in resolveVanish() once we know where he
+        // actually ends up.
+        return;
+    }
+    startedTurnOnFog = isOnFog();
+}
+
+void InvisibleMan::resolveVanish(int node) {
+    if (!vanished) return;
+    setposition(node);
+    vanished = false;
+    startedTurnOnFog = isOnFog();
+    std::cout << getname() << " reappears at n" << node << "." << std::endl;
 }
 
 std::vector<int> InvisibleMan::getFogPositions() const {
@@ -182,9 +258,28 @@ bool InvisibleMan::executeSchemeCard(card& schemeCard, hero& target) {
     Board* b = getBoard();
 
     if (name == "Reign of Terror") {
+        // Rulebook: deal 2 damage to EACH of the opponent's fighters (not
+        // just one). Invisible Man never has Sidekicks of his own, so
+        // "everyone else on the board" and "the opponent's fighters" are
+        // the same set for him -- this mirrors the same allCharacters-minus-
+        // self pattern already used by Dreaming of Revenge below.
         if (isOnFog()) {
-            target.takedamage(2);
-            std::cout << getname() << " dealt 2 damage to " << target.getname() << " from the fog!" << std::endl;
+            bool dealtAny = false;
+            if (allCharacters) {
+                for (character* c : *allCharacters) {
+                    if (!c || c == this || !c->isalive()) continue;
+                    c->takedamage(2);
+                    std::cout << c->getname() << " took 2 damage (Reign of Terror)." << std::endl;
+                    dealtAny = true;
+                }
+            }
+            if (!dealtAny) {
+                // allCharacters isn't wired up at this call site -- fall
+                // back to just the single target we were given so the card
+                // still does *something* instead of silently fizzling.
+                target.takedamage(2);
+                std::cout << getname() << " dealt 2 damage to " << target.getname() << " from the fog!" << std::endl;
+            }
         } else {
             std::cout << "Reign of Terror: " << getname() << " must be on a fog token." << std::endl;
         }
@@ -192,9 +287,14 @@ bool InvisibleMan::executeSchemeCard(card& schemeCard, hero& target) {
     }
 
     if (name == "Rolling Fog") {
+        // Rulebook: "Move 1 fog token to another space" -- no distance
+        // limit is printed on the card, so this isn't a step-limited BFS
+        // move like the "up to N spaces" cards; any other legal space on
+        // the board works.
         if (!fogPositions.empty() && b) {
             int idx = 0;
-            int dest = pickFogMoveDestination(b, allCharacters, fogPositions[idx], 1, false);
+            auto avoid = otherFogNodes(fogPositions, idx);
+            int dest = pickAnyOtherSpace(b, fogPositions[idx], &avoid);
             if (dest >= 0) {
                 setFogPosition(idx, dest);
                 std::cout << getname() << " moved the fog token to n" << dest << "." << std::endl;
@@ -226,7 +326,8 @@ bool InvisibleMan::executeSchemeCard(card& schemeCard, hero& target) {
 
         if (!fogPositions.empty() && b) {
             int idx = 0;
-            int dest = pickFogMoveDestination(b, allCharacters, fogPositions[idx], 2, false);
+            auto avoid = otherFogNodes(fogPositions, idx);
+            int dest = pickFogMoveDestination(b, allCharacters, fogPositions[idx], 2, false, &avoid);
             if (dest >= 0) {
                 setFogPosition(idx, dest);
             }
@@ -235,22 +336,59 @@ bool InvisibleMan::executeSchemeCard(card& schemeCard, hero& target) {
     }
 
     if (name == "Vanish") {
+        // Rulebook: recover 1 health, remove Invisible Man from the board
+        // entirely, then place him on any space of your choosing at the
+        // start of your NEXT turn. He is now genuinely taken off the board
+        // (position -1, via onTurnStart()/isVanished() below) for the rest
+        // of this turn and the opponent's whole turn -- he can't be
+        // targeted, attacked, or treated as adjacent to anything while
+        // vanished. The "any space of your choosing" part is now a real
+        // click-to-target prompt (TargetPrompt::VanishNode, opened by
+        // raylib.cpp right after onTurnStart() at the start of the next
+        // turn) resolved by resolveVanish() -- see invisible_man.hpp/.cpp
+        // and actionbar.cpp. The "end your turn if played as your first
+        // action" clause still isn't enforced -- that needs access to the
+        // action-economy/turn-ending code in the main game loop.
         heal(1);
-        if (!fogPositions.empty()) {
-            setposition(fogPositions[0]);
-            std::cout << getname() << " recovered 1 HP and vanished to n" << fogPositions[0] << "." << std::endl;
-        }
+        vanished = true;
+        setposition(-1);
+        std::cout << getname() << " recovered 1 HP and vanished from the board." << std::endl;
         return true;
     }
 
     if (name == "Confound") {
-        if (!fogPositions.empty() && b) {
-            int idx = 0;
-            int dest = pickFogMoveDestination(b, allCharacters, fogPositions[idx], 1, false);
-            if (dest >= 0) {
-                setFogPosition(idx, dest);
-                std::cout << getname() << " moved a fog token to n" << dest << " (Confound)." << std::endl;
+        // Rulebook: "Opponent may discard 1 card. If they don't, you may
+        // move any fog token to any other space." There's no opponent-AI
+        // here to make that discard choice, so this always takes the
+        // "they didn't discard" branch and lets the player move a fog
+        // token -- to wherever they clicked (getConfoundFogTarget()), with
+        // no distance limit, matching the card text. Falls back to an
+        // unrestricted (still no distance limit -- "any other space") pick
+        // only if no target was set, e.g. Confound played as an
+        // attack/defense card, which doesn't have this click-to-target
+        // flow wired up yet.
+        if (b) {
+            std::string picked = getConfoundFogTarget();
+            auto avoid = otherFogNodes(fogPositions, 0);
+            bool clashesWithOtherFog = false;
+            if (!picked.empty() && b->hasSpace(picked)) {
+                int dest = b->getNodeId(picked);
+                for (int a : avoid) { if (a == dest) { clashesWithOtherFog = true; break; } }
+                if (!clashesWithOtherFog) {
+                    setFogPosition(0, dest);
+                    std::cout << getname() << " moved a fog token to " << picked << " (Confound)." << std::endl;
+                }
             }
+            if (picked.empty() || !b->hasSpace(picked) || clashesWithOtherFog) {
+                if (!fogPositions.empty()) {
+                    int dest = pickAnyOtherSpace(b, fogPositions[0], &avoid);
+                    if (dest >= 0) {
+                        setFogPosition(0, dest);
+                        std::cout << getname() << " moved a fog token to n" << dest << " (Confound)." << std::endl;
+                    }
+                }
+            }
+            setConfoundFogTarget("");
         }
         return true;
     }
@@ -258,16 +396,22 @@ bool InvisibleMan::executeSchemeCard(card& schemeCard, hero& target) {
     if (name == "Covert Preparation") {
         drawcard();
 
+        int idx = 0;
         if (!fogPositions.empty() && b) {
-            int idx = 0;
-            int dest = pickFogMoveDestination(b, allCharacters, fogPositions[idx], 2, false);
+            auto avoid = otherFogNodes(fogPositions, idx);
+            int dest = pickFogMoveDestination(b, allCharacters, fogPositions[idx], 2, false, &avoid);
             if (dest >= 0) {
                 setFogPosition(idx, dest);
             }
         }
 
         if (b) {
-            for (int fogPos : fogPositions) {
+            // Rulebook: the opponent is pulled toward "another" fog token --
+            // i.e. one distinct from the one that was just moved above --
+            // so idx is skipped here.
+            for (size_t i = 0; i < fogPositions.size(); ++i) {
+                if (static_cast<int>(i) == idx) continue;
+                int fogPos = fogPositions[i];
                 if (isWithinSteps(b, target.getx(), fogPos, 2)) {
                     target.setposition(fogPos);
                     std::cout << target.getname() << " was pulled toward the fog to n" << fogPos << "." << std::endl;
@@ -308,12 +452,12 @@ void InvisibleMan::executeAttackCardEffects(card& attackCard, character& target,
     Board* b = getBoard();
 
     if (name == "Emerge from Mist") {
-        // NOTE: the rulebook checks whether Invisible Man *started this
-        // turn* on a fog token, not whether he's on one right now (he could
-        // have moved mid-turn, e.g. via Slip Away). There's no turn-start
-        // hook exposed to this file, so this checks his current position as
-        // a best-effort approximation.
-        if (isOnFog()) {
+        // Rulebook: this is a 5 if Invisible Man started THIS turn on a fog
+        // token -- not just whether he's on one right now (he could have
+        // moved mid-turn, e.g. via Slip Away). startedTurnOnFog is recorded
+        // by onTurnStart(), which the game loop calls exactly once when his
+        // turn begins (see RunGameUI in raylib.cpp).
+        if (startedTurnOnFog) {
             attackValue = 5;
             std::cout << getname() << " strikes from the fog with extra power (ATK: 5)!" << std::endl;
         }
@@ -321,9 +465,12 @@ void InvisibleMan::executeAttackCardEffects(card& attackCard, character& target,
     else if (name == "Slip Away") {
         // Rulebook: move a fog token to a space without a fighter, then
         // place Invisible Man on that space. No distance limit is printed
-        // on the card, so any unoccupied space on the board is valid.
+        // on the card, so any unoccupied space on the board is valid --
+        // but it still can't be a space already held by one of the OTHER
+        // two fog tokens (only one fog token per space, ever).
         if (!fogPositions.empty() && b) {
             int idx = 0;
+            auto avoid = otherFogNodes(fogPositions, idx);
             int dest = -1;
             for (const std::string& spaceId : b->getAllSpaceIds()) {
                 int node = b->getNodeId(spaceId);
@@ -333,7 +480,14 @@ void InvisibleMan::executeAttackCardEffects(card& attackCard, character& target,
                         if (c && c->isalive() && c->getx() == node) { occupied = true; break; }
                     }
                 }
-                if (!occupied) { dest = node; break; }
+                if (occupied) continue;
+
+                bool clashesWithOtherFog = false;
+                for (int a : avoid) { if (a == node) { clashesWithOtherFog = true; break; } }
+                if (clashesWithOtherFog) continue;
+
+                dest = node;
+                break;
             }
 
             if (dest >= 0) {
@@ -346,36 +500,58 @@ void InvisibleMan::executeAttackCardEffects(card& attackCard, character& target,
         }
     }
     else if (name == "Confound") {
-        // Same auto-decline-then-move-fog behavior as the scheme version above.
-        if (!fogPositions.empty() && b) {
-            int idx = 0;
-            int dest = pickFogMoveDestination(b, allCharacters, fogPositions[idx], 1, false);
-            if (dest >= 0) {
-                setFogPosition(idx, dest);
-                std::cout << getname() << " moved a fog token to n" << dest << " (Confound)." << std::endl;
+        // Rulebook: "Opponent may discard 1 card. If they don't, you may
+        // move any fog token to any other space." No opponent-AI to make
+        // that discard choice, so this always takes the "they didn't
+        // discard" branch. Uses the space the player actually clicked
+        // (getConfoundFogTarget()) if one was set; falls back to an
+        // unrestricted (no distance limit) auto-pick otherwise. Either way
+        // the destination can't collide with one of the other fog tokens.
+        if (b) {
+            std::string picked = getConfoundFogTarget();
+            auto avoid = otherFogNodes(fogPositions, 0);
+            bool clashesWithOtherFog = false;
+            if (!picked.empty() && b->hasSpace(picked)) {
+                int dest = b->getNodeId(picked);
+                for (int a : avoid) { if (a == dest) { clashesWithOtherFog = true; break; } }
+                if (!clashesWithOtherFog) {
+                    setFogPosition(0, dest);
+                    std::cout << getname() << " moved a fog token to " << picked << " (Confound)." << std::endl;
+                }
             }
+            if (picked.empty() || !b->hasSpace(picked) || clashesWithOtherFog) {
+                if (!fogPositions.empty()) {
+                    int dest = pickAnyOtherSpace(b, fogPositions[0], &avoid);
+                    if (dest >= 0) {
+                        setFogPosition(0, dest);
+                        std::cout << getname() << " moved a fog token to n" << dest << " (Confound)." << std::endl;
+                    }
+                }
+            }
+            setConfoundFogTarget("");
         }
     }
     else if (name == "Impossible to See") {
         // Rulebook: "your OPPONENT's attack or defense value is 0 and can't
         // be changed by card effects. Other card effects still happen."
         // As the attacker, that means the opponent's *defense* value is
-        // zeroed -- not our own attack value. Skipped entirely if that
-        // defense card belongs to Sherlock or Watson (Sherlock's passive
-        // immunity), in which case the defense value is left untouched.
+        // zeroed -- not our own attack value. Sherlock's passive makes a
+        // Sherlock/Watson-owned defense card immune to this.
         if (!defenseCardProtected) {
             defenseValue = 0;
             std::cout << getname() << " renders the opponent's defense meaningless (value: 0)!" << std::endl;
         } else {
-            std::cout << "Impossible to See has no effect: " << defenseCard.get_name() << " belongs to Sherlock/Watson and can't be disabled." << std::endl;
+            std::cout << "Impossible to See has no effect on a Sherlock/Watson card." << std::endl;
         }
     }
 }
 
 void InvisibleMan::executeDefenseCardEffects(card& defenseCard, const card& attackCard, int& defenseValue, int& attackValue, bool& effectsCanceled, bool attackCardProtected) {
-    if (isOnFog()) {
-        defenseValue += 1;
-    }
+    // Fog +1 defense bonus is applied unconditionally in hero::attack()
+    // now, before this function is even reached, since the rulebook says
+    // it's not a card effect and can't be Feint-canceled -- this function
+    // only runs at all when effects weren't canceled, so applying it here
+    // too would double it up on every non-Feint turn.
 
     std::string name = defenseCard.get_name();
     Board* b = getBoard();
@@ -417,7 +593,8 @@ void InvisibleMan::executeDefenseCardEffects(card& defenseCard, const card& atta
 
         if (!fogPositions.empty() && b) {
             int idx = 0;
-            int dest = pickFogMoveDestination(b, allCharacters, fogPositions[idx], 3, false);
+            auto avoid = otherFogNodes(fogPositions, idx);
+            int dest = pickFogMoveDestination(b, allCharacters, fogPositions[idx], 3, false, &avoid);
             if (dest >= 0) {
                 setFogPosition(idx, dest);
             }
@@ -433,7 +610,8 @@ void InvisibleMan::executeDefenseCardEffects(card& defenseCard, const card& atta
             std::cout << getname() << " drew a card and moved to n" << fogNode << "." << std::endl;
         } else if (!fogPositions.empty() && b) {
             int idx = 0;
-            int dest = pickFogMoveDestination(b, allCharacters, fogPositions[idx], 3, false);
+            auto avoid = otherFogNodes(fogPositions, idx);
+            int dest = pickFogMoveDestination(b, allCharacters, fogPositions[idx], 3, false, &avoid);
             if (dest >= 0) {
                 setFogPosition(idx, dest);
                 std::cout << getname() << " drew a card and shifted the fog." << std::endl;
@@ -441,23 +619,41 @@ void InvisibleMan::executeDefenseCardEffects(card& defenseCard, const card& atta
         }
     }
     else if (name == "Impossible to See") {
-        // As the defender, this zeroes the attacker's attack value --
-        // skipped entirely if that attack card belongs to Sherlock or
-        // Watson (Sherlock's passive immunity).
+        // As the defender, this zeroes the opponent's *attack* value --
+        // unless it's a Sherlock/Watson-owned attack card, which Sherlock's
+        // passive makes immune to being zeroed by an opponent's effect.
         if (!attackCardProtected) {
             attackValue = 0;
             std::cout << getname() << " renders the attack meaningless (value: 0)!" << std::endl;
         } else {
-            std::cout << "Impossible to See has no effect: " << attackCard.get_name() << " belongs to Sherlock/Watson and can't be disabled." << std::endl;
+            std::cout << "Impossible to See has no effect on a Sherlock/Watson card." << std::endl;
         }
     }
     else if (name == "Confound") {
-        if (!fogPositions.empty() && b) {
-            int idx = 0;
-            int dest = pickFogMoveDestination(b, allCharacters, fogPositions[idx], 1, false);
-            if (dest >= 0) {
-                setFogPosition(idx, dest);
+        // Same real-target-first, auto-pick-fallback behavior as the
+        // attack-side version above.
+        if (b) {
+            std::string picked = getConfoundFogTarget();
+            auto avoid = otherFogNodes(fogPositions, 0);
+            bool clashesWithOtherFog = false;
+            if (!picked.empty() && b->hasSpace(picked)) {
+                int dest = b->getNodeId(picked);
+                for (int a : avoid) { if (a == dest) { clashesWithOtherFog = true; break; } }
+                if (!clashesWithOtherFog) {
+                    setFogPosition(0, dest);
+                    std::cout << getname() << " moved a fog token to " << picked << " (Confound)." << std::endl;
+                }
             }
+            if (picked.empty() || !b->hasSpace(picked) || clashesWithOtherFog) {
+                if (!fogPositions.empty()) {
+                    int dest = pickAnyOtherSpace(b, fogPositions[0], &avoid);
+                    if (dest >= 0) {
+                        setFogPosition(0, dest);
+                        std::cout << getname() << " moved a fog token to n" << dest << " (Confound)." << std::endl;
+                    }
+                }
+            }
+            setConfoundFogTarget("");
         }
     }
 }

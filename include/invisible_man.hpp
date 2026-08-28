@@ -8,6 +8,9 @@ private:
     std::vector<int> fogPositions;
     std::vector<character*>* allCharacters = nullptr;
 
+    bool vanished = false;
+    bool startedTurnOnFog = false;
+
 public:
     InvisibleMan();
 
@@ -20,6 +23,18 @@ public:
     bool isOnFog() const;
     std::vector<int> getFogPositions() const;
     void setFogPosition(int index, int node);
+
+    void onTurnStart();
+    bool isVanished() const { return vanished; }
+    bool startedTurnOnFogToken() const { return startedTurnOnFog; }
+    // Called once the player clicks a space in response to
+    // TargetPrompt::VanishNode (see actionbar.cpp), which only opens while
+    // isVanished() is still true after onTurnStart() runs. Places him
+    // there, clears vanished, and records whether that counts as
+    // "started this turn on a fog token" for Emerge from Mist -- mirrors
+    // what onTurnStart() used to do by itself before placement needed a
+    // real click.
+    void resolveVanish(int node);
 
     void takedamage(int amount) override;
     void useability() override;

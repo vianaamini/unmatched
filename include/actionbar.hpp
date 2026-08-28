@@ -28,6 +28,14 @@ enum class TargetPrompt {
     AfootNode,
     BeastformDiscard,
     ElementaryPredict,
+    // The Invisible Man's Confound, played as a scheme: click any other
+    // space to move a fog token there (no distance limit, per the card).
+    ConfoundNode,
+    // The Invisible Man's Vanish: at the start of the turn after it was
+    // played, click any space on the board to place him there (see
+    // InvisibleMan::onTurnStart()/resolveVanish() -- previously this
+    // auto-picked a fog token instead of letting the player choose).
+    VanishNode,
 
     // NEW: the two per-hero "Special Ability" button flows (see the new
     // ability button drawn under each portrait). Dracula's Blood Drain
