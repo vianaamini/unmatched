@@ -98,30 +98,10 @@ static void ActionBar_CompleteAction(ActionBarState& state, GameManager& gm)
     state.currentAction = ActionMode::None;
     state.selectedCardIndex = -1;
     state.hasPendingBoost = false;
-
-    // Each of the 2 actions in a turn is a fresh choice of WHICH of your
-    // fighters (hero or a sidekick) performs it -- Dracula's team in
-    // particular can act with Dracula himself or any living Sister on
-    // either action. selectedActor used to persist silently from action 1
-    // into action 2, so the game kept reusing whichever fighter acted
-    // first instead of letting the player choose again. Clearing it here
-    // makes the acting-character choice default back to the turn's hero
-    // and forces (allows) a fresh pick before every action, not just the
-    // first one.
     state.selectedActor = nullptr;
-
     gm.getTurnManager().endTurn();
 }
 
-// Mistform and Rolling Fog both say "...and gain 1 action" -- but the
-// hero's own internal `actions` counter (incremented inside
-// hero::scheme()/InvisibleMan::executeSchemeCard()) is NOT what actually
-// drives the turn (TurnManager::actionsRemaining is, via endTurn() above),
-// and TurnManager has no public way to grant a bonus action from outside.
-// Simply not calling endTurn() for these two cards has the identical net
-// effect as "pay 1 action to play this, then get 1 action back" -- the
-// action slot this card would have consumed is just never spent -- without
-// needing to touch TurnManager's internals at all.
 static bool CardGrantsBonusAction(const std::string& name)
 {
     return name == "Mistform" || name == "Rolling Fog";
@@ -132,10 +112,6 @@ static void ActionBar_CompleteFreeAction(ActionBarState& state)
     state.currentAction = ActionMode::None;
     state.selectedCardIndex = -1;
     state.hasPendingBoost = false;
-
-    // Same reasoning as ActionBar_CompleteAction above: the bonus action
-    // this card grants is still a new action, so the acting-character
-    // choice should reset for it too.
     state.selectedActor = nullptr;
 }
 
@@ -200,8 +176,6 @@ void ActionBar_ResetOnTurnEnd(ActionBarState& state)
     state.pendingAfootTargetNode = -1;
     state.pendingBeastformDiscardCount = 0;
 
-    // Dracula's Blood Drain is once-per-turn -- must reset when a new turn
-    // begins, or he'd only ever get to use it on turn 1 of the whole game.
     state.draculaAbilityUsed = false;
 }
 
@@ -213,15 +187,6 @@ void ActionBar_ResolveDefense(
     const card* chosenDefense
 )
 {
-    // NOTE: this used to also require state.awaitingDefense == true, but
-    // Dash/Elementary/Confound-as-defense all explicitly set awaitingDefense
-    // to false the moment they're picked (to hide the "choose your
-    // defense" modal and open their own sub-prompt -- pick a space, predict
-    // a value, etc. -- instead). That meant this function, called once that
-    // sub-prompt is answered, always bailed out immediately right here: the
-    // card would vanish from the "choose defense" list but nothing about
-    // the fight would ever actually resolve. pendingAttacker/pendingDefender
-    // being set is what actually proves this call is legitimate.
     if (!state.pendingAttacker || !state.pendingDefender)
         return;
 
@@ -243,18 +208,6 @@ void ActionBar_ResolveDefense(
     bool resolved;
 
     if (sidekickInvolved) {
-        // A Sister or Watson is attacking and/or defending: not a full
-        // hero::attack(hero&,...) call (that needs hero& on both sides, and
-        // sidekicks don't have their own hand/deck -- they use their
-        // controlling hero's). This replicates the same before/during/
-        // after-combat card effects hero::attack() applies for a
-        // hero-vs-hero fight, redirecting the final damage (and, for
-        // Dash/The Game is Afoot, the movement) to the sidekick instead of
-        // the hero. Dash/Afoot/Beastform read their player-chosen value
-        // from state.pendingDashTargetNode/pendingAfootTargetNode/
-        // pendingBeastformDiscardCount instead of the hero's own private
-        // fields, since those are set through hero::attack()'s pipeline,
-        // which never runs for a sidekick fight.
         character* realTarget = damageTarget ? damageTarget : static_cast<character*>(defender);
 
         int attackValue = std::max(0, attackCard.getattack());
@@ -279,7 +232,6 @@ void ActionBar_ResolveDefense(
             effectsCanceled = true;
 
         if (!effectsCanceled) {
-            // ---- Before-damage (during-combat) card effects ----
             if (defenseCard.get_name() == "Look Into My Eyes") {
                 defenseValue += attackCard.getboost();
             }
@@ -332,7 +284,6 @@ void ActionBar_ResolveDefense(
         }
 
         if (!effectsCanceled) {
-            // ---- After-combat card effects ----
             if (defenseCard.get_name() == "Exploit")
                 defender->drawcard();
 
@@ -356,12 +307,6 @@ void ActionBar_ResolveDefense(
                 }
             }
 
-            // Dash / The Game is Afoot move whichever fighter actually
-            // played the card -- the physically attacking character
-            // (attackerPos), which may be a Sister rather than the hero
-            // whose hand the card came from. The target node was already
-            // confirmed unoccupied when the player clicked it (see the
-            // DashNode/AfootNode click handler in ActionBar_UpdateTargeting).
             if (attackCard.get_name() == "Dash" && state.pendingDashTargetNode >= 0) {
                 character* mover = attackerPos ? attackerPos : static_cast<character*>(attacker);
                 mover->setposition(state.pendingDashTargetNode);
@@ -430,11 +375,6 @@ void ActionBar_Update(
     bool hasActions = gm.getActionsRemaining() > 0;
 
     state.canMove = hasActions && actingChar != nullptr;
-    // Sisters and Watson can attack too -- they use their controlling
-    // hero's hand/deck, but attack from their own board position. So the
-    // requirement here is "there's an acting character AND a hero to draw
-    // the attack card from" (activeHero is always the current team's
-    // hero), not "the acting character IS specifically a hero".
     state.canAttack = hasActions && actingChar != nullptr && activeHero != nullptr;
     state.canScheme = hasActions && activeHero != nullptr;
 
@@ -523,11 +463,6 @@ void ActionBar_Update(
         auto enemies = gm.getEnemies(actingChar);
 
         for (character* enemyChar : enemies) {
-            // Range is based on the ACTING CHARACTER's own position, not
-            // necessarily the hero's -- this is what lets a Sister or
-            // Watson (who share their hero's hand/deck but stand on their
-            // own space) attack an adjacent enemy even while their hero is
-            // elsewhere on the board.
             if (!board.isAdjacent(actingChar->getx(), enemyChar->getx()))
                 continue;
 
@@ -537,11 +472,6 @@ void ActionBar_Update(
             if (!CheckCollisionPointCircle(mousePos, pos, clickRadius))
                 continue;
 
-            // The attack card always comes from activeHero's hand -- in
-            // this game the deck/hand belongs to the player's hero and is
-            // shared by their sidekicks (matches the rulebook's "Sidekick"
-            // card-ownership rule: sidekicks play from that same shared
-            // hand), not something each fighter carries individually.
             auto& hand = activeHero->gethand();
 
             if (state.selectedCardIndex >= 0 &&
@@ -570,15 +500,6 @@ void ActionBar_Update(
                     state.pendingDefender = enemyHero;
                     state.pendingDefenderTarget = nullptr;
                 } else {
-                    // BUGFIX: attacking a sidekick (Sister/Watson) used to
-                    // resolve immediately via hero::attack(character&,...),
-                    // which does flat unmitigated damage with NO defense
-                    // step at all -- the defending player never got to
-                    // choose (or even play) a defense card. This now finds
-                    // that sidekick's controlling hero and opens the exact
-                    // same "CHOOSE YOUR DEFENSE" flow used for hero-vs-hero
-                    // combat, just with the damage ultimately applied to
-                    // the sidekick instead of the hero.
                     hero* controllingHero = nullptr;
                     for (character* ally : gm.getAllies(enemyChar)) {
                         controllingHero = dynamic_cast<hero*>(ally);
@@ -586,9 +507,6 @@ void ActionBar_Update(
                     }
 
                     if (!controllingHero) {
-                        // No hero found on that side at all (shouldn't
-                        // normally happen) -- flat-damage fallback rather
-                        // than getting stuck with no way to proceed.
                         int dmg = std::max(0, attackCard.getattack());
                         if (dmg > 0) enemyChar->takedamage(dmg);
                         activeHero->useAction();
@@ -604,15 +522,6 @@ void ActionBar_Update(
 
                 std::string atkName = attackCard.get_name();
 
-                // Dash / The Game is Afoot / Beastform now get their
-                // sub-prompt (pick a destination space, or how many cards
-                // to discard) regardless of whether a Sister/Watson is
-                // involved. combatTargetHero is always activeHero (the
-                // card's owner, who has a real hand to discard from);
-                // ActionBar_ResolveDefense below figures out from
-                // pendingAttackerPosition/pendingDefenderTarget whether the
-                // *mover* for Dash/Afoot should be the hero itself or the
-                // sidekick who's physically fighting.
                 if (atkName == "Dash") {
                     state.combatTargetHero = activeHero;
                     state.combatTargetIsDefender = false;
@@ -639,7 +548,6 @@ void ActionBar_Update(
         }
     }
 }
-
 
 static std::string ActionBar_FindNodeAtPos(
     Board& board,
@@ -723,8 +631,6 @@ bool ActionBar_IsTargeting(const ActionBarState& state)
     return state.targetPrompt != TargetPrompt::None;
 }
 
-// ---- Special Ability button (Dracula's Blood Drain / IM's fog-teleport) ----
-
 static bool IsInvisibleManHero(hero* h)
 {
     return h && h->getname() == "Invisible Man";
@@ -741,11 +647,6 @@ bool ActionBar_CanUseSpecialAbility(
         return false;
 
     if (activeHero->getname() == "Dracula") {
-        // Rulebook: "at the start of your turn, you MAY deal 1 damage to
-        // one fighter -- even your own Sisters -- adjacent to Dracula. If
-        // you did, draw a card." Free once-per-turn ability: needs at
-        // least one living adjacent fighter (ally or enemy) and not
-        // already used this turn.
         if (state.draculaAbilityUsed)
             return false;
 
@@ -760,10 +661,6 @@ bool ActionBar_CanUseSpecialAbility(
     }
 
     if (IsInvisibleManHero(activeHero)) {
-        // The fog-to-fog "teleport" is really just his normal movement
-        // rule (treat two fog spaces as adjacent) -- so it costs a
-        // Maneuver action like any move, and needs him to actually be
-        // standing on a fog token with another one to jump to.
         InvisibleMan* im = dynamic_cast<InvisibleMan*>(actingChar);
         if (!im || gm.getActionsRemaining() <= 0)
             return false;
@@ -785,8 +682,6 @@ bool ActionBar_CanUseSpecialAbility(
     }
 
     if (activeHero->getname() == "Sherlock Holmes") {
-        // Passive, always on (see hero::attack()) -- the button is purely
-        // an info popup for this hero, so it's always clickable.
         return true;
     }
 
@@ -852,9 +747,6 @@ void ActionBar_UpdateTargeting(
         if (!board.isAdjacent(activeHero->getx(), picked->getx()))
             return;
 
-        // Route through dracula::useAbilityOn() (single source of truth for
-        // the 1-damage + draw effect + its adjacency/alive checks) instead
-        // of duplicating that logic inline here.
         dracula* d = dynamic_cast<dracula*>(activeHero);
         bool applied = d ? d->useAbilityOn(picked) : false;
         if (!applied) {
@@ -911,13 +803,7 @@ void ActionBar_UpdateTargeting(
         if (node.empty())
             return;
 
-        // "Move any fog token to any other space" -- no distance limit and
-        // no occupancy requirement printed on the card (unlike Dash), so
-        // any valid space on the board is accepted.
         if (state.combatTargetHero) {
-            // Confound played as an attack card (combatTargetIsDefender ==
-            // false) or a defense card (combatTargetIsDefender == true) --
-            // both set combatTargetHero before opening this prompt.
             hero* mover = state.combatTargetHero;
             bool wasDefender = state.combatTargetIsDefender;
 
@@ -932,12 +818,6 @@ void ActionBar_UpdateTargeting(
                 ActionBar_ProceedToDefense(state);
             }
         } else {
-            // Confound played as a standalone scheme card (PLAY CARD).
-            // That path only sets pendingSchemeCard/pendingSchemeTarget
-            // (not combatTargetHero), and resolves through
-            // hero::scheme() -- same click-to-target flow as Mistform,
-            // just with setConfoundFogTarget() instead of
-            // setMistformTarget().
             activeHero->setConfoundFogTarget(node);
             ActionBar_FinishPendingScheme(state, gm, activeHero, draculaHero);
         }
@@ -946,11 +826,6 @@ void ActionBar_UpdateTargeting(
     }
 
     if (state.targetPrompt == TargetPrompt::VanishNode) {
-        // Opened by raylib.cpp right after onTurnStart(), with
-        // combatTargetHero pointing at whichever Invisible Man is still
-        // vanished. No other action is available until this resolves
-        // (matches how awaitingDefense blocks everything else), so there's
-        // no card/hand bookkeeping here -- just place him.
         InvisibleMan* im = dynamic_cast<InvisibleMan*>(state.combatTargetHero);
         if (!im) {
             state.targetPrompt = TargetPrompt::None;
@@ -962,8 +837,6 @@ void ActionBar_UpdateTargeting(
         if (node.empty())
             return;
 
-        // Rulebook just says "any space" -- no occupied/unoccupied
-        // restriction printed on the card, unlike Mistform/Dash.
         im->resolveVanish(board.getNodeId(node));
 
         state.targetPrompt = TargetPrompt::None;
@@ -1013,12 +886,6 @@ void ActionBar_UpdateTargeting(
         hero* mover = state.combatTargetHero;
         bool wasDefender = state.combatTargetIsDefender;
 
-        // If a Sister/Watson is involved in this fight, hero::attack()'s
-        // rich pipeline (which reads dashTargetNode etc. off the hero
-        // itself) never runs -- ActionBar_ResolveDefense's sidekick branch
-        // reads the choice from these state fields instead. Otherwise this
-        // is genuine hero-vs-hero combat, so it's stored on the hero as
-        // before.
         bool sidekickInvolved = (state.pendingAttackerPosition != nullptr) ||
                                  (state.pendingDefenderTarget != nullptr);
 
@@ -1097,9 +964,6 @@ void ActionBar_DrawTargetingHighlights(
     }
 
     if (state.targetPrompt == TargetPrompt::VanishNode) {
-        // Every space is a legal target ("any space you choose", no
-        // occupied/unoccupied restriction), so unlike the Mistform/Dash
-        // block above this doesn't filter by occupancy.
         for (const std::string& nodeName : board.getAllSpaceIds()) {
             Vector2 pos = ActionBar_NodeScreenPos(board, nodeName, mapDest, boardTex);
             DrawCircleLines((int)pos.x, (int)pos.y, radius, highlight);
@@ -1109,8 +973,6 @@ void ActionBar_DrawTargetingHighlights(
     Color goldHighlight = GetColor(0xE5C158FF);
 
     if (state.targetPrompt == TargetPrompt::DraculaAbilityTarget) {
-        // Highlight every living fighter adjacent to Dracula (allies
-        // included, per "even your own Sisters").
         for (character* c : gm.getAllCharacters()) {
             if (!c || !c->isalive()) continue;
             for (character* h : gm.getAllCharacters()) {
@@ -1173,7 +1035,7 @@ void ActionBar_DrawValuePicker(
 
     float btnSize = 46.0f;
     float gap = 10.0f;
-    int count = 7; 
+    int count = 7;
     float totalW = count * btnSize + (count - 1) * gap;
     float startX = modalRect.x + (modalW - totalW) / 2.0f;
     float y = modalRect.y + 70.0f;
@@ -1281,7 +1143,7 @@ void ActionBar_DrawBeastformPicker(
 
     hero* attacker = state.combatTargetHero;
     int maxDiscard = attacker->handsize();
-    if (maxDiscard > 8) maxDiscard = 8; 
+    if (maxDiscard > 8) maxDiscard = 8;
     float modalW = 420.0f;
     float modalH = 220.0f;
     Rectangle modalRect = { (sw - modalW) / 2.0f, (sh - modalH) / 2.0f, modalW, modalH };
@@ -1293,7 +1155,7 @@ void ActionBar_DrawBeastformPicker(
     const char* title = "BEASTFORM - CARDS TO DISCARD";
     DrawTextCenteredAB(GetTitleFont(), title, modalRect.x + modalW / 2.0f, modalRect.y + 12, 19, 0.6f, GetColor(0xE5C158FF));
 
-    int count = maxDiscard + 1; 
+    int count = maxDiscard + 1;
     float btnSize = 46.0f;
     float gap = 10.0f;
     float totalW = count * btnSize + (count - 1) * gap;
@@ -1350,7 +1212,7 @@ void ActionBar_DrawElementaryPicker(
     const char* title = "ELEMENTARY - PREDICT THE ATTACK VALUE";
     DrawTextCenteredAB(GetTitleFont(), title, modalRect.x + modalW / 2.0f, modalRect.y + 12, 19, 0.6f, GetColor(0xE5C158FF));
 
-    int count = 7; 
+    int count = 7;
     float btnSize = 46.0f;
     float gap = 10.0f;
     float totalW = count * btnSize + (count - 1) * gap;
@@ -1380,10 +1242,6 @@ void ActionBar_DrawElementaryPicker(
 }
 
 static bool IsCardOwnerAvailable(const card& c, GameManager& gm) {
-    // Rulebook: "if a character has been defeated, you can no longer play
-    // cards belonging to them for an action -- but you can still burn them
-    // for a Boost." Applies to Attack and PlayCard selections; BoostCard
-    // deliberately does NOT call this.
     auto isAlive = [&](const std::string& namePart) -> bool {
         bool exists = false;
         for (character* ch : gm.getAllCharacters()) {
@@ -1392,7 +1250,7 @@ static bool IsCardOwnerAvailable(const card& c, GameManager& gm) {
                 if (ch->isalive()) return true;
             }
         }
-        return !exists; // that role isn't even in this matchup -- don't block on it
+        return !exists;
     };
 
     switch (c.getowner()) {
@@ -1405,13 +1263,6 @@ static bool IsCardOwnerAvailable(const card& c, GameManager& gm) {
     }
 }
 
-// Rulebook: "the character named on a card is the only one who can play
-// it" -- Dracula-owned cards only by Dracula, Sherlock-owned only by
-// Sherlock, Watson-owned only by Watson, Sister-owned only by a Sister.
-// "Any" cards are playable by whoever is acting. Even though the hand is
-// shared across a hero and their sidekicks, WHO is physically taking the
-// action (attacking/defending) is what this checks against -- not who
-// owns the hand.
 bool CardOwnerMatchesCharacter(const card& c, character* actor) {
     if (!actor) return false;
     if (c.getowner() == cardowner::any) return true;
@@ -1446,9 +1297,6 @@ bool ActionBar_HandleCardClick(
         !IsCardOwnerAvailable(clickedCard, gm))
         return false;
 
-    // Attack cards are played by whoever is physically attacking (could be
-    // a Sister or Watson, not just the hero); Scheme/PlayCard is always
-    // the hero's own action in this game, so it checks against activeHero.
     if (state.currentAction == ActionMode::Attack &&
         !CardOwnerMatchesCharacter(clickedCard, actingChar ? actingChar : static_cast<character*>(activeHero)))
         return false;
@@ -1461,7 +1309,6 @@ bool ActionBar_HandleCardClick(
         if (clickedCard.gettype() != cardtype::attack &&
             clickedCard.gettype() != cardtype::multipurpose)
             return false;
-
         state.selectedCardIndex = cardIndex;
         showHandFlag = false;
         return true;
@@ -1470,7 +1317,6 @@ bool ActionBar_HandleCardClick(
     if (state.currentAction == ActionMode::BoostCard) {
         if (clickedCard.getboost() <= 0)
             return false;
-
         state.pendingBoostCard = clickedCard;
         state.hasPendingBoost = true;
         state.currentAction = ActionMode::Move;
@@ -1480,16 +1326,6 @@ bool ActionBar_HandleCardClick(
     }
 
     if (state.currentAction == ActionMode::PlayCard) {
-        // Multipurpose cards CAN be played as a scheme card too -- the
-        // rulebook lets a multipurpose card be used as an attack, a
-        // defense, OR a scheme card, chosen by the player at the moment
-        // it's played (see hero::scheme()'s matching check). This used to
-        // reject cardtype::multipurpose outright, which silently kept
-        // every Invisible Man multipurpose scheme card (Confound, Covert
-        // Preparation, Dreaming of Revenge, Impossible to See) from ever
-        // reaching hero::scheme() -- the card just sat in the hand doing
-        // nothing when clicked under PLAY CARD, even though the
-        // underlying logic for it was already there.
         if (clickedCard.gettype() != cardtype::scheme &&
             clickedCard.gettype() != cardtype::multipurpose)
             return false;
@@ -1497,12 +1333,9 @@ bool ActionBar_HandleCardClick(
         hero* targetHero = nullptr;
         for (character* enemy : gm.getEnemies(activeHero)) {
             targetHero = dynamic_cast<hero*>(enemy);
-            if (targetHero)
-                break;
+            if (targetHero) break;
         }
-
-        if (!targetHero)
-            return false;
+        if (!targetHero) return false;
 
         std::string name = clickedCard.get_name();
 
@@ -1514,7 +1347,6 @@ bool ActionBar_HandleCardClick(
             showHandFlag = false;
             return true;
         }
-
         if (name == "Confound") {
             state.pendingSchemeCard = clickedCard;
             state.pendingSchemeCardIndex = cardIndex;
@@ -1523,7 +1355,6 @@ bool ActionBar_HandleCardClick(
             showHandFlag = false;
             return true;
         }
-
         if (name == "Ravening Seduction") {
             state.pendingSchemeCard = clickedCard;
             state.pendingSchemeCardIndex = cardIndex;
@@ -1533,7 +1364,6 @@ bool ActionBar_HandleCardClick(
             showHandFlag = false;
             return true;
         }
-
         if (name == "Confirm Suspicion") {
             state.pendingSchemeCard = clickedCard;
             state.pendingSchemeCardIndex = cardIndex;
@@ -1542,11 +1372,9 @@ bool ActionBar_HandleCardClick(
             showHandFlag = false;
             return true;
         }
-
         if (name == "Eliminate the Impossible") {
             if (targetHero->gethand().empty())
                 return false;
-
             state.pendingSchemeCard = clickedCard;
             state.pendingSchemeCardIndex = cardIndex;
             state.pendingSchemeTarget = targetHero;
@@ -1554,20 +1382,32 @@ bool ActionBar_HandleCardClick(
             showHandFlag = false;
             return true;
         }
+
         card cardCopy = clickedCard;
         bool ok = activeHero->scheme(cardCopy, *targetHero);
-
-        if (!ok)
-            return false;
+        if (!ok) return false;
 
         activeHero->removeCardFromHand(clickedCard.get_name());
         ActionBar_RecordPlayedCard(state, activeHero, draculaHero, clickedCard);
         showHandFlag = false;
 
-        if (CardGrantsBonusAction(clickedCard.get_name()))
+        bool isVanish = (clickedCard.get_name() == "Vanish");
+        bool isFirstAction = (gm.getActionsRemaining() == 2);
+
+        if (CardGrantsBonusAction(clickedCard.get_name())) {
             ActionBar_CompleteFreeAction(state);
-        else
+        }
+        else if (isVanish && isFirstAction) {
+            state.currentAction = ActionMode::None;
+            state.selectedCardIndex = -1;
+            state.hasPendingBoost = false;
+            state.selectedActor = nullptr;
+            gm.forceEndTurn();
+        }
+        else {
             ActionBar_CompleteAction(state, gm);
+        }
+
         return true;
     }
 
@@ -1774,9 +1614,6 @@ void ActionBar_DrawActorSelection(
 
 static float g_cardEffectsScroll[2] = { 0.0f, 0.0f };
 
-// Breaks text into lines that each fit within maxWidth at the given font
-// size, breaking on spaces (word-wrap). Used so card names/effect text
-// never get drawn past the edge of their box.
 static std::vector<std::string> WrapTextToWidth(Font font, const std::string& text, float maxWidth, float fontSize, float spacing)
 {
     std::vector<std::string> lines;
@@ -1835,8 +1672,6 @@ static void DrawCardEffectsCell(
     float pad = 8.0f;
     float contentW = cell.width - pad * 2.0f;
 
-    // Card name -- wrapped too, so a long name never pushes past the
-    // cell's right edge.
     auto nameLines = WrapTextToWidth(GetSemiFont(), c.get_name(), contentW, 21, 0.5f);
     float y = cell.y + 32;
     for (const auto& ln : nameLines) {
@@ -1859,9 +1694,7 @@ static void DrawCardEffectsCell(
     DrawTextEx(GetRegularFont(), stats.c_str(), { cell.x + pad, y + 3 }, 18, 0.35f, GetColor(0xC2B6B9FF));
     y += 30.0f;
 
-    // Divider between the fixed header (name/stats) and the scrollable
-    // effect text below it.
-    DrawLine((int)(cell.x + pad), (int)y, (int)(cell.x + cell.width - pad), (int)y, Fade(accent, 0.4f));
+    DrawLine((int)(cell.x + pad), (int)y, (int)(cell.x + cell.width - pad), y, Fade(accent, 0.4f));
     y += 8.0f;
 
     std::string effect = c.geteffect();
@@ -1884,7 +1717,6 @@ static void DrawCardEffectsCell(
     if (maxScroll < 0.0f)
         maxScroll = 0.0f;
 
-    // Scroll with the mouse wheel while hovering this cell.
     Vector2 mouse = GetMousePosition();
     if (CheckCollisionPointRec(mouse, scrollArea)) {
         float wheel = GetMouseWheelMove();
@@ -1907,7 +1739,6 @@ static void DrawCardEffectsCell(
     }
     EndScissorMode();
 
-    // Thin scrollbar, only shown when the text is taller than the box.
     if (maxScroll > 0.0f) {
         float trackX = scrollArea.x + scrollArea.width - scrollbarW;
         DrawRectangle((int)trackX, (int)scrollArea.y, (int)scrollbarW, (int)scrollArea.height, Fade(GetColor(0x5A5055FF), 0.4f));

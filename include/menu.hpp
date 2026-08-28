@@ -1,15 +1,16 @@
 #ifndef MENU_HPP
 #define MENU_HPP
 
-enum class MenuResult
-{
-    Start,
-    Load,
-    Exit
+struct MenuResult {
+    enum Type {
+        Start,
+        Load,
+        Exit
+    } type;
+    int slotNumber;
 };
 
-class Menu
-{
+class Menu {
 public:
     MenuResult show();
 };
